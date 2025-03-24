@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 19:17:16 by inikulin          #+#    #+#             */
-/*   Updated: 2025/03/24 20:29:37 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/03/24 20:31:31 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdio.h>
 
 # include "minilibx-linux/mlx.h"
-# include "mlx.h"
 # include "libft.h"
 
 #endif
