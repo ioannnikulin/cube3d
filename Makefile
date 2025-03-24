@@ -2,12 +2,12 @@ CC = cc
 NAME = cube3D
 COMPILE_FLAGS = -Wall -Wextra -Werror -g -c
 LINK_FLAGS = -lft -Llibft -lreadline -lm
-INCLUDES = -I . -I libft -I minilibx-linux
+MLX_F = minilibx_opengl_20191021
+INCLUDES = -I . -I libft -I $(MLX_F)
 MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 
 MLX_SOURCE_ADDRESS = https://cdn.intra.42.fr/document/document/31892/minilibx_opengl.tgz
 MLX_ARCHIVE = minilibx.tgz
-MLX_F = minilibx_opengl_20191021
 PREFIX = 
 PREPROC_DEFINES =
 
