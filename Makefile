@@ -2,7 +2,7 @@ CC = cc
 NAME = cube3D
 COMPILE_FLAGS = -Wall -Wextra -Werror -g -c
 LINK_FLAGS = -lft -Llibft -lreadline -lm
-INCLUDES = -I . -I libft -I minilibx_linux
+INCLUDES = -I . -I libft -I minilibx-linux
 MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 MLX_SOURCE_ADDRESS = https://cdn.intra.42.fr/document/document/31891/minilibx-linux.tgz
 MLX_ARCHIVE = minilibx.tgz
@@ -53,8 +53,8 @@ $(OBJ_DIRS):
 pre:
 	$(PREFIX)cd libft && make all
 	$(PREFIX)curl $(MLX_SOURCE_ADDRESS) -o $(MLX_ARCHIVE) && tar -xf $(MLX_ARCHIVE)
-	$(PREFIX)cd $(MLX_F) && make -s
-	$(PREFIX)rm -f $(MLX_ARCHIVE)
+	#$(PREFIX)cd $(MLX_F) && make -s
+	#$(PREFIX)rm -f $(MLX_ARCHIVE)
 
 $(NAME): $(OBJS) $(ENDPOINT_OBJ) $(OBJ_DIRS)
 	$(PREFIX)$(CC) $(OBJS) $(ENDPOINT_OBJ) -o $@ $(LINK_FLAGS)
@@ -113,7 +113,7 @@ fulltest_common:
 	$(PREFIX)cd libft && make fulltest_trapped
 	$(PREFIX)make fclean testfclean
 	$(PREFIX)cd sources && norminette sources/*
-	$(PREFIX)make all_trapped
+	$(PREFIX)make pre all_trapped
 
 fulltest_vania: fulltest_common
 	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DVANIA" test_trapped memcheck
