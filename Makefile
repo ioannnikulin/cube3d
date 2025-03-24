@@ -1,8 +1,8 @@
 CC = cc
-NAME = minishell
+NAME = cube3D
 COMPILE_FLAGS = -Wall -Wextra -Werror -g -c
 LINK_FLAGS = -lft -Llibft -lreadline -lm
-INCLUDES = -I . -I libft
+INCLUDES = -I . -I libft -I minilibx_linux
 MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 MLX_SOURCE_ADDRESS = https://cdn.intra.42.fr/document/document/31891/minilibx-linux.tgz
 MLX_ARCHIVE = minilibx.tgz
@@ -13,17 +13,18 @@ PREPROC_DEFINES =
 SOURCE_F = sources
 TEST_F = tests
 
-#COMMANDS_NAMES = option_cd.c option_echo.c option_env.c option_exit.c option_export.c option_external.c option_pwd.c option_unset.c get_envvars_for_execve.c w_execve.c
-#COMMANDS_F = commands
-#COMMANDS_SRCS = $(addprefix $(COMMANDS_F)/,$(COMMANDS_NAMES))
+MAP_PARSING_NAMES = map_parse.c
+MAP_PARSING_F = map_parse
+MAP_PARSING_SRCS = $(addprefix $(MAP_PARSING_F)/,$(MAP_PARSING_NAMES))
 
 SRC_NAMES = 
 ENDPOINT_NAME = main.c
 
 SRC_SRCS = $(addprefix $(SOURCE_F)/, $(SRC_NAMES))
 ENDPOINT_SRC = $(addprefix $(SOURCE_F)/, $(ENDPOINT_NAME))
+ENDPOINT_OBJ = $(OBJ_F)$(ENDPOINT_NAME:.c=.o)
 
-TEST_NAMES = 
+TEST_NAMES = units.c e2e.c
 TEST_ENDPOINT_NAME = main_test.c
 TEST_SRCS = $(addprefix $(TEST_F)/, $(TEST_NAMES))
 TEST_ENDPOINT_SRC = $(addprefix $(TEST_F)/, $(TEST_ENDPOINT_NAME))
@@ -34,13 +35,13 @@ TEST_OBJ_F = $(OBJ_F)tests/
 
 OBJS = $(addprefix $(OBJ_F), $(SRC_NAMES:.c=.o))
 TEST_OBJS = $(addprefix $(TEST_OBJ_F), $(TEST_NAMES:.c=.o))
-ENDPOINT_OBJ = $(OBJ_F)$(ENDPOINT_NAME:.c=.o)
+TEST_ENDPOINT_OBJ = $(OBJ_F)$(TEST_ENDPOINT_NAME:.c=.o)
 
-DIRS = 
+DIRS = $(MAP_PARSING_F)
 
 OBJ_DIRS = $(addprefix $(OBJ_F), $(DIRS))
 
-vpath %.c $(SOURCE_F) 
+vpath %.c $(SOURCE_F) $(TEST_F)
 
 all: pre $(NAME)
 
@@ -52,9 +53,10 @@ $(OBJ_DIRS):
 pre:
 	$(PREFIX)cd libft && make all
 	$(PREFIX)curl $(MLX_SOURCE_ADDRESS) -o $(MLX_ARCHIVE) && tar -xf $(MLX_ARCHIVE)
-	$(PREFIX)cd $(MLX_F) && make && rm -f $(MLX_ARCHIVE)
+	$(PREFIX)cd $(MLX_F) && make -s
+	$(PREFIX)rm -f $(MLX_ARCHIVE)
 
-$(NAME): $(OBJS) $(ENDPOINT_OBJ)
+$(NAME): $(OBJS) $(ENDPOINT_OBJ) $(OBJ_DIRS)
 	$(PREFIX)$(CC) $(OBJS) $(ENDPOINT_OBJ) -o $@ $(LINK_FLAGS)
 
 $(OBJ_F)%.o: %.c $(OBJ_DIRS)
@@ -110,7 +112,7 @@ memcheck:
 fulltest_common:
 	$(PREFIX)cd libft && make fulltest_trapped
 	$(PREFIX)make fclean testfclean
-	$(PREFIX)cd sources && norminette
+	$(PREFIX)cd sources && norminette sources/*
 	$(PREFIX)make all_trapped
 
 fulltest_vania: fulltest_common

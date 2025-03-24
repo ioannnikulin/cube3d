@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx.h                                              :+:      :+:    :+:   */
+/*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:06:42 by inikulin          #+#    #+#             */
-/*   Updated: 2025/03/24 16:32:15 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/03/24 19:40:24 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_H
-# define MLX_H
-# include "libft.h"
+#ifndef CUBE3D_H
+# define CUBE3D_H
+
+# include "includes.h"
 
 typedef struct s_img
 {

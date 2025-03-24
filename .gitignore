@@ -1,6 +1,7 @@
 minilibx-linux/*
 *.tgz
 *.exe
+cube3D
 *.o
 *.a
 build/*

@@ -6,9 +6,11 @@
 /*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:01:39 by inikulin          #+#    #+#             */
-/*   Updated: 2025/03/24 16:53:16 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/03/24 19:42:38 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "cube3d.h"
 
 static int	usage(void)
 {
@@ -31,6 +33,7 @@ depicting player's spawn position and face direction]\n");
 
 int	main(int argc, char **argv)
 {
+	(void)argv;
 	if (argc != 2)
 		return (usage());
 	return (0);

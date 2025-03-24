@@ -7,6 +7,10 @@ PREPROC_DEFINES =
 SOURCES_F = sources
 TESTS_F = tests
 
+GRAPHICS_F = graphics
+GRAPHICS_NAMES = vector.c
+GRAPHICS_SRCS = $(addprefix $(SOURCES_F)/$(GRAPHICS_F)/, $(GRAPHICS_NAMES))
+
 LIST_F = lists
 LIST_NAMES = ft_list_add_back.c ft_list_add_front.c ft_list_clear.c ft_list_delone.c ft_list_iter.c ft_list_generate.c ft_list_last.c ft_list_new.c ft_list_size.c ft_list_map.c
 LIST_SRCS = $(addprefix $(SOURCES_F)/$(LIST_F)/, $(LIST_NAMES))
@@ -55,7 +59,7 @@ FLOW_F = control_flow
 FLOW_NAMES = ft_if.c
 FLOW_SRCS = $(addprefix $(SOURCES_F)/$(FLOW_F)/, $(FLOW_NAMES))
 
-SRCS = $(LIST_SRCS) $(DLIST_SRCS) $(MAPSS_SRCS) $(TREE_SRCS) $(MEM_SRCS) $(NUM_SRCS) $(STR_SRCS) $(SYM_SRCS) $(PRINTF_SRCS) $(GNL_SRCS) $(FLOW_SRCS)
+SRCS = $(GRAPHICS_SRCS) $(LIST_SRCS) $(DLIST_SRCS) $(MAPSS_SRCS) $(TREE_SRCS) $(MEM_SRCS) $(NUM_SRCS) $(STR_SRCS) $(SYM_SRCS) $(PRINTF_SRCS) $(GNL_SRCS) $(FLOW_SRCS)
 OBJS = $(SRCS:.c=.o)
 INCLUDES = -I .
 PACK = ar rcs

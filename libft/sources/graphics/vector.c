@@ -1,38 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graphics.h                                         :+:      :+:    :+:   */
+/*   vector.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/24 16:27:52 by inikulin          #+#    #+#             */
-/*   Updated: 2025/03/24 19:35:09 by inikulin         ###   ########.fr       */
+/*   Created: 2025/03/24 19:28:51 by inikulin          #+#    #+#             */
+/*   Updated: 2025/03/24 19:41:52 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GRAPHICS_H
-# define GRAPHICS_H
+#include "libft.h"
 
-typedef struct s_color
+t_vector	vector_add(t_vector *a, t_vector *b)
 {
-	int	red;
-	int	green;
-	int	blue;
-}	t_color;
+	t_vector	res;
 
-typedef struct s_point
-{
-	double		x;
-	double		y;
-	double		z;
-}	t_point;
-
-typedef struct s_vector
-{
-	t_point	from;
-	t_point	to;
-}	t_vector;
-
-t_vector	vector_add(t_vector *a, t_vector *b);
-
-#endif
+	res.from.x = a->from.x;
+	res.from.y = a->from.y;
+	res.to.x = a->to.x + b->to.x - b->from.x;
+	res.to.y = a->to.y + b->to.y - b->from.y;
+	return (res);
+}
