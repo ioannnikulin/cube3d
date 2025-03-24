@@ -6,3 +6,4 @@ cube3D
 *.a
 build/*
 .vscode/*
+tests/test
