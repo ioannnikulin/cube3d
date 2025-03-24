@@ -53,7 +53,6 @@ $(OBJ_DIRS):
 pre:
 	$(PREFIX)cd libft && make all
 	$(PREFIX)curl $(MLX_SOURCE_ADDRESS) -o $(MLX_ARCHIVE) && tar -xf $(MLX_ARCHIVE)
-	$(PREFIX)ls -R
 	#$(PREFIX)cd $(MLX_F) && make -s
 	#$(PREFIX)rm -f $(MLX_ARCHIVE)
 
