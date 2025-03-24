@@ -1,0 +1,7 @@
+minilibx-linux/*
+*.tgz
+*.exe
+*.o
+*.a
+build/*
+.vscode/*
