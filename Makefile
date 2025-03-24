@@ -113,7 +113,7 @@ fulltest_common:
 	$(PREFIX)cd libft && make fulltest_trapped
 	$(PREFIX)make fclean testfclean
 	$(PREFIX)cd sources && norminette sources/*
-	$(PREFIX)make all_trapped
+	$(PREFIX)make pre all_trapped
 
 fulltest_vania: fulltest_common
 	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DVANIA" test_trapped memcheck
