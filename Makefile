@@ -52,9 +52,9 @@ $(OBJ_DIRS):
 
 pre:
 	$(PREFIX)cd libft && make all
-	$(PREFIX)curl $(MLX_SOURCE_ADDRESS) -o $(MLX_ARCHIVE) && tar -xf $(MLX_ARCHIVE)
-	$(PREFIX)cd $(MLX_F) && make -s
-	$(PREFIX)rm -f $(MLX_ARCHIVE)
+	#$(PREFIX)curl $(MLX_SOURCE_ADDRESS) -o $(MLX_ARCHIVE) && tar -xf $(MLX_ARCHIVE)
+	#$(PREFIX)cd $(MLX_F) && make -s
+	#$(PREFIX)rm -f $(MLX_ARCHIVE)
 
 $(NAME): $(OBJS) $(ENDPOINT_OBJ) $(OBJ_DIRS)
 	$(PREFIX)$(CC) $(OBJS) $(ENDPOINT_OBJ) -o $@ $(LINK_FLAGS)
