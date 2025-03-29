@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:01:39 by inikulin          #+#    #+#             */
-/*   Updated: 2025/03/24 19:42:38 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/03/29 22:46:01 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ depicting player's spawn position and face direction]\n");
 
 int	main(int argc, char **argv)
 {
-	(void)argv;
 	if (argc != 2)
 		return (usage());
+	parse_map(argv[1]);
 	return (0);
 }

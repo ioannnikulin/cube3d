@@ -3,7 +3,7 @@ NAME = cube3D
 COMPILE_FLAGS = -Wall -Wextra -Werror -g -c
 LINK_FLAGS = -lft -Llibft -lreadline -lm
 MLX_F = minilibx_opengl_20191021
-INCLUDES = -I . -I libft -I $(MLX_F)
+INCLUDES = -I . -I libft -I $(MLX_F) -I get_next_line
 MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 
 MLX_SOURCE_ADDRESS = https://cdn.intra.42.fr/document/document/31892/minilibx_opengl.tgz
@@ -45,7 +45,7 @@ TEST_FNAME = $(TEST_F)/test
 OBJ_F = build/
 TEST_OBJ_F = $(OBJ_F)tests/
 
-OBJS = $(addprefix $(OBJ_F), $(SRC_NAMES:.c=.o))
+OBJS = $(addprefix $(OBJ_F), $(SRC_NAMES:.c=.o)) $(addprefix $(OBJ_F), $(MAP_PARSING_SRCS:.c=.o))
 TEST_OBJS = $(addprefix $(TEST_OBJ_F), $(TEST_NAMES:.c=.o))
 TEST_ENDPOINT_OBJ = $(OBJ_F)$(TEST_ENDPOINT_NAME:.c=.o)
 
