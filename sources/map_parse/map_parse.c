@@ -6,35 +6,32 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 22:25:54 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/03/30 16:24:29 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/03/30 21:19:10 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
 
+int is_valid_char(char c)
+{
+	if (c == EMPTY || c == WALL || c == NORTH || c == SOUTH || c == EAST || c == WEST || c == '\n')
+		return (1);
+	return (0);
+}
+
 int	check_elements(t_mlx *mlx, char **map)
 {
 	int	i;
 	int	j;
-	int	p;
-	int	c;
-	int	e;
 
-	i = ((p = 0), -1);
-	c = 0;
-	e = 0;
-	p = 0;
+	i = 0;
 	while (++i < mlx->map->map_height)
 	{
 		j = -1;
 		while (++j < mlx->map->map_width)
 		{
-			if (map[i][j] == 'C')
-				c++;
-			if (map[i][j] == 'E')
-				e++;
-			if (map[i][j] == 'P')
-				p++;
+			if (!is_valid_char(map[i][j]))
+				return (printf("Error\nInvalid map character\n"), 0);
 		}
 	}
 	return (1);
@@ -65,7 +62,7 @@ void	print_map(char **map)
 
 	i = 0;
 	while (map[i])
-		printf("%s\n", map[i++]);
+		printf("%s", map[i++]);
 }
 
 void	fill_map(t_mlx *data, char *mp)
@@ -80,10 +77,9 @@ void	fill_map(t_mlx *data, char *mp)
 	data->map = malloc(sizeof(char *) * (size_t)(lines + 1));
 	data->map->map = malloc(sizeof(char *) * (size_t)(lines + 1));
 	data->map->map[0] = get_next_line(file);
-	printf("data->map->map[0]: %s\n", data->map->map[0]);
 	if (!data->map->map[0])
 	{
-		printf("Error\nFailed to read map11\n");
+		printf("Error\nFailed to read map\n");
 		return;
 	}
 	data->map->map_width = ft_strlen(data->map->map[0]);

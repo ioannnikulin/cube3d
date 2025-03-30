@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:06:42 by inikulin          #+#    #+#             */
-/*   Updated: 2025/03/30 14:50:47 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/03/30 21:11:14 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,16 @@
 
 # define WINDOW_WIDTH 1000
 # define WINDOW_HEIGHT 1000
+
+typedef enum e_map_element
+{
+    EMPTY = '0',
+    WALL = '1',
+    NORTH = 'N',
+    SOUTH = 'S',
+    WEST = 'W',
+    EAST = 'E'
+} t_map_element;
 
 typedef struct s_img
 {
