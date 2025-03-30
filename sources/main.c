@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:01:39 by inikulin          #+#    #+#             */
-/*   Updated: 2025/03/29 22:46:01 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/03/30 16:17:15 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,17 @@ depicting player's spawn position and face direction]\n");
 
 int	main(int argc, char **argv)
 {
+	t_mlx	mlx;
 	if (argc != 2)
 		return (usage());
-	parse_map(argv[1]);
+	mlx.mlx = mlx_init();
+	if (!mlx.mlx)
+		return (usage());
+	mlx.win = mlx_new_window(mlx.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cube3D");
+	if (!mlx.win)
+		return (free(mlx.mlx), usage());
+	if (validate_map(&mlx, argv[1]) == 1)
+		return (1);
+	mlx_loop(mlx.mlx);
 	return (0);
 }

@@ -14,7 +14,7 @@ PREPROC_DEFINES =
 UNAME := $(shell uname)
 
 MLX_L_FLAGS			=	-lXext -lX11 -lm -lz
-MLX_M_FLAGS			=	-Lmlx -lmlx -framework OpenGL -framework AppKit
+MLX_M_FLAGS			=	-L$(MLX_F) -lmlx -framework OpenGL -framework AppKit
 
 ifeq ($(UNAME), Linux)
 	MLX_FLAGS		=	$(MLX_L_FLAGS)
@@ -65,11 +65,11 @@ $(OBJ_DIRS):
 pre:
 	$(PREFIX)cd libft && make all
 	$(PREFIX)curl $(MLX_SOURCE_ADDRESS) -o $(MLX_ARCHIVE) && tar -xf $(MLX_ARCHIVE)
-	#$(PREFIX)cd $(MLX_F) && make -s
-	#$(PREFIX)rm -f $(MLX_ARCHIVE)
+	$(PREFIX)cd $(MLX_F) && make -s
+	$(PREFIX)rm -f $(MLX_ARCHIVE)
 
 $(NAME): $(OBJS) $(ENDPOINT_OBJ) $(OBJ_DIRS)
-	$(PREFIX)$(CC) $(OBJS) $(ENDPOINT_OBJ) -o $@ $(LINK_FLAGS)
+	$(PREFIX)$(CC) $(OBJS) $(ENDPOINT_OBJ) -o $@ $(LINK_FLAGS) -L$(MLX_F) $(MLX_FLAGS)
 
 $(OBJ_F)%.o: %.c $(OBJ_DIRS)
 	$(PREFIX)$(CC) $(COMPILE_FLAGS) $< -o $@ $(INCLUDES) $(PREPROC_DEFINES)

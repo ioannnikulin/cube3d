@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:06:42 by inikulin          #+#    #+#             */
-/*   Updated: 2025/03/29 22:43:32 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/03/30 14:50:47 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define CUBE3D_H
 
 # include "includes.h"
+
+# define WINDOW_WIDTH 1000
+# define WINDOW_HEIGHT 1000
 
 typedef struct s_img
 {
@@ -58,6 +61,6 @@ typedef struct s_mlx
 	t_player	*player;
 }	t_mlx;
 
-int parse_map(char *map);
+int validate_map(t_mlx *data, char *map);
 
 #endif
