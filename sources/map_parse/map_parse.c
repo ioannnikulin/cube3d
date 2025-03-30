@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 22:25:54 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/03/30 21:19:10 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/03/30 21:59:50 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,19 +80,15 @@ void	fill_map(t_mlx *data, char *mp)
 	if (!data->map->map[0])
 	{
 		printf("Error\nFailed to read map\n");
-		return;
+		exit(EXIT_FAILURE);
 	}
 	data->map->map_width = ft_strlen(data->map->map[0]);
 	data->map->map_height = lines;
 	while (i++ < data->map->map_height)
 		data->map->map[i] = get_next_line(file);
 	print_map(data->map->map);
-	
 	if (!check_elements(data, data->map->map) )
-		{ 
-			printf("Error\nFailed to read map\n");
-			return;
-		}
+			exit(EXIT_FAILURE);
 	close(file);
 }
 
@@ -101,32 +97,27 @@ static int	check_extention(char *map)
 {
 	int	i;
 
-	i = 0;
+	i = -1;
 	if (ft_strchr(map, '.') == 0)
 		return (printf("Error\nInvalid map extension\n"), 0);
-	while (map[i])
+	while (map[++i])
 	{
 		if (map[i] == '.')
 		{
 			if (!(map[i + 1] == 'c' && map[i + 2] == 'u' \
 			&& map[i + 3] == 'b' && !(map[i + 4])))
-				return (printf("Error\nInvalid map extension\n"), 0);
+				return (0);
 			else
 				return (1);
 		}
-		i++;
 	}
 	return (0);
 }
 
 int validate_map(t_mlx *data, char *map)
 {
-    int res;
-
-    res = check_extention(map);
-	fill_map(data, map);
-	if (res == 0)
+	if (!check_extention(map))
 		return (printf("Error\nInvalid map extension\n"), 0);
-    else
-        return (printf("Success\n"),1);
+	fill_map(data, map);
+	return (1);
 }

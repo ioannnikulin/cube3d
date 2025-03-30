@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:01:39 by inikulin          #+#    #+#             */
-/*   Updated: 2025/03/30 16:17:15 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/03/30 22:00:32 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int argc, char **argv)
 	mlx.win = mlx_new_window(mlx.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cube3D");
 	if (!mlx.win)
 		return (free(mlx.mlx), usage());
-	if (validate_map(&mlx, argv[1]) == 1)
+	if (!validate_map(&mlx, argv[1]))
 		return (1);
 	mlx_loop(mlx.mlx);
 	return (0);
