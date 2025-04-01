@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:06:42 by inikulin          #+#    #+#             */
-/*   Updated: 2025/03/30 21:56:26 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/04/01 21:36:59 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,14 @@ typedef struct s_map
 	char		**map;
 	t_plane		*floor;
 	t_plane		*ceiling;
+	int			is_enclosed;
 }	t_map;
 
 typedef struct s_player
 {
 	t_vector	*coords;
+	int			x;
+	int			y;
 }	t_player;
 
 typedef struct s_mlx
