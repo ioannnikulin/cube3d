@@ -1,4 +1,7 @@
 minilibx-linux/*
+minilibx_opengl_20191021/*
+get_next_line/*
+*.cub
 *.tgz
 *.exe
 cube3D
