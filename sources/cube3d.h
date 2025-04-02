@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:06:42 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/01 21:36:59 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/04/02 20:45:57 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,12 @@ typedef struct s_mlx
 	t_player	*player;
 }	t_mlx;
 
-int validate_map(t_mlx *data, char *map);
+int 	validate_map(t_mlx *data, char *map);
+void	find_player_pos(t_mlx *game, int i, int *col, int *row);
+void	floodfill(t_mlx *game, int row, int col, int **passed);
+int 	is_surrounded_by_walls(t_mlx *data);
+void	print_map(char **map);
+int		count_map_lines(char *map);
+int		is_valid_char(char c);
 
 #endif

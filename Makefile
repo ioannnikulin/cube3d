@@ -25,7 +25,7 @@ endif
 SOURCE_F = sources
 TEST_F = tests
 
-MAP_PARSING_NAMES = map_parse.c
+MAP_PARSING_NAMES = map_parse.c check_walls.c parse_utils.c
 MAP_PARSING_F = map_parse
 MAP_PARSING_SRCS = $(addprefix $(MAP_PARSING_F)/,$(MAP_PARSING_NAMES))
 
