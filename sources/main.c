@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:01:39 by inikulin          #+#    #+#             */
-/*   Updated: 2025/03/24 19:42:38 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/04 20:42:52 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,18 @@ depicting player's spawn position and face direction]\n");
 
 int	main(int argc, char **argv)
 {
-	(void)argv;
+	t_mlx	mlx;
+
 	if (argc != 2)
 		return (usage());
+	mlx.mlx = mlx_init();
+	if (!mlx.mlx)
+		return (usage());
+	mlx.win = mlx_new_window(mlx.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cube3D");
+	if (!mlx.win)
+		return (free(mlx.mlx), usage());
+	if (!validate_map(&mlx, argv[1]))
+		return (1);
+	mlx_loop(mlx.mlx);
 	return (0);
 }

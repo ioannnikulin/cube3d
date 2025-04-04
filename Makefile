@@ -3,7 +3,7 @@ NAME = cube3D
 COMPILE_FLAGS = -Wall -Wextra -Werror -g -c
 LINK_FLAGS = -lft -Llibft -lreadline -lm
 MLX_F = minilibx_opengl_20191021
-INCLUDES = -I . -I libft -I $(MLX_F)
+INCLUDES = -I . -I libft -I $(MLX_F) -I get_next_line
 MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 
 MLX_SOURCE_ADDRESS = https://cdn.intra.42.fr/document/document/31892/minilibx_opengl.tgz
@@ -14,7 +14,7 @@ PREPROC_DEFINES =
 UNAME := $(shell uname)
 
 MLX_L_FLAGS			=	-lXext -lX11 -lm -lz
-MLX_M_FLAGS			=	-Lmlx -lmlx -framework OpenGL -framework AppKit
+MLX_M_FLAGS			=	-L$(MLX_F) -lmlx -framework OpenGL -framework AppKit
 
 ifeq ($(UNAME), Linux)
 	MLX_FLAGS		=	$(MLX_L_FLAGS)
@@ -25,7 +25,7 @@ endif
 SOURCE_F = sources
 TEST_F = tests
 
-MAP_PARSING_NAMES = map_parse.c
+MAP_PARSING_NAMES = map_parse.c check_walls.c parse_utils.c
 MAP_PARSING_F = map_parse
 MAP_PARSING_SRCS = $(addprefix $(MAP_PARSING_F)/,$(MAP_PARSING_NAMES))
 
@@ -45,7 +45,7 @@ TEST_FNAME = $(TEST_F)/test
 OBJ_F = build/
 TEST_OBJ_F = $(OBJ_F)tests/
 
-OBJS = $(addprefix $(OBJ_F), $(SRC_NAMES:.c=.o))
+OBJS = $(addprefix $(OBJ_F), $(SRC_NAMES:.c=.o)) $(addprefix $(OBJ_F), $(MAP_PARSING_SRCS:.c=.o))
 TEST_OBJS = $(addprefix $(TEST_OBJ_F), $(TEST_NAMES:.c=.o))
 TEST_ENDPOINT_OBJ = $(OBJ_F)$(TEST_ENDPOINT_NAME:.c=.o)
 
@@ -65,11 +65,11 @@ $(OBJ_DIRS):
 pre:
 	$(PREFIX)cd libft && make all
 	$(PREFIX)curl $(MLX_SOURCE_ADDRESS) -o $(MLX_ARCHIVE) && tar -xf $(MLX_ARCHIVE)
-	#$(PREFIX)cd $(MLX_F) && make -s
-	#$(PREFIX)rm -f $(MLX_ARCHIVE)
+	$(PREFIX)cd $(MLX_F) && make -s
+	$(PREFIX)rm -f $(MLX_ARCHIVE)
 
 $(NAME): $(OBJS) $(ENDPOINT_OBJ) $(OBJ_DIRS)
-	$(PREFIX)$(CC) $(OBJS) $(ENDPOINT_OBJ) -o $@ $(LINK_FLAGS)
+	$(PREFIX)$(CC) $(OBJS) $(ENDPOINT_OBJ) -o $@ $(LINK_FLAGS) -L$(MLX_F) $(MLX_FLAGS)
 
 $(OBJ_F)%.o: %.c $(OBJ_DIRS)
 	$(PREFIX)$(CC) $(COMPILE_FLAGS) $< -o $@ $(INCLUDES) $(PREPROC_DEFINES)
