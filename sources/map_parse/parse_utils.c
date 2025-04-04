@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:44:18 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/04/02 20:45:20 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/04/04 20:41:54 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	print_map(char **map)
 		printf("%s", map[i]);
 }
 
-int is_valid_char(char c)
+int	is_valid_char(char c)
 {
 	if (ft_strchr("01NSEW \n", c))
 		return (1);
@@ -30,9 +30,9 @@ int is_valid_char(char c)
 
 int	count_map_lines(char *map)
 {
-	int		file;
-	int		lines;
-	char	*temp;
+	int file;
+	int lines;
+	char *temp;
 
 	lines = 0;
 	file = open(map, O_RDONLY);

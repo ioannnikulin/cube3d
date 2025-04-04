@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:36:45 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/04/02 20:39:10 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/04/04 20:42:48 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,22 @@ void	find_player_pos(t_mlx *game, int i, int *col, int *row)
 //floodfill algorithm to check if the map is enclosed by walls
 void	floodfill(t_mlx *game, int row, int col, int **passed)
 {
-	if (row < 0 || col < 0 || row >= game->map->map_height || col >= game->map->map_width)
-		return;
-	if (game->map->map[row][col] == '1' || game->map->map[row][col] == '2' || passed[row][col])
-		return;
+	if (row < 0 || col < 0 || row >= game->map->map_height
+		|| col >= game->map->map_width)
+		return ;
+	if (game->map->map[row][col] == '1' || game->map->map[row][col] == '2'
+		|| passed[row][col])
+		return ;
 	if (game->map->map[row][col] == ' ')
 	{
 		game->map->is_enclosed = 0;
 		return ;
 	}
-	if (col == 0 || col == game->map->map_width - 1 || row == 0 || row == game->map->map_height - 1)
+	if (col == 0 || col == game->map->map_width - 1 || row == 0
+		|| row == game->map->map_height - 1)
 	{
 		game->map->is_enclosed = 0;
-		return;
+		return ;
 	}
 	passed[row][col] = 2;
 	floodfill(game, row + 1, col, passed);
@@ -53,12 +56,12 @@ void	floodfill(t_mlx *game, int row, int col, int **passed)
 	floodfill(game, row, col - 1, passed);
 }
 
-int is_surrounded_by_walls(t_mlx *data)
+int	is_surrounded_by_walls(t_mlx *data)
 {
-	int	i;
-	int	row;
-	int	col;
-	int	**passed;
+	int i;
+	int row;
+	int col;
+	int **passed;
 
 	data->map->is_enclosed = 1;
 
@@ -72,7 +75,8 @@ int is_surrounded_by_walls(t_mlx *data)
 	floodfill(data, row, col, passed);
 	if (data->map->is_enclosed == 0)
 		return (printf("Error\nMap is not enclosed by walls\n"), 0);
-	i = passed[row][col] && passed[data->map->map_height - 1][data->map->map_width - 1];
-	
+	i = passed[row][col] && passed[data->map->map_height
+		- 1][data->map->map_width - 1];
+
 	return (1);
 }

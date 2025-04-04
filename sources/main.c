@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:01:39 by inikulin          #+#    #+#             */
-/*   Updated: 2025/03/30 22:00:32 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/04/04 20:42:52 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ depicting player's spawn position and face direction]\n");
 int	main(int argc, char **argv)
 {
 	t_mlx	mlx;
+
 	if (argc != 2)
 		return (usage());
 	mlx.mlx = mlx_init();

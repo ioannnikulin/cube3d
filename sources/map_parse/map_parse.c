@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 22:25:54 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/04/02 20:45:47 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/04/04 20:42:12 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,10 @@ void	fill_map(t_mlx *data, char *mp)
 		data->map->map[i] = get_next_line(file);
 	if (!is_surrounded_by_walls(data))
 		exit(EXIT_FAILURE);
-	if (!check_elements(data, data->map->map) )
-			exit(EXIT_FAILURE);
+	if (!check_elements(data, data->map->map))
+		exit(EXIT_FAILURE);
 	close(file);
 }
-
 
 static int	check_extention(char *map)
 {
@@ -68,8 +67,8 @@ static int	check_extention(char *map)
 	{
 		if (map[i] == '.')
 		{
-			if (!(map[i + 1] == 'c' && map[i + 2] == 'u' \
-			&& map[i + 3] == 'b' && !(map[i + 4])))
+			if (!(map[i + 1] == 'c' && map[i + 2] == 'u' && map[i + 3] == 'b'
+					&& !(map[i + 4])))
 				return (0);
 			else
 				return (1);
@@ -78,7 +77,7 @@ static int	check_extention(char *map)
 	return (0);
 }
 
-int validate_map(t_mlx *data, char *map)
+int	validate_map(t_mlx *data, char *map)
 {
 	if (!check_extention(map))
 		return (printf("Error\nInvalid map extension\n"), 0);

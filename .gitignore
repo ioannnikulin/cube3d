@@ -10,3 +10,4 @@ cube3D
 build/*
 .vscode/*
 tests/test
+c_formatter_42/
