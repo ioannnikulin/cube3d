@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 22:25:54 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/04/04 20:42:12 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/04/06 19:22:49 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@ int	check_elements(t_mlx *mlx, char **map)
 {
 	int	i;
 	int	j;
+	int	player_already_parsed;
 
 	i = 0;
+	player_already_parsed = 0;
 	while (++i < mlx->map->map_height)
 	{
 		j = -1;
 		while (++j < mlx->map->map_width)
-			if (!is_valid_char(map[i][j]))
+			if (!is_valid_char(map[i][j], &player_already_parsed))
 				return (0);
 	}
 	return (1);

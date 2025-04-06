@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:36:45 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/04/04 20:42:48 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/04/06 19:22:03 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ void	find_player_pos(t_mlx *game, int i, int *col, int *row)
 		{
 			*row = i;
 			*col = j;
+			game->player = malloc(sizeof(t_player));
+			game->player->x = i;
+			game->player->y = j;
 			break ;
 		}
 		j++;
@@ -64,7 +67,6 @@ int	is_surrounded_by_walls(t_mlx *data)
 	int **passed;
 
 	data->map->is_enclosed = 1;
-
 	passed = ft_calloc(data->map->map_height, sizeof(int *));
 	i = -1;
 	while (++i < data->map->map_height)
@@ -77,6 +79,5 @@ int	is_surrounded_by_walls(t_mlx *data)
 		return (printf("Error\nMap is not enclosed by walls\n"), 0);
 	i = passed[row][col] && passed[data->map->map_height
 		- 1][data->map->map_width - 1];
-
 	return (1);
 }

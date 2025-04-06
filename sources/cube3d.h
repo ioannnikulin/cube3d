@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:06:42 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/04 20:45:11 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/04/06 19:20:45 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,6 @@ void			floodfill(t_mlx *game, int row, int col, int **passed);
 int				is_surrounded_by_walls(t_mlx *data);
 void			print_map(char **map);
 int				count_map_lines(char *map);
-int				is_valid_char(char c);
+int				is_valid_char(char c, int *player_already_parsed);
 
 #endif
