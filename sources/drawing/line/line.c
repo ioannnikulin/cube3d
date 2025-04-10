@@ -6,20 +6,11 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 19:23:13 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/10 18:25:50 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/10 18:47:57 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "line_internal.h"
-
-void	endpoint0(t_line_arg *arg, double x, double y);
-void	endpoint1(t_line_arg *arg, double x, double y);
-double	flr(double c);
-double	fpart(double c);
-double	rfpart(double c);
-double	rnd(double c);
-void	pixel(t_mlx *s, int x, int y, t_color clr);
-t_color	color(double clr, double alpha);
 
 static void	prep(t_line_arg *arg)
 {

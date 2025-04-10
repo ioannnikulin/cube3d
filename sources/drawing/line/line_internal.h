@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:31:07 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/10 15:48:50 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/10 18:48:17 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ double	flr(double c);
 double	fpart(double c);
 double	rfpart(double c);
 double	rnd(double c);
+void	endpoint0(t_line_arg *arg, double x, double y);
+void	endpoint1(t_line_arg *arg, double x, double y);
 
 typedef struct s_endpoint_args
 {
