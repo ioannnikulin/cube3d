@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graphics.h                                         :+:      :+:    :+:   */
+/*   line_math.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/24 16:27:52 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/09 18:14:14 by inikulin         ###   ########.fr       */
+/*   Created: 2024/03/24 19:23:13 by inikulin          #+#    #+#             */
+/*   Updated: 2025/04/09 16:07:53 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GRAPHICS_H
-# define GRAPHICS_H
+#include "line_internal.h"
+#include <math.h>
 
-typedef struct s_point
+double	flr(double c)
 {
-	double		x;
-	double		y;
-	double		z;
-}	t_point;
+	return ((int)c);
+}
 
-typedef struct s_vector
+double	fpart(double c)
 {
-	t_point	from;
-	t_point	to;
-}	t_vector;
+	return (c - flr(c));
+}
 
-t_vector	vector_add(t_vector *a, t_vector *b);
+double	rfpart(double c)
+{
+	return (1.0 - fpart(c));
+}
 
-t_point		point(double x, double y);
-
-#endif
+double	rnd(double c)
+{
+	return (flr(c + 0.5));
+}

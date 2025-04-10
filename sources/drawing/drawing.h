@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graphics.h                                         :+:      :+:    :+:   */
+/*   drawing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/24 16:27:52 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/09 18:14:14 by inikulin         ###   ########.fr       */
+/*   Created: 2025/04/09 18:10:20 by inikulin          #+#    #+#             */
+/*   Updated: 2025/04/09 18:21:16 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GRAPHICS_H
-# define GRAPHICS_H
+#ifndef DRAWING_H
+# define DRAWING_H
 
-typedef struct s_point
-{
-	double		x;
-	double		y;
-	double		z;
-}	t_point;
+# include "../cube3d.h"
 
-typedef struct s_vector
-{
-	t_point	from;
-	t_point	to;
-}	t_vector;
+typedef struct s_mlx	t_mlx;
 
-t_vector	vector_add(t_vector *a, t_vector *b);
-
-t_point		point(double x, double y);
+void	line(t_mlx *s, t_point *f, t_point *t);
 
 #endif
