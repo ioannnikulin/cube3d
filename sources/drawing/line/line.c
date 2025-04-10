@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 19:23:13 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/10 15:50:24 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/10 18:25:50 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ static void	loop_steep(t_line_arg *arg)
 		clr = ((double)(x - arg->end0x)) / (arg->end1x - arg->end0x);
 		clr = clr * (arg->clr1 - arg->clr0) + arg->clr0;
 		pixel(arg->mlx, flr(arg->intery), x, color(clr, rfpart(arg->intery)));
-		pixel(arg->mlx, flr(arg->intery) + 1, x, color(clr, fpart(arg->intery)));
+		pixel(arg->mlx, flr(arg->intery) + 1, x,
+			color(clr, fpart(arg->intery)));
 		arg->intery += arg->gradient;
 		x ++;
 	}

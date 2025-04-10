@@ -163,7 +163,7 @@ external_calls:
 fulltest_common:
 	$(PREFIX)cd libft && make fulltest_trapped
 	$(PREFIX)make fclean testfclean
-	$(PREFIX)cd sources && norminette sources/*
+	$(PREFIX)cd sources && norminette
 	$(PREFIX)make external_calls test_trapped memcheck
 
 fulltest_vania: fulltest_common
