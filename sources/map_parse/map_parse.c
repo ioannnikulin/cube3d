@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 22:25:54 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/04/06 19:22:49 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/04/11 04:35:46 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,21 @@ int	check_elements(t_mlx *mlx, char **map)
 	return (1);
 }
 
+int	longest_line(char **map)
+{
+	int	i;
+	int	max;
+
+	i = -1;
+	max = 0;
+	while (map[++i])
+	{
+		if ((int)ft_strlen(map[i]) > max)
+			max = (int)ft_strlen(map[i]);
+	}
+	return (max);
+}
+
 void	fill_map(t_mlx *data, char *mp)
 {
 	int	file;
@@ -47,10 +62,10 @@ void	fill_map(t_mlx *data, char *mp)
 		printf("Error\nFailed to read map\n");
 		exit(EXIT_FAILURE);
 	}
-	data->map->map_width = ft_strlen(data->map->map[0]);
 	data->map->map_height = lines;
 	while (i++ < data->map->map_height)
 		data->map->map[i] = get_next_line(file);
+	data->map->map_width = longest_line(data->map->map);
 	if (!is_surrounded_by_walls(data))
 		exit(EXIT_FAILURE);
 	if (!check_elements(data, data->map->map))
