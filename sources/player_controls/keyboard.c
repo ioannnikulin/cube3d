@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graphics.h                                         :+:      :+:    :+:   */
+/*   keyboard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/24 16:27:52 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/09 18:14:14 by inikulin         ###   ########.fr       */
+/*   Created: 2025/04/10 17:36:30 by inikulin          #+#    #+#             */
+/*   Updated: 2025/04/10 18:02:45 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GRAPHICS_H
-# define GRAPHICS_H
+#include "player_controls_internal.h"
 
-typedef struct s_point
+static t_action	parse_key(int keycode)
 {
-	double		x;
-	double		y;
-	double		z;
-}	t_point;
+	if (keycode == 65307)
+		return (EXIT);
+	return (NO);
+}
 
-typedef struct s_vector
+int	close_it(void *param)
 {
-	t_point	from;
-	t_point	to;
-}	t_vector;
+	return (finalize((t_mlx *)param, MSG_EXIT, 0));
+}
 
-t_vector	vector_add(t_vector *a, t_vector *b);
+int	handle_keyboard(int keycode, void *param)
+{
+	t_action	action;
 
-t_point		point(double x, double y);
-
-#endif
+	action = parse_key(keycode);
+	if (action == NO)
+		return (0);
+	if (action == EXIT)
+		close_it(param);
+	return (0);
+}

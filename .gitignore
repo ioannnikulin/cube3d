@@ -7,3 +7,4 @@ cube3D
 build/*
 .vscode/*
 tests/test
+libft/tests/test
