@@ -189,9 +189,9 @@ external_calls:
 	$(PREFIX)rm -f functions.txt all_calls.txt forbidden_calls.txt
 
 fulltest_common:
-	cd libft && make fulltest_trapped || exit 1
+	sh -c "set -e; cd libft && make fulltest_trapped"
 	$(PREFIX)make fclean testfclean
-	cd sources && norminette || exit 1
+	sh -c "set -e; cd sources && norminette"
 	$(PREFIX)make external_calls test_trapped memcheck
 
 fulltest_vania: fulltest_common
