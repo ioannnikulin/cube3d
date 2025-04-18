@@ -159,7 +159,7 @@ retest: testfclean test
 
 norm:
 	$(FTPREFIX)norminette libft.h sources/* | tee norminette_log.txt && grep -q "^Error:" norminette_log.txt || true
-	$(FTPREFIX)if grep -q "^Error:" norminette_log.txt; then \
+	@if grep -q "^Error:" norminette_log.txt; then \
 		echo "Norminette errors found. Please fix them before running the tests."; \
 		exit 1; \
 	fi

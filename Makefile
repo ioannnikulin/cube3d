@@ -181,7 +181,7 @@ external_calls:
 	$(PREFIX)make
 	$(PREFIX)find build -name "*.o" -exec nm -u {} \; | awk '{print $2}' | sort -u > all_calls.txt
 	$(PREFIX)grep -vFf functions.txt all_calls.txt $(ALLOW_EXTERNAL_GREP) > forbidden_calls.txt || true
-	$(PREFIX)if [ -s forbidden_calls.txt ]; then \
+	@if [ -s forbidden_calls.txt ]; then \
         echo "Error: Forbidden external calls detected:"; \
         cat forbidden_calls.txt; \
         exit 1; \
