@@ -189,9 +189,13 @@ external_calls:
 	$(PREFIX)rm -f functions.txt all_calls.txt forbidden_calls.txt
 
 fulltest_common:
-	sh -c "set -e; cd libft && make fulltest_trapped"
+	cd libft && make fulltest_trapped
 	$(PREFIX)make fclean testfclean
-	sh -c "set -e; cd sources && norminette"
+	$(PREFIX)cd sources && norminette | tee norminette_log.txt && grep -q "^Error:" norminette_log.txt || true
+	$(PREFIX)if grep -q "^Error:" norminette_log.txt; then \
+		echo "Norminette errors found. Please fix them before running the tests."; \
+		exit 1; \
+	fi
 	$(PREFIX)make external_calls test_trapped memcheck
 
 fulltest_vania: fulltest_common
