@@ -181,7 +181,7 @@ external_calls:
 	$(PREFIX)make
 	$(PREFIX)find build -name "*.o" -exec nm -u {} \; | awk '{print $2}' | sort -u > all_calls.txt
 	$(PREFIX)grep -vFf functions.txt all_calls.txt $(ALLOW_EXTERNAL_GREP) > forbidden_calls.txt || true
-	@if [ -s forbidden_calls.txt ]; then \
+	$(PREFIX)if [ -s forbidden_calls.txt ]; then \
         echo "Error: Forbidden external calls detected:"; \
         cat forbidden_calls.txt; \
         exit 1; \
@@ -192,7 +192,7 @@ fulltest_common:
 	cd libft && make fulltest_trapped
 	$(PREFIX)make fclean testfclean
 	$(PREFIX)cd sources && norminette | tee norminette_log.txt && grep -q "^Error:" norminette_log.txt || true
-	$(PREFIX)if grep -q "^Error:" norminette_log.txt; then \
+	$(PREFIX)if grep -q "^Error:" sources/norminette_log.txt; then \
 		echo "Norminette errors found. Please fix them before running the tests."; \
 		exit 1; \
 	fi

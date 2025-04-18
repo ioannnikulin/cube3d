@@ -8,3 +8,5 @@ build/*
 .vscode/*
 tests/test
 libft/tests/test
+libft/norminette_log.txt
+sources/norminette_log.txt

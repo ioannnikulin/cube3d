@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 20:22:00 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/18 23:11:36 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/19 01:01:58 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static void	sort_vertices_y(t_triangle_vertices *vertices)
 	if (vertices->b->y > vertices->c->y)
 		ft_swap_pts(&(vertices->b), &(vertices->c));
 }
-
 
 // sorted_vertices = vertices can cause problems
 t_triangle_arg	triangle_arg(t_mlx *mlx, t_triangle_vertices vertices,

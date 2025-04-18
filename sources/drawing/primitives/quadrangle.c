@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 22:12:04 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/19 00:09:52 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/19 01:01:47 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ t_quadrangle_vertices	quadrangle_vertices(t_point *a, t_point *b, t_point *c,
 	vertices.d = d;
 	return (vertices);
 }
-
 
 void	quadrangle(t_mlx *mlx, t_quadrangle_vertices vertices, t_color *clr,
 		bool fill)
