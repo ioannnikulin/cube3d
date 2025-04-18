@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:31:07 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/10 18:48:17 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/11 18:07:22 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef struct s_line_arg
 }	t_line_arg;
 
 t_color	color(double clr, double alpha);
-void	pixel(t_mlx *mlx, int x, int y, t_color clr);
 double	flr(double c);
 double	fpart(double c);
 double	rfpart(double c);

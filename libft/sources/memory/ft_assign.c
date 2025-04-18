@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_assign.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 22:58:25 by inikulin          #+#    #+#             */
-/*   Updated: 2024/12/15 17:17:51 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/04/19 01:07:15 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,13 @@ int	ft_assign_pc(char **where, char *what, int retval)
 }
 
 int	ft_assign_sz(size_t *where, size_t what, int retval)
+{
+	if (where)
+		*where = what;
+	return (retval);
+}
+
+int	ft_assign_d(double *where, double what, int retval)
 {
 	if (where)
 		*where = what;
