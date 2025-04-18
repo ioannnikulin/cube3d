@@ -172,7 +172,7 @@ retest: testfclean test
 memcheck:
 	$(PREFIX)valgrind --suppressions=tests/valgrind.supp --leak-check=full --show-leak-kinds=all $(TEST_FNAME)
 
-ALLOWED_EXTERNAL_FUNCTIONS = mlx_ free printf __stack_chk_fail exit _GLOBAL_OFFSET_TABLE_ open close gettimeofday
+ALLOWED_EXTERNAL_FUNCTIONS = mlx_ free printf __stack_chk_fail exit _GLOBAL_OFFSET_TABLE_ open close gettimeofday sqrt
 
 ALLOW_EXTERNAL_GREP = $(foreach pattern,$(ALLOWED_EXTERNAL_FUNCTIONS),| grep -v "$(pattern)")
 
