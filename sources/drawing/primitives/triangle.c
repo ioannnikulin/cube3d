@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 20:01:21 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/18 23:20:32 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/19 00:12:32 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static void	hor(t_mlx *mlx, t_vector segment, t_color *color)
 {
 	int	x;
 
+	printf("drawing hor line from %f %f to %f %f\n", segment.from.x,
+		segment.from.y, segment.to.x, segment.to.y);
 	if (segment.from.x > segment.to.x)
 		ft_swap_d(&(segment.from.x), &(segment.to.x));
 	x = segment.from.x - 1;
@@ -47,8 +49,8 @@ static void	flat_top(t_triangle_arg *arg)
 	{
 		hor(arg->mlx, ft_vector_make(ft_point_make(cx1, y),
 				ft_point_make(cx2, y)), arg->color);
-		cx1 += inv_slope_1;
-		cx2 += inv_slope_2;
+		cx1 -= inv_slope_1;
+		cx2 -= inv_slope_2;
 		y --;
 	}
 }
@@ -102,13 +104,15 @@ static void	find_mid_hor(t_triangle_arg *arg, t_point *tgt)
  * 
  * possible problems: tmp init and find_mid_hor spoiling a point
  */
+/*
+ * line(arg.mlx, arg.sorted_vertices.a, arg.sorted_vertices.b);
+ * line(arg.mlx, arg.sorted_vertices.b, arg.sorted_vertices.c);
+ * line(arg.mlx, arg.sorted_vertices.a, arg.sorted_vertices.c);
+ */
 int	triangle(t_triangle_arg arg)
 {
 	t_triangle_arg	tmp;
 
-	line(arg.mlx, arg.sorted_vertices.a, arg.sorted_vertices.b);
-	line(arg.mlx, arg.sorted_vertices.b, arg.sorted_vertices.c);
-	line(arg.mlx, arg.sorted_vertices.a, arg.sorted_vertices.c);
 	if (arg.fill)
 	{
 		if (arg.sorted_vertices.b->y == arg.sorted_vertices.c->y)

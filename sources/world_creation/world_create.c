@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:31:12 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/18 23:15:45 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/19 00:09:33 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ static int	map_stub(t_mlx *mlx)
 {
 	int	i;
 
-	mlx->map.map_height = 8;
-	mlx->map.map_width = 8;
+	ft_assign_i(&mlx->map.map_height, 8, ft_assign_i(&mlx->map.map_width, 8,
+			ft_assign_i(&i, -1, 0)));
 	mlx->map.map = ft_calloc_if(sizeof(char *) * mlx->map.map_height, 1);
 	if (!mlx->map.map)
 		return (finalize(mlx, ERR_MALLOC, 1));
-	i = -1;
 	while (++ i < mlx->map.map_height)
 	{
 		mlx->map.map[i] = ft_calloc_if(sizeof(char) * mlx->map.map_width, 1);
 		if (!mlx->map.map[i])
 			return (finalize(mlx, ERR_MALLOC, 2));
+		ft_memset(mlx->map.map[i], '0', mlx->map.map_width);
 		mlx->map.map[i][0] = '1';
 		mlx->map.map[i][mlx->map.map_width - 1] = '1';
 		if (i == 0 || i == mlx->map.map_height - 1)
@@ -39,7 +39,7 @@ static int	map_stub(t_mlx *mlx)
 	return (0);
 }
 
-static int draw_block(t_mlx *mlx, int x, int y, t_color *clr)
+static int	draw_block(t_mlx *mlx, int x, int y, t_color *clr)
 {
 	t_point	a;
 	t_point	b;
@@ -70,7 +70,7 @@ int	draw_map(t_mlx *mlx)
 		{
 			cx = c * mlx->map.block_size;
 			clr = clr_black();
-			if (mlx->map.map[r][c] == 1)
+			if (mlx->map.map[r][c] == '1')
 				clr = clr_white();
 			draw_block(mlx, cx, cy, &clr);
 		}
