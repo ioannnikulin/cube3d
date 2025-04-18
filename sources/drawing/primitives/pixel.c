@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 19:23:13 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/10 15:47:17 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/11 19:42:06 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 * leftover from fdf
 * not sure if we need it
 */
-int	higher(t_color a, t_color b)
+static int	higher(t_color a, t_color b)
 {
 	if (b.r == 0 && b.g == 0 && b.b == 0)
 		return (1);
@@ -28,6 +28,9 @@ int	higher(t_color a, t_color b)
 	return (0);
 }
 
+/*
+ * red to white gradient from fdf
+ */
 t_color	color(double clr, double alpha)
 {
 	t_color	res;

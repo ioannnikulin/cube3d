@@ -1,39 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_if.c                                            :+:      :+:    :+:   */
+/*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/17 10:57:29 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/11 17:48:20 by inikulin         ###   ########.fr       */
+/*   Created: 2025/04/11 17:27:24 by inikulin          #+#    #+#             */
+/*   Updated: 2025/04/11 18:07:42 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_if_i(int choice, int a, int b)
-{
-	if (choice)
-		return (a);
-	return (b);
-}
+#include "../cube3d.h"
 
-int	ft_if_d(int choice, double a, double b)
+void	draw_player(t_mlx *mlx)
 {
-	if (choice)
-		return (a);
-	return (b);
-}
+	t_color	clr;
 
-char	ft_if_c(int choice, char a, char b)
-{
-	if (choice)
-		return (a);
-	return (b);
-}
-
-char	*ft_if_s(int choice, char *a, char *b)
-{
-	if (choice)
-		return (a);
-	return (b);
+	clr.r = 255;
+	clr.g = 255;
+	clr.b = 0;
+	clr.alpha = 1;
+	circle(mlx, &mlx->player.coords.from, 3, clr);
+	line(mlx, &mlx->player.coords.from, &mlx->player.coords.to);
 }

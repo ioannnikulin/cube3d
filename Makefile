@@ -38,18 +38,34 @@ MAP_PARSING_NAMES = map_parse.c
 MAP_PARSING_F = map_parse
 MAP_PARSING_SRCS = $(addprefix $(MAP_PARSING_F)/,$(MAP_PARSING_NAMES))
 
-LINE_NAMES = \
+PRIMITIVES_NAMES = \
 	line.c \
 	line_endpoint.c \
 	line_math.c \
-	line_pixel.c
-LINE_F = drawing/line
-LINE_SRCS = $(addprefix $(LINE_F)/,$(LINE_NAMES))
+	pixel.c \
+	circle.c \
+	ray.c \
+	colors.c \
+	quadrangle.c \
+	triangle.c \
+	triangle_factories.c
+PRIMITIVES_F = drawing/primitives
+PRIMITIVES_SRCS = $(addprefix $(PRIMITIVES_F)/,$(PRIMITIVES_NAMES))
+
+DRAWING_NAMES = \
+	player.c
+DRAWING_F = drawing
+DRAWING_SRCS = $(addprefix $(DRAWING_F)/,$(DRAWING_NAMES))
 
 PLAYER_CONTROLS_NAMES = \
 	keyboard.c
 PLAYER_CONTROLS_F = player_controls
 PLAYER_CONTROLS_SRCS = $(addprefix $(PLAYER_CONTROLS_F)/,$(PLAYER_CONTROLS_NAMES))
+
+WORLD_CREATION_NAMES = \
+	world_create.c
+WORLD_CREATION_F = world_creation
+WORLD_CREATION_SRCS = $(addprefix $(WORLD_CREATION_F)/,$(WORLD_CREATION_NAMES))
 
 SRC_NAMES = finalize.c core_utils.c
 ENDPOINT_NAME = main.c
@@ -66,12 +82,24 @@ TEST_FNAME = $(TEST_F)/test
 
 OBJ_F = build/
 
-OBJS = $(addprefix $(OBJ_F), $(SRC_SRCS:.c=.o)) $(addprefix $(OBJ_F), $(LINE_SRCS:.c=.o)) $(addprefix $(OBJ_F), $(PLAYER_CONTROLS_SRCS:.c=.o))
+OBJS = \
+	$(addprefix $(OBJ_F), $(SRC_SRCS:.c=.o)) \
+	$(addprefix $(OBJ_F), $(PRIMITIVES_SRCS:.c=.o)) \
+	$(addprefix $(OBJ_F), $(DRAWING_SRCS:.c=.o)) \
+	$(addprefix $(OBJ_F), $(PLAYER_CONTROLS_SRCS:.c=.o)) \
+	$(addprefix $(OBJ_F), $(WORLD_CREATION_SRCS:.c=.o))
+
 TEST_OBJS = $(addprefix $(OBJ_F), $(TEST_SRCS:.c=.o))
 TEST_ENDPOINT_OBJ = $(OBJ_F)$(TEST_ENDPOINT_SRC:.c=.o)
 TEST_OBJ_F = $(OBJ_F)tests/
 
-DIRS = $(SOURCE_F) $(MAP_PARSING_F) $(LINE_F) $(PLAYER_CONTROLS_F)
+DIRS = \
+	$(SOURCE_F) \
+	$(MAP_PARSING_F) \
+	$(PRIMITIVES_F) \
+	$(PLAYER_CONTROLS_F) \
+	$(DRAWING_F) \
+	$(WORLD_CREATION_F)
 
 OBJ_DIRS = $(addprefix $(OBJ_F), $(DIRS))
 

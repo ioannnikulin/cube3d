@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 20:59:34 by inikulin          #+#    #+#             */
-/*   Updated: 2024/12/15 17:18:05 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/04/18 22:38:17 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int		ft_assign_i(int *where, int what, int retval);
 int		ft_assign_pc(char **where, char *what, int retval);
 char	*ft_assign_i_pc(int *where, int what, char *retval);
 int		ft_assign_sz(size_t *where, size_t what, int retval);
+int		ft_assign_d(double *where, double what, int retval);
 
 int		ft_cmp_pvoid_pi(void *a, void *b);
 int		ft_less_eq_pvoid_pi(void *a, void *b);

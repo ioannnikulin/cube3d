@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:06:42 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/10 17:41:07 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/18 23:03:06 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,20 @@
 # include "resources.h"
 # include "drawing/drawing.h"
 # include "player_controls/player_controls.h"
+# include "world_creation/world_creation.h"
 
 # define WINDOW_WIDTH 1000
 # define WINDOW_HEIGHT 1000
+
+// clr is a leftover from fdf gradient, maybe we can throw it out
+typedef struct s_color
+{
+	char	r;
+	char	g;
+	char	b;
+	double	alpha;
+	double	clr;
+}	t_color;
 
 typedef struct s_img
 {
@@ -35,15 +46,6 @@ typedef struct s_assets
 	t_img		wall_east;
 	t_img		wall_west;
 }	t_assets;
-
-typedef struct s_color
-{
-	char	r;
-	char	g;
-	char	b;
-	double	alpha;
-	double	clr;
-}	t_color;
 
 typedef struct s_plane
 {
@@ -63,6 +65,7 @@ typedef struct s_map
 	t_plane		ceiling;
 	double		zmin;
 	double		zmax;
+	double		block_size;
 }	t_map;
 
 typedef struct s_player
@@ -102,4 +105,5 @@ typedef struct s_mlx
 int		finalize(t_mlx *mlx, char *msg, int ret);
 void	**next_img(t_mlx *mlx);
 char	**next_img_data(t_mlx *mlx);
+int		world_create(t_mlx *mlx);
 #endif

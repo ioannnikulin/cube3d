@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_if.c                                            :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/17 10:57:29 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/11 17:48:20 by inikulin         ###   ########.fr       */
+/*   Created: 2025/04/11 19:54:12 by inikulin          #+#    #+#             */
+/*   Updated: 2025/04/11 19:56:33 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_if_i(int choice, int a, int b)
-{
-	if (choice)
-		return (a);
-	return (b);
-}
+#include "../cube3d.h"
 
-int	ft_if_d(int choice, double a, double b)
+int	draw_map(t_mlx *mlx)
 {
-	if (choice)
-		return (a);
-	return (b);
-}
+	int		row;
+	int		col;
+	t_color	clr;
 
-char	ft_if_c(int choice, char a, char b)
-{
-	if (choice)
-		return (a);
-	return (b);
-}
+	row = -1;
+	while (++ row < mlx->map.map_height)
+	{
+		col = -1;
+		while (++ col < mlx->map.map_width)
+		{
+			if (mlx->map.map[row][col] == '1')
 
-char	*ft_if_s(int choice, char *a, char *b)
-{
-	if (choice)
-		return (a);
-	return (b);
+		}
+	}
+	return (0);
 }
