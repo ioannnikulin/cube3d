@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:01:39 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/10 18:02:20 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/18 23:41:39 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static int	pre(t_mlx *mlx)
 	ft_bzero((void *)mlx, sizeof(t_mlx));
 	mlx->map.zmax = 1;
 	mlx->map.zmin = 0;
+	mlx->map.block_size = 64;
 	mlx->mlx = mlx_init();
 	if (!mlx)
 		return (finalize(mlx, ERR_MLX_INIT, 2));
@@ -47,9 +48,6 @@ static int	pre(t_mlx *mlx)
 
 static int	make_image(t_mlx *mlx)
 {
-	t_point	p1;
-	t_point	p2;
-
 	free(*next_img(mlx));
 	*next_img(mlx) = mlx_new_image(mlx->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	if (!*next_img(mlx))
@@ -59,9 +57,6 @@ static int	make_image(t_mlx *mlx)
 		&(mlx->frame.linesz), &(mlx->frame.endian));
 	if (!*next_img_data(mlx))
 		return (finalize(mlx, ERR_MLX_GETADDR, 5));
-	p1 = point(0, 0);
-	p2 = point(100, 100);
-	line(mlx, &p1, &p2);
 	return (0);
 }
 
@@ -76,6 +71,7 @@ int	main(int argc, char **argv)
 		return (2);
 	if (make_image(&mlx))
 		return (3);
+	world_create(&mlx);
 	mlx_put_image_to_window(mlx.mlx, mlx.win, *next_img(&mlx), 0, 0);
 	mlx_key_hook(mlx.win, handle_keyboard, &mlx);
 	mlx_hook(mlx.win, 17, 0, close_it, &mlx);

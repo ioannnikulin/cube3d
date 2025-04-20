@@ -38,18 +38,34 @@ MAP_PARSING_NAMES = map_parse.c
 MAP_PARSING_F = map_parse
 MAP_PARSING_SRCS = $(addprefix $(MAP_PARSING_F)/,$(MAP_PARSING_NAMES))
 
-LINE_NAMES = \
+PRIMITIVES_NAMES = \
 	line.c \
 	line_endpoint.c \
 	line_math.c \
-	line_pixel.c
-LINE_F = drawing/line
-LINE_SRCS = $(addprefix $(LINE_F)/,$(LINE_NAMES))
+	pixel.c \
+	circle.c \
+	ray.c \
+	colors.c \
+	quadrangle.c \
+	triangle.c \
+	triangle_factories.c
+PRIMITIVES_F = drawing/primitives
+PRIMITIVES_SRCS = $(addprefix $(PRIMITIVES_F)/,$(PRIMITIVES_NAMES))
+
+DRAWING_NAMES = \
+	player.c
+DRAWING_F = drawing
+DRAWING_SRCS = $(addprefix $(DRAWING_F)/,$(DRAWING_NAMES))
 
 PLAYER_CONTROLS_NAMES = \
 	keyboard.c
 PLAYER_CONTROLS_F = player_controls
 PLAYER_CONTROLS_SRCS = $(addprefix $(PLAYER_CONTROLS_F)/,$(PLAYER_CONTROLS_NAMES))
+
+WORLD_CREATION_NAMES = \
+	world_create.c
+WORLD_CREATION_F = world_creation
+WORLD_CREATION_SRCS = $(addprefix $(WORLD_CREATION_F)/,$(WORLD_CREATION_NAMES))
 
 SRC_NAMES = finalize.c core_utils.c
 ENDPOINT_NAME = main.c
@@ -66,12 +82,24 @@ TEST_FNAME = $(TEST_F)/test
 
 OBJ_F = build/
 
-OBJS = $(addprefix $(OBJ_F), $(SRC_SRCS:.c=.o)) $(addprefix $(OBJ_F), $(LINE_SRCS:.c=.o)) $(addprefix $(OBJ_F), $(PLAYER_CONTROLS_SRCS:.c=.o))
+OBJS = \
+	$(addprefix $(OBJ_F), $(SRC_SRCS:.c=.o)) \
+	$(addprefix $(OBJ_F), $(PRIMITIVES_SRCS:.c=.o)) \
+	$(addprefix $(OBJ_F), $(DRAWING_SRCS:.c=.o)) \
+	$(addprefix $(OBJ_F), $(PLAYER_CONTROLS_SRCS:.c=.o)) \
+	$(addprefix $(OBJ_F), $(WORLD_CREATION_SRCS:.c=.o))
+
 TEST_OBJS = $(addprefix $(OBJ_F), $(TEST_SRCS:.c=.o))
 TEST_ENDPOINT_OBJ = $(OBJ_F)$(TEST_ENDPOINT_SRC:.c=.o)
 TEST_OBJ_F = $(OBJ_F)tests/
 
-DIRS = $(SOURCE_F) $(MAP_PARSING_F) $(LINE_F) $(PLAYER_CONTROLS_F)
+DIRS = \
+	$(SOURCE_F) \
+	$(MAP_PARSING_F) \
+	$(PRIMITIVES_F) \
+	$(PLAYER_CONTROLS_F) \
+	$(DRAWING_F) \
+	$(WORLD_CREATION_F)
 
 OBJ_DIRS = $(addprefix $(OBJ_F), $(DIRS))
 
@@ -144,7 +172,7 @@ retest: testfclean test
 memcheck:
 	$(PREFIX)valgrind --suppressions=tests/valgrind.supp --leak-check=full --show-leak-kinds=all $(TEST_FNAME)
 
-ALLOWED_EXTERNAL_FUNCTIONS = mlx_ free printf __stack_chk_fail exit _GLOBAL_OFFSET_TABLE_ open close gettimeofday
+ALLOWED_EXTERNAL_FUNCTIONS = mlx_ free printf __stack_chk_fail exit _GLOBAL_OFFSET_TABLE_ open close gettimeofday sqrt
 
 ALLOW_EXTERNAL_GREP = $(foreach pattern,$(ALLOWED_EXTERNAL_FUNCTIONS),| grep -v "$(pattern)")
 
@@ -161,9 +189,13 @@ external_calls:
 	$(PREFIX)rm -f functions.txt all_calls.txt forbidden_calls.txt
 
 fulltest_common:
-	$(PREFIX)cd libft && make fulltest_trapped
+	cd libft && make fulltest_trapped
 	$(PREFIX)make fclean testfclean
-	$(PREFIX)cd sources && norminette
+	$(PREFIX)cd sources && norminette | tee norminette_log.txt && grep -q "^Error:" norminette_log.txt || true
+	$(PREFIX)if grep -q "^Error:" sources/norminette_log.txt; then \
+		echo "Norminette errors found. Please fix them before running the tests."; \
+		exit 1; \
+	fi
 	$(PREFIX)make external_calls test_trapped memcheck
 
 fulltest_vania: fulltest_common

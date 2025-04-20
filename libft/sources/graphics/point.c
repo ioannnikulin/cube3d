@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/09 18:13:42 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/10 17:20:58 by inikulin         ###   ########.fr       */
+/*   Created: 2025/04/18 21:23:49 by inikulin          #+#    #+#             */
+/*   Updated: 2025/04/18 21:27:31 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graphics.h"
 
-t_point	point(double x, double y)
+t_point	ft_point_make(double x, double y)
 {
 	t_point	p;
 
@@ -20,4 +20,13 @@ t_point	point(double x, double y)
 	p.y = y;
 	p.z = 0;
 	return (p);
+}
+
+void	ft_swap_pts(t_point **a, t_point **b)
+{
+	t_point	*tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }
