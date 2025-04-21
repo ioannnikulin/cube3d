@@ -1,39 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_if.c                                            :+:      :+:    :+:   */
+/*   debug.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/17 10:57:29 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/20 17:46:20 by inikulin         ###   ########.fr       */
+/*   Created: 2025/04/20 17:30:33 by inikulin          #+#    #+#             */
+/*   Updated: 2025/04/20 17:47:24 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_if_i(int choice, int a, int b)
-{
-	if (choice)
-		return (a);
-	return (b);
-}
+#ifndef DEBUG_H
+# define DEBUG_H
 
-double	ft_if_d(int choice, double a, double b)
-{
-	if (choice)
-		return (a);
-	return (b);
-}
+# define DBG_PLAYER_MOVE 1
+# define DBG_FULL 1
 
-char	ft_if_c(int choice, char a, char b)
-{
-	if (choice)
-		return (a);
-	return (b);
-}
+# define DBG_LVL 0
 
-char	*ft_if_s(int choice, char *a, char *b)
-{
-	if (choice)
-		return (a);
-	return (b);
-}
+#endif

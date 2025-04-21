@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:06:42 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/18 23:30:55 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/21 20:55:07 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "drawing/drawing.h"
 # include "player_controls/player_controls.h"
 # include "world_creation/world_creation.h"
+# include "debug.h"
 
 # define WINDOW_WIDTH 1000
 # define WINDOW_HEIGHT 1000
@@ -65,7 +66,6 @@ typedef struct s_map
 	t_plane		ceiling;
 	double		zmin;
 	double		zmax;
-	double		block_size;
 }	t_map;
 
 typedef struct s_player
@@ -74,6 +74,11 @@ typedef struct s_player
 }	t_player;
 
 # define FRAMES_BUFFER 5
+# define STEP_LENGTH 5
+# define ROT_ANGLE_PI_DIVISOR 36
+# define RAYS_COUNT 1
+# define BLOCK_SIZE 64
+# define EPSILON 1e-6
 
 /*
  * color offsets - for different endians
@@ -106,4 +111,6 @@ int		finalize(t_mlx *mlx, char *msg, int ret);
 void	**next_img(t_mlx *mlx);
 char	**next_img_data(t_mlx *mlx);
 int		world_create(t_mlx *mlx);
+int		make_image(t_mlx *mlx);
+int		pre(t_mlx *mlx);
 #endif

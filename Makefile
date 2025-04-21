@@ -53,12 +53,15 @@ PRIMITIVES_F = drawing/primitives
 PRIMITIVES_SRCS = $(addprefix $(PRIMITIVES_F)/,$(PRIMITIVES_NAMES))
 
 DRAWING_NAMES = \
-	player.c
+	player.c \
+	render_frame.c \
+	rays.c
 DRAWING_F = drawing
 DRAWING_SRCS = $(addprefix $(DRAWING_F)/,$(DRAWING_NAMES))
 
 PLAYER_CONTROLS_NAMES = \
-	keyboard.c
+	keyboard.c \
+	utils.c
 PLAYER_CONTROLS_F = player_controls
 PLAYER_CONTROLS_SRCS = $(addprefix $(PLAYER_CONTROLS_F)/,$(PLAYER_CONTROLS_NAMES))
 
@@ -67,7 +70,7 @@ WORLD_CREATION_NAMES = \
 WORLD_CREATION_F = world_creation
 WORLD_CREATION_SRCS = $(addprefix $(WORLD_CREATION_F)/,$(WORLD_CREATION_NAMES))
 
-SRC_NAMES = finalize.c core_utils.c
+SRC_NAMES = finalize.c core_utils.c pre.c make_image.c
 ENDPOINT_NAME = main.c
 
 SRC_SRCS = $(addprefix $(SOURCE_F)/, $(SRC_NAMES))

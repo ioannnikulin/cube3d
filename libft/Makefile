@@ -8,7 +8,15 @@ SOURCES_F = sources
 TESTS_F = tests
 
 GRAPHICS_F = graphics
-GRAPHICS_NAMES = vector.c point.c
+GRAPHICS_NAMES = \
+	vector_ops.c \
+	vector_ops_w.c \
+	vector_factories.c \
+	vector_len.c \
+	point_factories.c \
+	point_ops.c \
+	point_rotations.c \
+	point_rotations_w.c
 GRAPHICS_SRCS = $(addprefix $(SOURCES_F)/$(GRAPHICS_F)/, $(GRAPHICS_NAMES))
 
 LIST_F = lists

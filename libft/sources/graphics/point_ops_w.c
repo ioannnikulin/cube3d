@@ -1,39 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_if.c                                            :+:      :+:    :+:   */
+/*   point_ops_w.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/17 10:57:29 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/20 17:46:20 by inikulin         ###   ########.fr       */
+/*   Created: 2025/04/20 16:28:43 by inikulin          #+#    #+#             */
+/*   Updated: 2025/04/20 16:34:04 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_if_i(int choice, int a, int b)
+#include "graphics.h"
+
+
+void	ft_point_add_here(t_point *a, t_point *b)
 {
-	if (choice)
-		return (a);
-	return (b);
+	return (ft_point_cp(ft_point_add(a, b), a));
 }
 
-double	ft_if_d(int choice, double a, double b)
+void	ft_point_sub_here(t_point *a, t_point *b)
 {
-	if (choice)
-		return (a);
-	return (b);
+	return (ft_point_cp(ft_point_sub(a, b), a));
 }
 
-char	ft_if_c(int choice, char a, char b)
+void	ft_point_scale_here(t_point *a, double b)
 {
-	if (choice)
-		return (a);
-	return (b);
+	return (ft_point_cp(ft_point_scale(a, b), a));
 }
 
-char	*ft_if_s(int choice, char *a, char *b)
+void	ft_point_norm_here(t_point *a)
 {
-	if (choice)
-		return (a);
-	return (b);
+	return (ft_point_cp(ft_point_norm(a), a));
 }

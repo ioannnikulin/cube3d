@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 18:10:20 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/18 23:30:22 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/21 12:44:36 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void					circle(t_mlx *mlx, t_point *center, int radius,
 void					pixel(t_mlx *mlx, int x, int y, t_color clr);
 void					ray(t_mlx *mlx, t_point *from, t_point *to);
 
-void					draw_player(t_mlx *mlx);
 // state do_sort true by default; false is for internal usage
 t_triangle_vertices		triangle_vertices(t_point *a, t_point *b, t_point *c);
 t_triangle_arg			triangle_arg(t_mlx *mlx, t_triangle_vertices vertices,
@@ -60,4 +59,8 @@ void					quadrangle(t_mlx *mlx, t_quadrangle_vertices vertices,
 							t_color *clr, bool fill);
 t_color					clr_black(void);
 t_color					clr_white(void);
+
+void					draw_player(t_mlx *mlx);
+int						render_frame(t_mlx *mlx);
+int						cast_rays(t_mlx *mlx);
 #endif

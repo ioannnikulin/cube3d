@@ -1,39 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_if.c                                            :+:      :+:    :+:   */
+/*   vector_factories.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/17 10:57:29 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/20 17:46:20 by inikulin         ###   ########.fr       */
+/*   Created: 2025/03/24 19:28:51 by inikulin          #+#    #+#             */
+/*   Updated: 2025/04/20 16:25:37 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_if_i(int choice, int a, int b)
+#include "libft.h"
+
+t_vector	ft_vector_make(t_point from, t_point to)
 {
-	if (choice)
-		return (a);
-	return (b);
+	t_vector	res;
+
+	res.from = from;
+	res.to = to;
+	return (res);
 }
 
-double	ft_if_d(int choice, double a, double b)
+t_vector	*ft_vector_dup(t_vector src)
 {
-	if (choice)
-		return (a);
-	return (b);
+	t_vector	*res;
+
+	res = ft_calloc_if(sizeof(t_vector), 1);
+	if (!res)
+		return (0);
+	ft_vector_cp(src, res);
+	return (res);
 }
 
-char	ft_if_c(int choice, char a, char b)
+void	ft_vector_cp(t_vector from, t_vector *to)
 {
-	if (choice)
-		return (a);
-	return (b);
-}
-
-char	*ft_if_s(int choice, char *a, char *b)
-{
-	if (choice)
-		return (a);
-	return (b);
+	to->from = from.from;
+	to->to = from.to;
 }

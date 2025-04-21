@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_if.c                                            :+:      :+:    :+:   */
+/*   rays_internal.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/17 10:57:29 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/20 17:46:20 by inikulin         ###   ########.fr       */
+/*   Created: 2025/04/21 12:16:05 by inikulin          #+#    #+#             */
+/*   Updated: 2025/04/21 20:56:19 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_if_i(int choice, int a, int b)
-{
-	if (choice)
-		return (a);
-	return (b);
-}
+#ifndef RAYS_INTERNAL_H
+# define RAYS_INTERNAL_H
+# include "../cube3d.h"
 
-double	ft_if_d(int choice, double a, double b)
+typedef struct s_ray_arg
 {
-	if (choice)
-		return (a);
-	return (b);
-}
+	t_vector	ray;
+	t_point		hor_isect;
+	t_point		ver_isect;
+	double		x_offset;
+	double		y_offset;
+	int			lvl_iter;
+	int			map_x;
+	int			map_y;
+	t_mlx		*mlx;
+}	t_ray_arg;
 
-char	ft_if_c(int choice, char a, char b)
-{
-	if (choice)
-		return (a);
-	return (b);
-}
+t_ray_arg	ray_arg(t_mlx *mlx);
 
-char	*ft_if_s(int choice, char *a, char *b)
-{
-	if (choice)
-		return (a);
-	return (b);
-}
+#endif

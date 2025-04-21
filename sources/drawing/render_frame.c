@@ -1,39 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_if.c                                            :+:      :+:    :+:   */
+/*   render_frame.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/17 10:57:29 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/20 17:46:20 by inikulin         ###   ########.fr       */
+/*   Created: 2025/04/20 17:09:48 by inikulin          #+#    #+#             */
+/*   Updated: 2025/04/21 20:36:25 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_if_i(int choice, int a, int b)
-{
-	if (choice)
-		return (a);
-	return (b);
-}
+#include "../cube3d.h"
 
-double	ft_if_d(int choice, double a, double b)
+int	render_frame(t_mlx *mlx)
 {
-	if (choice)
-		return (a);
-	return (b);
-}
-
-char	ft_if_c(int choice, char a, char b)
-{
-	if (choice)
-		return (a);
-	return (b);
-}
-
-char	*ft_if_s(int choice, char *a, char *b)
-{
-	if (choice)
-		return (a);
-	return (b);
+	if (make_image(mlx))
+		return (3);
+	draw_map(mlx);
+	draw_player(mlx);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, *next_img(mlx), 0, 0);
+	mlx->frame.next_frame_idx = (mlx->frame.next_frame_idx + 1) % FRAMES_BUFFER;
+	return (0);
 }

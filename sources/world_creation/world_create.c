@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:31:12 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/19 00:09:33 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/21 12:32:46 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ static int	draw_block(t_mlx *mlx, int x, int y, t_color *clr)
 	t_point	d;
 
 	a = ft_point_make(x + 1, y + 1);
-	b = ft_point_make(x + 1, y + mlx->map.block_size - 1);
-	c = ft_point_make(x + mlx->map.block_size - 1, y + mlx->map.block_size - 1);
-	d = ft_point_make(x + mlx->map.block_size - 1, y + 1);
+	b = ft_point_make(x + 1, y + BLOCK_SIZE - 1);
+	c = ft_point_make(x + BLOCK_SIZE - 1, y + BLOCK_SIZE - 1);
+	d = ft_point_make(x + BLOCK_SIZE - 1, y + 1);
 	quadrangle(mlx, quadrangle_vertices(&a, &b, &c, &d), clr, true);
 	return (0);
 }
@@ -65,10 +65,10 @@ int	draw_map(t_mlx *mlx)
 	r = -1;
 	while (++r < mlx->map.map_height)
 	{
-		ft_assign_i(&c, -1, ft_assign_d(&cy, r * mlx->map.block_size, 0));
+		ft_assign_i(&c, -1, ft_assign_d(&cy, r * BLOCK_SIZE, 0));
 		while (++c < mlx->map.map_width)
 		{
-			cx = c * mlx->map.block_size;
+			cx = c * BLOCK_SIZE;
 			clr = clr_black();
 			if (mlx->map.map[r][c] == '1')
 				clr = clr_white();

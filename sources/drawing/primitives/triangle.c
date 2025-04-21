@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 20:01:21 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/19 01:00:52 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/20 17:10:48 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ static void	hor(t_mlx *mlx, t_vector segment, t_color *color)
 {
 	int	x;
 
-	printf("drawing hor line from %f %f to %f %f\n", segment.from.x,
-		segment.from.y, segment.to.x, segment.to.y);
 	if (segment.from.x > segment.to.x)
 		ft_swap_d(&(segment.from.x), &(segment.to.x));
 	x = segment.from.x - 1;
