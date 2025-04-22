@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:36:45 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/04/06 19:22:03 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/04/23 00:45:29 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,9 @@ void	find_player_pos(t_mlx *game, int i, int *col, int *row)
 		{
 			*row = i;
 			*col = j;
-			game->player = malloc(sizeof(t_player));
-			game->player->x = i;
-			game->player->y = j;
-			break ;
+			game->player.x = i;
+			game->player.y = j;
+			return ;
 		}
 		j++;
 	}
@@ -59,21 +58,39 @@ void	floodfill(t_mlx *game, int row, int col, int **passed)
 	floodfill(game, row, col - 1, passed);
 }
 
+static void	free_passed_array(int **passed, int height)
+{
+	int	i;
+
+	i = -1;
+	while (++i < height)
+		free(passed[i]);
+	free(passed);
+	printf("Error\nFailed to allocate memory for passed\n");
+}
+
 int	is_surrounded_by_walls(t_mlx *data)
 {
-	int i;
-	int row;
-	int col;
-	int **passed;
+	int	i;
+	int	row;
+	int	col;
+	int	**passed;
 
-	data->map->is_enclosed = 1;
-	passed = ft_calloc(data->map->map_height, sizeof(int *));
-	i = -1;
+	data->map->is_enclosed = (i = -1, 1);
+	passed = ft_calloc_if(sizeof(int *) * data->map->map_height, 1);
+	if (!passed)
+		return (printf("Error\nFailed to allocate memory\n"), 0);
 	while (++i < data->map->map_height)
-		passed[i] = ft_calloc(data->map->map_width, sizeof(int *));
+	{
+		passed[i] = ft_calloc_if(sizeof(int) * data->map->map_width, 1);
+		if (!passed[i])
+			return (free_passed_array(passed, i), 0);
+	}
 	i = -1;
 	while (data->map->map[++i])
 		find_player_pos(data, i, &col, &row);
+	if (!data->player.x || !data->player.y)
+		return (printf("Error\nNo player found\n"), 0);
 	floodfill(data, row, col, passed);
 	if (data->map->is_enclosed == 0)
 		return (printf("Error\nMap is not enclosed by walls\n"), 0);

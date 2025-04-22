@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 22:25:54 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/04/11 04:35:46 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/04/23 00:34:30 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	check_elements(t_mlx *mlx, char **map)
 	int	j;
 	int	player_already_parsed;
 
-	i = 0;
+	i = -1;
 	player_already_parsed = 0;
 	while (++i < mlx->map->map_height)
 	{
@@ -27,6 +27,8 @@ int	check_elements(t_mlx *mlx, char **map)
 			if (!is_valid_char(map[i][j], &player_already_parsed))
 				return (0);
 	}
+	if (player_already_parsed == 0)
+		return (printf("Error\nNo player found\n"), 0);
 	return (1);
 }
 
@@ -45,35 +47,40 @@ int	longest_line(char **map)
 	return (max);
 }
 
+void	exit_error(char *message)
+{
+	printf("Error: %s\n", message);
+	exit(EXIT_FAILURE);
+}
+
 void	fill_map(t_mlx *data, char *mp)
 {
 	int	file;
-	int	i;
 	int	lines;
+	int	i;
 
-	lines = count_map_lines(mp);
-	i = 0;
-	file = open(mp, O_RDONLY);
-	data->map = malloc(sizeof(char *) * (size_t)(lines + 1));
-	data->map->map = malloc(sizeof(char *) * (size_t)(lines + 1));
+	lines = (i = 0, file = open(mp, O_RDONLY), count_map_lines(mp));
+	if (file == -1)
+		exit_error("Error: Cannot open map file");
+	data->map = ft_calloc_if(sizeof(t_map), 1);
+	if (!data->map)
+		exit_error("Error: Cannot allocate memory for map");
+	data->map->map = ft_calloc_if(sizeof(char *) * (size_t)(lines + 1), 1);
+	if (!data->map->map)
+		exit_error("Error: Cannot allocate memory for map");
 	data->map->map[0] = get_next_line(file);
-	if (!data->map->map[0])
-	{
-		printf("Error\nFailed to read map\n");
-		exit(EXIT_FAILURE);
-	}
-	data->map->map_height = lines;
-	while (i++ < data->map->map_height)
+	while (++i < lines)
 		data->map->map[i] = get_next_line(file);
+	close(file);
+	data->map->map_height = lines;
 	data->map->map_width = longest_line(data->map->map);
-	if (!is_surrounded_by_walls(data))
-		exit(EXIT_FAILURE);
 	if (!check_elements(data, data->map->map))
 		exit(EXIT_FAILURE);
-	close(file);
+	if (!is_surrounded_by_walls(data))
+		exit(EXIT_FAILURE);
 }
 
-static int	check_extention(char *map)
+static int	check_extension(char *map)
 {
 	int	i;
 
@@ -96,7 +103,7 @@ static int	check_extention(char *map)
 
 int	validate_map(t_mlx *data, char *map)
 {
-	if (!check_extention(map))
+	if (!check_extension(map))
 		return (printf("Error\nInvalid map extension\n"), 0);
 	fill_map(data, map);
 	printf("map is valid\n");

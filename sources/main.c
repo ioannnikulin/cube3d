@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:01:39 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/04 20:42:52 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/04/22 21:19:15 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int argc, char **argv)
 		return (usage());
 	mlx.mlx = mlx_init();
 	if (!mlx.mlx)
-		return (usage());
+		return (printf("Error\nFailed to initialize mlx\n"), 1);
 	mlx.win = mlx_new_window(mlx.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cube3D");
 	if (!mlx.win)
 		return (free(mlx.mlx), usage());
