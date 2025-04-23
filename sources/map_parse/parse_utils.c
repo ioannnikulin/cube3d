@@ -6,11 +6,17 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:44:18 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/04/22 23:40:19 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/04/23 23:45:41 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
+
+void	exit_error(char *message)
+{
+	printf("Error: %s\n", message);
+	exit(EXIT_FAILURE);
+}
 
 void	print_map(char **map)
 {

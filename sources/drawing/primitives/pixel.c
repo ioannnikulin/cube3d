@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pixel.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 19:23:13 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/18 23:33:12 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/23 23:28:42 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static int	higher(t_color a, t_color b)
 		return (1);
 	if (a.r == 0 && a.g == 0 && a.b == 0)
 		return (0);
-	if (*ft_max_dbl(&a.clr, &b.clr) == a.clr
-		&& *ft_max_dbl(&a.clr, &b.clr) != b.clr)
+	if (*ft_max_dbl(&a.clr, &b.clr) == a.clr && *ft_max_dbl(&a.clr,
+			&b.clr) != b.clr)
 		return (1);
 	return (0);
 }

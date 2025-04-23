@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   line_endpoint.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 19:23:13 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/10 15:49:38 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/23 23:28:27 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "line_internal.h"
 
 static t_endpoint_args	make_ea(double xend, double yend, double xgap,
-							t_color clr)
+		t_color clr)
 {
 	t_endpoint_args	r;
 
@@ -28,9 +28,9 @@ void	endpoint0(t_line_arg *arg, double x, double y)
 {
 	t_endpoint_args	ea;
 
-	ea = make_ea(rnd(x), y + arg->gradient * (rnd(x) - x),
-			rfpart(x + 0.5), color((arg->z0 - arg->mlx->map.zmin)
-				/ (arg->mlx->map.zmax - arg->mlx->map.zmin), 0));
+	ea = make_ea(rnd(x), y + arg->gradient * (rnd(x) - x), rfpart(x + 0.5),
+			color((arg->z0 - arg->mlx->map.zmin) / (arg->mlx->map.zmax
+					- arg->mlx->map.zmin), 0));
 	arg->end0x = ea.xend;
 	arg->end0y = flr(ea.yend);
 	if (arg->steep)
@@ -56,9 +56,9 @@ void	endpoint1(t_line_arg *arg, double x, double y)
 {
 	t_endpoint_args	ea;
 
-	ea = make_ea(rnd(x), y + arg->gradient * (rnd(x) - x),
-			fpart(x + 0.5), color((arg->z1 - arg->mlx->map.zmin)
-				/ (arg->mlx->map.zmax - arg->mlx->map.zmin), 0));
+	ea = make_ea(rnd(x), y + arg->gradient * (rnd(x) - x), fpart(x + 0.5),
+			color((arg->z1 - arg->mlx->map.zmin) / (arg->mlx->map.zmax
+					- arg->mlx->map.zmin), 0));
 	arg->end1x = ea.xend;
 	arg->end1y = flr(ea.yend);
 	if (arg->steep)

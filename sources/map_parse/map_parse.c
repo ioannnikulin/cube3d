@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 22:25:54 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/04/23 23:16:54 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/04/23 23:45:35 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,7 @@ int	longest_line(char **map)
 	return (max);
 }
 
-void	exit_error(char *message)
-{
-	printf("Error: %s\n", message);
-	exit(EXIT_FAILURE);
-}
+
 
 void	fill_map(t_mlx *data, char *mp)
 {
