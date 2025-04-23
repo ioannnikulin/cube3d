@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 22:25:54 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/04/23 00:34:30 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/04/23 22:44:27 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ int	check_elements(t_mlx *mlx, char **map)
 
 	i = -1;
 	player_already_parsed = 0;
-	while (++i < mlx->map->map_height)
+	while (++i < mlx->map.map_height)
 	{
 		j = -1;
-		while (++j < mlx->map->map_width)
+		while (++j < mlx->map.map_width)
 			if (!is_valid_char(map[i][j], &player_already_parsed))
 				return (0);
 	}
@@ -62,19 +62,19 @@ void	fill_map(t_mlx *data, char *mp)
 	lines = (i = 0, file = open(mp, O_RDONLY), count_map_lines(mp));
 	if (file == -1)
 		exit_error("Error: Cannot open map file");
-	data->map = ft_calloc_if(sizeof(t_map), 1);
-	if (!data->map)
+	// data->map = ft_calloc_if(sizeof(t_map), 1);
+	// if (!data->map)
+	// 	exit_error("Error: Cannot allocate memory for map");
+	data->map.map = ft_calloc_if(sizeof(char *) * (size_t)(lines + 1), 1);
+	if (!data->map.map)
 		exit_error("Error: Cannot allocate memory for map");
-	data->map->map = ft_calloc_if(sizeof(char *) * (size_t)(lines + 1), 1);
-	if (!data->map->map)
-		exit_error("Error: Cannot allocate memory for map");
-	data->map->map[0] = get_next_line(file);
+	data->map.map[0] = get_next_line(file);
 	while (++i < lines)
-		data->map->map[i] = get_next_line(file);
+		data->map.map[i] = get_next_line(file);
 	close(file);
-	data->map->map_height = lines;
-	data->map->map_width = longest_line(data->map->map);
-	if (!check_elements(data, data->map->map))
+	data->map.map_height = lines;
+	data->map.map_width = longest_line(data->map.map);
+	if (!check_elements(data, data->map.map))
 		exit(EXIT_FAILURE);
 	if (!is_surrounded_by_walls(data))
 		exit(EXIT_FAILURE);

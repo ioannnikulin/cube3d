@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:36:45 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/04/23 00:45:29 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/04/23 22:45:02 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	find_player_pos(t_mlx *game, int i, int *col, int *row)
 	int	j;
 
 	j = 0;
-	while (game->map->map[i][j])
+	while (game->map.map[i][j])
 	{
-		if (ft_strchr("NSEW", game->map->map[i][j]))
+		if (ft_strchr("NSEW", game->map.map[i][j]))
 		{
 			*row = i;
 			*col = j;
@@ -34,21 +34,21 @@ void	find_player_pos(t_mlx *game, int i, int *col, int *row)
 //floodfill algorithm to check if the map is enclosed by walls
 void	floodfill(t_mlx *game, int row, int col, int **passed)
 {
-	if (row < 0 || col < 0 || row >= game->map->map_height
-		|| col >= game->map->map_width)
+	if (row < 0 || col < 0 || row >= game->map.map_height
+		|| col >= game->map.map_width)
 		return ;
-	if (game->map->map[row][col] == '1' || game->map->map[row][col] == '2'
+	if (game->map.map[row][col] == '1' || game->map.map[row][col] == '2'
 		|| passed[row][col])
 		return ;
-	if (game->map->map[row][col] == ' ')
+	if (game->map.map[row][col] == ' ')
 	{
-		game->map->is_enclosed = 0;
+		game->map.is_enclosed = 0;
 		return ;
 	}
-	if (col == 0 || col == game->map->map_width - 1 || row == 0
-		|| row == game->map->map_height - 1)
+	if (col == 0 || col == game->map.map_width - 1 || row == 0
+		|| row == game->map.map_height - 1)
 	{
-		game->map->is_enclosed = 0;
+		game->map.is_enclosed = 0;
 		return ;
 	}
 	passed[row][col] = 2;
@@ -76,25 +76,25 @@ int	is_surrounded_by_walls(t_mlx *data)
 	int	col;
 	int	**passed;
 
-	data->map->is_enclosed = (i = -1, 1);
-	passed = ft_calloc_if(sizeof(int *) * data->map->map_height, 1);
+	data->map.is_enclosed = (i = -1, 1);
+	passed = ft_calloc_if(sizeof(int *) * data->map.map_height, 1);
 	if (!passed)
 		return (printf("Error\nFailed to allocate memory\n"), 0);
-	while (++i < data->map->map_height)
+	while (++i < data->map.map_height)
 	{
-		passed[i] = ft_calloc_if(sizeof(int) * data->map->map_width, 1);
+		passed[i] = ft_calloc_if(sizeof(int) * data->map.map_width, 1);
 		if (!passed[i])
 			return (free_passed_array(passed, i), 0);
 	}
 	i = -1;
-	while (data->map->map[++i])
+	while (data->map.map[++i])
 		find_player_pos(data, i, &col, &row);
 	if (!data->player.x || !data->player.y)
 		return (printf("Error\nNo player found\n"), 0);
 	floodfill(data, row, col, passed);
-	if (data->map->is_enclosed == 0)
+	if (data->map.is_enclosed == 0)
 		return (printf("Error\nMap is not enclosed by walls\n"), 0);
-	i = passed[row][col] && passed[data->map->map_height
-		- 1][data->map->map_width - 1];
+	i = passed[row][col] && passed[data->map.map_height - 1][data->map.map_width
+		- 1];
 	return (1);
 }

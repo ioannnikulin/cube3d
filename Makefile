@@ -15,18 +15,18 @@ PREPROC_DEFINES =
 UNAME := $(shell uname)
 
 MLX_L_FLAGS			=	-L$(MLX_F) -lmlx -lXext -lX11 -L/usr/lib -lXext -lX11 -lz
-MLX_M_FLAGS			=	-Lmlx -lmlx -framework OpenGL -framework AppKit
+MLX_M_FLAGS			=	-L$(MLX_F) -lmlx -framework OpenGL -framework AppKit
 
 ifeq ($(UNAME), Linux)
 	MLX_SOURCE_ADDRESS 		= 	https://cdn.intra.42.fr/document/document/31891/minilibx-linux.tgz
 	MLX_F 					=	minilibx-linux 
 	MLX_COMPILE_FLAGS		=	$(MLX_LINUX_COMPILE_FLAGS)
-	MLX_LINK_FLAGS			=	$(MLX_LINUX_LINK_FLAGS)
+	MLX_LINK_FLAGS			=	$(MLX_L_FLAGS)
 else
 	MLX_SOURCE_ADDRESS 		= 	https://cdn.intra.42.fr/document/document/31892/minilibx_opengl.tgz
 	MLX_F 					=	minilibx_opengl_20191021
 	MLX_COMPILE_FLAGS		=	$(MLX_MACOS_COMPILE_FLAGS)
-	MLX_LINK_FLAGS			=	$(MLX_MACOS_LINK_FLAGS)
+	MLX_LINK_FLAGS			=	$(MLX_M_FLAGS)
 endif
 
 SOURCE_F = sources
@@ -82,6 +82,7 @@ OBJ_F = build/
 
 OBJS = \
 	$(addprefix $(OBJ_F), $(SRC_SRCS:.c=.o)) \
+	$(addprefix $(OBJ_F), $(MAP_PARSING_SRCS:.c=.o)) \
 	$(addprefix $(OBJ_F), $(PRIMITIVES_SRCS:.c=.o)) \
 	$(addprefix $(OBJ_F), $(DRAWING_SRCS:.c=.o)) \
 	$(addprefix $(OBJ_F), $(PLAYER_CONTROLS_SRCS:.c=.o)) \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 18:10:20 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/18 23:30:22 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/23 22:37:38 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,25 @@
 # define DRAWING_H
 
 # include "../cube3d.h"
+# include "../includes.h"
 
 typedef struct s_mlx	t_mlx;
 typedef struct s_color	t_color;
 
 typedef struct s_triangle_vertices
 {
-	t_point	*a;
-	t_point	*b;
-	t_point	*c;
-}	t_triangle_vertices;
+	t_point				*a;
+	t_point				*b;
+	t_point				*c;
+}						t_triangle_vertices;
 
 typedef struct s_quadrangle_vertices
 {
-	t_point	*a;
-	t_point	*b;
-	t_point	*c;
-	t_point	*d;
-}	t_quadrangle_vertices;
+	t_point				*a;
+	t_point				*b;
+	t_point				*c;
+	t_point				*d;
+}						t_quadrangle_vertices;
 
 typedef struct s_triangle_arg
 {
@@ -40,7 +41,7 @@ typedef struct s_triangle_arg
 	t_triangle_vertices	sorted_vertices;
 	t_color				*color;
 	bool				fill;
-}	t_triangle_arg;
+}						t_triangle_arg;
 
 void					line(t_mlx *s, t_point *f, t_point *t);
 void					circle(t_mlx *mlx, t_point *center, int radius,
