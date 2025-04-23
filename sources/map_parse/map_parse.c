@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 22:25:54 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/04/23 22:44:27 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/04/23 23:16:54 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,6 @@ void	fill_map(t_mlx *data, char *mp)
 	lines = (i = 0, file = open(mp, O_RDONLY), count_map_lines(mp));
 	if (file == -1)
 		exit_error("Error: Cannot open map file");
-	// data->map = ft_calloc_if(sizeof(t_map), 1);
-	// if (!data->map)
-	// 	exit_error("Error: Cannot allocate memory for map");
 	data->map.map = ft_calloc_if(sizeof(char *) * (size_t)(lines + 1), 1);
 	if (!data->map.map)
 		exit_error("Error: Cannot allocate memory for map");
