@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pad_n_put.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:46:27 by inikulin          #+#    #+#             */
-/*   Updated: 2023/12/20 17:36:06 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/10 18:30:59 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ static void	calc_lens(int lens[6], t_params p, char *c, int l)
 		lens[5] = p.min_width - pure;
 	else if (p.left_zero_pad && p.min_width > pure)
 		lens[3] += p.min_width - pure;
-	else if (!p.left_space_pad && !p.left_zero_pad \
-			&& p.min_width > pure)
+	else if (!p.left_space_pad && !p.left_zero_pad
+		&& p.min_width > pure)
 		lens[0] = p.min_width - pure;
 }
 

@@ -1,39 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_if.c                                            :+:      :+:    :+:   */
+/*   keyboard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/17 10:57:29 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/11 17:48:20 by inikulin         ###   ########.fr       */
+/*   Created: 2025/04/10 17:36:30 by inikulin          #+#    #+#             */
+/*   Updated: 2025/04/10 18:02:45 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_if_i(int choice, int a, int b)
+#include "player_controls_internal.h"
+
+static t_action	parse_key(int keycode)
 {
-	if (choice)
-		return (a);
-	return (b);
+	if (keycode == 65307)
+		return (EXIT);
+	return (NO);
 }
 
-int	ft_if_d(int choice, double a, double b)
+int	close_it(void *param)
 {
-	if (choice)
-		return (a);
-	return (b);
+	return (finalize((t_mlx *)param, MSG_EXIT, 0));
 }
 
-char	ft_if_c(int choice, char a, char b)
+int	handle_keyboard(int keycode, void *param)
 {
-	if (choice)
-		return (a);
-	return (b);
-}
+	t_action	action;
 
-char	*ft_if_s(int choice, char *a, char *b)
-{
-	if (choice)
-		return (a);
-	return (b);
+	action = parse_key(keycode);
+	if (action == NO)
+		return (0);
+	if (action == EXIT)
+		close_it(param);
+	return (0);
 }

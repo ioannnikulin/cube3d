@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_if.c                                            :+:      :+:    :+:   */
+/*   finalize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/17 10:57:29 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/11 17:48:20 by inikulin         ###   ########.fr       */
+/*   Created: 2025/04/09 17:38:28 by inikulin          #+#    #+#             */
+/*   Updated: 2025/04/10 18:25:29 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_if_i(int choice, int a, int b)
-{
-	if (choice)
-		return (a);
-	return (b);
-}
+#include "cube3d.h"
 
-int	ft_if_d(int choice, double a, double b)
+int	finalize(t_mlx *mlx, char *msg, int ret)
 {
-	if (choice)
-		return (a);
-	return (b);
-}
-
-char	ft_if_c(int choice, char a, char b)
-{
-	if (choice)
-		return (a);
-	return (b);
-}
-
-char	*ft_if_s(int choice, char *a, char *b)
-{
-	if (choice)
-		return (a);
-	return (b);
+	if (mlx)
+	{
+		mlx->win = 0;
+		if (mlx->mlx && mlx->win)
+			mlx_destroy_window(mlx->mlx, mlx->win);
+		free(mlx->win);
+		free(mlx->mlx);
+		mlx->mlx = 0;
+		free(mlx->map.map);
+		mlx->map.map = 0;
+	}
+	printf("%s", msg);
+	exit(ret);
+	return (ret);
 }

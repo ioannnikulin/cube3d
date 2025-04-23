@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_if.c                                            :+:      :+:    :+:   */
+/*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/17 10:57:29 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/11 17:48:20 by inikulin         ###   ########.fr       */
+/*   Created: 2025/04/18 22:43:48 by inikulin          #+#    #+#             */
+/*   Updated: 2025/04/19 01:00:08 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_if_i(int choice, int a, int b)
+#include "../drawing.h"
+
+t_color	clr_black(void)
 {
-	if (choice)
-		return (a);
-	return (b);
+	t_color	clr;
+
+	clr.r = 0;
+	clr.g = 0;
+	clr.b = 0;
+	clr.alpha = 0;
+	return (clr);
 }
 
-int	ft_if_d(int choice, double a, double b)
+t_color	clr_white(void)
 {
-	if (choice)
-		return (a);
-	return (b);
-}
+	t_color	clr;
 
-char	ft_if_c(int choice, char a, char b)
-{
-	if (choice)
-		return (a);
-	return (b);
-}
-
-char	*ft_if_s(int choice, char *a, char *b)
-{
-	if (choice)
-		return (a);
-	return (b);
+	clr.r = 255;
+	clr.g = 255;
+	clr.b = 255;
+	clr.alpha = 0;
+	return (clr);
 }

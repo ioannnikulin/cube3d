@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_if.c                                            :+:      :+:    :+:   */
+/*   point.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/17 10:57:29 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/11 17:48:20 by inikulin         ###   ########.fr       */
+/*   Created: 2025/04/18 21:23:49 by inikulin          #+#    #+#             */
+/*   Updated: 2025/04/18 21:27:31 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_if_i(int choice, int a, int b)
+#include "graphics.h"
+
+t_point	ft_point_make(double x, double y)
 {
-	if (choice)
-		return (a);
-	return (b);
+	t_point	p;
+
+	p.x = x;
+	p.y = y;
+	p.z = 0;
+	return (p);
 }
 
-int	ft_if_d(int choice, double a, double b)
+void	ft_swap_pts(t_point **a, t_point **b)
 {
-	if (choice)
-		return (a);
-	return (b);
-}
+	t_point	*tmp;
 
-char	ft_if_c(int choice, char a, char b)
-{
-	if (choice)
-		return (a);
-	return (b);
-}
-
-char	*ft_if_s(int choice, char *a, char *b)
-{
-	if (choice)
-		return (a);
-	return (b);
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }

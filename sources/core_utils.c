@@ -1,39 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_if.c                                            :+:      :+:    :+:   */
+/*   core_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/17 10:57:29 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/11 17:48:20 by inikulin         ###   ########.fr       */
+/*   Created: 2025/04/10 15:10:18 by inikulin          #+#    #+#             */
+/*   Updated: 2025/04/10 18:25:07 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_if_i(int choice, int a, int b)
+#include "cube3d.h"
+
+void	**next_img(t_mlx *mlx)
 {
-	if (choice)
-		return (a);
-	return (b);
+	return (&(mlx->frame.imgs[mlx->frame.next_frame_idx]));
 }
 
-int	ft_if_d(int choice, double a, double b)
+char	**next_img_data(t_mlx *mlx)
 {
-	if (choice)
-		return (a);
-	return (b);
-}
-
-char	ft_if_c(int choice, char a, char b)
-{
-	if (choice)
-		return (a);
-	return (b);
-}
-
-char	*ft_if_s(int choice, char *a, char *b)
-{
-	if (choice)
-		return (a);
-	return (b);
+	return (&(mlx->frame.imgs_data[mlx->frame.next_frame_idx]));
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_dlist_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 19:01:40 by inikulin          #+#    #+#             */
-/*   Updated: 2024/01/23 20:41:53 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/10 18:31:31 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static t_dlist	*connect_tail( \
+static t_dlist	*connect_tail(
 	t_dlist **res, t_dlist *res_tail, t_dlist *orig, void (*d)(void*))
 {
 	t_dlist	*loop_to;

@@ -8,7 +8,7 @@ SOURCES_F = sources
 TESTS_F = tests
 
 GRAPHICS_F = graphics
-GRAPHICS_NAMES = vector.c
+GRAPHICS_NAMES = vector.c point.c
 GRAPHICS_SRCS = $(addprefix $(SOURCES_F)/$(GRAPHICS_F)/, $(GRAPHICS_NAMES))
 
 LIST_F = lists
@@ -158,13 +158,17 @@ test: goodtests #$(SEGFAULTNAMES)
 retest: testfclean test
 
 norm:
-	$(FTPREFIX)norminette libft.h sources/*
+	$(FTPREFIX)norminette libft.h sources/* | tee norminette_log.txt && grep -q "^Error:" norminette_log.txt || true
+	@if grep -q "^Error:" norminette_log.txt; then \
+		echo "Norminette errors found. Please fix them before running the tests."; \
+		exit 1; \
+	fi
 
 memcheck:
 	$(FTPREFIX)valgrind --leak-check=full --show-leak-kinds=all tests/test "memcheck"
 
 fulltest_common:
-	$(FTPREFIX)tests/test
+	$(FTPREFIX)tests/test #yes, both this call and the later in memcheck are needed, because some tests are disabled in memcheck
 	$(FTPREFIX)rm -rf tmp.tst
 	$(FTPREFIX)make memcheck
 	@# -------- Multiple segfaults expected, which is part of the testing. --------

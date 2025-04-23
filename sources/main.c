@@ -6,29 +6,58 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:01:39 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/22 21:19:15 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/04/23 22:27:50 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-static int	usage(void)
+static void	endian_offsets(t_mlx *mlx)
 {
-	printf("Error\n");
-	printf("Usage: cube3D filename.cub\n\tfilename.cub - file containing:\n");
-	printf("\t- NO ./path_to_the_north_texture\n");
-	printf("\t- SO ./path_to_the_south_texture\n");
-	printf("\t- WE ./path_to_the_west_texture\n");
-	printf("\t- EA ./path_to_the_east_texture\n");
-	printf("\t(all should be valid paths to xpm files)\n");
-	printf("\t- F 200,100,0\n");
-	printf("\t- C 225,30,0\n");
-	printf("\t(color components 0-255 each, F for floor, C for ceiling)\n");
-	printf("\t(all the parts above can follow in any order, \
-also with empty lines)\n");
-	printf("\t- [A map of 0, 1 (walls, enclosed), one letter of [NSEW] \
-depicting player's spawn position and face direction]\n");
-	return (1);
+	mlx->frame.red_offset = 0;
+	mlx->frame.green_offset = 1;
+	mlx->frame.blue_offset = 2;
+	if (mlx->frame.endian == 0)
+	{
+		mlx->frame.red_offset = 2;
+		mlx->frame.green_offset = 1;
+		mlx->frame.blue_offset = 0;
+	}
+}
+
+static int	pre(t_mlx *mlx)
+{
+	ft_bzero((void *)mlx, sizeof(t_mlx));
+	mlx->map.zmax = 1;
+	mlx->map.zmin = 0;
+	mlx->map.block_size = 64;
+	mlx->mlx = mlx_init();
+	if (!mlx)
+		return (finalize(mlx, ERR_MLX_INIT, 2));
+	mlx->win = mlx_new_window(mlx->mlx, WINDOW_WIDTH, WINDOW_HEIGHT,
+			WINDOW_TITLE);
+	if (!mlx->win)
+		return (finalize(mlx, ERR_MLX_WIN, 3));
+	endian_offsets(mlx);
+	mlx->frame.imgs = ft_calloc_if(sizeof(void *) * FRAMES_BUFFER, 1);
+	mlx->frame.imgs_data = ft_calloc_if(sizeof(char *) * FRAMES_BUFFER, 1);
+	if (!mlx->frame.imgs || !mlx->frame.imgs_data)
+		return (finalize(mlx, ERR_MALLOC, 4));
+	return (0);
+}
+
+static int	make_image(t_mlx *mlx)
+{
+	free(*next_img(mlx));
+	*next_img(mlx) = mlx_new_image(mlx->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	if (!*next_img(mlx))
+		return (finalize(mlx, ERR_MLX_IMG, 4));
+	free(*next_img_data(mlx));
+	*next_img_data(mlx) = mlx_get_data_addr(*next_img(mlx), &(mlx->frame.bpp),
+			&(mlx->frame.linesz), &(mlx->frame.endian));
+	if (!*next_img_data(mlx))
+		return (finalize(mlx, ERR_MLX_GETADDR, 5));
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -36,15 +65,17 @@ int	main(int argc, char **argv)
 	t_mlx	mlx;
 
 	if (argc != 2)
-		return (usage());
-	mlx.mlx = mlx_init();
-	if (!mlx.mlx)
-		return (printf("Error\nFailed to initialize mlx\n"), 1);
-	mlx.win = mlx_new_window(mlx.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cube3D");
-	if (!mlx.win)
-		return (free(mlx.mlx), usage());
+		return (finalize(NULL, USAGE, 1));
 	if (!validate_map(&mlx, argv[1]))
 		return (1);
+	if (pre(&mlx))
+		return (2);
+	if (make_image(&mlx))
+		return (3);
+	world_create(&mlx);
+	mlx_put_image_to_window(mlx.mlx, mlx.win, *next_img(&mlx), 0, 0);
+	mlx_key_hook(mlx.win, handle_keyboard, &mlx);
+	mlx_hook(mlx.win, 17, 0, close_it, &mlx);
 	mlx_loop(mlx.mlx);
 	return (0);
 }

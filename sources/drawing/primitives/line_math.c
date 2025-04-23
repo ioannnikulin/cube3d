@@ -1,39 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_if.c                                            :+:      :+:    :+:   */
+/*   line_math.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/17 10:57:29 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/11 17:48:20 by inikulin         ###   ########.fr       */
+/*   Created: 2024/03/24 19:23:13 by inikulin          #+#    #+#             */
+/*   Updated: 2025/04/09 16:07:53 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_if_i(int choice, int a, int b)
+#include "line_internal.h"
+#include <math.h>
+
+double	flr(double c)
 {
-	if (choice)
-		return (a);
-	return (b);
+	return ((int)c);
 }
 
-int	ft_if_d(int choice, double a, double b)
+double	fpart(double c)
 {
-	if (choice)
-		return (a);
-	return (b);
+	return (c - flr(c));
 }
 
-char	ft_if_c(int choice, char a, char b)
+double	rfpart(double c)
 {
-	if (choice)
-		return (a);
-	return (b);
+	return (1.0 - fpart(c));
 }
 
-char	*ft_if_s(int choice, char *a, char *b)
+double	rnd(double c)
 {
-	if (choice)
-		return (a);
-	return (b);
+	return (flr(c + 0.5));
 }
