@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 21:23:49 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/20 17:00:40 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/25 19:45:05 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_point	ft_point_make(double x, double y)
 	return (p);
 }
 
-t_point		*ft_point_dup(t_point src)
+t_point	*ft_point_dup(t_point src)
 {
 	t_point	*dup;
 

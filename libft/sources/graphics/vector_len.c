@@ -6,13 +6,13 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:09:45 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/21 12:10:24 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/25 19:43:22 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graphics.h"
 
-double		ft_vector_len(t_vector *a)
+double	ft_vector_len(t_vector *a)
 {
 	double		len;
 	t_point		dir;
@@ -22,7 +22,7 @@ double		ft_vector_len(t_vector *a)
 	return (len);
 }
 
-double		ft_vector_x(t_vector *a)
+double	ft_vector_x(t_vector *a)
 {
 	t_point		dir;
 
@@ -30,7 +30,7 @@ double		ft_vector_x(t_vector *a)
 	return (dir.x);
 }
 
-double		ft_vector_y(t_vector *a)
+double	ft_vector_y(t_vector *a)
 {
 	t_point		dir;
 
@@ -38,7 +38,7 @@ double		ft_vector_y(t_vector *a)
 	return (dir.y);
 }
 
-double		ft_vector_z(t_vector *a)
+double	ft_vector_z(t_vector *a)
 {
 	t_point		dir;
 

@@ -6,14 +6,14 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 21:23:49 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/20 17:41:29 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/26 12:38:20 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../libft.h"
-# define EPSILON 1e-6
+#define EPSILON 1e-6
 
-t_point		ft_point_add(t_point *a, t_point *b)
+t_point	ft_point_add(t_point *a, t_point *b)
 {
 	t_point	res;
 
@@ -23,7 +23,7 @@ t_point		ft_point_add(t_point *a, t_point *b)
 	return (res);
 }
 
-t_point		ft_point_sub(t_point *a, t_point *b)
+t_point	ft_point_sub(t_point *a, t_point *b)
 {
 	t_point	res;
 
@@ -33,7 +33,7 @@ t_point		ft_point_sub(t_point *a, t_point *b)
 	return (res);
 }
 
-t_point		ft_point_scale(t_point *a, double b)
+t_point	ft_point_scale(t_point *a, double b)
 {
 	t_point	res;
 
@@ -43,9 +43,9 @@ t_point		ft_point_scale(t_point *a, double b)
 	return (res);
 }
 
-t_point		ft_point_norm(t_point *a)
+t_point	ft_point_norm(t_point *a)
 {
-	double 	mag;
+	double	mag;
 	t_point	res;
 
 	mag = sqrt(a->x * a->x + a->y * a->y + a->z * a->z);
@@ -55,4 +55,14 @@ t_point		ft_point_norm(t_point *a)
 	res.y = ft_if_d(mag == 0, 0, a->y / mag);
 	res.z = ft_if_d(mag == 0, 0, a->z / mag);
 	return (res);
+}
+
+bool	ft_point_eq(t_point *a, t_point *b, double epsilon)
+{
+	bool	eq[3];
+
+	eq[0] = fabs(a->x - b->x) < epsilon;
+	eq[1] = fabs(a->y - b->y) < epsilon;
+	eq[2] = fabs(a->z - b->z) < epsilon;
+	return (eq[0] && eq[1] && eq[2]);
 }

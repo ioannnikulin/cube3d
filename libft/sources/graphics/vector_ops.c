@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 19:28:51 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/20 17:42:59 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/26 12:22:16 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,11 @@ t_vector	ft_vector_rot_z(t_vector *a, double b)
 
 t_vector	ft_vector_rot(t_vector *a, double b)
 {
-	return  (ft_vector_rot_z(a, b));
+	return (ft_vector_rot_z(a, b));
+}
+
+bool	ft_vector_eq(t_vector *a, t_vector *b, double epsilon)
+{
+	return (ft_point_eq(&a->from, &b->from, epsilon)
+		&& ft_point_eq(&a->to, &b->to, epsilon));
 }

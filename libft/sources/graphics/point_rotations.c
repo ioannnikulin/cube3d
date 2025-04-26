@@ -6,13 +6,13 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 21:23:49 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/20 17:02:18 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/25 19:41:57 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graphics.h"
 
-t_point		ft_point_rot_x(t_point *a, double angle)
+t_point	ft_point_rot_x(t_point *a, double angle)
 {
 	t_point	res;
 	double	cos_a;
@@ -26,7 +26,7 @@ t_point		ft_point_rot_x(t_point *a, double angle)
 	return (res);
 }
 
-t_point		ft_point_rot_y(t_point *a, double angle)
+t_point	ft_point_rot_y(t_point *a, double angle)
 {
 	t_point	res;
 	double	cos_a;
@@ -40,7 +40,7 @@ t_point		ft_point_rot_y(t_point *a, double angle)
 	return (res);
 }
 
-t_point		ft_point_rot_z(t_point *a, double angle)
+t_point	ft_point_rot_z(t_point *a, double angle)
 {
 	t_point	res;
 	double	cos_a;

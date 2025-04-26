@@ -6,13 +6,14 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:27:52 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/21 12:09:29 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/26 12:23:28 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GRAPHICS_H
 # define GRAPHICS_H
 # include <math.h>
+# include <stdbool.h>
 
 typedef struct s_point
 {
@@ -33,6 +34,7 @@ t_vector	ft_vector_make(t_point from, t_point to);
 /*t_vector	ft_vector_add(t_vector *a, t_vector *b);
 t_vector	ft_vector_sub(t_vector *a, t_vector *b);
 t_vector	ft_vector_mult(t_vector *a, t_vector *b);*/
+bool		ft_vector_eq(t_vector *a, t_vector *b, double epsilon);
 t_vector	ft_vector_move(t_vector *a, double b);
 t_vector	ft_vector_rot(t_vector *a, double b);
 t_vector	ft_vector_rot_z(t_vector *a, double b);
@@ -47,6 +49,7 @@ double		ft_vector_z(t_vector *a);
 t_point		*ft_point_dup(t_point src);
 t_point		ft_point_make(double x, double y);
 void		ft_point_cp(t_point from, t_point *to);
+bool		ft_point_eq(t_point *a, t_point *b, double epsilon);
 void		ft_swap_pts(t_point **a, t_point **b);
 t_point		ft_point_add(t_point *a, t_point *b);
 t_point		ft_point_sub(t_point *a, t_point *b);

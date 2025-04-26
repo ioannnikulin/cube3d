@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:55:59 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/21 20:59:05 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/21 23:23:45 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,16 @@ static int	ray_down(t_ray_arg *arg)
 	return (0);
 }
 
+static int out_of_bounds(t_ray_arg *arg)
+{
+	if (arg->hor_isect.x < 0
+		|| arg->hor_isect.x >= arg->mlx->map.map_width * BLOCK_SIZE
+		|| arg->hor_isect.y < 0
+		|| arg->hor_isect.y >= arg->mlx->map.map_height * BLOCK_SIZE)
+		return (1);
+	return (0);
+}
+
 /*
  * hor_isect - intersection of the ray with the next horizontal line
  */
@@ -59,10 +69,7 @@ static int	cast_ray(t_ray_arg *arg)
 	{
 		arg->map_x = (int)arg->hor_isect.x / BLOCK_SIZE;
 		arg->map_y = (int)arg->hor_isect.y / BLOCK_SIZE;
-		if (arg->hor_isect.x < 0
-			|| arg->hor_isect.x >= arg->mlx->map.map_width
-			|| arg->hor_isect.y < 0
-			|| arg->hor_isect.y >= arg->mlx->map.map_height)
+		if (out_of_bounds(arg))
 			break ;
 		if (arg->mlx->map.map[arg->map_y][arg->map_x] == '1')
 			break ;

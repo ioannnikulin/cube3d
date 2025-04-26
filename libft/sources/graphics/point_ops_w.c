@@ -6,12 +6,11 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 16:28:43 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/20 16:34:04 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/25 19:42:39 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graphics.h"
-
 
 void	ft_point_add_here(t_point *a, t_point *b)
 {
