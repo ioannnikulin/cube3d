@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:44:18 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/04/23 23:45:41 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/04/26 15:28:02 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ int	is_valid_char(char c, int *player_already_parsed)
 
 int	count_map_lines(char *map)
 {
-	int file;
-	int lines;
-	char *temp;
+	char	*temp;
+	int		file;
+	int		lines;
 
 	lines = 0;
 	file = open(map, O_RDONLY);

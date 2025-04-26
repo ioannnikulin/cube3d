@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:36:45 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/04/23 22:45:02 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/04/26 15:53:11 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,12 @@ static void	free_passed_array(int **passed, int height)
 	while (++i < height)
 		free(passed[i]);
 	free(passed);
-	printf("Error\nFailed to allocate memory for passed\n");
+}
+
+void	process_not_enclosed(int **passed, int height)
+{
+	free_passed_array(passed, height);
+	printf("Error\nMap is not enclosed by walls\n");
 }
 
 int	is_surrounded_by_walls(t_mlx *data)
@@ -76,7 +81,8 @@ int	is_surrounded_by_walls(t_mlx *data)
 	int	col;
 	int	**passed;
 
-	data->map.is_enclosed = (i = -1, 1);
+	data->map.is_enclosed = 1;
+	i = -1;
 	passed = ft_calloc_if(sizeof(int *) * data->map.map_height, 1);
 	if (!passed)
 		return (printf("Error\nFailed to allocate memory\n"), 0);
@@ -90,11 +96,9 @@ int	is_surrounded_by_walls(t_mlx *data)
 	while (data->map.map[++i])
 		find_player_pos(data, i, &col, &row);
 	if (!data->player.x || !data->player.y)
-		return (printf("Error\nNo player found\n"), 0);
+		return (printf("Error\nNo player found1\n"), 0);
 	floodfill(data, row, col, passed);
 	if (data->map.is_enclosed == 0)
-		return (printf("Error\nMap is not enclosed by walls\n"), 0);
-	i = passed[row][col] && passed[data->map.map_height - 1][data->map.map_width
-		- 1];
-	return (1);
+		return (process_not_enclosed(passed, data->map.map_height), 0);
+	return (free_passed_array(passed, data->map.map_height), 1);
 }

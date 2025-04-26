@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 22:25:54 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/04/23 23:45:35 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/04/26 15:53:03 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,31 +23,16 @@ int	check_elements(t_mlx *mlx, char **map)
 	while (++i < mlx->map.map_height)
 	{
 		j = -1;
+		if (map[i][0] == '\n')
+			return (printf("Error\nEmpty line in a map\n"), 0);
 		while (++j < mlx->map.map_width)
 			if (!is_valid_char(map[i][j], &player_already_parsed))
 				return (0);
 	}
 	if (player_already_parsed == 0)
-		return (printf("Error\nNo player found\n"), 0);
+		return (printf("Error\nNo player found2\n"), 0);
 	return (1);
 }
-
-int	longest_line(char **map)
-{
-	int	i;
-	int	max;
-
-	i = -1;
-	max = 0;
-	while (map[++i])
-	{
-		if ((int)ft_strlen(map[i]) > max)
-			max = (int)ft_strlen(map[i]);
-	}
-	return (max);
-}
-
-
 
 void	fill_map(t_mlx *data, char *mp)
 {
@@ -55,7 +40,9 @@ void	fill_map(t_mlx *data, char *mp)
 	int	lines;
 	int	i;
 
-	lines = (i = 0, file = open(mp, O_RDONLY), count_map_lines(mp));
+	lines = (count_map_lines(mp));
+	i = 0;
+	file = open(mp, O_RDONLY);
 	if (file == -1)
 		exit_error("Error: Cannot open map file");
 	data->map.map = ft_calloc_if(sizeof(char *) * (size_t)(lines + 1), 1);
@@ -67,10 +54,12 @@ void	fill_map(t_mlx *data, char *mp)
 	close(file);
 	data->map.map_height = lines;
 	data->map.map_width = longest_line(data->map.map);
-	if (!check_elements(data, data->map.map))
+	if (data->map.map_width == 0 || !check_elements(data, data->map.map) \
+		|| !is_surrounded_by_walls(data))
+	{
+		free_map(data->map.map);
 		exit(EXIT_FAILURE);
-	if (!is_surrounded_by_walls(data))
-		exit(EXIT_FAILURE);
+	}
 }
 
 static int	check_extension(char *map)

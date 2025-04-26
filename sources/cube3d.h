@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:06:42 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/23 22:39:32 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/04/26 15:53:26 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "player_controls/player_controls.h"
 # include "resources.h"
 # include "world_creation/world_creation.h"
+# include "parsing.h"
 
 # define WINDOW_WIDTH 1000
 # define WINDOW_HEIGHT 1000
@@ -117,8 +118,6 @@ typedef struct s_mlx
 	t_player		player;
 	int				errno;
 }					t_mlx;
-
-# include "parsing.h"
 
 int					finalize(t_mlx *mlx, char *msg, int ret);
 void				**next_img(t_mlx *mlx);

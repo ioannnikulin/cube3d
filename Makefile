@@ -2,14 +2,14 @@ CC = cc
 NAME = cube3D
 COMPILE_FLAGS = -Wall -Wextra -Werror -g -c -O0
 LINK_FLAGS = -lft -Llibft -lreadline -lm #-fsanitize=address #not compatible with valgrind from fulltest
-MLX_F = 
+MLX_F =
 INCLUDES = -I . -I libft -I $(MLX_F)
 MLX_COMPILE_FLAGS =
-MLX_LINK_FLAGS = 
+MLX_LINK_FLAGS =
 
-MLX_SOURCE_ADDRESS = 
+MLX_SOURCE_ADDRESS =
 MLX_ARCHIVE = minilibx.tgz
-PREFIX = 
+PREFIX =
 PREPROC_DEFINES =
 
 UNAME := $(shell uname)
@@ -19,7 +19,7 @@ MLX_M_FLAGS			=	-L$(MLX_F) -lmlx -framework OpenGL -framework AppKit
 
 ifeq ($(UNAME), Linux)
 	MLX_SOURCE_ADDRESS 		= 	https://cdn.intra.42.fr/document/document/31891/minilibx-linux.tgz
-	MLX_F 					=	minilibx-linux 
+	MLX_F 					=	minilibx-linux
 	MLX_COMPILE_FLAGS		=	$(MLX_LINUX_COMPILE_FLAGS)
 	MLX_LINK_FLAGS			=	$(MLX_L_FLAGS)
 else
@@ -32,7 +32,7 @@ endif
 SOURCE_F = sources
 TEST_F = tests
 
-MAP_PARSING_NAMES = map_parse.c check_walls.c parse_utils.c
+MAP_PARSING_NAMES = map_parse.c check_walls.c parse_utils.c parse_utils2.c
 MAP_PARSING_F = map_parse
 MAP_PARSING_SRCS = $(addprefix $(MAP_PARSING_F)/,$(MAP_PARSING_NAMES))
 
@@ -132,7 +132,7 @@ $(TEST_OBJ_F)%.o: $(TEST_F)/%.c $(TEST_OBJ_F)
 test_trapped:
 	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DFT_CALLOC_IF_TRAPPED" test
 
-test: $(OBJ_DIRS) $(TEST_OBJ_F) $(OBJS) $(TEST_OBJS) $(TEST_ENDPOINT_OBJ) 
+test: $(OBJ_DIRS) $(TEST_OBJ_F) $(OBJS) $(TEST_OBJS) $(TEST_ENDPOINT_OBJ)
 	$(PREFIX)$(CC) $(OBJS) $(TEST_OBJS) $(TEST_ENDPOINT_OBJ) -o $(TEST_FNAME) $(LINK_FLAGS) $(MLX_LINK_FLAGS)
 
 preclean:

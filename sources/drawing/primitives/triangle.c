@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   triangle.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 20:01:21 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/23 23:29:02 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/04/26 15:57:00 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	hor(t_mlx *mlx, t_vector segment, t_color *color)
 	int	x;
 
 	printf("drawing hor line from %f %f to %f %f\n", segment.from.x,
-			segment.from.y, segment.to.x, segment.to.y);
+		segment.from.y, segment.to.x, segment.to.y);
 	if (segment.from.x > segment.to.x)
 		ft_swap_d(&(segment.from.x), &(segment.to.x));
 	x = segment.from.x - 1;
@@ -48,7 +48,7 @@ static void	flat_top(t_triangle_arg *arg)
 	while (y >= arg->sorted_vertices.a->y)
 	{
 		hor(arg->mlx, ft_vector_make(ft_point_make(cx1, y), ft_point_make(cx2,
-						y)), arg->color);
+					y)), arg->color);
 		cx1 -= inv_slope_1;
 		cx2 -= inv_slope_2;
 		y--;
@@ -78,7 +78,7 @@ static void	flat_bottom(t_triangle_arg *arg)
 	while (y <= arg->sorted_vertices.b->y)
 	{
 		hor(arg->mlx, ft_vector_make(ft_point_make(cx1, y), ft_point_make(cx2,
-						y)), arg->color);
+					y)), arg->color);
 		cx1 += inv_slope_1;
 		cx2 += inv_slope_2;
 		y++;
@@ -90,8 +90,8 @@ static void	find_mid_hor(t_triangle_arg *arg, t_point *tgt)
 	*tgt = ft_point_make(arg->sorted_vertices.a->x
 			+ (double)(arg->sorted_vertices.b->y - arg->sorted_vertices.a->y)
 			* (arg->sorted_vertices.c->x - arg->sorted_vertices.a->x)
-			/ (arg->sorted_vertices.c->y - arg->sorted_vertices.a->y),
-							arg->sorted_vertices.b->y);
+			/ (arg->sorted_vertices.c->y - arg->sorted_vertices.a->y), \
+				arg->sorted_vertices.b->y);
 }
 
 /*
@@ -100,7 +100,7 @@ static void	find_mid_hor(t_triangle_arg *arg, t_point *tgt)
  * find its horizontal counterpart,
  * and split the triangle into a flattop and flatbottom
  * having these middle and counterpart points as a horizontal separation line
- * 
+ *
  * possible problems: tmp init and find_mid_hor spoiling a point
  */
 /*
