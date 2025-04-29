@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:55:59 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/21 23:23:45 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/29 19:43:31 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static int	ray_up(t_ray_arg *arg)
 	arg->y_offset = -BLOCK_SIZE;
 	arg->x_offset = BLOCK_SIZE * ft_vector_x(&arg->ray)
 		/ fabs(ft_vector_y(&arg->ray));
+	if (ft_vector_y(&arg->ray) == 0)
+		arg->x_offset = 0;
 	return (0);
 }
 
@@ -39,8 +41,10 @@ static int	ray_down(t_ray_arg *arg)
 	arg->hor_isect.x = (arg->hor_isect.y - arg->ray.from.y)
 		* ft_vector_x(&arg->ray) / ft_vector_y(&arg->ray) + arg->ray.from.x;
 	arg->y_offset = BLOCK_SIZE;
-	arg->x_offset = BLOCK_SIZE * ft_vector_y(&arg->ray)
-		/ ft_vector_x(&arg->ray);
+	arg->x_offset = BLOCK_SIZE * ft_vector_x(&arg->ray)
+		/ ft_vector_y(&arg->ray);
+	if (ft_vector_y(&arg->ray) == 0)
+		arg->x_offset = 0;
 	return (0);
 }
 

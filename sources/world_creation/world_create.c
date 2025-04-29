@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:31:12 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/25 18:16:54 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/29 19:44:29 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	world_create(t_mlx *mlx)
 	map_stub(mlx);
 	draw_map(mlx);
 	mlx->player.coords.from = ft_point_make(100, 100);
-	mlx->player.coords.to = ft_point_make(84.679111, 112.855752);
+	mlx->player.coords.to = ft_point_make(100, 120);
 	draw_player(mlx);
 	return (0);
 }
