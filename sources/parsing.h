@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 00:47:20 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/04/26 15:26:45 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/04/30 19:21:36 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ int		validate_map(t_mlx *data, char *map);
 void	exit_error(char *message);
 int		is_map_row_valid(char *row);
 void	free_map(char **map);
+void	free_exit(t_mlx *data);
 
 #endif

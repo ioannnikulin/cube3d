@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:44:18 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/04/26 15:28:02 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/04/30 19:21:28 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,11 @@ int	count_map_lines(char *map)
 	}
 	close(file);
 	return (lines);
+}
+
+void	free_exit(t_mlx *data)
+{
+	if (data->map.map)
+		free_map(data->map.map);
+	exit(EXIT_FAILURE);
 }
