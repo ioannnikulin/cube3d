@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 22:25:54 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/04/30 19:21:51 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/04/30 19:26:01 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	fill_map(t_mlx *data, char *mp)
 	close(file);
 	data->map.map_height = lines;
 	data->map.map_width = longest_line(data->map.map);
-	is_valid = is_map_valid(data->map.map_width, \
-		check_elements(data, data->map.map), is_surrounded_by_walls(data));
+	is_valid = is_map_valid(data->map.map_width, check_elements
+			(data, data->map.map), is_surrounded_by_walls(data));
 	if (!is_valid)
 		free_exit(data);
 }
