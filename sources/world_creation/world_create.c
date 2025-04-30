@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world_create.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:31:12 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/23 23:29:26 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/04/30 18:36:19 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	map_stub(t_mlx *mlx)
 	int	i;
 
 	ft_assign_i(&mlx->map.map_height, 8, ft_assign_i(&mlx->map.map_width, 8,
-				ft_assign_i(&i, -1, 0)));
+			ft_assign_i(&i, -1, 0)));
 	mlx->map.map = ft_calloc_if(sizeof(char *) * mlx->map.map_height, 1);
 	if (!mlx->map.map)
 		return (finalize(mlx, ERR_MALLOC, 1));

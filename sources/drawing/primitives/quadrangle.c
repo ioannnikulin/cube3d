@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quadrangle.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 22:12:04 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/23 23:28:46 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/04/30 18:36:12 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	quadrangle(t_mlx *mlx, t_quadrangle_vertices vertices, t_color *clr,
 		bool fill)
 {
 	triangle(triangle_arg(mlx, triangle_vertices(vertices.a, vertices.b,
-					vertices.c), clr, fill));
+				vertices.c), clr, fill));
 	triangle(triangle_arg(mlx, triangle_vertices(vertices.a, vertices.c,
-					vertices.d), clr, fill));
+				vertices.d), clr, fill));
 }
