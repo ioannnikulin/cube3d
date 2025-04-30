@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 20:01:21 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/26 15:57:00 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/04/30 18:53:53 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ static void	find_mid_hor(t_triangle_arg *arg, t_point *tgt)
 	*tgt = ft_point_make(arg->sorted_vertices.a->x
 			+ (double)(arg->sorted_vertices.b->y - arg->sorted_vertices.a->y)
 			* (arg->sorted_vertices.c->x - arg->sorted_vertices.a->x)
-			/ (arg->sorted_vertices.c->y - arg->sorted_vertices.a->y), \
-				arg->sorted_vertices.b->y);
+			/ (arg->sorted_vertices.c->y - arg->sorted_vertices.a->y),
+			arg->sorted_vertices.b->y);
 }
 
 /*

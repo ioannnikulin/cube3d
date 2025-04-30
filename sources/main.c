@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:01:39 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/23 22:27:50 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/04/30 18:52:51 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	make_image(t_mlx *mlx)
 		return (finalize(mlx, ERR_MLX_IMG, 4));
 	free(*next_img_data(mlx));
 	*next_img_data(mlx) = mlx_get_data_addr(*next_img(mlx), &(mlx->frame.bpp),
-			&(mlx->frame.linesz), &(mlx->frame.endian));
+		&(mlx->frame.linesz), &(mlx->frame.endian));
 	if (!*next_img_data(mlx))
 		return (finalize(mlx, ERR_MLX_GETADDR, 5));
 	return (0);
