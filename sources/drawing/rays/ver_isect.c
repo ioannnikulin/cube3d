@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:55:59 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/01 18:31:07 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/01 19:02:59 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static int	ray_vertical(t_ray_arg *arg)
 
 static int	ray_left(t_ray_arg *arg)
 {
-	arg->ver_isect.x = (((int)arg->ray.from.x) / BLOCK_SIZE) * BLOCK_SIZE - 0.0001;
+	arg->ver_isect.x = (((int)arg->ray.from.x) / BLOCK_SIZE)
+		* BLOCK_SIZE - 0.0001;
 	arg->ver_isect.y = (arg->ver_isect.x - arg->ray.from.x)
 		* ft_vector_y(&arg->ray) / ft_vector_x(&arg->ray) + arg->ray.from.y;
 	arg->x_offset = -BLOCK_SIZE;
@@ -47,7 +48,7 @@ static int	ray_right(t_ray_arg *arg)
 	return (0);
 }
 
-static int out_of_bounds(t_ray_arg *arg)
+static int	out_of_bounds(t_ray_arg *arg)
 {
 	if (arg->ver_isect.x < 0
 		|| arg->ver_isect.x >= arg->mlx->map.map_width * BLOCK_SIZE
@@ -60,7 +61,7 @@ static int out_of_bounds(t_ray_arg *arg)
 /*
  * intersection of the ray with the next vertical line
  */
-int ver_isect(t_ray_arg *arg)
+int	ver_isect(t_ray_arg *arg)
 {
 	arg->lvl_iter = 0;
 	if (fabs(ft_vector_x(&arg->ray)) < EPSILON)

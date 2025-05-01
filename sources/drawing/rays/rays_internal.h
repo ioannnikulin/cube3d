@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:16:05 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/01 18:42:21 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/01 19:03:17 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ typedef struct s_ray_arg
 }	t_ray_arg;
 
 t_ray_arg	ray_arg(t_mlx *mlx);
-int 	hor_isect(t_ray_arg *arg);
-int 	ver_isect(t_ray_arg *arg);
+int			hor_isect(t_ray_arg *arg);
+int			ver_isect(t_ray_arg *arg);
 #endif

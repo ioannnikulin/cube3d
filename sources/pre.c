@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:13:28 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/01 18:38:45 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/01 19:04:16 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	endian_offsets(t_mlx *mlx)
 	}
 }
 
-static t_color clr(char r, char g, char b, double a)
+static t_color	clr(char r, char g, char b, double a)
 {
 	t_color	color;
 

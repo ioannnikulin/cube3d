@@ -6,14 +6,14 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 16:13:09 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/01 16:13:51 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/01 18:59:08 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graphics.h"
 
-double		ft_point_dist(t_point *a, t_point *b)
+double	ft_point_dist(t_point *a, t_point *b)
 {
-	return (sqrt((a->x - b->x) * (a->x - b->x) +
-		(a->y - b->y) * (a->y - b->y)));
+	return (sqrt((a->x - b->x) * (a->x - b->x)
+			+ (a->y - b->y) * (a->y - b->y)));
 }

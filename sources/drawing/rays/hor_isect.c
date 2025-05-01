@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:55:59 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/01 18:30:42 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/01 19:02:20 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static int	ray_horizontal(t_ray_arg *arg)
 
 static int	ray_up(t_ray_arg *arg)
 {
-	arg->hor_isect.y = (((int)arg->ray.from.y) / BLOCK_SIZE) * BLOCK_SIZE - 0.0001;
+	arg->hor_isect.y = (((int)arg->ray.from.y) / BLOCK_SIZE)
+		* BLOCK_SIZE - 0.0001;
 	arg->hor_isect.x = (arg->hor_isect.y - arg->ray.from.y)
 		* ft_vector_x(&arg->ray) / ft_vector_y(&arg->ray) + arg->ray.from.x;
 	arg->y_offset = -BLOCK_SIZE;
@@ -47,7 +48,7 @@ static int	ray_down(t_ray_arg *arg)
 	return (0);
 }
 
-static int out_of_bounds(t_ray_arg *arg)
+static int	out_of_bounds(t_ray_arg *arg)
 {
 	if (arg->hor_isect.x < 0
 		|| arg->hor_isect.x >= arg->mlx->map.map_width * BLOCK_SIZE
@@ -60,7 +61,7 @@ static int out_of_bounds(t_ray_arg *arg)
 /*
  * intersection of the ray with the next horizontal line
  */
-int hor_isect(t_ray_arg *arg)
+int	hor_isect(t_ray_arg *arg)
 {
 	arg->lvl_iter = 0;
 	if (fabs(ft_vector_y(&arg->ray)) < EPSILON)

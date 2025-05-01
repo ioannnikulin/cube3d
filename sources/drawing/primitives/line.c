@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 19:23:13 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/01 14:43:40 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/01 18:59:58 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ static void	loop_steep(t_line_arg *arg)
 	x = arg->end0x + 1;
 	while (x < arg->end1x)
 	{
-		pixel(arg->mlx, flr(arg->intery), x, color(arg->clr, rfpart(arg->intery)));
+		pixel(arg->mlx, flr(arg->intery), x,
+			color(arg->clr, rfpart(arg->intery)));
 		pixel(arg->mlx, flr(arg->intery) + 1, x,
 			color(arg->clr, fpart(arg->intery)));
 		arg->intery += arg->gradient;
@@ -56,7 +57,8 @@ static void	loop_nonsteep(t_line_arg *arg)
 	x = arg->end0x + 1;
 	while (x < arg->end1x)
 	{
-		pixel(arg->mlx, x, flr(arg->intery), color(arg->clr, rfpart(arg->intery)));
+		pixel(arg->mlx, x, flr(arg->intery),
+			color(arg->clr, rfpart(arg->intery)));
 		pixel(arg->mlx, x, flr(arg->intery) + 1,
 			color(arg->clr, fpart(arg->intery)));
 		arg->intery += arg->gradient;
