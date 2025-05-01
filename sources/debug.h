@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:30:33 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/20 17:47:24 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/01 18:37:54 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 # define DEBUG_H
 
 # define DBG_PLAYER_MOVE 1
-# define DBG_FULL 1
-
-# define DBG_LVL 0
+# define DBG_PLAYER_POSITION 2
+# define DBG_FULL 3
 
 #endif

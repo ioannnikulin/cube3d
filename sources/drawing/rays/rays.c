@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:55:59 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/01 16:16:16 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/01 18:45:29 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static int	cast_ray(t_ray_arg *arg)
 		line(arg->mlx, &arg->ray.from, &arg->ver_isect, &arg->mlx->assets.palette.green);
 	else
 		line(arg->mlx, &arg->ray.from, &arg->hor_isect, &arg->mlx->assets.palette.green);
+	ft_vector_rot_z_here(&arg->ray, arg->angle_delta);
 	return (0);
 }
 
@@ -32,8 +33,10 @@ int	cast_rays(t_mlx *mlx)
 	i = -1;
 	arg = ray_arg(mlx);
 	arg.ray = mlx->player.coords;
-	printf("player at %f %f, facing %f %f\n", arg.ray.from.x, arg.ray.from.y,
-		arg.ray.to.x, arg.ray.to.y);
+	if (mlx->dbg & DBG_PLAYER_POSITION)
+		printf("player at %f %f, facing %f %f\n", arg.ray.from.x, arg.ray.from.y,
+			arg.ray.to.x, arg.ray.to.y);
+	ft_vector_rot_z_here(&arg.ray, arg.angle);
 	while (++ i < RAYS_COUNT)
 		cast_ray(&arg);
 	return (0);
@@ -52,6 +55,8 @@ t_ray_arg	ray_arg(t_mlx *mlx)
 	arg.lvl_iter = 0;
 	arg.map_x = 0;
 	arg.map_y = 0;
+	arg.angle = -VIEWFIELD / 2 * DEGREE;
+	arg.angle_delta = VIEWFIELD / RAYS_COUNT * DEGREE;
 	arg.mlx = mlx;
 	return (arg);
 }

@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:16:05 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/01 16:11:24 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/01 18:42:21 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ typedef struct s_ray_arg
 	int			lvl_iter;
 	int			map_x;
 	int			map_y;
+	double		angle;
+	double		angle_delta;
 	t_mlx		*mlx;
 }	t_ray_arg;
 

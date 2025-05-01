@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:13:28 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/01 15:44:50 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/01 18:38:45 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ static void	palette_init(t_palette *palette)
 int	pre(t_mlx *mlx)
 {
 	ft_bzero((void *)mlx, sizeof(t_mlx));
-	mlx->map.zmax = 1;
-	mlx->map.zmin = 0;
+	mlx->dbg = 0;
 	mlx->mlx = mlx_init();
 	if (!mlx)
 		return (finalize(mlx, ERR_MLX_INIT, 2));

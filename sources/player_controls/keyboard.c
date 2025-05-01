@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:36:30 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/21 21:01:05 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/01 18:37:44 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	handle_keyboard(int keycode, void *param)
 		ft_vector_rot_here(&mlx->player.coords, rot_angle());
 	if (action == TURN_CCW)
 		ft_vector_rot_here(&mlx->player.coords, -rot_angle());
-	if (DBG_LVL & DBG_PLAYER_MOVE)
+	if (mlx->dbg & DBG_PLAYER_MOVE)
 		printf("player at %f %f, facing %f %f\n",
 			mlx->player.coords.from.x, mlx->player.coords.from.y,
 			mlx->player.coords.to.x, mlx->player.coords.to.y);
