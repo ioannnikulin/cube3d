@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:31:12 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/29 19:44:29 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/01 16:07:24 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ int	draw_map(t_mlx *mlx)
 		while (++c < mlx->map.map_width)
 		{
 			cx = c * BLOCK_SIZE;
-			clr = clr_black();
+			clr = mlx->assets.palette.black;
 			if (mlx->map.map[r][c] == '1')
-				clr = clr_white();
+				clr = mlx->assets.palette.white;
 			draw_block(mlx, cx, cy, &clr);
 		}
 	}
@@ -81,9 +81,7 @@ int	draw_map(t_mlx *mlx)
 int	world_create(t_mlx *mlx)
 {
 	map_stub(mlx);
-	draw_map(mlx);
 	mlx->player.coords.from = ft_point_make(100, 100);
-	mlx->player.coords.to = ft_point_make(100, 120);
-	draw_player(mlx);
+	mlx->player.coords.to = ft_point_make(81.87384, 108.452365);
 	return (0);
 }

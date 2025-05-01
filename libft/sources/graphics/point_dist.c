@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   point_dist.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/24 16:01:39 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/01 15:39:02 by inikulin         ###   ########.fr       */
+/*   Created: 2025/05/01 16:13:09 by inikulin          #+#    #+#             */
+/*   Updated: 2025/05/01 16:13:51 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include "graphics.h"
 
-int	main(int argc, char **argv)
+double		ft_point_dist(t_point *a, t_point *b)
 {
-	t_mlx	mlx;
-
-	(void)argv;
-	if (argc != 2)
-		return (finalize(NULL, USAGE, 1));
-	if (pre(&mlx))
-		return (2);
-	world_create(&mlx);
-	render_frame(&mlx);
-	mlx_key_hook(mlx.win, handle_keyboard, &mlx);
-	mlx_hook(mlx.win, 17, 0, close_it, &mlx);
-	mlx_loop(mlx.mlx);
-	return (0);
+	return (sqrt((a->x - b->x) * (a->x - b->x) +
+		(a->y - b->y) * (a->y - b->y)));
 }

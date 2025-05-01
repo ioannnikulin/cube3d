@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:13:28 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/21 12:39:05 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/01 15:44:50 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,29 @@ static void	endian_offsets(t_mlx *mlx)
 		mlx->frame.green_offset = 1;
 		mlx->frame.blue_offset = 0;
 	}
+}
+
+static t_color clr(char r, char g, char b, double a)
+{
+	t_color	color;
+
+	color.r = r;
+	color.g = g;
+	color.b = b;
+	color.alpha = a;
+	return (color);
+}
+
+static void	palette_init(t_palette *palette)
+{
+	palette->black = clr(0, 0, 0, 0);
+	palette->white = clr(255, 255, 255, 0);
+	palette->red = clr(255, 0, 0, 0);
+	palette->green = clr(0, 255, 0, 0);
+	palette->blue = clr(0, 0, 255, 0);
+	palette->yellow = clr(255, 255, 0, 0);
+	palette->cyan = clr(0, 255, 255, 0);
+	palette->magenta = clr(255, 0, 255, 0);
 }
 
 int	pre(t_mlx *mlx)
@@ -42,5 +65,6 @@ int	pre(t_mlx *mlx)
 	mlx->frame.imgs_data = ft_calloc_if(sizeof(char *) * FRAMES_BUFFER, 1);
 	if (!mlx->frame.imgs || !mlx->frame.imgs_data)
 		return (finalize(mlx, ERR_MALLOC, 4));
+	palette_init(&mlx->assets.palette);
 	return (0);
 }

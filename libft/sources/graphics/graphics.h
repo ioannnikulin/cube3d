@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:27:52 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/26 12:23:28 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/01 16:12:58 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,5 @@ void		ft_point_rot_x_here(t_point *a, double angle);
 void		ft_point_rot_y_here(t_point *a, double angle);
 void		ft_point_rot_z_here(t_point *a, double angle);
 void		ft_point_rot_here(t_point *a, double angle);
-
+double		ft_point_dist(t_point *a, t_point *b);
 #endif

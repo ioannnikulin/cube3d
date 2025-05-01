@@ -16,7 +16,8 @@ GRAPHICS_NAMES = \
 	point_factories.c \
 	point_ops.c \
 	point_rotations.c \
-	point_rotations_w.c
+	point_rotations_w.c \
+	point_dist.c
 GRAPHICS_SRCS = $(addprefix $(SOURCES_F)/$(GRAPHICS_F)/, $(GRAPHICS_NAMES))
 
 LIST_F = lists

@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:06:42 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/21 20:55:07 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/01 15:44:41 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,25 @@
 # define WINDOW_WIDTH 1000
 # define WINDOW_HEIGHT 1000
 
-// clr is a leftover from fdf gradient, maybe we can throw it out
 typedef struct s_color
 {
-	char	r;
-	char	g;
-	char	b;
-	double	alpha;
-	double	clr;
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
+	double			alpha;
 }	t_color;
+
+typedef struct s_palette
+{
+	t_color	black;
+	t_color	white;
+	t_color	red;
+	t_color	green;
+	t_color	blue;
+	t_color	yellow;
+	t_color	cyan;
+	t_color	magenta;
+}	t_palette;
 
 typedef struct s_img
 {
@@ -46,6 +56,7 @@ typedef struct s_assets
 	t_img		wall_south;
 	t_img		wall_east;
 	t_img		wall_west;
+	t_palette	palette;
 }	t_assets;
 
 typedef struct s_plane
