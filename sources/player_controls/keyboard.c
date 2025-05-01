@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:36:30 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/01 20:28:47 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/01 20:31:47 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ int	close_it(void *param)
 
 static double	step(t_mlx *mlx, double suggest)
 {
-	if (suggest > 0 && mlx->player.to_wall_ahead - suggest < MIN_DISTANCE_TO_WALL)
+	if (suggest > 0 && mlx->player.to_wall_ahead - suggest
+		< MIN_DISTANCE_TO_WALL)
 		return (mlx->player.to_wall_ahead - MIN_DISTANCE_TO_WALL);
-	if (suggest < 0 && mlx->player.to_wall_behind + suggest < MIN_DISTANCE_TO_WALL)
+	if (suggest < 0 && mlx->player.to_wall_behind + suggest
+		< MIN_DISTANCE_TO_WALL)
 		return (-mlx->player.to_wall_behind - MIN_DISTANCE_TO_WALL);
 	return (suggest);
 }
@@ -62,7 +64,8 @@ int	handle_keyboard(int keycode, void *param)
 		ft_vector_rot_here(&mlx->player.coords, -rot_angle());
 	render_frame(mlx);
 	if (mlx->dbg & DBG_PLAYER_MOVE)
-		printf("player at %f %f, facing %f %f, free space ahead: %f, behind: %f\n",
+		printf("player at %f %f, facing %f %f, \
+			free space ahead: %f, behind: %f\n",
 			mlx->player.coords.from.x, mlx->player.coords.from.y,
 			mlx->player.coords.to.x, mlx->player.coords.to.y,
 			mlx->player.to_wall_ahead, mlx->player.to_wall_behind);
