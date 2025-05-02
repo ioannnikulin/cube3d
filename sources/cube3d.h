@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:06:42 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/02 12:51:48 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/02 12:56:49 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_map
 	t_plane		floor;
 	t_plane		ceiling;
 	t_palette	palette;
+	int			is_enclosed;
 }	t_map;
 
 typedef struct s_player
