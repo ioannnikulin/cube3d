@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:36:30 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/01 20:31:47 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/02 12:43:03 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 static t_action	parse_key(int keycode)
 {
-	if (keycode == 65307)
+	if (keycode == 65307 || keycode == 53)
 		return (EXIT);
-	if (keycode == 119)
+	if (keycode == 119 || keycode == 13)
 		return (FWD);
-	if (keycode == 115)
+	if (keycode == 115 || keycode == 1)
 		return (BACK);
-	if (keycode == 97)
+	if (keycode == 97 || keycode == 0)
 		return (TURN_CCW);
-	if (keycode == 100)
+	if (keycode == 100 || keycode == 2)
 		return (TURN_CW);
 	return (NO);
 }
