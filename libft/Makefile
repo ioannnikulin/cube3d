@@ -8,7 +8,16 @@ SOURCES_F = sources
 TESTS_F = tests
 
 GRAPHICS_F = graphics
-GRAPHICS_NAMES = vector.c point.c
+GRAPHICS_NAMES = \
+	vector_ops.c \
+	vector_ops_w.c \
+	vector_factories.c \
+	vector_len.c \
+	point_factories.c \
+	point_ops.c \
+	point_rotations.c \
+	point_rotations_w.c \
+	point_dist.c
 GRAPHICS_SRCS = $(addprefix $(SOURCES_F)/$(GRAPHICS_F)/, $(GRAPHICS_NAMES))
 
 LIST_F = lists
@@ -90,6 +99,9 @@ re: fclean all
 
 .PHONY: all clean fclean re
 # ------------------------------------------------------------------------------
+GRAPHICS_TEST_NAMES = vectors.c
+GRAPHICS_TEST_SRCS = $(addprefix $(TESTS_F)/$(GRAPHICS_F)/, $(subst .c,_test.c,$(GRAPHICS_TEST_NAMES)) graphics_test.c)
+
 LIST_TEST_NAMES = ft_list_add_back.c ft_list_add_front.c ft_list_delone.c ft_list_iter.c ft_list_generate.c ft_list_last.c ft_list_new.c ft_list_size.c ft_list_map.c
 LIST_TEST_SRCS = $(addprefix $(TESTS_F)/$(LIST_F)/, $(subst .c,_test.c,$(LIST_TEST_NAMES)) lists_test.c)
 
@@ -120,7 +132,7 @@ GNL_TEST_NAMES = get_next_line_test.c
 GNL_TEST_SRCS = $(addprefix $(TESTS_F)/$(GNL_F)/, $(GNL_TEST_NAMES))
 MAIN_TEST = $(TESTS_F)/main_test.c
 
-TESTOBJS = $(MAIN_TEST:.c=.o) $(LIST_TEST_SRCS:.c=.o) $(MAPSS_TEST_SRCS:.c=.o) $(TREE_TEST_SRCS:.c=.o) $(MEM_TEST_SRCS:.c=.o) $(STR_TEST_SRCS:.c=.o) $(SYM_TEST_SRCS:.c=.o) $(NUM_TEST_SRCS:.c=.o) $(PRINTF_TEST_SRCS:.c=.o) $(GNL_TEST_SRCS:.c=.o) #$(DLIST_TEST_SRCS:.c=.o)
+TESTOBJS = $(MAIN_TEST:.c=.o) $(LIST_TEST_SRCS:.c=.o) $(MAPSS_TEST_SRCS:.c=.o) $(TREE_TEST_SRCS:.c=.o) $(MEM_TEST_SRCS:.c=.o) $(STR_TEST_SRCS:.c=.o) $(SYM_TEST_SRCS:.c=.o) $(NUM_TEST_SRCS:.c=.o) $(PRINTF_TEST_SRCS:.c=.o) $(GNL_TEST_SRCS:.c=.o) $(GRAPHICS_TEST_SRCS:.c=.o)#$(DLIST_TEST_SRCS:.c=.o)
 TESTNAME = $(TESTS_F)/test
 TESTFLAGS = -L. -lft -lbsd -lm
 TESTINCLUDES = -I $(TESTS_F)

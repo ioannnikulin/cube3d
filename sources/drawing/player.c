@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:27:24 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/19 01:05:58 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/01 19:16:21 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,6 @@
 
 void	draw_player(t_mlx *mlx)
 {
-	t_color	clr;
-
-	clr.r = 255;
-	clr.g = 255;
-	clr.b = 0;
-	clr.alpha = 1;
-	circle(mlx, &mlx->player.coords.from, 3, clr);
-	line(mlx, &mlx->player.coords.from, &mlx->player.coords.to);
+	circle(mlx, &mlx->player.coords.from, 3, mlx->assets.palette.yellow);
+	cast_rays(mlx);
 }

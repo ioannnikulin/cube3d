@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 19:23:13 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/30 18:35:42 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/02 12:54:22 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static void	prep(t_line_arg *arg)
 		ft_swap_d(&(arg->x0), &(arg->x1));
 		ft_swap_d(&(arg->y0), &(arg->y1));
 		ft_swap_d(&(arg->z0), &(arg->z1));
-		ft_swap_d(&(arg->clr0), &(arg->clr1));
 	}
 	arg->dx = arg->x1 - arg->x0;
 	arg->dy = arg->y1 - arg->y0;
@@ -38,16 +37,14 @@ static void	prep(t_line_arg *arg)
 static void	loop_steep(t_line_arg *arg)
 {
 	int		x;
-	double	clr;
 
 	x = arg->end0x + 1;
 	while (x < arg->end1x)
 	{
-		clr = ((double)(x - arg->end0x)) / (arg->end1x - arg->end0x);
-		clr = clr * (arg->clr1 - arg->clr0) + arg->clr0;
-		pixel(arg->mlx, flr(arg->intery), x, color(clr, rfpart(arg->intery)));
-		pixel(arg->mlx, flr(arg->intery) + 1, x, color(clr,
-				fpart(arg->intery)));
+		pixel(arg->mlx, flr(arg->intery), x,
+			color(arg->clr, rfpart(arg->intery)));
+		pixel(arg->mlx, flr(arg->intery) + 1, x,
+			color(arg->clr, fpart(arg->intery)));
 		arg->intery += arg->gradient;
 		x++;
 	}
@@ -56,22 +53,20 @@ static void	loop_steep(t_line_arg *arg)
 static void	loop_nonsteep(t_line_arg *arg)
 {
 	int		x;
-	double	clr;
 
 	x = arg->end0x + 1;
 	while (x < arg->end1x)
 	{
-		clr = ((double)(x - arg->end0x)) / (arg->end1x - arg->end0x);
-		clr = clr * (arg->clr1 - arg->clr0) + arg->clr0;
-		pixel(arg->mlx, x, flr(arg->intery), color(clr, rfpart(arg->intery)));
-		pixel(arg->mlx, x, flr(arg->intery) + 1, color(clr,
-				fpart(arg->intery)));
+		pixel(arg->mlx, x, flr(arg->intery),
+			color(arg->clr, rfpart(arg->intery)));
+		pixel(arg->mlx, x, flr(arg->intery) + 1,
+			color(arg->clr, fpart(arg->intery)));
 		arg->intery += arg->gradient;
 		x++;
 	}
 }
 
-static t_line_arg	make_la(t_point *f, t_point *t, t_mlx *s)
+static t_line_arg	make_la(t_point *f, t_point *t, t_mlx *s, t_color *c)
 {
 	t_line_arg	arg;
 
@@ -91,14 +86,15 @@ static t_line_arg	make_la(t_point *f, t_point *t, t_mlx *s)
 	arg.end1y = 0;
 	arg.intery = 0;
 	arg.mlx = s;
+	arg.clr = c;
 	return (arg);
 }
 
-void	line(t_mlx *s, t_point *f, t_point *t)
+void	line(t_mlx *s, t_point *f, t_point *t, t_color *c)
 {
 	t_line_arg	arg;
 
-	arg = make_la(f, t, s);
+	arg = make_la(f, t, s, c);
 	prep(&arg);
 	endpoint0(&arg, arg.x0, arg.y0);
 	endpoint1(&arg, arg.x1, arg.y1);

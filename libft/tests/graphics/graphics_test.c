@@ -1,39 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_if.c                                            :+:      :+:    :+:   */
+/*   graphics_test.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/17 10:57:29 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/20 17:46:20 by inikulin         ###   ########.fr       */
+/*   Created: 2025/04/25 18:54:44 by inikulin          #+#    #+#             */
+/*   Updated: 2025/04/25 18:55:16 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_if_i(int choice, int a, int b)
-{
-	if (choice)
-		return (a);
-	return (b);
-}
+#include "graphics_test.h"
 
-double	ft_if_d(int choice, double a, double b)
+void	graphics_test(void)
 {
-	if (choice)
-		return (a);
-	return (b);
-}
-
-char	ft_if_c(int choice, char a, char b)
-{
-	if (choice)
-		return (a);
-	return (b);
-}
-
-char	*ft_if_s(int choice, char *a, char *b)
-{
-	if (choice)
-		return (a);
-	return (b);
+	vectors_test();
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tests.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 15:58:51 by inikulin          #+#    #+#             */
-/*   Updated: 2024/10/02 11:53:05 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/04/25 18:56:46 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "printf/printf_test.h"
 # include "get_next_line/get_next_line_test.h"
 # include "tree/tree_test.h"
+# include "graphics/graphics_test.h"
 //# include "dlists/dlists_test.h"
 
 #endif

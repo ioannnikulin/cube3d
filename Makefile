@@ -36,6 +36,12 @@ MAP_PARSING_NAMES = map_parse.c check_walls.c parse_utils.c parse_utils2.c
 MAP_PARSING_F = map_parse
 MAP_PARSING_SRCS = $(addprefix $(MAP_PARSING_F)/,$(MAP_PARSING_NAMES))
 
+DRAWING_NAMES = \
+	player.c \
+	render_frame.c
+DRAWING_F = drawing
+DRAWING_SRCS = $(addprefix $(DRAWING_F)/,$(DRAWING_NAMES))
+
 PRIMITIVES_NAMES = \
 	line.c \
 	line_endpoint.c \
@@ -43,20 +49,22 @@ PRIMITIVES_NAMES = \
 	pixel.c \
 	circle.c \
 	ray.c \
-	colors.c \
 	quadrangle.c \
 	triangle.c \
 	triangle_factories.c
-PRIMITIVES_F = drawing/primitives
+PRIMITIVES_F = ${DRAWING_F}/primitives
 PRIMITIVES_SRCS = $(addprefix $(PRIMITIVES_F)/,$(PRIMITIVES_NAMES))
 
-DRAWING_NAMES = \
-	player.c
-DRAWING_F = drawing
-DRAWING_SRCS = $(addprefix $(DRAWING_F)/,$(DRAWING_NAMES))
+RAYCAST_NAMES = \
+	rays.c \
+	hor_isect.c \
+	ver_isect.c
+RAYCAST_F = ${DRAWING_F}/rays
+RAYCAST_SRCS = $(addprefix $(RAYCAST_F)/,$(RAYCAST_NAMES))
 
 PLAYER_CONTROLS_NAMES = \
-	keyboard.c
+	keyboard.c \
+	utils.c
 PLAYER_CONTROLS_F = player_controls
 PLAYER_CONTROLS_SRCS = $(addprefix $(PLAYER_CONTROLS_F)/,$(PLAYER_CONTROLS_NAMES))
 
@@ -65,7 +73,7 @@ WORLD_CREATION_NAMES = \
 WORLD_CREATION_F = world_creation
 WORLD_CREATION_SRCS = $(addprefix $(WORLD_CREATION_F)/,$(WORLD_CREATION_NAMES))
 
-SRC_NAMES = finalize.c core_utils.c
+SRC_NAMES = finalize.c core_utils.c pre.c make_image.c
 ENDPOINT_NAME = main.c
 
 SRC_SRCS = $(addprefix $(SOURCE_F)/, $(SRC_NAMES))
@@ -85,6 +93,7 @@ OBJS = \
 	$(addprefix $(OBJ_F), $(MAP_PARSING_SRCS:.c=.o)) \
 	$(addprefix $(OBJ_F), $(PRIMITIVES_SRCS:.c=.o)) \
 	$(addprefix $(OBJ_F), $(DRAWING_SRCS:.c=.o)) \
+	$(addprefix $(OBJ_F), $(RAYCAST_SRCS:.c=.o)) \
 	$(addprefix $(OBJ_F), $(PLAYER_CONTROLS_SRCS:.c=.o)) \
 	$(addprefix $(OBJ_F), $(WORLD_CREATION_SRCS:.c=.o))
 
@@ -95,9 +104,10 @@ TEST_OBJ_F = $(OBJ_F)tests/
 DIRS = \
 	$(SOURCE_F) \
 	$(MAP_PARSING_F) \
-	$(PRIMITIVES_F) \
-	$(PLAYER_CONTROLS_F) \
 	$(DRAWING_F) \
+	$(PRIMITIVES_F) \
+	$(RAYCAST_F) \
+	$(PLAYER_CONTROLS_F) \
 	$(WORLD_CREATION_F)
 
 OBJ_DIRS = $(addprefix $(OBJ_F), $(DIRS))

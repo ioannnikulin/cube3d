@@ -1,39 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_if.c                                            :+:      :+:    :+:   */
+/*   vector_ops_w.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/17 10:57:29 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/20 17:46:20 by inikulin         ###   ########.fr       */
+/*   Created: 2025/04/20 16:54:57 by inikulin          #+#    #+#             */
+/*   Updated: 2025/04/25 19:44:51 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_if_i(int choice, int a, int b)
+#include "graphics.h"
+
+void	ft_vector_move_here(t_vector *a, double b)
 {
-	if (choice)
-		return (a);
-	return (b);
+	return (ft_vector_cp(ft_vector_move(a, b), a));
 }
 
-double	ft_if_d(int choice, double a, double b)
+void	ft_vector_rot_here(t_vector *a, double b)
 {
-	if (choice)
-		return (a);
-	return (b);
+	return (ft_vector_rot_z_here(a, b));
 }
 
-char	ft_if_c(int choice, char a, char b)
+void	ft_vector_rot_z_here(t_vector *a, double b)
 {
-	if (choice)
-		return (a);
-	return (b);
-}
-
-char	*ft_if_s(int choice, char *a, char *b)
-{
-	if (choice)
-		return (a);
-	return (b);
+	return (ft_vector_cp(ft_vector_rot_z(a, b), a));
 }

@@ -1,35 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colors.c                                           :+:      :+:    :+:   */
+/*   graphics_test.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/18 22:43:48 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/19 01:00:08 by inikulin         ###   ########.fr       */
+/*   Created: 2025/04/25 18:52:50 by inikulin          #+#    #+#             */
+/*   Updated: 2025/04/25 18:56:23 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../drawing.h"
+#ifndef GRAPHICS_TEST_H
+# define GRAPHICS_TEST_H
+# include "../tests_internal.h"
 
-t_color	clr_black(void)
-{
-	t_color	clr;
-
-	clr.r = 0;
-	clr.g = 0;
-	clr.b = 0;
-	clr.alpha = 0;
-	return (clr);
-}
-
-t_color	clr_white(void)
-{
-	t_color	clr;
-
-	clr.r = 255;
-	clr.g = 255;
-	clr.b = 255;
-	clr.alpha = 0;
-	return (clr);
-}
+void	graphics_test(void);
+void	vectors_test(void);
+#endif

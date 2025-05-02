@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   triangle.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 20:01:21 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/30 18:53:53 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/02 12:53:29 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ static void	hor(t_mlx *mlx, t_vector segment, t_color *color)
 {
 	int	x;
 
-	printf("drawing hor line from %f %f to %f %f\n", segment.from.x,
-		segment.from.y, segment.to.x, segment.to.y);
 	if (segment.from.x > segment.to.x)
 		ft_swap_d(&(segment.from.x), &(segment.to.x));
 	x = segment.from.x - 1;

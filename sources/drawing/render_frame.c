@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.c                                           :+:      :+:    :+:   */
+/*   render_frame.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/24 19:28:51 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/18 21:37:34 by inikulin         ###   ########.fr       */
+/*   Created: 2025/04/20 17:09:48 by inikulin          #+#    #+#             */
+/*   Updated: 2025/05/01 19:03:24 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../cube3d.h"
 
-t_vector	ft_vector_make(t_point from, t_point to)
+int	render_frame(t_mlx *mlx)
 {
-	t_vector	res;
-
-	res.from = from;
-	res.to = to;
-	return (res);
-}
-
-t_vector	ft_vector_add(t_vector *a, t_vector *b)
-{
-	t_vector	res;
-
-	res.from.x = a->from.x;
-	res.from.y = a->from.y;
-	res.to.x = a->to.x + b->to.x - b->from.x;
-	res.to.y = a->to.y + b->to.y - b->from.y;
-	return (res);
+	if (make_image(mlx))
+		return (3);
+	draw_map(mlx);
+	draw_player(mlx);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, *next_img(mlx), 0, 0);
+	mlx->frame.next_frame_idx = (mlx->frame.next_frame_idx + 1) % FRAMES_BUFFER;
+	return (0);
 }
