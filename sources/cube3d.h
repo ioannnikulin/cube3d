@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:06:42 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/18 23:30:55 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/01 18:39:53 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,30 @@
 # include "drawing/drawing.h"
 # include "player_controls/player_controls.h"
 # include "world_creation/world_creation.h"
+# include "debug.h"
 
 # define WINDOW_WIDTH 1000
 # define WINDOW_HEIGHT 1000
 
-// clr is a leftover from fdf gradient, maybe we can throw it out
 typedef struct s_color
 {
-	char	r;
-	char	g;
-	char	b;
-	double	alpha;
-	double	clr;
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
+	double			alpha;
 }	t_color;
+
+typedef struct s_palette
+{
+	t_color	black;
+	t_color	white;
+	t_color	red;
+	t_color	green;
+	t_color	blue;
+	t_color	yellow;
+	t_color	cyan;
+	t_color	magenta;
+}	t_palette;
 
 typedef struct s_img
 {
@@ -45,6 +56,7 @@ typedef struct s_assets
 	t_img		wall_south;
 	t_img		wall_east;
 	t_img		wall_west;
+	t_palette	palette;
 }	t_assets;
 
 typedef struct s_plane
@@ -63,9 +75,6 @@ typedef struct s_map
 	char		**map;
 	t_plane		floor;
 	t_plane		ceiling;
-	double		zmin;
-	double		zmax;
-	double		block_size;
 }	t_map;
 
 typedef struct s_player
@@ -74,6 +83,13 @@ typedef struct s_player
 }	t_player;
 
 # define FRAMES_BUFFER 5
+# define STEP_LENGTH 5
+# define ROT_ANGLE_PI_DIVISOR 36
+# define RAYS_COUNT 30
+# define BLOCK_SIZE 64
+# define EPSILON 1e-6
+# define DEGREE 0.0174532925199432957692369076848861
+# define VIEWFIELD 60
 
 /*
  * color offsets - for different endians
@@ -93,17 +109,20 @@ typedef struct s_mlx_img
 
 typedef struct s_mlx
 {
-	void		*mlx;
-	void		*win;
-	t_mlx_img	frame;
-	t_assets	assets;
-	t_map		map;
-	t_player	player;
-	int			errno;
+	void			*mlx;
+	void			*win;
+	t_mlx_img		frame;
+	t_assets		assets;
+	t_map			map;
+	t_player		player;
+	int				errno;
+	unsigned int	dbg;
 }	t_mlx;
 
 int		finalize(t_mlx *mlx, char *msg, int ret);
 void	**next_img(t_mlx *mlx);
 char	**next_img_data(t_mlx *mlx);
 int		world_create(t_mlx *mlx);
+int		make_image(t_mlx *mlx);
+int		pre(t_mlx *mlx);
 #endif
