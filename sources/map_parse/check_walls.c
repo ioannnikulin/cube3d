@@ -6,13 +6,13 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:36:45 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/04/26 15:53:11 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/08 16:48:51 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
 
-void	find_player_pos(t_mlx *game, int i, int *col, int *row)
+static void	find_player_pos(t_mlx *game, int i, int *col, int *row)
 {
 	int	j;
 
@@ -32,7 +32,7 @@ void	find_player_pos(t_mlx *game, int i, int *col, int *row)
 }
 
 //floodfill algorithm to check if the map is enclosed by walls
-void	floodfill(t_mlx *game, int row, int col, int **passed)
+static void	floodfill(t_mlx *game, int row, int col, int **passed)
 {
 	if (row < 0 || col < 0 || row >= game->map.map_height
 		|| col >= game->map.map_width)
@@ -68,10 +68,10 @@ static void	free_passed_array(int **passed, int height)
 	free(passed);
 }
 
-void	process_not_enclosed(int **passed, int height)
+static void	process_not_enclosed(int **passed, int height)
 {
 	free_passed_array(passed, height);
-	printf("Error\nMap is not enclosed by walls\n");
+	printf(ERR_MAP_ENCLOSED);
 }
 
 int	is_surrounded_by_walls(t_mlx *data)
@@ -85,7 +85,7 @@ int	is_surrounded_by_walls(t_mlx *data)
 	i = -1;
 	passed = ft_calloc_if(sizeof(int *) * data->map.map_height, 1);
 	if (!passed)
-		return (printf("Error\nFailed to allocate memory\n"), 0);
+		return (printf(ERR_MALLOC), 0);
 	while (++i < data->map.map_height)
 	{
 		passed[i] = ft_calloc_if(sizeof(int) * data->map.map_width, 1);
@@ -96,7 +96,7 @@ int	is_surrounded_by_walls(t_mlx *data)
 	while (data->map.map[++i])
 		find_player_pos(data, i, &col, &row);
 	if (!data->player.x || !data->player.y)
-		return (printf("Error\nNo player found1\n"), 0);
+		return (printf(ERR_NO_PLAYER), 0);
 	floodfill(data, row, col, passed);
 	if (data->map.is_enclosed == 0)
 		return (process_not_enclosed(passed, data->map.map_height), 0);

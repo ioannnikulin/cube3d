@@ -13,8 +13,6 @@ tests/test
 c_formatter_42/
 Dockerfile
 .dockerignore
-minilibx_opengl_20191021/*
-minilibx-linux
 libft/tests/test
 libft/norminette_log.txt
 sources/norminette_log.txt

@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:44:18 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/04/30 19:21:28 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/08 16:49:34 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ int	is_valid_char(char c, int *player_already_parsed)
 		else if (ft_strchr("NSEW", c) && c != 0)
 		{
 			if (*player_already_parsed == 1)
-				return (printf("Error\nInvalid number of players\n"), 0);
+				return (printf(ERR_PLAYERS_NUMBER), 0);
 		}
 		return (1);
 	}
-	printf("Error\nInvalid character: %c\n", c);
+	printf("%s %c\n",ERR_INVALID_CHAR, c);
 	return (0);
 }
 
@@ -53,7 +53,7 @@ int	count_map_lines(char *map)
 	lines = 0;
 	file = open(map, O_RDONLY);
 	if (file == -1)
-		return (printf("Error\nFailed to open map\n"), 0);
+		return (printf(ERR_MAP_OPEN), 0);
 	temp = get_next_line(file);
 	while (temp)
 	{

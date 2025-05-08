@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   resources.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 16:27:25 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/10 17:40:09 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/08 16:45:50 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,15 @@ depicting player's spawn position and face direction]\n"
 # define ERR_MLX_IMG "Error\nFailed to create image\n"
 # define ERR_MLX_WIN "Error\nFailed to create window\n"
 # define ERR_MLX_GETADDR "Error\nFailed to allocate frame memory\n"
+# define ERR_MALLOC_MAP "Error\nFailed to allocate map memory\n"
 # define MSG_EXIT "Exiting normally\n"
-
+# define ERR_MAP_EXT "Error\nInvalid map extension\n"
+# define ERR_MAP_OPEN "Error\nFailed to open map file\n"
+# define ERR_NO_PLAYER "Error\nNo player found\n"
+# define ERR_MAP_ENCLOSED "Error\nMap is not enclosed by walls\n"
+# define ERR_MAP_EMPTY_ROW "Error\nEmpty row in a map\n"
+# define ERR_PLAYERS_NUMBER "Error\nInvalid number of players\n"
+# define ERR_INVALID_CHAR "Error\nInvalid character:"
 # define WINDOW_TITLE "Cube3D"
 
 #endif
