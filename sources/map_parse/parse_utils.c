@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:44:18 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/08 16:49:34 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/08 17:12:51 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	is_valid_char(char c, int *player_already_parsed)
 		}
 		return (1);
 	}
-	printf("%s %c\n",ERR_INVALID_CHAR, c);
+	printf("%s %c \n", ERR_INVALID_CHAR, c);
 	return (0);
 }
 
