@@ -80,7 +80,7 @@ SRC_SRCS = $(addprefix $(SOURCE_F)/, $(SRC_NAMES))
 ENDPOINT_SRC = $(addprefix $(SOURCE_F)/, $(ENDPOINT_NAME))
 ENDPOINT_OBJ = $(OBJ_F)$(ENDPOINT_NAME:.c=.o)
 
-TEST_NAMES = units.c e2e.c
+TEST_NAMES = units.c e2e.c map_parsing_test.c
 TEST_ENDPOINT_NAME = main_test.c
 TEST_SRCS = $(addprefix $(TEST_F)/, $(TEST_NAMES))
 TEST_ENDPOINT_SRC = $(addprefix $(TEST_F)/, $(TEST_ENDPOINT_NAME))

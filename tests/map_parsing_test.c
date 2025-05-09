@@ -43,7 +43,7 @@ int run_single_e2e_test(const t_e2e_test_case *test_case) {
 
 int map_test(void) {
 
-t_e2e_test_case test_cases[] = {
+    t_e2e_test_case test_cases[] = {
 		// {"tests/maps/maps_short/good/valid_map.cub", "Valid Map"}, // Adjusted path to be relative to workspace root likely
 		{"tests/maps/maps_short/bad/0player.cub", "Bad Map - 0 Player"},
 		{"tests/maps/maps_short/bad/not_enclosed.cub", "Bad Map - Not Enclosed"},
