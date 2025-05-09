@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:55:59 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/01 20:22:22 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/09 23:21:03 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,10 @@ int	cast_rays(t_mlx *mlx)
 	while (++ i < RAYS_COUNT)
 	{
 		calc_ray(&arg);
-		line(arg.mlx, &arg.ray.from, &arg.tgt_isect,
-			&arg.mlx->assets.palette.green);
+		if (i % MINIMAP_SHOW_EACH_TH_RAY == 0)
+			line(arg.mlx, &arg.ray.from, &arg.tgt_isect,
+				&arg.mlx->assets.palette.green);
+		draw_wall_col(i, &arg);
 	}
 	return (0);
 }
@@ -65,5 +67,11 @@ t_ray_arg	ray_arg(t_mlx *mlx)
 	arg.angle = -VIEWFIELD / 2 * DEGREE;
 	arg.angle_delta = 0;
 	arg.mlx = mlx;
+	arg.cast.bigmap_left_top = ft_point_make(mlx->map.map_width * BLOCK_SIZE,
+			0);
+	arg.cast.tgt_isect_dist = 0;
+	arg.cast.wall_height = 0;
+	arg.cast.wall_ver_offset = 0;
+	arg.cast.color = mlx->assets.palette.red;
 	return (arg);
 }

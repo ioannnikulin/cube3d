@@ -60,7 +60,8 @@ PRIMITIVES_SRCS = $(addprefix $(PRIMITIVES_F)/,$(PRIMITIVES_NAMES))
 RAYCAST_NAMES = \
 	rays.c \
 	hor_isect.c \
-	ver_isect.c
+	ver_isect.c \
+	draw_wall_col.c
 RAYCAST_F = ${DRAWING_F}/rays
 RAYCAST_SRCS = $(addprefix $(RAYCAST_F)/,$(RAYCAST_NAMES))
 

@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:06:42 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/01 20:27:39 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/09 23:20:22 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_palette
 	t_color	black;
 	t_color	white;
 	t_color	red;
+	t_color	dark_red;
 	t_color	green;
 	t_color	blue;
 	t_color	yellow;
@@ -87,13 +88,15 @@ typedef struct s_player
 # define FRAMES_BUFFER 5
 # define STEP_LENGTH 5
 # define ROT_ANGLE_PI_DIVISOR 36
-# define RAYS_COUNT 30
+# define RAYS_COUNT 60
+# define MINIMAP_SHOW_EACH_TH_RAY 10
 # define BLOCK_SIZE 64
 # define EPSILON 1e-6
 # define DEGREE 0.0174532925199432957692369076848861
 # define VIEWFIELD 60
 # define MIN_DISTANCE_TO_WALL 5
-
+# define MAX_WALL_HEIGHT 320
+# define BIGMAP_COL_WIDTH 8
 /*
  * color offsets - for different endians
  */
