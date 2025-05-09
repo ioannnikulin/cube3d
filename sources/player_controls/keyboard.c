@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:36:30 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/01 20:31:47 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/09 19:16:18 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static double	step(t_mlx *mlx, double suggest)
 		return (mlx->player.to_wall_ahead - MIN_DISTANCE_TO_WALL);
 	if (suggest < 0 && mlx->player.to_wall_behind + suggest
 		< MIN_DISTANCE_TO_WALL)
-		return (-mlx->player.to_wall_behind - MIN_DISTANCE_TO_WALL);
+		return (-mlx->player.to_wall_behind + MIN_DISTANCE_TO_WALL);
 	return (suggest);
 }
 
