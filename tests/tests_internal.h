@@ -5,4 +5,5 @@
 
 int units(void);
 int e2e(void);
+int map_test(void);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 22:25:54 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/08 16:40:30 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/09 17:15:10 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ static int	check_elements(t_mlx *mlx, char **map)
 	{
 		j = -1;
 		if (map[i][0] == '\n')
-			return (printf("Error\nEmpty line in a map\n"), 0);
+			return (printf(ERR_MAP_EMPTY_ROW), 0);
 		while (++j < mlx->map.map_width)
 			if (!is_valid_char(map[i][j], &player_already_parsed))
 				return (0);
 	}
 	if (player_already_parsed == 0)
-		return (printf("Error\nNo player found2\n"), 0);
+		return (printf(ERR_NO_PLAYER), 0);
 	return (1);
 }
 
