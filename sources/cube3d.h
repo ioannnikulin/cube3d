@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:06:42 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/09 23:20:22 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/10 13:13:27 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ typedef struct s_player
 # define DEGREE 0.0174532925199432957692369076848861
 # define VIEWFIELD 60
 # define MIN_DISTANCE_TO_WALL 5
-# define MAX_WALL_HEIGHT 320
+# define MAX_WALL_HEIGHT 500
 # define BIGMAP_COL_WIDTH 8
 /*
  * color offsets - for different endians

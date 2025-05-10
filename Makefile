@@ -61,7 +61,7 @@ RAYCAST_NAMES = \
 	rays.c \
 	hor_isect.c \
 	ver_isect.c \
-	draw_wall_col.c
+	draw_ver_stripe.c
 RAYCAST_F = ${DRAWING_F}/rays
 RAYCAST_SRCS = $(addprefix $(RAYCAST_F)/,$(RAYCAST_NAMES))
 
@@ -183,7 +183,7 @@ retest: testfclean test
 memcheck:
 	$(PREFIX)valgrind --suppressions=tests/valgrind.supp --leak-check=full --show-leak-kinds=all $(TEST_FNAME)
 
-ALLOWED_EXTERNAL_FUNCTIONS = mlx_ free printf __stack_chk_fail exit _GLOBAL_OFFSET_TABLE_ open close gettimeofday sqrt
+ALLOWED_EXTERNAL_FUNCTIONS = mlx_ free printf __stack_chk_fail exit _GLOBAL_OFFSET_TABLE_ open close gettimeofday sqrt cos
 
 ALLOW_EXTERNAL_GREP = $(foreach pattern,$(ALLOWED_EXTERNAL_FUNCTIONS),| grep -v "$(pattern)")
 

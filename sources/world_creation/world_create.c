@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:31:12 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/09 23:00:05 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/10 13:04:12 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ static void	textures_stub(t_mlx *mlx)
 int	world_create(t_mlx *mlx)
 {
 	map_stub(mlx);
+	mlx->map.ceiling.color = mlx->assets.palette.cyan;
+	mlx->map.floor.color = mlx->assets.palette.yellow;
 	textures_stub(mlx);
 	mlx->player.coords.from = ft_point_make(73, 260);
 	mlx->player.coords.to = ft_point_make(93, 260);

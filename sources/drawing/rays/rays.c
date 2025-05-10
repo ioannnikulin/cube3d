@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:55:59 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/09 23:21:03 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/10 12:55:50 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	cast_rays(t_mlx *mlx)
 		if (i % MINIMAP_SHOW_EACH_TH_RAY == 0)
 			line(arg.mlx, &arg.ray.from, &arg.tgt_isect,
 				&arg.mlx->assets.palette.green);
-		draw_wall_col(i, &arg);
+		draw_ver_stripe(i, &arg);
 	}
 	return (0);
 }
