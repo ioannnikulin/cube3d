@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 22:25:54 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/09 17:15:10 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/10 12:33:32 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,52 +41,43 @@ static int	is_map_valid(int map_width, int valid_elements, int is_surrounded)
 	return (1);
 }
 
-static void	fill_map(t_mlx *data, char *mp)
+static void	init_map(t_mlx **data, char *mp, int lines)
 {
-	int	file;
-	int	lines;
 	int	i;
-	int	is_valid;
-
-	lines = (count_map_lines(mp));
+	int	file;
+	
 	i = 0;
 	file = open(mp, O_RDONLY);
 	if (file == -1)
 		exit_error(ERR_MAP_OPEN);
-	data->map.map = ft_calloc_if(sizeof(char *) * (size_t)(lines + 1), 1);
-	if (!data->map.map)
+	(*data)->map.map = ft_calloc_if(sizeof(char *) * (size_t)(lines + 1), 1);
+	if (!(*data)->map.map)
 		exit_error(ERR_MALLOC_MAP);
-	data->map.map[0] = get_next_line(file);
+	(*data)->map.map[0] = get_next_line(file);
+	if (!(*data)->map.map[0])
+		exit_error(ERR_MALLOC_MAP);
 	while (++i < lines)
-		data->map.map[i] = get_next_line(file);
+	{
+		(*data)->map.map[i] = get_next_line(file);
+		if (!(*data)->map.map[i])
+			exit_error(ERR_MALLOC_MAP);
+	}
 	close(file);
+}
+
+static void	fill_map(t_mlx *data, char *mp)
+{
+	int	lines;
+	int	is_valid;
+
+	lines = (count_map_lines(mp));
+	init_map(&data, mp, lines);
 	data->map.map_height = lines;
 	data->map.map_width = longest_line(data->map.map);
 	is_valid = is_map_valid(data->map.map_width, check_elements
 			(data, data->map.map), is_surrounded_by_walls(data));
 	if (!is_valid)
 		free_exit(data);
-}
-
-static int	check_extension(char *map)
-{
-	int	i;
-
-	i = -1;
-	if (ft_strchr(map, '.') == 0)
-		return (0);
-	while (map[++i])
-	{
-		if (map[i] == '.')
-		{
-			if (!(map[i + 1] == 'c' && map[i + 2] == 'u' && map[i + 3] == 'b'
-					&& !(map[i + 4])))
-				return (0);
-			else
-				return (1);
-		}
-	}
-	return (0);
 }
 
 int	validate_map(t_mlx *data, char *map)
