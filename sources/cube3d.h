@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:06:42 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/10 18:04:05 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/10 18:24:54 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,6 @@ typedef struct s_mlx
 }	t_mlx;
 
 int		finalize(t_mlx *mlx, char *msg, int ret);
-void	exit_error(char *message);
 void	**next_img(t_mlx *mlx);
 char	**next_img_data(t_mlx *mlx);
 int		world_create(t_mlx *mlx);

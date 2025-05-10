@@ -6,11 +6,12 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 15:24:56 by iverniho          #+#    #+#             */
-/*   Updated: 2025/05/10 17:37:43 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/10 18:20:57 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cube3d.h"
+// #include "../cube3d.h"
+#include "inner.h"
 
 void	free_map_exit(t_mlx **data, char *msg)
 {

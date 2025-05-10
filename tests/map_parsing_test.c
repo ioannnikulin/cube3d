@@ -88,9 +88,10 @@ int map_test(void) {
 
     if (all_tests_passed) {
         printf("All validate_map tests passed successfully!\n");
-        return 0;
+		return 0;
     } else {
         printf("Some validate_map tests failed.\n");
+		assert(false);
         return 1;
     }
 }

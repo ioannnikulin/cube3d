@@ -6,11 +6,12 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 22:25:54 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/10 17:39:17 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/10 18:22:13 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
+#include "inner.h"
 
 static int	check_elements(t_mlx *mlx, char **map)
 {
