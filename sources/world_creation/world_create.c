@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:31:12 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/10 13:04:12 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/10 19:16:13 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,17 +88,17 @@ static void	textures_stub(t_mlx *mlx)
 	mlx->assets.wall_south.width = 300;
 	mlx->assets.wall_south.height = 300;
 	mlx->assets.wall_south.img = mlx_xpm_file_to_image(mlx->mlx,
-			"tests/textures/1.xpm", &mlx->assets.wall_south.width,
+			"tests/textures/2.xpm", &mlx->assets.wall_south.width,
 			&mlx->assets.wall_south.height);
 	mlx->assets.wall_west.width = 300;
 	mlx->assets.wall_west.height = 300;
 	mlx->assets.wall_west.img = mlx_xpm_file_to_image(mlx->mlx,
-			"tests/textures/1.xpm", &mlx->assets.wall_west.width,
+			"tests/textures/3.xpm", &mlx->assets.wall_west.width,
 			&mlx->assets.wall_west.height);
 	mlx->assets.wall_east.width = 300;
 	mlx->assets.wall_east.height = 300;
 	mlx->assets.wall_east.img = mlx_xpm_file_to_image(mlx->mlx,
-			"tests/textures/1.xpm", &mlx->assets.wall_east.width,
+			"tests/textures/4.xpm", &mlx->assets.wall_east.width,
 			&mlx->assets.wall_east.height);
 }
 

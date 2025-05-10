@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:16:05 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/10 14:51:01 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/10 19:18:52 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_3dcast
 	double	tex_row;
 	double	tex_col;
 	double	tex_offset;
+	void	*tgt_tex;
 }	t_3dcast;
 
 typedef struct s_ray_arg
