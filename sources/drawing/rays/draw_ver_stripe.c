@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 22:26:58 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/10 19:26:43 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/10 19:35:45 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,25 @@ static void	texture_coord(t_ray_arg *arg)
 {
 	arg->cast.tex_row = arg->cast.tex_offset * arg->cast.tex_row_step;
 	if (ft_point_dist(&arg->tgt_isect, &arg->hor_isect) < EPSILON)
-		arg->cast.tex_col = ((int)arg->tgt_isect.x)
-			% arg->mlx->assets.wall_north.width;
-	else
-		arg->cast.tex_col = ((int)arg->tgt_isect.y)
-			% arg->mlx->assets.wall_north.width;
-	if (ft_point_dist(&arg->tgt_isect, &arg->hor_isect) < EPSILON)
 	{
 		if (arg->mlx->player.coords.from.y < arg->tgt_isect.y)
-			arg->cast.tgt_tex = arg->mlx->assets.wall_south.img;
+			arg->cast.tgt_tex = &arg->mlx->assets.wall_south;
 		else
-			arg->cast.tgt_tex = arg->mlx->assets.wall_north.img;
+			arg->cast.tgt_tex = &arg->mlx->assets.wall_north;
 	}
 	else
 	{
 		if (arg->mlx->player.coords.from.x < arg->tgt_isect.x)
-			arg->cast.tgt_tex = arg->mlx->assets.wall_east.img;
+			arg->cast.tgt_tex = &arg->mlx->assets.wall_east;
 		else
-			arg->cast.tgt_tex = arg->mlx->assets.wall_west.img;
+			arg->cast.tgt_tex = &arg->mlx->assets.wall_west;
 	}
+	if (ft_point_dist(&arg->tgt_isect, &arg->hor_isect) < EPSILON)
+		arg->cast.tex_col = (int)(arg->tgt_isect.x)
+			% arg->cast.tgt_tex->width;
+	else
+		arg->cast.tex_col = (int)(arg->tgt_isect.y)
+			% arg->cast.tgt_tex->width;
 }
 
 static void	wall(t_ray_arg *arg)
@@ -72,7 +72,7 @@ static void	wall(t_ray_arg *arg)
 	row = -1;
 	while (++row < arg->cast.wall_height)
 	{
-		arg->cast.color = get_pixel_color(arg->cast.tgt_tex,
+		arg->cast.color = get_pixel_color(arg->cast.tgt_tex->img,
 				arg->cast.tex_col, arg->cast.tex_row);
 		quadrangle(arg->mlx,
 			quadrangle_vertices(&arg->cast.col[0], &arg->cast.col[1],

@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:55:59 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/10 19:19:21 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/10 19:32:45 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	cast_arg(t_mlx *mlx, t_ray_arg *arg)
 	arg->cast.tex_row = 0;
 	arg->cast.tex_col = 0;
 	arg->cast.tex_offset = 0;
-	arg->cast.tgt_tex = mlx->assets.wall_north.img;
+	arg->cast.tgt_tex = &mlx->assets.wall_north;
 }
 
 t_ray_arg	ray_arg(t_mlx *mlx)
