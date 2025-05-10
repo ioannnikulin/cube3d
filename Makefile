@@ -179,7 +179,17 @@ testfclean: testclean
 retest: testfclean test
 
 memcheck:
-	$(PREFIX)valgrind --suppressions=tests/valgrind.supp --leak-check=full --show-leak-kinds=all $(TEST_FNAME)
+	$(PREFIX)rm -f valgrind_log.txt
+	$(PREFIX)valgrind --suppressions=tests/valgrind.supp --leak-check=full --show-leak-kinds=all $(TEST_FNAME) 2> valgrind_log.txt
+	$(PREFIX)if grep -q "ERROR SUMMARY: [^0]*" valgrind_log.txt; then \
+        echo "Valgrind detected unsuppressed errors:"; \
+        cat valgrind_log.txt; \
+        rm -f valgrind_log.txt; \
+        exit 1; \
+    else \
+        echo "Valgrind: No unsuppressed errors detected."; \
+        rm -f valgrind_log.txt; \
+    fi
 
 ALLOWED_EXTERNAL_FUNCTIONS = mlx_ free printf __stack_chk_fail exit _GLOBAL_OFFSET_TABLE_ open close gettimeofday sqrt
 
@@ -211,7 +221,6 @@ fulltest_vania: fulltest_common
 	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DVANIA" test_trapped memcheck
 
 fulltest: fulltest_common
-	#$(PREFIX)make test_trapped memcheck
 
 PHONY: all pre clean fclean re test fulltest testclean testfclean retest memcheck memcheck_interactive fulltest_common fulltest_vania tania vania minivania all_trapped all_fancy all_printf bonus prere pretestfclean prefclean test_trapped run debug mem
 ########################################
