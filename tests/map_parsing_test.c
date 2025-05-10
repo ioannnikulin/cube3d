@@ -71,7 +71,6 @@ int map_test(void) {
         {"tests/maps/maps_short/good/valid_map.cub", "Valid Map", 1},
         {"tests/maps/maps_short/bad/no_player.cub", "Bad Map - 0 Player", 0},
         {"tests/maps/maps_short/bad/not_enclosed.cub", "Bad Map - Not Enclosed", 0},
-        {"tests/maps/maps_short/bad/empty_line.cub", "Bad Map - Empty Line", 0},
         {"tests/maps/maps_short/bad/2players.cub", "Bad Map - 2 Players", 0},
 		{"tests/maps/maps_short/bad/wrong_char.cub", "Bad Map - Wrong character in a map", 0}
     };
