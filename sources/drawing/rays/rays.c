@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:55:59 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/01 20:22:22 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/10 19:32:45 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,31 @@ int	cast_rays(t_mlx *mlx)
 	while (++ i < RAYS_COUNT)
 	{
 		calc_ray(&arg);
-		line(arg.mlx, &arg.ray.from, &arg.tgt_isect,
-			&arg.mlx->assets.palette.green);
+		if (i % MINIMAP_SHOW_EACH_TH_RAY == 0)
+			line(arg.mlx, &arg.ray.from, &arg.tgt_isect,
+				&arg.mlx->assets.palette.green);
+		draw_ver_stripe(i, &arg);
 	}
 	return (0);
+}
+
+static void	cast_arg(t_mlx *mlx, t_ray_arg *arg)
+{
+	arg->cast.bigmap_left_top = ft_point_make(mlx->map.map_width * BLOCK_SIZE,
+			0);
+	arg->cast.tgt_isect_dist = 0;
+	arg->cast.wall_height = 0;
+	arg->cast.wall_ver_offset = 0;
+	arg->cast.color = mlx->assets.palette.red;
+	arg->cast.wall_from[0] = ft_point_make(0, 0);
+	arg->cast.wall_from[1] = ft_point_make(0, 0);
+	arg->cast.wall_to[0] = ft_point_make(0, 0);
+	arg->cast.wall_to[1] = ft_point_make(0, 0);
+	arg->cast.tex_row_step = 0;
+	arg->cast.tex_row = 0;
+	arg->cast.tex_col = 0;
+	arg->cast.tex_offset = 0;
+	arg->cast.tgt_tex = &mlx->assets.wall_north;
 }
 
 t_ray_arg	ray_arg(t_mlx *mlx)
@@ -65,5 +86,6 @@ t_ray_arg	ray_arg(t_mlx *mlx)
 	arg.angle = -VIEWFIELD / 2 * DEGREE;
 	arg.angle_delta = 0;
 	arg.mlx = mlx;
+	cast_arg(mlx, &arg);
 	return (arg);
 }
