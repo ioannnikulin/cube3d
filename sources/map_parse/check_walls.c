@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:36:45 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/10 16:13:12 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/10 18:04:55 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static void	find_player_pos(t_mlx *game, int i, int *col, int *row)
 		{
 			*row = i;
 			*col = j;
-			game->player.x = i;
-			game->player.y = j;
+			game->player.coords.from.x = i;
+			game->player.coords.from.y = j;
 			return ;
 		}
 		j++;
