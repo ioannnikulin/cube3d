@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   inner.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/24 16:01:39 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/10 14:13:30 by iverniho         ###   ########.fr       */
+/*   Created: 2025/05/10 18:19:21 by iverniho          #+#    #+#             */
+/*   Updated: 2025/05/10 18:26:01 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#ifndef INNER_H
+# define INNER_H
 
-int	main(int argc, char **argv)
-{
-	t_mlx	mlx;
+# include "../cube3d.h"
 
-	if (argc != 2)
-		return (finalize(NULL, USAGE, 1));
-	if (!validate_map(&mlx, argv[1]))
-		return (1);
-	if (pre(&mlx))
-		return (2);
-	world_create(&mlx);
-	render_frame(&mlx);
-	mlx_key_hook(mlx.win, handle_keyboard, &mlx);
-	mlx_hook(mlx.win, 17, 0, close_it, &mlx);
-	mlx_loop(mlx.mlx);
-	return (0);
-}
+int		is_row_valid(char *row);
+int		check_extension(char *map);
+int		is_map_row_valid(char *row);
+int		longest_line(char **map);
+int		is_map_valid(int map_width, int valid_elements);
+int		is_valid_char(char c, int *player_already_parsed);
+int		is_surrounded_by_walls(t_mlx *data);
+
+#endif

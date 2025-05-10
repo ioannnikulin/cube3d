@@ -1,40 +1,38 @@
 CC = cc
 NAME = cube3D
-COMPILE_FLAGS = -Wall -Wextra -Werror -g -c -O0
+COMPILE_FLAGS = -Wall -Wextra -Werror -g -c -O0 -fno-builtin-printf
 LINK_FLAGS = -lft -Llibft -lreadline -lm #-fsanitize=address #not compatible with valgrind from fulltest
-MLX_F = 
+MLX_F =
 INCLUDES = -I . -I libft -I $(MLX_F)
 MLX_COMPILE_FLAGS =
-MLX_LINK_FLAGS = 
+MLX_LINK_FLAGS =
 
-MLX_SOURCE_ADDRESS = 
+MLX_SOURCE_ADDRESS =
 MLX_ARCHIVE = minilibx.tgz
-PREFIX = 
+PREFIX =
 PREPROC_DEFINES =
 
 UNAME := $(shell uname)
 
-MLX_LINUX_COMPILE_FLAGS			=	
-MLX_LINUX_LINK_FLAGS			=	-L$(MLX_F) -lmlx -lXext -lX11 -L/usr/lib -lXext -lX11 -lz
-MLX_MACOS_COMPILE_FLAGS			=	-Lmlx -lmlx -framework OpenGL -framework AppKit
-MLX_MACOS_LINK_FLAGS			=
+MLX_L_FLAGS			=	-L$(MLX_F) -lmlx -lXext -lX11 -L/usr/lib -lXext -lX11 -lz
+MLX_M_FLAGS			=	-L$(MLX_F) -lmlx -framework OpenGL -framework AppKit
 
 ifeq ($(UNAME), Linux)
 	MLX_SOURCE_ADDRESS 		= 	https://cdn.intra.42.fr/document/document/31891/minilibx-linux.tgz
-	MLX_F 					=	minilibx-linux 
+	MLX_F 					=	minilibx-linux
 	MLX_COMPILE_FLAGS		=	$(MLX_LINUX_COMPILE_FLAGS)
-	MLX_LINK_FLAGS			=	$(MLX_LINUX_LINK_FLAGS)
+	MLX_LINK_FLAGS			=	$(MLX_L_FLAGS)
 else
 	MLX_SOURCE_ADDRESS 		= 	https://cdn.intra.42.fr/document/document/31892/minilibx_opengl.tgz
 	MLX_F 					=	minilibx_opengl_20191021
 	MLX_COMPILE_FLAGS		=	$(MLX_MACOS_COMPILE_FLAGS)
-	MLX_LINK_FLAGS			=	$(MLX_MACOS_LINK_FLAGS)
+	MLX_LINK_FLAGS			=	$(MLX_M_FLAGS)
 endif
 
 SOURCE_F = sources
 TEST_F = tests
 
-MAP_PARSING_NAMES = map_parse.c
+MAP_PARSING_NAMES = map_parse.c check_walls.c parse_utils.c parse_utils2.c
 MAP_PARSING_F = map_parse
 MAP_PARSING_SRCS = $(addprefix $(MAP_PARSING_F)/,$(MAP_PARSING_NAMES))
 
@@ -84,7 +82,7 @@ SRC_SRCS = $(addprefix $(SOURCE_F)/, $(SRC_NAMES))
 ENDPOINT_SRC = $(addprefix $(SOURCE_F)/, $(ENDPOINT_NAME))
 ENDPOINT_OBJ = $(OBJ_F)$(ENDPOINT_NAME:.c=.o)
 
-TEST_NAMES = units.c e2e.c
+TEST_NAMES = units.c e2e.c map_parsing_test.c
 TEST_ENDPOINT_NAME = main_test.c
 TEST_SRCS = $(addprefix $(TEST_F)/, $(TEST_NAMES))
 TEST_ENDPOINT_SRC = $(addprefix $(TEST_F)/, $(TEST_ENDPOINT_NAME))
@@ -94,6 +92,7 @@ OBJ_F = build/
 
 OBJS = \
 	$(addprefix $(OBJ_F), $(SRC_SRCS:.c=.o)) \
+	$(addprefix $(OBJ_F), $(MAP_PARSING_SRCS:.c=.o)) \
 	$(addprefix $(OBJ_F), $(PRIMITIVES_SRCS:.c=.o)) \
 	$(addprefix $(OBJ_F), $(DRAWING_SRCS:.c=.o)) \
 	$(addprefix $(OBJ_F), $(RAYCAST_SRCS:.c=.o)) \
@@ -145,7 +144,7 @@ $(TEST_OBJ_F)%.o: $(TEST_F)/%.c $(TEST_OBJ_F)
 test_trapped:
 	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DFT_CALLOC_IF_TRAPPED" test
 
-test: $(OBJ_DIRS) $(TEST_OBJ_F) $(OBJS) $(TEST_OBJS) $(TEST_ENDPOINT_OBJ) 
+test: $(OBJ_DIRS) $(TEST_OBJ_F) $(OBJS) $(TEST_OBJS) $(TEST_ENDPOINT_OBJ)
 	$(PREFIX)$(CC) $(OBJS) $(TEST_OBJS) $(TEST_ENDPOINT_OBJ) -o $(TEST_FNAME) $(LINK_FLAGS) $(MLX_LINK_FLAGS)
 
 preclean:

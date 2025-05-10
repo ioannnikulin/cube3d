@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   quadrangle.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 22:12:04 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/19 01:01:47 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/30 18:36:12 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../drawing.h"
 
 t_quadrangle_vertices	quadrangle_vertices(t_point *a, t_point *b, t_point *c,
-	t_point *d)
+		t_point *d)
 {
 	t_quadrangle_vertices	vertices;
 

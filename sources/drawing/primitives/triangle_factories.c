@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   triangle_factories.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 20:22:00 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/19 01:01:58 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/04/23 23:28:55 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	sort_vertices_y(t_triangle_vertices *vertices)
 
 // sorted_vertices = vertices can cause problems
 t_triangle_arg	triangle_arg(t_mlx *mlx, t_triangle_vertices vertices,
-						t_color *color, int fill)
+		t_color *color, int fill)
 {
 	t_triangle_arg	arg;
 
