@@ -4,4 +4,5 @@ int main(void)
 {
 	units();
 	e2e();
+	map_test();
 }

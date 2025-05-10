@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   triangle.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 20:01:21 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/20 17:10:48 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/02 12:53:29 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	hor(t_mlx *mlx, t_vector segment, t_color *color)
 	if (segment.from.x > segment.to.x)
 		ft_swap_d(&(segment.from.x), &(segment.to.x));
 	x = segment.from.x - 1;
-	while (++ x <= segment.to.x)
+	while (++x <= segment.to.x)
 		pixel(mlx, x, segment.from.y, *color);
 }
 
@@ -35,21 +35,21 @@ static void	flat_top(t_triangle_arg *arg)
 	int		y;
 
 	inv_slope_1 = (double)(arg->sorted_vertices.c->x
-			- arg->sorted_vertices.a->x)
-		/ (arg->sorted_vertices.c->y - arg->sorted_vertices.a->y);
+			- arg->sorted_vertices.a->x) / (arg->sorted_vertices.c->y
+			- arg->sorted_vertices.a->y);
 	inv_slope_2 = (double)(arg->sorted_vertices.c->x
-			- arg->sorted_vertices.b->x)
-		/ (arg->sorted_vertices.c->y - arg->sorted_vertices.b->y);
+			- arg->sorted_vertices.b->x) / (arg->sorted_vertices.c->y
+			- arg->sorted_vertices.b->y);
 	cx1 = arg->sorted_vertices.c->x;
 	cx2 = cx1;
 	y = arg->sorted_vertices.c->y;
 	while (y >= arg->sorted_vertices.a->y)
 	{
-		hor(arg->mlx, ft_vector_make(ft_point_make(cx1, y),
-				ft_point_make(cx2, y)), arg->color);
+		hor(arg->mlx, ft_vector_make(ft_point_make(cx1, y), ft_point_make(cx2,
+					y)), arg->color);
 		cx1 -= inv_slope_1;
 		cx2 -= inv_slope_2;
-		y --;
+		y--;
 	}
 }
 
@@ -65,29 +65,28 @@ static void	flat_bottom(t_triangle_arg *arg)
 	int		y;
 
 	inv_slope_1 = (double)(arg->sorted_vertices.b->x
-			- arg->sorted_vertices.a->x)
-		/ (arg->sorted_vertices.b->y - arg->sorted_vertices.a->y);
+			- arg->sorted_vertices.a->x) / (arg->sorted_vertices.b->y
+			- arg->sorted_vertices.a->y);
 	inv_slope_2 = (double)(arg->sorted_vertices.c->x
-			- arg->sorted_vertices.a->x)
-		/ (arg->sorted_vertices.c->y - arg->sorted_vertices.a->y);
+			- arg->sorted_vertices.a->x) / (arg->sorted_vertices.c->y
+			- arg->sorted_vertices.a->y);
 	cx1 = arg->sorted_vertices.a->x;
 	cx2 = cx1;
 	y = arg->sorted_vertices.a->y;
 	while (y <= arg->sorted_vertices.b->y)
 	{
-		hor(arg->mlx, ft_vector_make(ft_point_make(cx1, y),
-				ft_point_make(cx2, y)), arg->color);
+		hor(arg->mlx, ft_vector_make(ft_point_make(cx1, y), ft_point_make(cx2,
+					y)), arg->color);
 		cx1 += inv_slope_1;
 		cx2 += inv_slope_2;
-		y ++;
+		y++;
 	}
 }
 
 static void	find_mid_hor(t_triangle_arg *arg, t_point *tgt)
 {
 	*tgt = ft_point_make(arg->sorted_vertices.a->x
-			+ (double)(arg->sorted_vertices.b->y
-				- arg->sorted_vertices.a->y)
+			+ (double)(arg->sorted_vertices.b->y - arg->sorted_vertices.a->y)
 			* (arg->sorted_vertices.c->x - arg->sorted_vertices.a->x)
 			/ (arg->sorted_vertices.c->y - arg->sorted_vertices.a->y),
 			arg->sorted_vertices.b->y);
@@ -99,7 +98,7 @@ static void	find_mid_hor(t_triangle_arg *arg, t_point *tgt)
  * find its horizontal counterpart,
  * and split the triangle into a flattop and flatbottom
  * having these middle and counterpart points as a horizontal separation line
- * 
+ *
  * possible problems: tmp init and find_mid_hor spoiling a point
  */
 /*
@@ -119,8 +118,8 @@ int	triangle(t_triangle_arg arg)
 			flat_top(&arg);
 		else
 		{
-			tmp = triangle_arg(arg.mlx, arg.sorted_vertices,
-					arg.color, arg.fill);
+			tmp = triangle_arg(arg.mlx, arg.sorted_vertices, arg.color,
+					arg.fill);
 			find_mid_hor(&arg, tmp.sorted_vertices.c);
 			flat_bottom(&tmp);
 			ft_swap_pts(&(tmp.sorted_vertices.a), &(tmp.sorted_vertices.b));

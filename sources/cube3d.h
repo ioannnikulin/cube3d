@@ -3,21 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:06:42 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/01 20:27:39 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/10 18:24:54 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUBE3D_H
 # define CUBE3D_H
 
-# include "includes.h"
-# include "resources.h"
 # include "drawing/drawing.h"
+# include "includes.h"
 # include "player_controls/player_controls.h"
+# include "resources.h"
 # include "world_creation/world_creation.h"
+# include "parsing.h"
 # include "debug.h"
 
 # define WINDOW_WIDTH 1000
@@ -45,10 +46,10 @@ typedef struct s_palette
 
 typedef struct s_img
 {
-	void	*img;
-	int		height;
-	int		width;
-}	t_img;
+	void			*img;
+	int				height;
+	int				width;
+}					t_img;
 
 typedef struct s_assets
 {
@@ -61,8 +62,8 @@ typedef struct s_assets
 
 typedef struct s_plane
 {
-	t_color		color;
-}	t_plane;
+	t_color			color;
+}					t_plane;
 
 /*
  * zmin and zmax are leftovers from fdf, don't know if we still need them
@@ -75,6 +76,7 @@ typedef struct s_map
 	char		**map;
 	t_plane		floor;
 	t_plane		ceiling;
+	int			is_enclosed;
 }	t_map;
 
 typedef struct s_player
@@ -99,16 +101,16 @@ typedef struct s_player
  */
 typedef struct s_mlx_img
 {
-	void	**imgs;
-	char	**imgs_data;
-	int		next_frame_idx;
-	int		bpp;
-	int		linesz;
-	int		endian;
-	int		red_offset;
-	int		green_offset;
-	int		blue_offset;
-}	t_mlx_img;
+	void			**imgs;
+	char			**imgs_data;
+	int				next_frame_idx;
+	int				bpp;
+	int				linesz;
+	int				endian;
+	int				red_offset;
+	int				green_offset;
+	int				blue_offset;
+}					t_mlx_img;
 
 typedef struct s_mlx
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pre.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:13:28 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/01 20:21:42 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/10 18:04:07 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	endian_offsets(t_mlx *mlx)
 	}
 }
 
-static t_color	clr(char r, char g, char b, double a)
+static t_color	clr(unsigned char r, unsigned char g, unsigned char b, double a)
 {
 	t_color	color;
 
