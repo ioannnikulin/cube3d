@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:06:42 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/08 15:33:17 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/10 18:04:05 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,10 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	t_vector		coords;
-	int				x;
-	int				y;
-}					t_player;
+	t_vector	coords;
+	double		to_wall_ahead;
+	double		to_wall_behind;
+}	t_player;
 
 # define FRAMES_BUFFER 5
 # define STEP_LENGTH 5
@@ -94,6 +94,7 @@ typedef struct s_player
 # define EPSILON 1e-6
 # define DEGREE 0.0174532925199432957692369076848861
 # define VIEWFIELD 60
+# define MIN_DISTANCE_TO_WALL 5
 
 /*
  * color offsets - for different endians
