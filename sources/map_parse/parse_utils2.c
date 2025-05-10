@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 15:24:56 by iverniho          #+#    #+#             */
-/*   Updated: 2025/05/10 12:33:37 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/10 17:37:43 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
+
+void	free_map_exit(t_mlx **data, char *msg)
+{
+	free_map((*data)->map.map);
+	exit_error(msg);
+}
+
+int	is_row_valid(char *row)
+{
+	int	row_length;
+
+	if (row == NULL)
+		return (0);
+	row_length = ft_strlen(row);
+	if (row_length < 3)
+		return (0);
+	return (1);
+}
 
 int	check_extension(char *map)
 {

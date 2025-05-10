@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:36:45 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/08 16:48:51 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/10 16:13:12 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	floodfill(t_mlx *game, int row, int col, int **passed)
 		return ;
 	}
 	if (col == 0 || col == game->map.map_width - 1 || row == 0
-		|| row == game->map.map_height - 1)
+		|| row == game->map.map_height - 1 || game->map.map[row][col] == '\0')
 	{
 		game->map.is_enclosed = 0;
 		return ;
@@ -95,8 +95,6 @@ int	is_surrounded_by_walls(t_mlx *data)
 	i = -1;
 	while (data->map.map[++i])
 		find_player_pos(data, i, &col, &row);
-	if (!data->player.x || !data->player.y)
-		return (printf(ERR_NO_PLAYER), 0);
 	floodfill(data, row, col, passed);
 	if (data->map.is_enclosed == 0)
 		return (process_not_enclosed(passed, data->map.map_height), 0);

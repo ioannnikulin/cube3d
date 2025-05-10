@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 00:47:20 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/10 12:33:58 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/10 17:39:49 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,8 @@ int		is_map_row_valid(char *row);
 void	free_map(char **map);
 void	free_exit(t_mlx *data);
 int		check_extension(char *map);
+void	free_map_exit(t_mlx **data, char *msg);
+int		is_row_valid(char *row);
+int		is_map_valid(int map_width, int valid_elements);
 
 #endif

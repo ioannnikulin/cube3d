@@ -6,11 +6,18 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:44:18 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/08 17:16:45 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/10 17:37:04 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
+
+int	is_map_valid(int map_width, int valid_elements)
+{
+	if (map_width == 0 || valid_elements == 0)
+		return (0);
+	return (1);
+}
 
 void	exit_error(char *message)
 {
@@ -63,11 +70,4 @@ int	is_valid_char(char c, int *player_already_parsed)
 	}
 	printf("%s %c \n", ERR_INVALID_CHAR, c);
 	return (0);
-}
-
-void	free_exit(t_mlx *data)
-{
-	if (data->map.map)
-		free_map(data->map.map);
-	exit(EXIT_FAILURE);
 }
