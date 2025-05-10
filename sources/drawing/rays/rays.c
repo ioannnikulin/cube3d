@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:55:59 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/10 12:55:50 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/10 14:51:14 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,24 @@ int	cast_rays(t_mlx *mlx)
 	return (0);
 }
 
+static void	cast_arg(t_mlx *mlx, t_ray_arg *arg)
+{
+	arg->cast.bigmap_left_top = ft_point_make(mlx->map.map_width * BLOCK_SIZE,
+			0);
+	arg->cast.tgt_isect_dist = 0;
+	arg->cast.wall_height = 0;
+	arg->cast.wall_ver_offset = 0;
+	arg->cast.color = mlx->assets.palette.red;
+	arg->cast.wall_from[0] = ft_point_make(0, 0);
+	arg->cast.wall_from[1] = ft_point_make(0, 0);
+	arg->cast.wall_to[0] = ft_point_make(0, 0);
+	arg->cast.wall_to[1] = ft_point_make(0, 0);
+	arg->cast.tex_row_step = 0;
+	arg->cast.tex_row = 0;
+	arg->cast.tex_col = 0;
+	arg->cast.tex_offset = 0;
+}
+
 t_ray_arg	ray_arg(t_mlx *mlx)
 {
 	t_ray_arg	arg;
@@ -67,11 +85,6 @@ t_ray_arg	ray_arg(t_mlx *mlx)
 	arg.angle = -VIEWFIELD / 2 * DEGREE;
 	arg.angle_delta = 0;
 	arg.mlx = mlx;
-	arg.cast.bigmap_left_top = ft_point_make(mlx->map.map_width * BLOCK_SIZE,
-			0);
-	arg.cast.tgt_isect_dist = 0;
-	arg.cast.wall_height = 0;
-	arg.cast.wall_ver_offset = 0;
-	arg.cast.color = mlx->assets.palette.red;
+	cast_arg(mlx, &arg);
 	return (arg);
 }

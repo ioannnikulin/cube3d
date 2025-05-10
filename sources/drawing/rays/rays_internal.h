@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:16:05 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/10 12:55:50 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/10 14:51:01 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ typedef struct s_3dcast
 	t_point	bigmap_left_top;
 	t_point	col[4];
 	t_color	color;
+	t_point	wall_from[2];
+	t_point	wall_to[2];
+	double	tex_row_step;
+	double	tex_row;
+	double	tex_col;
+	double	tex_offset;
 }	t_3dcast;
 
 typedef struct s_ray_arg

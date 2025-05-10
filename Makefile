@@ -53,7 +53,8 @@ PRIMITIVES_NAMES = \
 	ray.c \
 	quadrangle.c \
 	triangle.c \
-	triangle_factories.c
+	triangle_factories.c \
+	get_color.c
 PRIMITIVES_F = ${DRAWING_F}/primitives
 PRIMITIVES_SRCS = $(addprefix $(PRIMITIVES_F)/,$(PRIMITIVES_NAMES))
 
