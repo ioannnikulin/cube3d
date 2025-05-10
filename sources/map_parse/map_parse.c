@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 22:25:54 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/10 18:22:13 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/10 20:28:29 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,8 @@ static int	fill_map(t_mlx *data, char *mp)
 	is_valid = is_map_valid(data->map.map_width, check_elements
 			(data, data->map.map));
 	if (!is_valid)
-		return (free_map(data->map.map), 0);
+		return (free_map(data->map.map), 0); // if we want to free map here, we have to set the pointer to nullptr so that there are no double frees in finalize
+		// are all other elements of mlx freed? do we really want to list all of them here? or we want to use finalize?
 	is_valid = is_surrounded_by_walls(data);
 	if (!is_valid)
 		return (free_map(data->map.map), 0);

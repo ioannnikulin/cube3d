@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:44:18 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/10 17:37:04 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/10 20:28:40 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	is_map_valid(int map_width, int valid_elements)
 
 void	exit_error(char *message)
 {
-	printf("Error: %s\n", message);
+	printf("Error\n%s\n", message);
 	exit(EXIT_FAILURE);
 }
 
