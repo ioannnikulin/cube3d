@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 19:33:16 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/18 22:57:56 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/09 22:59:49 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,5 @@
 typedef struct s_mlx	t_mlx;
 
 int	world_create(t_mlx *mlx);
-int	draw_map(t_mlx *mlx);
+int	draw_minimap(t_mlx *mlx);
 #endif
