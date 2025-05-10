@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:06:42 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/01 18:39:53 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/01 20:27:39 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ typedef struct s_map
 typedef struct s_player
 {
 	t_vector	coords;
+	double		to_wall_ahead;
+	double		to_wall_behind;
 }	t_player;
 
 # define FRAMES_BUFFER 5
@@ -90,6 +92,7 @@ typedef struct s_player
 # define EPSILON 1e-6
 # define DEGREE 0.0174532925199432957692369076848861
 # define VIEWFIELD 60
+# define MIN_DISTANCE_TO_WALL 5
 
 /*
  * color offsets - for different endians
