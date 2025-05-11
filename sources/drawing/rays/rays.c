@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:55:59 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/10 19:32:45 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/11 15:53:37 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ int	cast_rays(t_mlx *mlx)
 	ft_vector_rot_z_here(&arg.ray, M_PI);
 	calc_ray(&arg);
 	mlx->player.to_wall_behind = ft_point_dist(&arg.ray.from, &arg.tgt_isect);
-	arg.angle_delta = VIEWFIELD / RAYS_COUNT * DEGREE;
+	arg.angle_delta = ((double)VIEWFIELD) / RAYS_COUNT * DEGREE;
 	ft_vector_rot_z_here(&arg.ray, M_PI + arg.angle);
 	while (++ i < RAYS_COUNT)
 	{
 		calc_ray(&arg);
-		if (i % MINIMAP_SHOW_EACH_TH_RAY == 0)
+		if (mlx->map.minimap_show && i % MINIMAP_SHOW_EACH_TH_RAY == 0)
 			line(arg.mlx, &arg.ray.from, &arg.tgt_isect,
 				&arg.mlx->assets.palette.green);
 		draw_ver_stripe(i, &arg);
@@ -53,8 +53,8 @@ int	cast_rays(t_mlx *mlx)
 
 static void	cast_arg(t_mlx *mlx, t_ray_arg *arg)
 {
-	arg->cast.bigmap_left_top = ft_point_make(mlx->map.map_width * BLOCK_SIZE,
-			0);
+	arg->cast.bigmap_left_top = ft_point_make(mlx->map.map_width
+			* MINIMAP_BLOCK_SIZE, 0);
 	arg->cast.tgt_isect_dist = 0;
 	arg->cast.wall_height = 0;
 	arg->cast.wall_ver_offset = 0;

@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:31:12 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/10 19:16:13 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/11 14:46:56 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ static int	draw_block(t_mlx *mlx, int x, int y, t_color *clr)
 	t_point	d;
 
 	a = ft_point_make(x + 1, y + 1);
-	b = ft_point_make(x + 1, y + BLOCK_SIZE - 1);
-	c = ft_point_make(x + BLOCK_SIZE - 1, y + BLOCK_SIZE - 1);
-	d = ft_point_make(x + BLOCK_SIZE - 1, y + 1);
+	b = ft_point_make(x + 1, y + MINIMAP_BLOCK_SIZE - 1);
+	c = ft_point_make(x + MINIMAP_BLOCK_SIZE - 1, y + MINIMAP_BLOCK_SIZE - 1);
+	d = ft_point_make(x + MINIMAP_BLOCK_SIZE - 1, y + 1);
 	quadrangle(mlx, quadrangle_vertices(&a, &b, &c, &d), clr, true);
 	return (0);
 }
@@ -65,10 +65,10 @@ int	draw_minimap(t_mlx *mlx)
 	r = -1;
 	while (++r < mlx->map.map_height)
 	{
-		ft_assign_i(&c, -1, ft_assign_d(&cy, r * BLOCK_SIZE, 0));
+		ft_assign_i(&c, -1, ft_assign_d(&cy, r * MINIMAP_BLOCK_SIZE, 0));
 		while (++c < mlx->map.map_width)
 		{
-			cx = c * BLOCK_SIZE;
+			cx = c * MINIMAP_BLOCK_SIZE;
 			clr = mlx->assets.palette.black;
 			if (mlx->map.map[r][c] == '1')
 				clr = mlx->assets.palette.white;
@@ -108,7 +108,9 @@ int	world_create(t_mlx *mlx)
 	mlx->map.ceiling.color = mlx->assets.palette.cyan;
 	mlx->map.floor.color = mlx->assets.palette.yellow;
 	textures_stub(mlx);
-	mlx->player.coords.from = ft_point_make(73, 260);
-	mlx->player.coords.to = ft_point_make(93, 260);
+	mlx->player.coords.from = ft_point_make(1.5 * MINIMAP_BLOCK_SIZE,
+			3 * MINIMAP_BLOCK_SIZE);
+	mlx->player.coords.to = ft_point_make(1.5 * MINIMAP_BLOCK_SIZE,
+			4 * MINIMAP_BLOCK_SIZE);
 	return (0);
 }

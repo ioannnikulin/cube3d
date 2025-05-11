@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:37:26 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/21 21:03:25 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/11 15:45:47 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ typedef enum e_action
 	FWD,
 	BACK,
 	TURN_CCW,
-	TURN_CW
+	TURN_CW,
+	MINIMAP
 }	t_action;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:38:28 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/10 18:25:29 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/11 14:37:24 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,9 @@ int	finalize(t_mlx *mlx, char *msg, int ret)
 	printf("%s", msg);
 	exit(ret);
 	return (ret);
+}
+
+int	close_it(void *param)
+{
+	return (finalize((t_mlx *)param, MSG_EXIT, 0));
 }
