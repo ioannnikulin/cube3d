@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:31:12 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/10 18:04:15 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/13 19:26:30 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,13 @@ static int	map_stub(t_mlx *mlx)
 {
 	int	i;
 
-	ft_assign_i(&mlx->map.map_height, 8, ft_assign_i(&mlx->map.map_width, 8,
-			ft_assign_i(&i, -1, 0)));
+	// printf("map_stub\n");
+	// printf("map.height: %d\n", mlx->map.map_height);
+	// printf("map.width: %d\n", mlx->map.map_width);
+	// print_map(mlx->map.map);
+	i = -1;	
+	// ft_assign_i(&mlx->map.map_height, 8, ft_assign_i(&mlx->map.map_width, 8,
+	// 		ft_assign_i(&i, -1, 0)));
 	mlx->map.map = ft_calloc_if(sizeof(char *) * mlx->map.map_height, 1);
 	if (!mlx->map.map)
 		return (finalize(mlx, ERR_MALLOC, 1));
@@ -62,6 +67,8 @@ int	draw_map(t_mlx *mlx)
 	double	cy;
 	t_color	clr;
 
+	printf("draw_map\n");
+
 	r = -1;
 	while (++r < mlx->map.map_height)
 	{
@@ -69,9 +76,12 @@ int	draw_map(t_mlx *mlx)
 		while (++c < mlx->map.map_width)
 		{
 			cx = c * BLOCK_SIZE;
-			clr = mlx->assets.palette.black;
+			// clr = mlx->assets.palette.black;
+			clr = mlx->map.floor.color;
+			printf("floor: %d,%d,%d\n", clr.r, clr.g, clr.b);
 			if (mlx->map.map[r][c] == '1')
-				clr = mlx->assets.palette.white;
+				// clr = mlx->assets.palette.white;
+				clr = mlx->map.ceiling.color;
 			draw_block(mlx, cx, cy, &clr);
 		}
 	}
