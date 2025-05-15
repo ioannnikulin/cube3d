@@ -6,13 +6,13 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:22:28 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/19 01:01:20 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/15 11:12:55 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cube3d.h"
 
-void	circle(t_mlx *mlx, t_point *center, int radius, t_color clr)
+void	circle(t_mlx *mlx, t_point *center, int radius, t_color *clr)
 {
 	int		x0;
 	int		y0;

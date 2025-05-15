@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 22:26:58 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/10 19:35:45 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/11 16:15:07 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 static void	ceiling(int col, t_ray_arg *arg)
 {
-	arg->cast.col[0] = ft_point_make(arg->cast.bigmap_left_top.x
-			+ BIGMAP_COL_WIDTH * col, 0);
-	arg->cast.col[1] = ft_point_make(arg->cast.bigmap_left_top.x
-			+ BIGMAP_COL_WIDTH * (col + 1), 0);
-	arg->cast.col[2] = ft_point_make(arg->cast.bigmap_left_top.x
-			+ BIGMAP_COL_WIDTH * (col + 1), arg->cast.wall_ver_offset);
-	arg->cast.col[3] = ft_point_make(arg->cast.bigmap_left_top.x
-			+ BIGMAP_COL_WIDTH * col, arg->cast.wall_ver_offset);
+	arg->cast.col[0] = ft_point_make(BIGMAP_COL_WIDTH * col, 0);
+	arg->cast.col[1] = ft_point_make(BIGMAP_COL_WIDTH * (col + 1), 0);
+	arg->cast.col[2] = ft_point_make(BIGMAP_COL_WIDTH * (col + 1),
+			arg->cast.wall_ver_offset);
+	arg->cast.col[3] = ft_point_make(BIGMAP_COL_WIDTH * col,
+			arg->cast.wall_ver_offset);
 	arg->cast.color = arg->mlx->map.ceiling.color;
 	quadrangle(arg->mlx,
 		quadrangle_vertices(&arg->cast.col[0], &arg->cast.col[1],

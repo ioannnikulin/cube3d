@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:06:42 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/11 15:49:13 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/15 11:05:38 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,20 @@
 
 # define WINDOW_WIDTH 1000
 # define WINDOW_HEIGHT 1000
+# define FRAMES_BUFFER 5 // advance buffering not implemented yet, 
+// just looping through frames on demand for now
+# define STEP_LENGTH 5
+# define ROT_ANGLE_PI_DIVISOR 36
+# define RAYS_COUNT 120
+# define MINIMAP_RAYS_COUNT 10
+# define MINIMAP_BLOCK_SIZE 64
+# define BIGMAP_BLOCK_SIZE 64
+# define EPSILON 1e-6
+# define DEGREE 0.0174532925199432957692369076848861
+# define VIEWFIELD 60
+# define MIN_DISTANCE_TO_WALL 5
+# define MAX_WALL_HEIGHT 500
+# define BIGMAP_COL_WIDTH 8
 
 typedef struct s_color
 {
@@ -85,21 +99,9 @@ typedef struct s_player
 	double		to_wall_ahead;
 	double		to_wall_behind;
 	t_gamepad	gamepad;
+	t_vector	minimap_rays[MINIMAP_RAYS_COUNT];
 }	t_player;
 
-# define FRAMES_BUFFER 5
-# define STEP_LENGTH 5
-# define ROT_ANGLE_PI_DIVISOR 36
-# define RAYS_COUNT 120
-# define MINIMAP_SHOW_EACH_TH_RAY 10
-# define MINIMAP_BLOCK_SIZE 16
-# define BIGMAP_BLOCK_SIZE 64
-# define EPSILON 1e-6
-# define DEGREE 0.0174532925199432957692369076848861
-# define VIEWFIELD 60
-# define MIN_DISTANCE_TO_WALL 5
-# define MAX_WALL_HEIGHT 500
-# define BIGMAP_COL_WIDTH 8
 /*
  * color offsets - for different endians
  */

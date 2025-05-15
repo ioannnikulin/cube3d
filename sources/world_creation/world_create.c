@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:31:12 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/11 14:46:56 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/11 16:19:11 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int	draw_minimap(t_mlx *mlx)
 			clr = mlx->assets.palette.black;
 			if (mlx->map.map[r][c] == '1')
 				clr = mlx->assets.palette.white;
+			clr.alpha = 0.5;
 			draw_block(mlx, cx, cy, &clr);
 		}
 	}

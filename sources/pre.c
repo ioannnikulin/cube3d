@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:13:28 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/11 15:49:50 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/11 16:17:56 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,15 @@ static t_color	clr(char r, char g, char b, double a)
 
 static void	palette_init(t_palette *palette)
 {
-	palette->black = clr(0, 0, 0, 0);
-	palette->white = clr(255, 255, 255, 0);
-	palette->red = clr(255, 0, 0, 0);
-	palette->dark_red = clr(139, 0, 0, 0);
-	palette->green = clr(0, 255, 0, 0);
-	palette->blue = clr(0, 0, 255, 0);
-	palette->yellow = clr(255, 255, 0, 0);
-	palette->cyan = clr(0, 255, 255, 0);
-	palette->magenta = clr(255, 0, 255, 0);
+	palette->black = clr(0, 0, 0, 1);
+	palette->white = clr(255, 255, 255, 1);
+	palette->red = clr(255, 0, 0, 1);
+	palette->dark_red = clr(139, 0, 0, 1);
+	palette->green = clr(0, 255, 0, 1);
+	palette->blue = clr(0, 0, 255, 1);
+	palette->yellow = clr(255, 255, 0, 1);
+	palette->cyan = clr(0, 255, 255, 1);
+	palette->magenta = clr(255, 0, 255, 1);
 }
 
 int	pre(t_mlx *mlx)
