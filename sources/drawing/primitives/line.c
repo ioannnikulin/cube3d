@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 19:23:13 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/01 18:59:58 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/02 12:54:22 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	loop_steep(t_line_arg *arg)
 		pixel(arg->mlx, flr(arg->intery) + 1, x,
 			color(arg->clr, fpart(arg->intery)));
 		arg->intery += arg->gradient;
-		x ++;
+		x++;
 	}
 }
 
@@ -62,7 +62,7 @@ static void	loop_nonsteep(t_line_arg *arg)
 		pixel(arg->mlx, x, flr(arg->intery) + 1,
 			color(arg->clr, fpart(arg->intery)));
 		arg->intery += arg->gradient;
-		x ++;
+		x++;
 	}
 }
 

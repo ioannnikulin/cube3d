@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_internal.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:31:07 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/01 14:28:17 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/02 12:53:12 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ void	endpoint1(t_line_arg *arg, double x, double y);
 
 typedef struct s_endpoint_args
 {
-	double		xend;
-	double		yend;
-	double		xgap;
-	t_color		clr;
-}	t_endpoint_args;
+	double	xend;
+	double	yend;
+	double	xgap;
+	t_color	clr;
+}			t_endpoint_args;
 
 #endif

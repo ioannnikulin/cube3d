@@ -1,4 +1,5 @@
 minilibx-linux/*
+minilibx_opengl_20191021/*
 minilibx-linux
 *.tgz
 *.exe
@@ -8,6 +9,9 @@ cube3D
 build/*
 .vscode/*
 tests/test
+c_formatter_42/
+Dockerfile
+.dockerignore
 libft/tests/test
 libft/norminette_log.txt
 sources/norminette_log.txt
