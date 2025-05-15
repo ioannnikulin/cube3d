@@ -34,7 +34,7 @@ endif
 SOURCE_F = sources
 TEST_F = tests
 
-MAP_PARSING_NAMES = map_parse.c
+MAP_PARSING_NAMES = map_parse.c parse_utils.c parse_utils2.c check_walls.c
 MAP_PARSING_F = map_parse
 MAP_PARSING_SRCS = $(addprefix $(MAP_PARSING_F)/,$(MAP_PARSING_NAMES))
 
@@ -98,7 +98,8 @@ OBJS = \
 	$(addprefix $(OBJ_F), $(DRAWING_SRCS:.c=.o)) \
 	$(addprefix $(OBJ_F), $(RAYCAST_SRCS:.c=.o)) \
 	$(addprefix $(OBJ_F), $(PLAYER_CONTROLS_SRCS:.c=.o)) \
-	$(addprefix $(OBJ_F), $(WORLD_CREATION_SRCS:.c=.o))
+	$(addprefix $(OBJ_F), $(WORLD_CREATION_SRCS:.c=.o)) \
+	$(addprefix $(OBJ_F), $(MAP_PARSING_SRCS:.c=.o))
 
 TEST_OBJS = $(addprefix $(OBJ_F), $(TEST_SRCS:.c=.o))
 TEST_ENDPOINT_OBJ = $(OBJ_F)$(TEST_ENDPOINT_SRC:.c=.o)
@@ -214,7 +215,6 @@ fulltest_vania: fulltest_common
 	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DVANIA" test_trapped memcheck
 
 fulltest: fulltest_common
-	#$(PREFIX)make test_trapped memcheck
 
 PHONY: all pre clean fclean re test fulltest testclean testfclean retest memcheck memcheck_interactive fulltest_common fulltest_vania tania vania minivania all_trapped all_fancy all_printf bonus prere pretestfclean prefclean test_trapped run debug mem
 ########################################
