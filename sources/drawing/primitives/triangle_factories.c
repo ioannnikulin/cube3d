@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 20:22:00 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/19 01:01:58 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/15 09:49:11 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	sort_vertices_y(t_triangle_vertices *vertices)
 
 // sorted_vertices = vertices can cause problems
 t_triangle_arg	triangle_arg(t_mlx *mlx, t_triangle_vertices vertices,
-						t_color *color, int fill)
+						t_color *color, int mode)
 {
 	t_triangle_arg	arg;
 
@@ -43,6 +43,6 @@ t_triangle_arg	triangle_arg(t_mlx *mlx, t_triangle_vertices vertices,
 	arg.sorted_vertices = vertices;
 	sort_vertices_y(&arg.sorted_vertices);
 	arg.color = color;
-	arg.fill = fill;
+	arg.mode = mode;
 	return (arg);
 }

@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 22:26:58 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/11 16:15:07 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/15 09:55:54 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	ceiling(int col, t_ray_arg *arg)
 	quadrangle(arg->mlx,
 		quadrangle_vertices(&arg->cast.col[0], &arg->cast.col[1],
 			&arg->cast.col[2], &arg->cast.col[3]),
-		&arg->cast.color, true);
+		&arg->cast.color, MODE_FILL);
 	ft_point_cp(arg->cast.col[3], &arg->cast.wall_from[0]);
 	ft_point_cp(arg->cast.col[3], &arg->cast.wall_to[0]);
 	arg->cast.wall_to[0].y += arg->cast.wall_height;
@@ -72,10 +72,11 @@ static void	wall(t_ray_arg *arg)
 	{
 		arg->cast.color = get_pixel_color(arg->cast.tgt_tex->img,
 				arg->cast.tex_col, arg->cast.tex_row);
+		arg->cast.color.alpha = 1.0;
 		quadrangle(arg->mlx,
 			quadrangle_vertices(&arg->cast.col[0], &arg->cast.col[1],
 				&arg->cast.col[2], &arg->cast.col[3]),
-			&arg->cast.color, true);
+			&arg->cast.color, MODE_FILL);
 		arg->cast.col[0].y += 1;
 		arg->cast.col[1].y += 1;
 		arg->cast.col[2].y += 1;
@@ -94,7 +95,7 @@ static void	flr(t_ray_arg *arg)
 	quadrangle(arg->mlx,
 		quadrangle_vertices(&arg->cast.col[0], &arg->cast.col[1],
 			&arg->cast.col[2], &arg->cast.col[3]),
-		&arg->cast.color, true);
+		&arg->cast.color, MODE_FILL);
 }
 
 void	draw_ver_stripe(int i, t_ray_arg *arg)

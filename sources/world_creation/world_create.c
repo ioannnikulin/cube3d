@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:31:12 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/11 16:19:11 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/15 10:30:43 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	draw_block(t_mlx *mlx, int x, int y, t_color *clr)
 	b = ft_point_make(x + 1, y + MINIMAP_BLOCK_SIZE - 1);
 	c = ft_point_make(x + MINIMAP_BLOCK_SIZE - 1, y + MINIMAP_BLOCK_SIZE - 1);
 	d = ft_point_make(x + MINIMAP_BLOCK_SIZE - 1, y + 1);
-	quadrangle(mlx, quadrangle_vertices(&a, &b, &c, &d), clr, true);
+	quadrangle(mlx, quadrangle_vertices(&a, &b, &c, &d), clr, MODE_FILL);
 	return (0);
 }
 
@@ -63,17 +63,16 @@ int	draw_minimap(t_mlx *mlx)
 	t_color	clr;
 
 	r = -1;
+	clr = mlx->assets.palette.white;
+	clr.alpha = 0.5;
 	while (++r < mlx->map.map_height)
 	{
 		ft_assign_i(&c, -1, ft_assign_d(&cy, r * MINIMAP_BLOCK_SIZE, 0));
 		while (++c < mlx->map.map_width)
 		{
 			cx = c * MINIMAP_BLOCK_SIZE;
-			clr = mlx->assets.palette.black;
 			if (mlx->map.map[r][c] == '1')
-				clr = mlx->assets.palette.white;
-			clr.alpha = 0.5;
-			draw_block(mlx, cx, cy, &clr);
+				draw_block(mlx, cx, cy, &clr);
 		}
 	}
 	return (0);

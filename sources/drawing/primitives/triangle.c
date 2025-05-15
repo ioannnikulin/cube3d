@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 20:01:21 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/15 11:17:04 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/15 10:29:22 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	hor(t_mlx *mlx, t_vector segment, t_color *color)
 	if (segment.from.x > segment.to.x)
 		ft_swap_d(&(segment.from.x), &(segment.to.x));
 	x = segment.from.x - 1;
-	while (++ x <= segment.to.x)
+	while (++ x < segment.to.x)
 		pixel(mlx, x, segment.from.y, color);
 }
 
@@ -43,7 +43,7 @@ static void	flat_top(t_triangle_arg *arg)
 	cx1 = arg->sorted_vertices.c->x;
 	cx2 = cx1;
 	y = arg->sorted_vertices.c->y;
-	while (y >= arg->sorted_vertices.a->y)
+	while (y > arg->sorted_vertices.a->y)
 	{
 		hor(arg->mlx, ft_vector_make(ft_point_make(cx1, y),
 				ft_point_make(cx2, y)), arg->color);
@@ -111,7 +111,7 @@ int	triangle(t_triangle_arg arg)
 {
 	t_triangle_arg	tmp;
 
-	if (arg.fill)
+	if (arg.mode & MODE_FILL)
 	{
 		if (arg.sorted_vertices.b->y == arg.sorted_vertices.c->y)
 			flat_bottom(&arg);
@@ -120,7 +120,7 @@ int	triangle(t_triangle_arg arg)
 		else
 		{
 			tmp = triangle_arg(arg.mlx, arg.sorted_vertices,
-					arg.color, arg.fill);
+					arg.color, arg.mode);
 			find_mid_hor(&arg, tmp.sorted_vertices.c);
 			flat_bottom(&tmp);
 			ft_swap_pts(&(tmp.sorted_vertices.a), &(tmp.sorted_vertices.b));

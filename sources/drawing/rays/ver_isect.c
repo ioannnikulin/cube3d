@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:55:59 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/11 14:46:03 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/15 10:31:06 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ static int	ray_left(t_ray_arg *arg)
 
 static int	ray_right(t_ray_arg *arg)
 {
-	arg->ver_isect.x = (((int)arg->ray.from.x) / MINIMAP_BLOCK_SIZE + 1) * (MINIMAP_BLOCK_SIZE);
+	arg->ver_isect.x = (((int)arg->ray.from.x) / MINIMAP_BLOCK_SIZE + 1)
+		* (MINIMAP_BLOCK_SIZE);
 	arg->ver_isect.y = (arg->ver_isect.x - arg->ray.from.x)
 		* ft_vector_y(&arg->ray) / ft_vector_x(&arg->ray) + arg->ray.from.y;
 	arg->x_offset = MINIMAP_BLOCK_SIZE;
