@@ -19,37 +19,7 @@ typedef struct {
     int expected_result;
 } t_unit_test_case;
 
-int run_single_e2e_test(const t_e2e_test_case *test_case) {
-	char command[256];
-	if (!CUB3D_EXECUTABLE || !test_case || !test_case->map_path) {
-		fprintf(stderr, "Error: Invalid arguments to run_single_e2e_test.\n");
-		return 0;
-	}
-	sprintf(command, "%s %s", CUB3D_EXECUTABLE, test_case->map_path);
-
-	printf("Running E2E test: %s (%s)... ", test_case->test_name ? test_case->test_name : "Unnamed Test", test_case->map_path);
-	int status = system(command);
-
-	if (WIFEXITED(status)) {
-		int exit_code = WEXITSTATUS(status);
-		printf("OK (exited with code %d)\n", exit_code);
-		return 1;
-	} else if (WIFSIGNALED(status)) {
-		int signal_num = WTERMSIG(status);
-		printf("FAIL (terminated by signal %d)\n", signal_num);
-		if (signal_num == SIGSEGV) {
-			fprintf(stderr, "Error: Test %s (%s) SEGMENTATION FAULTED.\n", test_case->test_name ? test_case->test_name : "Unnamed Test", test_case->map_path);
-		} else {
-			fprintf(stderr, "Error: Test %s (%s) crashed with signal %d.\n", test_case->test_name ? test_case->test_name : "Unnamed Test", test_case->map_path, signal_num);
-		}
-		return 0;
-	} else {
-		printf("FAIL (unknown termination status %d for command: %s)\n", status, command);
-		return 0;
-	}
-}
-
-int run_validate_map_test(const t_unit_test_case *test_case) {
+static int run_validate_map_test(const t_unit_test_case *test_case) {
     t_mlx data;
     memset(&data, 0, sizeof(t_mlx)); // Initialize the data structure to zero
 
