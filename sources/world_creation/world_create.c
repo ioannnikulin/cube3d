@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:31:12 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/19 06:12:04 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/19 06:25:22 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ static int	draw_block(t_mlx *mlx, int x, int y, t_color *clr)
 	t_point	d;
 
 	a = ft_point_make(x + 1, y + 1);
-	b = ft_point_make(x + 1, y + BLOCK_SIZE - 1);
-	c = ft_point_make(x + BLOCK_SIZE - 1, y + BLOCK_SIZE - 1);
-	d = ft_point_make(x + BLOCK_SIZE - 1, y + 1);
-	quadrangle(mlx, quadrangle_vertices(&a, &b, &c, &d), clr, true);
+	b = ft_point_make(x + 1, y + MINIMAP_BLOCK_SIZE - 1);
+	c = ft_point_make(x + MINIMAP_BLOCK_SIZE - 1, y + MINIMAP_BLOCK_SIZE - 1);
+	d = ft_point_make(x + MINIMAP_BLOCK_SIZE - 1, y + 1);
+	quadrangle(mlx, quadrangle_vertices(&a, &b, &c, &d), clr, MODE_FILL);
 	return (0);
 }
 
@@ -63,16 +63,16 @@ int	draw_minimap(t_mlx *mlx)
 	t_color	clr;
 
 	r = -1;
+	clr = mlx->assets.palette.white;
+	clr.alpha = 0.5;
 	while (++r < mlx->map.map_height)
 	{
-		ft_assign_i(&c, -1, ft_assign_d(&cy, r * BLOCK_SIZE, 0));
+		ft_assign_i(&c, -1, ft_assign_d(&cy, r * MINIMAP_BLOCK_SIZE, 0));
 		while (++c < mlx->map.map_width)
 		{
-			cx = c * BLOCK_SIZE;
-			clr = mlx->assets.palette.black;
+			cx = c * MINIMAP_BLOCK_SIZE;
 			if (mlx->map.map[r][c] == '1')
-				clr = mlx->assets.palette.white;
-			draw_block(mlx, cx, cy, &clr);
+				draw_block(mlx, cx, cy, &clr);
 		}
 	}
 	return (0);
@@ -108,7 +108,9 @@ int	world_create(t_mlx *mlx)
 	mlx->map.ceiling.color = mlx->assets.palette.cyan;
 	mlx->map.floor.color = mlx->assets.palette.yellow;
 	textures_stub(mlx);
-	mlx->player.coords.from = ft_point_make(73, 260);
-	mlx->player.coords.to = ft_point_make(93, 260);
+	mlx->player.coords.from = ft_point_make(1.5 * MINIMAP_BLOCK_SIZE,
+			3 * MINIMAP_BLOCK_SIZE);
+	mlx->player.coords.to = ft_point_make(1.5 * MINIMAP_BLOCK_SIZE,
+			4 * MINIMAP_BLOCK_SIZE);
 	return (0);
 }

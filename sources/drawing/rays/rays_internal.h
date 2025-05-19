@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:16:05 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/10 19:30:36 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/11 16:15:15 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ typedef struct s_3dcast
 	double	tgt_isect_dist;
 	double	wall_height;
 	double	wall_ver_offset;
-	t_point	bigmap_left_top;
 	t_point	col[4];
 	t_color	color;
 	t_point	wall_from[2];

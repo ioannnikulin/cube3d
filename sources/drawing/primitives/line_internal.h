@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_internal.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:31:07 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/02 12:53:12 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/19 06:17:53 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_line_arg
 	t_mlx		*mlx;
 }	t_line_arg;
 
-t_color	color(t_color *clr, double alpha);
+t_color	prealpha(t_color *clr, double alpha);
 double	flr(double c);
 double	fpart(double c);
 double	rfpart(double c);

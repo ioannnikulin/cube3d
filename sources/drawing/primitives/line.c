@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 19:23:13 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/02 12:54:22 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/19 06:17:33 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,15 @@ static void	prep(t_line_arg *arg)
 static void	loop_steep(t_line_arg *arg)
 {
 	int		x;
+	t_color	clr;
 
 	x = arg->end0x + 1;
 	while (x < arg->end1x)
 	{
-		pixel(arg->mlx, flr(arg->intery), x,
-			color(arg->clr, rfpart(arg->intery)));
-		pixel(arg->mlx, flr(arg->intery) + 1, x,
-			color(arg->clr, fpart(arg->intery)));
+		clr = prealpha(arg->clr, rfpart(arg->intery));
+		pixel(arg->mlx, flr(arg->intery), x, &clr);
+		clr = prealpha(arg->clr, fpart(arg->intery));
+		pixel(arg->mlx, flr(arg->intery) + 1, x, &clr);
 		arg->intery += arg->gradient;
 		x++;
 	}
@@ -53,14 +54,15 @@ static void	loop_steep(t_line_arg *arg)
 static void	loop_nonsteep(t_line_arg *arg)
 {
 	int		x;
+	t_color	clr;
 
 	x = arg->end0x + 1;
 	while (x < arg->end1x)
 	{
-		pixel(arg->mlx, x, flr(arg->intery),
-			color(arg->clr, rfpart(arg->intery)));
-		pixel(arg->mlx, x, flr(arg->intery) + 1,
-			color(arg->clr, fpart(arg->intery)));
+		clr = prealpha(arg->clr, rfpart(arg->intery));
+		pixel(arg->mlx, x, flr(arg->intery), &clr);
+		clr = prealpha(arg->clr, fpart(arg->intery));
+		pixel(arg->mlx, x, flr(arg->intery) + 1, &clr);
 		arg->intery += arg->gradient;
 		x++;
 	}
