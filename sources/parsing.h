@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   world_creation.h                                   :+:      :+:    :+:   */
+/*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/11 19:33:16 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/19 06:12:11 by inikulin         ###   ########.fr       */
+/*   Created: 2025/04/23 00:47:20 by ivanverniho       #+#    #+#             */
+/*   Updated: 2025/05/10 20:01:13 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WORLD_CREATION_H
-# define WORLD_CREATION_H
-# include "../cube3d.h"
+#ifndef PARSING_H
+# define PARSING_H
 
-typedef struct s_mlx	t_mlx;
+void	print_map(char **map);
+int		count_map_lines(char *map);
+int		validate_map(t_mlx *data, char *map);
+void	free_map(char **map);
+void	free_map_exit(t_mlx **data, char *msg);
+void	exit_error(char *message);
 
-int						world_create(t_mlx *mlx);
-int						draw_minimap(t_mlx *mlx);
 #endif

@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:01:39 by inikulin          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/05/11 14:22:16 by inikulin         ###   ########.fr       */
+=======
+/*   Updated: 2025/05/10 14:13:30 by iverniho         ###   ########.fr       */
+>>>>>>> 13_textures
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +20,10 @@ int	main(int argc, char **argv)
 {
 	t_mlx	mlx;
 
-	(void)argv;
 	if (argc != 2)
 		return (finalize(NULL, USAGE, 1));
+	if (!validate_map(&mlx, argv[1]))
+		return (1);
 	if (pre(&mlx))
 		return (2);
 	world_create(&mlx);

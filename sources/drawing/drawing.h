@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 18:10:20 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/15 09:49:58 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/19 06:17:09 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,25 @@
 # define DRAWING_H
 
 # include "../cube3d.h"
+# include "../includes.h"
 
 typedef struct s_mlx	t_mlx;
 typedef struct s_color	t_color;
 
 typedef struct s_triangle_vertices
 {
-	t_point	*a;
-	t_point	*b;
-	t_point	*c;
-}	t_triangle_vertices;
+	t_point				*a;
+	t_point				*b;
+	t_point				*c;
+}						t_triangle_vertices;
 
 typedef struct s_quadrangle_vertices
 {
-	t_point	*a;
-	t_point	*b;
-	t_point	*c;
-	t_point	*d;
-}	t_quadrangle_vertices;
+	t_point				*a;
+	t_point				*b;
+	t_point				*c;
+	t_point				*d;
+}						t_quadrangle_vertices;
 
 # define MODE_SIDES 1
 # define MODE_FILL 2
@@ -43,7 +44,7 @@ typedef struct s_triangle_arg
 	t_triangle_vertices	sorted_vertices;
 	t_color				*color;
 	int					mode;
-}	t_triangle_arg;
+}						t_triangle_arg;
 
 void					line(t_mlx *s, t_point *f, t_point *t, t_color *clr);
 void					circle(t_mlx *mlx, t_point *center, int radius,

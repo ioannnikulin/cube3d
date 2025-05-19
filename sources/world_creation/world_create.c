@@ -6,7 +6,11 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:31:12 by inikulin          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/05/15 10:30:43 by inikulin         ###   ########.fr       */
+=======
+/*   Updated: 2025/05/19 06:12:04 by inikulin         ###   ########.fr       */
+>>>>>>> 13_textures
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +25,7 @@ static int	map_stub(t_mlx *mlx)
 	mlx->map.map = ft_calloc_if(sizeof(char *) * mlx->map.map_height, 1);
 	if (!mlx->map.map)
 		return (finalize(mlx, ERR_MALLOC, 1));
-	while (++ i < mlx->map.map_height)
+	while (++i < mlx->map.map_height)
 	{
 		mlx->map.map[i] = ft_calloc_if(sizeof(char) * mlx->map.map_width, 1);
 		if (!mlx->map.map[i])

@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 19:23:13 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/15 11:31:04 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/19 06:17:33 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	loop_steep(t_line_arg *arg)
 		clr = prealpha(arg->clr, fpart(arg->intery));
 		pixel(arg->mlx, flr(arg->intery) + 1, x, &clr);
 		arg->intery += arg->gradient;
-		x ++;
+		x++;
 	}
 }
 
@@ -64,7 +64,7 @@ static void	loop_nonsteep(t_line_arg *arg)
 		clr = prealpha(arg->clr, fpart(arg->intery));
 		pixel(arg->mlx, x, flr(arg->intery) + 1, &clr);
 		arg->intery += arg->gradient;
-		x ++;
+		x++;
 	}
 }
 

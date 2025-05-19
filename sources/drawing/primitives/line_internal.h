@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:31:07 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/15 11:31:58 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/19 06:17:53 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ void	endpoint1(t_line_arg *arg, double x, double y);
 
 typedef struct s_endpoint_args
 {
-	double		xend;
-	double		yend;
-	double		xgap;
-	t_color		clr;
-}	t_endpoint_args;
+	double	xend;
+	double	yend;
+	double	xgap;
+	t_color	clr;
+}			t_endpoint_args;
 
 #endif

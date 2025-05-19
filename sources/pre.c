@@ -6,7 +6,11 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:13:28 by inikulin          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/05/11 16:17:56 by inikulin         ###   ########.fr       */
+=======
+/*   Updated: 2025/05/19 06:13:08 by inikulin         ###   ########.fr       */
+>>>>>>> 13_textures
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +29,7 @@ static void	endian_offsets(t_mlx *mlx)
 	}
 }
 
-static t_color	clr(char r, char g, char b, double a)
+static t_color	clr(unsigned char r, unsigned char g, unsigned char b, double a)
 {
 	t_color	color;
 
