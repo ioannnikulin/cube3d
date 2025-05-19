@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 18:57:06 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/26 19:27:53 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/10 13:06:30 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ typedef struct s_testcase_rot
 	t_vector	exp;
 }	t_testcase_rot;
 
-#define START 3
+#define START 0
 #define SZ 5
-#define DEBUG
+//#define DEBUG
 #define EPSILON 1e-6
 
 static void rotations_test(void)

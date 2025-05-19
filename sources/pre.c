@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pre.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:13:28 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/10 18:04:07 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/19 06:13:08 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static void	palette_init(t_palette *palette)
 	palette->black = clr(0, 0, 0, 0);
 	palette->white = clr(255, 255, 255, 0);
 	palette->red = clr(255, 0, 0, 0);
+	palette->dark_red = clr(139, 0, 0, 0);
 	palette->green = clr(0, 255, 0, 0);
 	palette->blue = clr(0, 0, 255, 0);
 	palette->yellow = clr(255, 255, 0, 0);

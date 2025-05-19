@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:36:30 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/09 19:17:48 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/10 19:37:10 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	handle_keyboard(int keycode, void *param)
 	render_frame(mlx);
 	if (mlx->dbg & DBG_PLAYER_MOVE)
 		printf("player at %f %f, facing %f %f, \
-			free space ahead: %f, behind: %f\n",
+free space ahead: %f, behind: %f\n",
 			mlx->player.coords.from.x, mlx->player.coords.from.y,
 			mlx->player.coords.to.x, mlx->player.coords.to.y,
 			mlx->player.to_wall_ahead, mlx->player.to_wall_behind);
