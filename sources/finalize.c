@@ -6,11 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:38:28 by inikulin          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/05/11 14:37:24 by inikulin         ###   ########.fr       */
-=======
-/*   Updated: 2025/05/10 20:01:17 by inikulin         ###   ########.fr       */
->>>>>>> 13_textures
+/*   Updated: 2025/05/19 06:22:19 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +29,20 @@ int	finalize(t_mlx *mlx, char *msg, int ret)
 	return (ret);
 }
 
-<<<<<<< HEAD
 int	close_it(void *param)
 {
 	return (finalize((t_mlx *)param, MSG_EXIT, 0));
-=======
+}
+
 void	free_map(char **map)
 {
 	int	i;
 
-	i = -1;
 	if (map)
 	{
+		i = -1;
 		while (map[++i])
 			free(map[i]);
 		free(map);
 	}
->>>>>>> 13_textures
 }
