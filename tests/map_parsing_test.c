@@ -68,11 +68,11 @@ int run_validate_map_test(const t_unit_test_case *test_case) {
 
 int map_test(void) {
     t_unit_test_case test_cases[] = {
-        {"tests/maps/maps_short/good/valid_map.cub", "Valid Map", 1},
-        {"tests/maps/maps_short/bad/no_player.cub", "Bad Map - 0 Player", 0},
-        {"tests/maps/maps_short/bad/not_enclosed.cub", "Bad Map - Not Enclosed", 0},
-        {"tests/maps/maps_short/bad/2players.cub", "Bad Map - 2 Players", 0},
-		{"tests/maps/maps_short/bad/wrong_char.cub", "Bad Map - Wrong character in a map", 0}
+        {"tests/maps/good/color_duplicate.cub", "Valid Map", 1},
+        {"tests/maps/good/open_map.cub", "Valid Map", 1},
+        {"tests/maps/bad/bad_map_symbol_0.cub", "Bad Map - Not Enclosed", 0},
+        {"tests/maps/bad/bad_map_symbol_2.cub", "Bad Map - 2 Players", 0},
+		{"tests/maps/bad/bad_map_symbol_3.cub", "Bad Map - Wrong character in a map", 0}
     };
     int num_test_cases = sizeof(test_cases) / sizeof(test_cases[0]);
     int all_tests_passed = 1;
