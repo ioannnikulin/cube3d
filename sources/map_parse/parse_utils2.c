@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 15:24:56 by iverniho          #+#    #+#             */
-/*   Updated: 2025/05/10 18:20:57 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/23 19:07:48 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,19 @@ int	check_extension(char *map)
 
 	i = -1;
 	if (ft_strchr(map, '.') == 0)
-		return (0);
+		return (printf(ERR_MAP_EXT), 0);
 	while (map[++i])
 	{
 		if (map[i] == '.')
 		{
 			if (!(map[i + 1] == 'c' && map[i + 2] == 'u' && map[i + 3] == 'b'
 					&& !(map[i + 4])))
-				return (0);
+				return (printf(ERR_MAP_EXT), 0);
 			else
 				return (1);
 		}
 	}
-	return (0);
+	return (printf(ERR_MAP_EXT), 0);
 }
 
 int	is_map_row_valid(char *row)

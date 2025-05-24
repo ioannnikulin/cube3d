@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   resources.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 16:27:25 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/08 16:45:50 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/23 19:10:59 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ depicting player's spawn position and face direction]\n"
 # define ERR_MAP_ENCLOSED "Error\nMap is not enclosed by walls\n"
 # define ERR_MAP_EMPTY_ROW "Error\nEmpty row in a map\n"
 # define ERR_PLAYERS_NUMBER "Error\nInvalid number of players\n"
-# define ERR_INVALID_CHAR "Error\nInvalid character:"
+# define ERR_INVALID_CHAR "Error\nInvalid character in map\n"
 # define WINDOW_TITLE "Cube3D"
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:06:42 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/13 19:21:01 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/23 12:51:33 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ typedef struct s_player
 # define STEP_LENGTH 5
 # define ROT_ANGLE_PI_DIVISOR 36
 # define RAYS_COUNT 30
-# define BLOCK_SIZE 64
+# define BLOCK_SIZE 32
 # define EPSILON 1e-6
 # define DEGREE 0.0174532925199432957692369076848861
 # define VIEWFIELD 60

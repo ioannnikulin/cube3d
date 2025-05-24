@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:44:18 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/10 17:37:04 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/23 18:29:33 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	count_map_lines(char *map)
 	return (lines);
 }
 
-int	is_valid_char(char c, int *player_already_parsed)
+int	is_valid_char(t_mlx *data, char c, int *player_already_parsed)
 {
 	if (ft_strchr("01NSEW \n", c))
 	{
@@ -64,10 +64,12 @@ int	is_valid_char(char c, int *player_already_parsed)
 		else if (ft_strchr("NSEW", c) && c != 0)
 		{
 			if (*player_already_parsed == 1)
-				return (printf(ERR_PLAYERS_NUMBER), 0);
+				finalize(data, ERR_PLAYERS_NUMBER, 0);
+				// return (printf(ERR_PLAYERS_NUMBER), 0);
 		}
 		return (1);
 	}
-	printf("%s %c \n", ERR_INVALID_CHAR, c);
+	// printf("%s %d \n", ERR_INVALID_CHAR, c);
+	finalize(data, ERR_INVALID_CHAR, 0);
 	return (0);
 }
