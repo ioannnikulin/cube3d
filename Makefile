@@ -9,7 +9,7 @@ MLX_LINK_FLAGS =
 
 MLX_SOURCE_ADDRESS =
 MLX_ARCHIVE = minilibx.tgz
-PREFIX =
+PREFIX = @
 PREPROC_DEFINES =
 
 UNAME := $(shell uname)
@@ -52,14 +52,16 @@ PRIMITIVES_NAMES = \
 	ray.c \
 	quadrangle.c \
 	triangle.c \
-	triangle_factories.c
+	triangle_factories.c \
+	get_color.c
 PRIMITIVES_F = ${DRAWING_F}/primitives
 PRIMITIVES_SRCS = $(addprefix $(PRIMITIVES_F)/,$(PRIMITIVES_NAMES))
 
 RAYCAST_NAMES = \
 	rays.c \
 	hor_isect.c \
-	ver_isect.c
+	ver_isect.c \
+	draw_ver_stripe.c
 RAYCAST_F = ${DRAWING_F}/rays
 RAYCAST_SRCS = $(addprefix $(RAYCAST_F)/,$(RAYCAST_NAMES))
 
@@ -182,7 +184,7 @@ retest: testfclean test
 memcheck:
 	$(PREFIX)valgrind --suppressions=tests/valgrind.supp --leak-check=full --show-leak-kinds=all $(TEST_FNAME)
 
-ALLOWED_EXTERNAL_FUNCTIONS = mlx_ free printf __stack_chk_fail exit _GLOBAL_OFFSET_TABLE_ open close gettimeofday sqrt
+ALLOWED_EXTERNAL_FUNCTIONS = mlx_ free printf __stack_chk_fail exit _GLOBAL_OFFSET_TABLE_ open close gettimeofday sqrt cos
 
 ALLOW_EXTERNAL_GREP = $(foreach pattern,$(ALLOWED_EXTERNAL_FUNCTIONS),| grep -v "$(pattern)")
 
@@ -199,7 +201,7 @@ external_calls:
 	$(PREFIX)rm -f functions.txt all_calls.txt forbidden_calls.txt
 
 fulltest_common:
-	cd libft && make fulltest_trapped
+	$(PREFIX)cd libft && make fulltest_trapped
 	$(PREFIX)make fclean testfclean
 	$(PREFIX)cd sources && norminette | tee norminette_log.txt && grep -q "^Error:" norminette_log.txt || true
 	$(PREFIX)if grep -q "^Error:" sources/norminette_log.txt; then \

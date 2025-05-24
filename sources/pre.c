@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:13:28 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/13 19:22:14 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/24 16:19:39 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,15 @@ static t_color	clr(unsigned char r, unsigned char g, unsigned char b, double a)
 
 static void	palette_init(t_palette *palette)
 {
-	palette->black = clr(0, 0, 0, 0);
-	palette->white = clr(255, 255, 255, 0);
-	palette->red = clr(255, 0, 0, 0);
-	palette->green = clr(0, 255, 0, 0);
-	palette->blue = clr(0, 0, 255, 0);
-	palette->yellow = clr(255, 255, 0, 0);
-	palette->cyan = clr(0, 255, 255, 0);
-	palette->magenta = clr(255, 0, 255, 0);
+	palette->black = clr(0, 0, 0, 1);
+	palette->white = clr(255, 255, 255, 1);
+	palette->red = clr(255, 0, 0, 1);
+	palette->dark_red = clr(139, 0, 0, 1);
+	palette->green = clr(0, 255, 0, 1);
+	palette->blue = clr(0, 0, 255, 1);
+	palette->yellow = clr(255, 255, 0, 1);
+	palette->cyan = clr(0, 255, 255, 1);
+	palette->magenta = clr(255, 0, 255, 1);
 }
 
 int	pre(t_mlx *mlx)

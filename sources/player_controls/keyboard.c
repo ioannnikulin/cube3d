@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:36:30 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/09 19:17:48 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/11 15:53:06 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,9 @@ static t_action	parse_key(int keycode)
 		return (TURN_CCW);
 	if (keycode == 100 || keycode == 2)
 		return (TURN_CW);
+	if (keycode == 109)
+		return (MINIMAP);
 	return (NO);
-}
-
-int	close_it(void *param)
-{
-	return (finalize((t_mlx *)param, MSG_EXIT, 0));
 }
 
 static double	step(t_mlx *mlx, double suggest)
@@ -43,31 +40,66 @@ static double	step(t_mlx *mlx, double suggest)
 	return (suggest);
 }
 
-int	handle_keyboard(int keycode, void *param)
+static int	handle_keyboard_event(t_mlx *mlx)
 {
-	t_action	action;
-	t_mlx		*mlx;
-
-	action = parse_key(keycode);
-	if (action == NO)
-		return (0);
-	if (action == EXIT)
-		close_it(param);
-	mlx = param;
-	if (action == FWD)
+	if (mlx->player.gamepad.fwd_pressed)
 		ft_vector_move_here(&mlx->player.coords, step(mlx, STEP_LENGTH));
-	if (action == BACK)
+	if (mlx->player.gamepad.back_pressed)
 		ft_vector_move_here(&mlx->player.coords, step(mlx, -STEP_LENGTH));
-	if (action == TURN_CW)
+	if (mlx->player.gamepad.turn_cw_pressed)
 		ft_vector_rot_here(&mlx->player.coords, rot_angle());
-	if (action == TURN_CCW)
+	if (mlx->player.gamepad.turn_ccw_pressed)
 		ft_vector_rot_here(&mlx->player.coords, -rot_angle());
 	render_frame(mlx);
 	if (mlx->dbg & DBG_PLAYER_MOVE)
 		printf("player at %f %f, facing %f %f, \
-			free space ahead: %f, behind: %f\n",
+free space ahead: %f, behind: %f\n",
 			mlx->player.coords.from.x, mlx->player.coords.from.y,
 			mlx->player.coords.to.x, mlx->player.coords.to.y,
 			mlx->player.to_wall_ahead, mlx->player.to_wall_behind);
+	return (0);
+}
+
+int	key_pressed(int keycode, void *param)
+{
+	t_mlx		*mlx;
+	t_action	action;
+
+	mlx = param;
+	action = parse_key(keycode);
+	if (action == FWD)
+		mlx->player.gamepad.fwd_pressed = 1;
+	if (action == BACK)
+		mlx->player.gamepad.back_pressed = 1;
+	if (action == TURN_CCW)
+		mlx->player.gamepad.turn_ccw_pressed = 1;
+	if (action == TURN_CW)
+		mlx->player.gamepad.turn_cw_pressed = 1;
+	handle_keyboard_event(mlx);
+	return (0);
+}
+
+int	key_released(int keycode, void *param)
+{
+	t_mlx		*mlx;
+	t_action	action;
+
+	mlx = param;
+	action = parse_key(keycode);
+	if (action == EXIT)
+		return (finalize(param, MSG_EXIT, 0));
+	if (action == FWD)
+		mlx->player.gamepad.fwd_pressed = 0;
+	if (action == BACK)
+		mlx->player.gamepad.back_pressed = 0;
+	if (action == TURN_CCW)
+		mlx->player.gamepad.turn_ccw_pressed = 0;
+	if (action == TURN_CW)
+		mlx->player.gamepad.turn_cw_pressed = 0;
+	if (action == MINIMAP)
+	{
+		mlx->map.minimap_show = !mlx->map.minimap_show;
+		render_frame(mlx);
+	}
 	return (0);
 }

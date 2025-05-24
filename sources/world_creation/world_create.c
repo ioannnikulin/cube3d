@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:31:12 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/23 12:40:51 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/24 16:21:03 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,14 @@ static int	draw_block(t_mlx *mlx, int x, int y, t_color *clr)
 	t_point	d;
 
 	a = ft_point_make(x + 1, y + 1);
-	b = ft_point_make(x + 1, y + BLOCK_SIZE - 1);
-	c = ft_point_make(x + BLOCK_SIZE - 1, y + BLOCK_SIZE - 1);
-	d = ft_point_make(x + BLOCK_SIZE - 1, y + 1);
-	quadrangle(mlx, quadrangle_vertices(&a, &b, &c, &d), clr, true);
+	b = ft_point_make(x + 1, y + MINIMAP_BLOCK_SIZE - 1);
+	c = ft_point_make(x + MINIMAP_BLOCK_SIZE - 1, y + MINIMAP_BLOCK_SIZE - 1);
+	d = ft_point_make(x + MINIMAP_BLOCK_SIZE - 1, y + 1);
+	quadrangle(mlx, quadrangle_vertices(&a, &b, &c, &d), clr, MODE_FILL);
 	return (0);
 }
 
-int	draw_map(t_mlx *mlx)
+int	draw_minimap(t_mlx *mlx)
 {
 	int		r;
 	int		c;
@@ -70,33 +70,54 @@ int	draw_map(t_mlx *mlx)
 	printf("draw_map\n");
 
 	r = -1;
+	clr = mlx->assets.palette.white;
+	clr.alpha = 0.5;
 	while (++r < mlx->map.map_height)
 	{
-		ft_assign_i(&c, -1, ft_assign_d(&cy, r * BLOCK_SIZE, 0));
+		ft_assign_i(&c, -1, ft_assign_d(&cy, r * MINIMAP_BLOCK_SIZE, 0));
 		while (++c < mlx->map.map_width)
 		{
-			cx = c * BLOCK_SIZE;
-			// clr = mlx->assets.palette.black;
-			clr = mlx->map.floor.color;
-			printf("floor: %d,%d,%d\n", clr.r, clr.g, clr.b);
+			cx = c * MINIMAP_BLOCK_SIZE;
 			if (mlx->map.map[r][c] == '1')
-				// clr = mlx->assets.palette.white;
-				clr = mlx->map.ceiling.color;
-			draw_block(mlx, cx, cy, &clr);
+				draw_block(mlx, cx, cy, &clr);
 		}
 	}
 	return (0);
 }
 
+static void	textures_stub(t_mlx *mlx)
+{
+	mlx->assets.wall_north.width = 300;
+	mlx->assets.wall_north.height = 300;
+	mlx->assets.wall_north.img = mlx_xpm_file_to_image(mlx->mlx,
+			"tests/textures/1.xpm", &mlx->assets.wall_north.width,
+			&mlx->assets.wall_north.height);
+	mlx->assets.wall_south.width = 300;
+	mlx->assets.wall_south.height = 300;
+	mlx->assets.wall_south.img = mlx_xpm_file_to_image(mlx->mlx,
+			"tests/textures/2.xpm", &mlx->assets.wall_south.width,
+			&mlx->assets.wall_south.height);
+	mlx->assets.wall_west.width = 300;
+	mlx->assets.wall_west.height = 300;
+	mlx->assets.wall_west.img = mlx_xpm_file_to_image(mlx->mlx,
+			"tests/textures/3.xpm", &mlx->assets.wall_west.width,
+			&mlx->assets.wall_west.height);
+	mlx->assets.wall_east.width = 300;
+	mlx->assets.wall_east.height = 300;
+	mlx->assets.wall_east.img = mlx_xpm_file_to_image(mlx->mlx,
+			"tests/textures/4.xpm", &mlx->assets.wall_east.width,
+			&mlx->assets.wall_east.height);
+}
+
 int	world_create(t_mlx *mlx)
 {
-	// map_stub(mlx);
-	
-	printf("player.coords.from: %f,%f\n", mlx->player.coords.from.x, mlx->player.coords.from.y);
-	printf("player.coords.to: %f,%f\n", mlx->player.coords.to.x, mlx->player.coords.to.y);
-	// mlx->player.coords.from = ft_point_make(123, 100);
-	// mlx->player.coords.to = ft_point_make(143, 100);
-	// mlx->player.coords.from = ft_point_make(mlx->player.coords.from.x, mlx->player.coords.from.y);
-	// mlx->player.coords.to = ft_point_make(mlx->player.coords.from.x + 20, mlx->player.coords.from.y + 20);
+	map_stub(mlx);
+	mlx->map.ceiling.color = mlx->assets.palette.cyan;
+	mlx->map.floor.color = mlx->assets.palette.yellow;
+	textures_stub(mlx);
+	mlx->player.coords.from = ft_point_make(1.5 * MINIMAP_BLOCK_SIZE,
+			3 * MINIMAP_BLOCK_SIZE);
+	mlx->player.coords.to = ft_point_make(1.5 * MINIMAP_BLOCK_SIZE,
+			4 * MINIMAP_BLOCK_SIZE);
 	return (0);
 }

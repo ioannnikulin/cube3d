@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   finalize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:38:28 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/10 15:37:23 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/19 06:22:19 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,18 @@ int	finalize(t_mlx *mlx, char *msg, int ret)
 	return (ret);
 }
 
+int	close_it(void *param)
+{
+	return (finalize((t_mlx *)param, MSG_EXIT, 0));
+}
+
 void	free_map(char **map)
 {
 	int	i;
 
-	i = -1;
 	if (map)
 	{
+		i = -1;
 		while (map[++i])
 			free(map[i]);
 		free(map);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quadrangle.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 22:12:04 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/30 18:36:12 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/19 06:18:15 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,20 @@ t_quadrangle_vertices	quadrangle_vertices(t_point *a, t_point *b, t_point *c,
 }
 
 void	quadrangle(t_mlx *mlx, t_quadrangle_vertices vertices, t_color *clr,
-		bool fill)
+		int mode)
 {
-	triangle(triangle_arg(mlx, triangle_vertices(vertices.a, vertices.b,
-				vertices.c), clr, fill));
-	triangle(triangle_arg(mlx, triangle_vertices(vertices.a, vertices.c,
-				vertices.d), clr, fill));
+	if (mode & MODE_FILL)
+	{
+		triangle(triangle_arg(mlx, triangle_vertices(vertices.a, vertices.b,
+					vertices.c), clr, mode & MODE_FILL));
+		triangle(triangle_arg(mlx, triangle_vertices(vertices.a, vertices.c,
+					vertices.d), clr, mode & MODE_FILL));
+	}
+	if (mode & MODE_SIDES)
+	{
+		line(mlx, vertices.a, vertices.b, clr);
+		line(mlx, vertices.b, vertices.c, clr);
+		line(mlx, vertices.c, vertices.d, clr);
+		line(mlx, vertices.d, vertices.a, clr);
+	}
 }

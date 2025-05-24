@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:55:59 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/01 20:22:22 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/15 11:28:24 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,34 @@ int	cast_rays(t_mlx *mlx)
 	ft_vector_rot_z_here(&arg.ray, M_PI);
 	calc_ray(&arg);
 	mlx->player.to_wall_behind = ft_point_dist(&arg.ray.from, &arg.tgt_isect);
-	arg.angle_delta = VIEWFIELD / RAYS_COUNT * DEGREE;
+	arg.angle_delta = ((double)VIEWFIELD) / RAYS_COUNT * DEGREE;
 	ft_vector_rot_z_here(&arg.ray, M_PI + arg.angle);
 	while (++ i < RAYS_COUNT)
 	{
 		calc_ray(&arg);
-		line(arg.mlx, &arg.ray.from, &arg.tgt_isect,
-			&arg.mlx->assets.palette.green);
+		if (mlx->map.minimap_show && i % (RAYS_COUNT / MINIMAP_RAYS_COUNT) == 0)
+			mlx->player.minimap_rays[i / MINIMAP_RAYS_COUNT]
+				= ft_vector_make(arg.ray.from, arg.tgt_isect);
+		draw_ver_stripe(i, &arg);
 	}
 	return (0);
+}
+
+static void	cast_arg(t_mlx *mlx, t_ray_arg *arg)
+{
+	arg->cast.tgt_isect_dist = 0;
+	arg->cast.wall_height = 0;
+	arg->cast.wall_ver_offset = 0;
+	arg->cast.color = mlx->assets.palette.red;
+	arg->cast.wall_from[0] = ft_point_make(0, 0);
+	arg->cast.wall_from[1] = ft_point_make(0, 0);
+	arg->cast.wall_to[0] = ft_point_make(0, 0);
+	arg->cast.wall_to[1] = ft_point_make(0, 0);
+	arg->cast.tex_row_step = 0;
+	arg->cast.tex_row = 0;
+	arg->cast.tex_col = 0;
+	arg->cast.tex_offset = 0;
+	arg->cast.tgt_tex = &mlx->assets.wall_north;
 }
 
 t_ray_arg	ray_arg(t_mlx *mlx)
@@ -65,5 +84,6 @@ t_ray_arg	ray_arg(t_mlx *mlx)
 	arg.angle = -VIEWFIELD / 2 * DEGREE;
 	arg.angle_delta = 0;
 	arg.mlx = mlx;
+	cast_arg(mlx, &arg);
 	return (arg);
 }

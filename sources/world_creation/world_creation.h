@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world_creation.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 19:33:16 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/23 23:29:28 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/19 06:12:11 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,5 @@
 typedef struct s_mlx	t_mlx;
 
 int						world_create(t_mlx *mlx);
-int						draw_map(t_mlx *mlx);
+int						draw_minimap(t_mlx *mlx);
 #endif
