@@ -6,43 +6,43 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:31:12 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/13 19:26:30 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/23 12:40:51 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
 
-static int	map_stub(t_mlx *mlx)
-{
-	int	i;
+// static int	map_stub(t_mlx *mlx)
+// {
+// 	int	i;
 
-	// printf("map_stub\n");
-	// printf("map.height: %d\n", mlx->map.map_height);
-	// printf("map.width: %d\n", mlx->map.map_width);
-	// print_map(mlx->map.map);
-	i = -1;	
-	// ft_assign_i(&mlx->map.map_height, 8, ft_assign_i(&mlx->map.map_width, 8,
-	// 		ft_assign_i(&i, -1, 0)));
-	mlx->map.map = ft_calloc_if(sizeof(char *) * mlx->map.map_height, 1);
-	if (!mlx->map.map)
-		return (finalize(mlx, ERR_MALLOC, 1));
-	while (++i < mlx->map.map_height)
-	{
-		mlx->map.map[i] = ft_calloc_if(sizeof(char) * mlx->map.map_width, 1);
-		if (!mlx->map.map[i])
-			return (finalize(mlx, ERR_MALLOC, 2));
-		ft_memset(mlx->map.map[i], '0', mlx->map.map_width);
-		mlx->map.map[i][0] = '1';
-		mlx->map.map[i][mlx->map.map_width - 1] = '1';
-		if (i == 0 || i == mlx->map.map_height - 1)
-			ft_memset(mlx->map.map[i] + 1, '1', mlx->map.map_width - 2);
-	}
-	mlx->map.map[1][2] = '1';
-	mlx->map.map[2][2] = '1';
-	mlx->map.map[3][2] = '1';
-	mlx->map.map[5][5] = '1';
-	return (0);
-}
+// 	// printf("map_stub\n");
+// 	// printf("map.height: %d\n", mlx->map.map_height);
+// 	// printf("map.width: %d\n", mlx->map.map_width);
+// 	// print_map(mlx->map.map);
+// 	i = -1;	
+// 	// ft_assign_i(&mlx->map.map_height, 8, ft_assign_i(&mlx->map.map_width, 8,
+// 	// 		ft_assign_i(&i, -1, 0)));
+// 	mlx->map.map = ft_calloc_if(sizeof(char *) * mlx->map.map_height, 1);
+// 	if (!mlx->map.map)
+// 		return (finalize(mlx, ERR_MALLOC, 1));
+// 	while (++i < mlx->map.map_height)
+// 	{
+// 		mlx->map.map[i] = ft_calloc_if(sizeof(char) * mlx->map.map_width, 1);
+// 		if (!mlx->map.map[i])
+// 			return (finalize(mlx, ERR_MALLOC, 2));
+// 		ft_memset(mlx->map.map[i], '0', mlx->map.map_width);
+// 		mlx->map.map[i][0] = '1';
+// 		mlx->map.map[i][mlx->map.map_width - 1] = '1';
+// 		if (i == 0 || i == mlx->map.map_height - 1)
+// 			ft_memset(mlx->map.map[i] + 1, '1', mlx->map.map_width - 2);
+// 	}
+// 	mlx->map.map[1][2] = '1';
+// 	mlx->map.map[2][2] = '1';
+// 	mlx->map.map[3][2] = '1';
+// 	mlx->map.map[5][5] = '1';
+// 	return (0);
+// }
 
 static int	draw_block(t_mlx *mlx, int x, int y, t_color *clr)
 {
@@ -90,8 +90,13 @@ int	draw_map(t_mlx *mlx)
 
 int	world_create(t_mlx *mlx)
 {
-	map_stub(mlx);
-	mlx->player.coords.from = ft_point_make(123, 100);
-	mlx->player.coords.to = ft_point_make(143, 100);
+	// map_stub(mlx);
+	
+	printf("player.coords.from: %f,%f\n", mlx->player.coords.from.x, mlx->player.coords.from.y);
+	printf("player.coords.to: %f,%f\n", mlx->player.coords.to.x, mlx->player.coords.to.y);
+	// mlx->player.coords.from = ft_point_make(123, 100);
+	// mlx->player.coords.to = ft_point_make(143, 100);
+	// mlx->player.coords.from = ft_point_make(mlx->player.coords.from.x, mlx->player.coords.from.y);
+	// mlx->player.coords.to = ft_point_make(mlx->player.coords.from.x + 20, mlx->player.coords.from.y + 20);
 	return (0);
 }
