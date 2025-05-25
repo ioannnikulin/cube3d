@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instractions_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:46:37 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/25 18:12:15 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/25 18:19:47 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,38 +51,28 @@ int	is_map_line(char *line)
 	return (1);
 }
 
-int	process_line(t_mlx *data, char *line, int *elements_found,
-		int *map_start_index, int current_line_idx)
-{
-	char	*trimmed;
-
-	trimmed = ft_strtrim(line, " \t\n\v\f\r");
-	if (!trimmed || trimmed[0] == '\0')
-		return (free(trimmed), 0);
-	if (parse_texture_line(data, trimmed))
-		(*elements_found)++;
-	else if (parse_color_line(data, trimmed))
-		(*elements_found)++;
-	else if (is_map_line(trimmed))
-		*map_start_index = current_line_idx;
-	else
-		return (free(trimmed), -1);
-	free(trimmed);
-	return (0);
-}
-
 void	find_elements_and_map_start(t_mlx *data, char **instructions,
 		int *elements_found_out, int *map_start_idx_out)
 {
-	int	i;
+	int		i;
+	char	*trimmed;
 
 	i = 0;
 	*elements_found_out = 0;
 	*map_start_idx_out = -1;
 	while (instructions[i] != NULL && *map_start_idx_out == -1)
 	{
-		process_line(data, instructions[i], elements_found_out, \
-			map_start_idx_out, i);
+		trimmed = ft_strtrim(instructions[i], " \t\n\v\f\r");
+		if (trimmed && trimmed[0] != '\0')
+		{
+			if (parse_texture_line(data, trimmed))
+				(*elements_found_out)++;
+			else if (parse_color_line(data, trimmed))
+				(*elements_found_out)++;
+			else if (is_map_line(trimmed))
+				*map_start_idx_out = i;
+		}
+		free(trimmed);
 		i++;
 	}
 }
