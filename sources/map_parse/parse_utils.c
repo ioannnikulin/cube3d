@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:44:18 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/23 18:29:33 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/25 17:09:18 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,9 @@ int	is_valid_char(t_mlx *data, char c, int *player_already_parsed)
 		{
 			if (*player_already_parsed == 1)
 				finalize(data, ERR_PLAYERS_NUMBER, 0);
-				// return (printf(ERR_PLAYERS_NUMBER), 0);
 		}
 		return (1);
 	}
-	// printf("%s %d \n", ERR_INVALID_CHAR, c);
 	finalize(data, ERR_INVALID_CHAR, 0);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:06:42 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/24 16:19:21 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/25 16:43:43 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@
 # define MIN_DISTANCE_TO_WALL 5
 # define MAX_WALL_HEIGHT 500
 # define BIGMAP_COL_WIDTH 8
+# define MAP_TEXTURE_HEIGHT 300
+# define MAP_TEXTURE_WIDTH 300
 
 typedef struct s_color
 {

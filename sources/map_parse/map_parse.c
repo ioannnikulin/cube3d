@@ -3,18 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   map_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 22:25:54 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/25 16:36:33 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/25 17:09:10 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
 #include "inner.h"
-
-
-
 
 void	print_allElements(t_mlx *data)
 {
@@ -34,10 +31,7 @@ void	print_allElements(t_mlx *data)
 int	validate_map(t_mlx *data, char *map_file)
 {
 	if (!check_extension(map_file))
-	{
 		finalize(data, ERR_MAP_EXT, 1);
-		return (0);
-	}
 	parse_instructions(data, map_file);
 	printf("\nMap '%s' is valid and loaded.\n", map_file);
 	return (1);
