@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:31:12 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/24 16:21:03 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/25 15:05:09 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,33 +87,33 @@ int	draw_minimap(t_mlx *mlx)
 
 static void	textures_stub(t_mlx *mlx)
 {
-	mlx->assets.wall_north.width = 300;
-	mlx->assets.wall_north.height = 300;
+	// mlx->assets.wall_north.width = 300;
+	// mlx->assets.wall_north.height = 300;
 	mlx->assets.wall_north.img = mlx_xpm_file_to_image(mlx->mlx,
-			"tests/textures/1.xpm", &mlx->assets.wall_north.width,
+			mlx->assets.wall_north.path, &mlx->assets.wall_north.width,
 			&mlx->assets.wall_north.height);
-	mlx->assets.wall_south.width = 300;
-	mlx->assets.wall_south.height = 300;
+	// mlx->assets.wall_south.width = 300;
+	// mlx->assets.wall_south.height = 300;
 	mlx->assets.wall_south.img = mlx_xpm_file_to_image(mlx->mlx,
-			"tests/textures/2.xpm", &mlx->assets.wall_south.width,
+			mlx->assets.wall_south.path, &mlx->assets.wall_south.width,
 			&mlx->assets.wall_south.height);
-	mlx->assets.wall_west.width = 300;
-	mlx->assets.wall_west.height = 300;
+	// mlx->assets.wall_west.width = 300;
+	// mlx->assets.wall_west.height = 300;
 	mlx->assets.wall_west.img = mlx_xpm_file_to_image(mlx->mlx,
-			"tests/textures/3.xpm", &mlx->assets.wall_west.width,
+			mlx->assets.wall_west.path, &mlx->assets.wall_west.width,
 			&mlx->assets.wall_west.height);
-	mlx->assets.wall_east.width = 300;
-	mlx->assets.wall_east.height = 300;
+	// mlx->assets.wall_east.width = 300;
+	// mlx->assets.wall_east.height = 300;
 	mlx->assets.wall_east.img = mlx_xpm_file_to_image(mlx->mlx,
-			"tests/textures/4.xpm", &mlx->assets.wall_east.width,
+			mlx->assets.wall_east.path, &mlx->assets.wall_east.width,
 			&mlx->assets.wall_east.height);
 }
 
 int	world_create(t_mlx *mlx)
 {
-	map_stub(mlx);
-	mlx->map.ceiling.color = mlx->assets.palette.cyan;
-	mlx->map.floor.color = mlx->assets.palette.yellow;
+	// map_stub(mlx);
+	// mlx->map.ceiling.color = mlx->assets.palette.cyan;
+	// mlx->map.floor.color = mlx->assets.palette.yellow;
 	textures_stub(mlx);
 	mlx->player.coords.from = ft_point_make(1.5 * MINIMAP_BLOCK_SIZE,
 			3 * MINIMAP_BLOCK_SIZE);

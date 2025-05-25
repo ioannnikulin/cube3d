@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 16:03:11 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/23 17:47:25 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/25 15:04:35 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,30 @@ int	set_texture_target(t_mlx *data, char *id, void ***target_path_ptr, char *pat
 	if (ft_strcmp(id, "NO") == 0)
 	{
 		*target_path_ptr = &data->assets.wall_north.img;
-		data->assets.wall_north.path = path;
+		data->assets.wall_north.path = ft_strdup(path);
+		data->assets.wall_north.width = 300;
+		data->assets.wall_north.height = 300;
 	}
 	else if (ft_strcmp(id, "SO") == 0)
 	{
 		*target_path_ptr = &data->assets.wall_south.img;
-		data->assets.wall_south.path = path;
+		data->assets.wall_south.path = ft_strdup(path);
+		data->assets.wall_south.width = 300;
+		data->assets.wall_south.height = 300;
 	}
 	else if (ft_strcmp(id, "WE") == 0)
 	{
 		*target_path_ptr = &data->assets.wall_west.img;
-		data->assets.wall_west.path = path;
+		data->assets.wall_west.path = ft_strdup(path);
+		data->assets.wall_west.width = 300;
+		data->assets.wall_west.height = 300;
 	}
 	else if (ft_strcmp(id, "EA") == 0)
 	{
 		*target_path_ptr = &data->assets.wall_east.img;
-		data->assets.wall_east.path = path;
+		data->assets.wall_east.path = ft_strdup(path);
+		data->assets.wall_east.width = 300;
+		data->assets.wall_east.height = 300;
 	}
 	else
 		return (-1);
