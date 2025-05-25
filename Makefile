@@ -34,7 +34,7 @@ TEST_F = tests
 
 MAP_PARSING_NAMES = map_parse.c check_walls.c parse_utils.c parse_utils2.c \
 	texture_parse.c color_parse.c instructions_parse.c instractions_utils.c \
-	free_utils.c texture_utils.c
+	free_utils.c texture_utils.c instructions_utils2.c texture_utils2.c
 MAP_PARSING_F = map_parse
 MAP_PARSING_SRCS = $(addprefix $(MAP_PARSING_F)/,$(MAP_PARSING_NAMES))
 

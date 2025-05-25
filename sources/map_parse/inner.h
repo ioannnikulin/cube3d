@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 18:19:21 by iverniho          #+#    #+#             */
-/*   Updated: 2025/05/25 17:29:32 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/25 17:48:47 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ void	handle_configure_error(char **parts, char *trimmed_line, \
 									const char *error_message);
 void	initialize_texture_asset(t_img *asset, char *path_str, \
 									void ***img_ptr_target);
+int		validate_map_input(t_mlx *mlx, char **map);
+int		validate_row_properties(t_mlx *mlx, char *row, int row_index);
+int		check_elements(t_mlx *mlx, char **map);
+int		open_map_file_and_get_fd(char *file, int *total_lines_out);
+char	**allocate_instructions_array(int total_lines);
+void	convert_texture_to_image(t_mlx *mlx);
+
 // free functions
 void	free_passed_array(int **passed, int height);
 void	free_color_parts(char **parts);

@@ -6,51 +6,23 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 17:56:14 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/25 17:26:04 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/25 17:45:45 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inner.h"
 
-static int	check_elements(t_mlx *mlx, char **map)
+static int	read_lines_into_array(int fd, char **instructions_arr, int total_lines)
 {
-	int	i;
-	int	j;
-	int	player_already_parsed;
+	int	lines_read;
 
-	i = -1;
-	player_already_parsed = 0;
-	if (!map || mlx->map.map_height <= 0)
-	{
-		printf("Error\nInvalid map dimensions or map pointer in check_elements\n");
-		return (0);
-	}
-	while (++i < mlx->map.map_height)
-	{
-		j = -1;
-		if (!map[i])
-		{
-			printf("Error\nNULL row found in map at index %d\n", i);
-			return (0);
-		}
-		if (map[i][0] == '\n')
-			return (finalize(mlx, ERR_MAP_EMPTY_ROW, 0), 0);
-		if (mlx->map.map_width <= 0)
-		{
-			printf("Error\nInvalid map width in check_elements\n");
-			return (0);
-		}
-		while (++j < mlx->map.map_width && map[i][j] != '\0')
-		{
-			if (map[i][j] == '\0')
-				break ;
-			if (!is_valid_char(mlx, map[i][j], &player_already_parsed))
-				return (0);
-		}
-	}
-	if (player_already_parsed == 0)
-		return (finalize(mlx, "Error: No player found", 0));
-	return (1);
+	lines_read = 0;
+	while (lines_read < total_lines
+		&& (instructions_arr[lines_read] = get_next_line(fd)) != NULL)
+		lines_read++;
+	instructions_arr[lines_read] = NULL;
+	close(fd);
+	return (lines_read);
 }
 
 static char	**read_instructions_and_count_lines(char *file, int *total_lines_out)
@@ -60,24 +32,10 @@ static char	**read_instructions_and_count_lines(char *file, int *total_lines_out
 	char	**instructions_arr;
 	int		loc_total_lines;
 
-	loc_total_lines = count_map_lines(file);
-	if (loc_total_lines <= 6)
-		exit_error("Error: Map file too short or missing elements/map");
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-		exit_error("Error: Cannot open map file");
-	instructions_arr = ft_calloc_if(sizeof(char *) * (size_t)(loc_total_lines + 1), 1);
-	if (!instructions_arr)
-	{
-		close(fd);
-		exit_error("Error: Cannot allocate memory for instructions buffer");
-	}
-	lines_read = 0;
-	while (lines_read < loc_total_lines
-		&& (instructions_arr[lines_read] = get_next_line(fd)) != NULL)
-		lines_read++;
-	instructions_arr[lines_read] = NULL;
-	close(fd);
+	fd = open_map_file_and_get_fd(file, &loc_total_lines);
+	instructions_arr = allocate_instructions_array(loc_total_lines);
+	lines_read = read_lines_into_array(fd, instructions_arr, loc_total_lines);
+
 	if (lines_read != loc_total_lines)
 	{
 		free_instructions(instructions_arr, lines_read);

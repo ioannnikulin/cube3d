@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 16:03:11 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/25 17:28:08 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/25 17:49:01 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,22 +87,6 @@ static void	verify_texture_file_accessibility(void **img_field_ptr, \
 		exit_error("Invalid texture file path or permissions.");
 	}
 	close(fd_texture);
-}
-
-static void	convert_texture_to_image(t_mlx *mlx)
-{
-	mlx->assets.wall_north.img = mlx_xpm_file_to_image(mlx->mlx,
-			mlx->assets.wall_north.path, &mlx->assets.wall_north.width,
-			&mlx->assets.wall_north.height);
-	mlx->assets.wall_south.img = mlx_xpm_file_to_image(mlx->mlx,
-			mlx->assets.wall_south.path, &mlx->assets.wall_south.width,
-			&mlx->assets.wall_south.height);
-	mlx->assets.wall_west.img = mlx_xpm_file_to_image(mlx->mlx,
-			mlx->assets.wall_west.path, &mlx->assets.wall_west.width,
-			&mlx->assets.wall_west.height);
-	mlx->assets.wall_east.img = mlx_xpm_file_to_image(mlx->mlx,
-			mlx->assets.wall_east.path, &mlx->assets.wall_east.width,
-			&mlx->assets.wall_east.height);
 }
 
 int	parse_texture_line(t_mlx *data, char *line)

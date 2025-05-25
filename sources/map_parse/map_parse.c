@@ -6,11 +6,10 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 22:25:54 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/25 17:29:27 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/25 17:32:16 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cube3d.h"
 #include "inner.h"
 
 void	print_allElements(t_mlx *data)
