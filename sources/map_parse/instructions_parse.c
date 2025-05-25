@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instructions_parse.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 17:56:14 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/24 16:13:29 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/25 16:17:47 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,11 +153,9 @@ static int	setup_map_data_and_free_instructions(t_mlx *data, char **instructions
 	}
 	copy_map_data(data, instructions, map_start_index, data->map.map_height);
 	free_instructions(instructions, total_lines);
-	
 	data->map.map_width = longest_line(data->map.map);
 	if (data->map.map_width <= 0)
 		finalize(data, "Error: Map has no width or is invalid after copy", 0);
-		// return (-1);
 	return (0);
 }
 
@@ -208,6 +206,6 @@ void	parse_instructions(t_mlx *data, char *file)
 	}
 	if (setup_map_data_and_free_instructions(data, instructions, total_lines,
 									   map_start_index) == -1)
-		return; 
+		return;
 	perform_final_map_validation(data);
 }
