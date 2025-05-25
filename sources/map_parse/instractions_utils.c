@@ -6,19 +6,11 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:46:37 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/24 15:07:02 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/25 17:25:59 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inner.h"
-
-void	free_assets(t_mlx *data)
-{
-	free(data->assets.wall_north.img);
-	free(data->assets.wall_south.img);
-	free(data->assets.wall_west.img);
-	free(data->assets.wall_east.img);
-}
 
 void	init_parse_data(t_mlx *data)
 {
@@ -59,26 +51,6 @@ int	is_map_line(char *line)
 	return (1);
 }
 
-void	free_instructions(char **instructions, int count)
-{
-	int	i;
-
-	i = 0;
-	if (!instructions)
-		return ;
-	while (i < count && instructions[i] != NULL)
-	{
-		free(instructions[i]);
-		i++;
-	}
-	while (instructions[i] != NULL)
-	{
-		free(instructions[i]);
-		i++;
-	}
-	free(instructions);
-}
-
 int	process_line(t_mlx *data, char *line, int *elements_found,
 		int *map_start_index, int current_line_idx)
 {
@@ -97,4 +69,47 @@ int	process_line(t_mlx *data, char *line, int *elements_found,
 		return (free(trimmed), -1);
 	free(trimmed);
 	return (0);
+}
+
+void	find_elements_and_map_start(t_mlx *data, char **instructions,
+		int *elements_found_out, int *map_start_idx_out)
+{
+	int i;
+
+	i = 0;
+	*elements_found_out = 0;
+	*map_start_idx_out = -1;
+	while (instructions[i] != NULL && *map_start_idx_out == -1)
+	{
+        process_line(data, instructions[i], elements_found_out,
+						 map_start_idx_out, i);
+		i++;
+	}
+}
+
+void	copy_map_data(t_mlx *data, char **instructions, int map_start_index,
+		int map_height)
+{
+	int	j;
+	char	*nl;
+
+	j = 0;
+	while (j < map_height)
+	{
+		data->map.map[j] = ft_strdup(instructions[map_start_index + j]);
+		if (!data->map.map[j])
+		{
+			data->map.map_height = j;
+			free_map(data->map.map);
+			data->map.map = NULL;
+			free_instructions(instructions, map_height);
+			free_assets(data);
+			exit_error("Error: Failed to duplicate map line during copy");
+		}
+		nl = ft_strrchr(data->map.map[j], '\n');
+		if (nl)
+			*nl = '\0';
+		j++;
+	}
+	data->map.map[j] = NULL;
 }

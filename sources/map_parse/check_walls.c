@@ -6,17 +6,11 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:36:45 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/24 16:22:19 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/25 17:23:57 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cube3d.h"
-
-static void set_direction(t_mlx *game, int to_x, int to_y)
-{
-	game->player.coords.to.x = to_x;
-	game->player.coords.to.y = to_y;
-}
+#include "inner.h"
 
 static void calculate_player_coords(t_mlx *game, int col, int row, char direction)
 {
@@ -79,16 +73,6 @@ static void	floodfill(t_mlx *game, int row, int col, int **passed)
 	floodfill(game, row - 1, col, passed);
 	floodfill(game, row, col + 1, passed);
 	floodfill(game, row, col - 1, passed);
-}
-
-static void	free_passed_array(int **passed, int height)
-{
-	int	i;
-
-	i = -1;
-	while (++i < height)
-		free(passed[i]);
-	free(passed);
 }
 
 static void	process_not_enclosed(t_mlx *data, int **passed, int height)

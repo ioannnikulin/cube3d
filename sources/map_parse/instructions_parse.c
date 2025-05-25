@@ -3,42 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   instructions_parse.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 17:56:14 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/25 16:17:47 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/25 17:26:04 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inner.h"
-
-static void	copy_map_data(t_mlx *data, char **instructions, int map_start_index,
-		int map_height)
-{
-	int	j;
-	char	*nl;
-
-	j = 0;
-	while (j < map_height)
-	{
-		data->map.map[j] = ft_strdup(instructions[map_start_index + j]);
-		if (!data->map.map[j])
-		{
-			data->map.map_height = j;
-			free_map(data->map.map);
-			data->map.map = NULL;
-			free_instructions(instructions, map_height);
-			free_assets(data);
-			exit_error("Error: Failed to duplicate map line during copy");
-		}
-		nl = ft_strrchr(data->map.map[j], '\n');
-		if (nl)
-			*nl = '\0';
-		j++;
-	}
-	data->map.map[j] = NULL;
-}
-
 
 static int	check_elements(t_mlx *mlx, char **map)
 {
@@ -113,22 +85,6 @@ static char	**read_instructions_and_count_lines(char *file, int *total_lines_out
 	}
 	*total_lines_out = loc_total_lines;
 	return (instructions_arr);
-}
-
-static void	find_elements_and_map_start(t_mlx *data, char **instructions,
-		int *elements_found_out, int *map_start_idx_out)
-{
-	int i;
-
-	i = 0;
-	*elements_found_out = 0;
-	*map_start_idx_out = -1;
-	while (instructions[i] != NULL && *map_start_idx_out == -1)
-	{
-        process_line(data, instructions[i], elements_found_out,
-						 map_start_idx_out, i);
-		i++;
-	}
 }
 
 static int	setup_map_data_and_free_instructions(t_mlx *data, char **instructions,

@@ -6,7 +6,7 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 22:25:54 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/25 17:09:10 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/25 17:29:27 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,27 @@ void	print_allElements(t_mlx *data)
 		data->map.ceiling.color.g, data->map.ceiling.color.b);
 	print_map(data->map.map);
 
+}
+
+static int	check_extension(char *map)
+{
+	int	i;
+
+	i = -1;
+	if (ft_strchr(map, '.') == 0)
+		return (0);
+	while (map[++i])
+	{
+		if (map[i] == '.')
+		{
+			if (!(map[i + 1] == 'c' && map[i + 2] == 'u' && map[i + 3] == 'b'
+					&& !(map[i + 4])))
+				return (0);
+			else
+				return (1);
+		}
+	}
+	return (0);
 }
 
 int	validate_map(t_mlx *data, char *map_file)

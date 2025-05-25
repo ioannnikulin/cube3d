@@ -6,27 +6,11 @@
 /*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 17:14:38 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/23 20:00:31 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/25 17:24:26 by ivanverniho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inner.h"
-
-static void free_color_parts(char **parts)
-{
-	int	k;
-
-	k = 0;
-	if (parts)
-	{
-		while (parts[k])
-		{
-			free(parts[k]);
-			k++;
-		}
-		free(parts);
-	}
-}
 
 static char	*trim_and_get_identifier(char *line, char *out_id)
 {
@@ -61,22 +45,6 @@ static char	**split_rgb_values(const char *rgb_data_str)
 		return (NULL);
 	}
 	return (rgb_parts);
-}
-
-static int	is_number(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-        if (str[i] == ' ')
-            i++;
-		if (!ft_isdigit(str[i]))
-			return (0);
-		i++;
-	}
-	return (1);
 }
 
 static void	parse_individual_rgb_components(char **rgb_parts, int *rgb_values)
