@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 17:13:46 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/25 17:19:40 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/25 17:58:24 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	free_passed_array(int **passed, int height)
 	free(passed);
 }
 
-void free_color_parts(char **parts)
+void	free_color_parts(char **parts)
 {
 	int	k;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_parse.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 16:03:11 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/25 17:49:01 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/25 18:09:39 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

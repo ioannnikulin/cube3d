@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world_create.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:31:12 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/25 17:07:30 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/25 17:52:53 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 // 	// printf("map.height: %d\n", mlx->map.map_height);
 // 	// printf("map.width: %d\n", mlx->map.map_width);
 // 	// print_map(mlx->map.map);
-// 	i = -1;	
+// 	i = -1;
 // 	// ft_assign_i(&mlx->map.map_height, 8, ft_assign_i(&mlx->map.map_width, 8,
 // 	// 		ft_assign_i(&i, -1, 0)));
 // 	mlx->map.map = ft_calloc_if(sizeof(char *) * mlx->map.map_height, 1);
@@ -68,7 +68,6 @@ int	draw_minimap(t_mlx *mlx)
 	t_color	clr;
 
 	printf("draw_map\n");
-
 	r = -1;
 	clr = mlx->assets.palette.white;
 	clr.alpha = 0.5;
@@ -111,10 +110,6 @@ int	draw_minimap(t_mlx *mlx)
 
 int	world_create(t_mlx *mlx)
 {
-	// map_stub(mlx);
-	// mlx->map.ceiling.color = mlx->assets.palette.cyan;
-	// mlx->map.floor.color = mlx->assets.palette.yellow;
-	// textures_stub(mlx);
 	mlx->player.coords.from = ft_point_make(1.5 * MINIMAP_BLOCK_SIZE,
 			3 * MINIMAP_BLOCK_SIZE);
 	mlx->player.coords.to = ft_point_make(1.5 * MINIMAP_BLOCK_SIZE,

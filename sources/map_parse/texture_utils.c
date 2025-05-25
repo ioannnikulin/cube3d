@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   texture_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 17:22:37 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/25 17:28:12 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/25 18:09:33 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inner.h"
 
-void set_direction(t_mlx *game, int to_x, int to_y)
+void	set_direction(t_mlx *game, int to_x, int to_y)
 {
 	game->player.coords.to.x = to_x;
 	game->player.coords.to.y = to_y;
@@ -25,8 +25,8 @@ int	is_number(char *str)
 	i = 0;
 	while (str[i])
 	{
-        if (str[i] == ' ')
-            i++;
+		if (str[i] == ' ')
+			i++;
 		if (!ft_isdigit(str[i]))
 			return (0);
 		i++;
@@ -34,16 +34,21 @@ int	is_number(char *str)
 	return (1);
 }
 
-int	set_texture_target(t_mlx *data, char *id, void ***target_path_ptr, char *path)
+int	set_texture_target(t_mlx *data, char *id, \
+		void ***target_path_ptr, char *path)
 {
 	if (ft_strcmp(id, "NO") == 0)
-		initialize_texture_asset(&data->assets.wall_north, path, target_path_ptr);
+		initialize_texture_asset(&data->assets.wall_north, \
+				path, target_path_ptr);
 	else if (ft_strcmp(id, "SO") == 0)
-		initialize_texture_asset(&data->assets.wall_south, path, target_path_ptr);
+		initialize_texture_asset(&data->assets.wall_south, \
+				path, target_path_ptr);
 	else if (ft_strcmp(id, "WE") == 0)
-		initialize_texture_asset(&data->assets.wall_west, path, target_path_ptr);
+		initialize_texture_asset(&data->assets.wall_west, \
+				path, target_path_ptr);
 	else if (ft_strcmp(id, "EA") == 0)
-		initialize_texture_asset(&data->assets.wall_east, path, target_path_ptr);
+		initialize_texture_asset(&data->assets.wall_east, \
+			path, target_path_ptr);
 	else
 		return (-1);
 	return (0);

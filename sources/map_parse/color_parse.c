@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_parse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 17:14:38 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/25 17:24:26 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/25 17:57:58 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	*trim_and_get_identifier(char *line, char *out_id)
 		return (free(trimmed), NULL);
 	*out_id = trimmed[0];
 	if (!((*out_id == 'F' || *out_id == 'C') && trimmed[1] == ' '))
-	    return (free(trimmed), NULL);
+		return (free(trimmed), NULL);
 	if (trimmed[2] == '\0')
 	{
 		free(trimmed);
@@ -41,7 +41,7 @@ static char	**split_rgb_values(const char *rgb_data_str)
 		|| rgb_parts[3])
 	{
 		if (rgb_parts)
-			free_color_parts(rgb_parts); 
+			free_color_parts(rgb_parts);
 		return (NULL);
 	}
 	return (rgb_parts);
@@ -56,18 +56,18 @@ static void	parse_individual_rgb_components(char **rgb_parts, int *rgb_values)
 	ok_r = is_number(rgb_parts[0]);
 	ok_g = is_number(rgb_parts[1]);
 	ok_b = is_number(rgb_parts[2]);
-
 	rgb_values[0] = ft_atoi(rgb_parts[0], &ok_r);
 	rgb_values[1] = ft_atoi(rgb_parts[1], &ok_g);
 	rgb_values[2] = ft_atoi(rgb_parts[2], &ok_b);
-    if (ok_r == 1 || !is_number(rgb_parts[0]) || ok_g == 1 || !is_number(rgb_parts[1]) || ok_b == 1 || !is_number(rgb_parts[2]))
+	if (ok_r == 1 || !is_number(rgb_parts[0]) || ok_g == 1 || \
+		!is_number(rgb_parts[1]) || ok_b == 1 || !is_number(rgb_parts[2]))
 		exit_error("Error: RGB component is not a valid integer.");
 	if (rgb_values[0] < 0 || rgb_values[0] > 255 || rgb_values[1] < 0
 		|| rgb_values[1] > 255 || rgb_values[2] < 0 || rgb_values[2] > 255)
 		exit_error("Error: RGB component value out of range (0-255).");
 }
 
-static void	set_color_in_data(t_mlx *data, char id, int r, int g, int b)
+static void	set_color_in_data(t_mlx *data, char id, int *rgb)
 {
 	t_color	*target_color;
 
@@ -75,9 +75,9 @@ static void	set_color_in_data(t_mlx *data, char id, int r, int g, int b)
 		target_color = &data->map.floor.color;
 	else
 		target_color = &data->map.ceiling.color;
-	target_color->r = (unsigned char)r;
-	target_color->g = (unsigned char)g;
-	target_color->b = (unsigned char)b;
+	target_color->r = (unsigned char)rgb[0];
+	target_color->g = (unsigned char)rgb[1];
+	target_color->b = (unsigned char)rgb[2];
 }
 
 int	parse_color_line(t_mlx *data, char *line)
@@ -97,7 +97,7 @@ int	parse_color_line(t_mlx *data, char *line)
 		exit_error("Error: Invalid RGB color format (must be R,G,B)");
 	}
 	parse_individual_rgb_components(rgb_parts, rgb);
-	set_color_in_data(data, id, rgb[0], rgb[1], rgb[2]);
+	set_color_in_data(data, id, rgb);
 	free_color_parts(rgb_parts);
 	free(trimmed_line);
 	return (1);

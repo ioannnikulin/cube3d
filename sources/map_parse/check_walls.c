@@ -3,19 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:36:45 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/25 17:23:57 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/25 17:55:05 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inner.h"
 
-static void calculate_player_coords(t_mlx *game, int col, int row, char direction)
+static void	calculate_player_coords(t_mlx *game, \
+		int col, int row, char direction)
 {
-	game->player.coords.from.x = col * MINIMAP_BLOCK_SIZE + MINIMAP_BLOCK_SIZE / 2;
-	game->player.coords.from.y = row * MINIMAP_BLOCK_SIZE + MINIMAP_BLOCK_SIZE / 2;
+	game->player.coords.from.x = col * \
+		MINIMAP_BLOCK_SIZE + MINIMAP_BLOCK_SIZE / 2;
+	game->player.coords.from.y = row * \
+		MINIMAP_BLOCK_SIZE + MINIMAP_BLOCK_SIZE / 2;
 	if (direction == 'S')
 		set_direction(game, game->player.coords.from.x, \
 			game->player.coords.from.y + MINIMAP_BLOCK_SIZE);
@@ -105,6 +108,6 @@ int	is_surrounded_by_walls(t_mlx *data)
 		find_player_pos(data, i, &col, &row);
 	floodfill(data, row, col, passed);
 	if (data->map.is_enclosed == 0)
-		return (process_not_enclosed(data ,passed, data->map.map_height), 0);
+		return (process_not_enclosed(data, passed, data->map.map_height), 0);
 	return (free_passed_array(passed, data->map.map_height), 1);
 }

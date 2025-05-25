@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 15:24:56 by iverniho          #+#    #+#             */
-/*   Updated: 2025/05/25 17:45:24 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/25 18:09:15 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ char	**allocate_instructions_array(int total_lines)
 {
 	char	**instructions_arr;
 
-	instructions_arr = ft_calloc_if(sizeof(char *) * (size_t)(total_lines + 1), 1);
+	instructions_arr = ft_calloc_if(sizeof(char *) \
+		* (size_t)(total_lines + 1), 1);
 	if (!instructions_arr)
 		exit_error("Error: Cannot allocate memory for instructions buffer");
 	return (instructions_arr);

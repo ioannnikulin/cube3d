@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 22:25:54 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/25 17:32:16 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/25 18:10:48 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inner.h"
 
-void	print_allElements(t_mlx *data)
+void	print_all_elements(t_mlx *data)
 {
 	printf("\n\n\n//////////////////////////////\n");
 	printf("Texture North: %s\n", data->assets.wall_north.path);
@@ -24,7 +24,6 @@ void	print_allElements(t_mlx *data)
 	printf("C: %d,%d,%d\n", data->map.ceiling.color.r,
 		data->map.ceiling.color.g, data->map.ceiling.color.b);
 	print_map(data->map.map);
-
 }
 
 static int	check_extension(char *map)

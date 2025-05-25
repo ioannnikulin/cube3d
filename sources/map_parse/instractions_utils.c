@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instractions_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:46:37 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/25 17:25:59 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/25 18:12:15 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,15 +74,15 @@ int	process_line(t_mlx *data, char *line, int *elements_found,
 void	find_elements_and_map_start(t_mlx *data, char **instructions,
 		int *elements_found_out, int *map_start_idx_out)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	*elements_found_out = 0;
 	*map_start_idx_out = -1;
 	while (instructions[i] != NULL && *map_start_idx_out == -1)
 	{
-        process_line(data, instructions[i], elements_found_out,
-						 map_start_idx_out, i);
+		process_line(data, instructions[i], elements_found_out, \
+			map_start_idx_out, i);
 		i++;
 	}
 }
@@ -90,7 +90,7 @@ void	find_elements_and_map_start(t_mlx *data, char **instructions,
 void	copy_map_data(t_mlx *data, char **instructions, int map_start_index,
 		int map_height)
 {
-	int	j;
+	int		j;
 	char	*nl;
 
 	j = 0;

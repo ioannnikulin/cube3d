@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instructions_utils2.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 17:33:17 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/25 17:43:52 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/25 18:10:31 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ int	check_elements(t_mlx *mlx, char **map)
 	{
 		if (!validate_row_properties(mlx, map[i], i))
 			return (0);
-		if (!iterate_and_validate_row_chars(mlx, map[i], &player_already_parsed))
+		if (!iterate_and_validate_row_chars(mlx, map[i], \
+				&player_already_parsed))
 			return (0);
 	}
 	if (player_already_parsed == 0)
@@ -81,4 +82,3 @@ int	open_map_file_and_get_fd(char *file, int *total_lines_out)
 	*total_lines_out = loc_total_lines;
 	return (fd);
 }
-
