@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 18:19:21 by iverniho          #+#    #+#             */
-/*   Updated: 2025/05/25 18:10:40 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/25 18:24:35 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ int		parse_texture_line(t_mlx *data, char *line);
 void	parse_instructions(t_mlx *data, char *file);
 void	init_parse_data(t_mlx *data);
 int		is_map_line(char *line);
-int		process_line(t_mlx *data, char *line, int *elements_found, \
-		int *map_start_index, int current_line_idx);
 void	set_direction(t_mlx *game, int to_x, int to_y);
 int		is_number(char *str);
 int		set_texture_target(t_mlx *data, char *id, \
@@ -39,7 +37,7 @@ void	handle_configure_error(char **parts, char *trimmed_line, \
 void	initialize_texture_asset(t_img *asset, char *path_str, \
 									void ***img_ptr_target);
 int		validate_map_input(t_mlx *mlx, char **map);
-int		validate_row_properties(t_mlx *mlx, char *row, int row_index);
+int		validate_row_properties(t_mlx *mlx, char *row);
 int		check_elements(t_mlx *mlx, char **map);
 int		open_map_file_and_get_fd(char *file, int *total_lines_out);
 char	**allocate_instructions_array(int total_lines);

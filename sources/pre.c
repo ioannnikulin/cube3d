@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:13:28 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/25 16:03:56 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/25 18:23:48 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ static void	palette_init(t_palette *palette)
 
 int	pre(t_mlx *mlx)
 {
-
 	ft_bzero((void *)mlx, sizeof(t_mlx));
 	mlx->dbg = 1;
 	mlx->mlx = mlx_init();

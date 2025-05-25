@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 17:33:17 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/25 18:10:31 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/25 18:23:37 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ static int	iterate_and_validate_row_chars(t_mlx *mlx, char *row,
 int	validate_map_input(t_mlx *mlx, char **map)
 {
 	if (!map || mlx->map.map_height <= 0)
-		return (printf("Error\nInvalid map dimensions or map pointer in check_elements\n"), 0);
+		return (printf(ERR_MAP_EMPTY_ROW), 0);
 	return (1);
 }
 
-int	validate_row_properties(t_mlx *mlx, char *row, int row_index)
+int	validate_row_properties(t_mlx *mlx, char *row)
 {
 	if (!row)
-		return (printf("Error\nNULL row found in map at index %d\n", row_index), 0);
+		return (printf(ERR_MAP_EMPTY_ROW), 0);
 	if (row[0] == '\n')
 		finalize(mlx, ERR_MAP_EMPTY_ROW, 0);
 	if (mlx->map.map_width <= 0)
@@ -57,7 +57,7 @@ int	check_elements(t_mlx *mlx, char **map)
 		return (0);
 	while (++i < mlx->map.map_height)
 	{
-		if (!validate_row_properties(mlx, map[i], i))
+		if (!validate_row_properties(mlx, map[i]))
 			return (0);
 		if (!iterate_and_validate_row_chars(mlx, map[i], \
 				&player_already_parsed))
