@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 17:22:37 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/25 18:09:33 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:43:16 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,11 @@ int	set_texture_target(t_mlx *data, char *id, \
 void	handle_configure_error(char **parts, char *trimmed_line, \
 									const char *error_message)
 {
-	free_texture_parts(parts);
+	ft_free_ss_uptonull((void **)parts);
 	free(trimmed_line);
 	if (error_message)
 		exit_error((char *)error_message);
+		// finalize?
 }
 
 void	initialize_texture_asset(t_img *asset, char *path_str, \
@@ -70,6 +71,7 @@ void	initialize_texture_asset(t_img *asset, char *path_str, \
 	asset->path = ft_strdup(path_str);
 	if (!asset->path)
 		exit_error("Error: Memory allocation failed for texture path");
-	asset->width = MAP_TEXTURE_WIDTH;
+		// finalize?
+	asset->width = MAP_TEXTURE_WIDTH; // not necessarily, it can be defined on per texture basis
 	asset->height = MAP_TEXTURE_HEIGHT;
 }

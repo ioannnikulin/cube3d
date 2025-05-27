@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instructions_parse.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 17:56:14 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/25 18:07:32 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:24:39 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static char	**read_instructions_and_count_lines(char *file, \
 	{
 		free_instructions(instructions_arr, lines_read);
 		exit_error("Error: Mismatch between counted lines and lines read");
+		// finalize?
 	}
 	*total_lines_out = loc_total_lines;
 	return (instructions_arr);
@@ -62,6 +63,7 @@ static int	setup_map_data_and_free_instructions(t_mlx *data, \
 		free_instructions(instructions, total_lines);
 		free_assets(data);
 		exit_error("Error: No map data found after configuration elements");
+		// finalize?
 	}
 	data->map.map_height = map_height;
 	data->map.map = ft_calloc_if(sizeof(char *) \
@@ -71,6 +73,7 @@ static int	setup_map_data_and_free_instructions(t_mlx *data, \
 		free_instructions(instructions, total_lines);
 		free_assets(data);
 		exit_error("Error: Cannot allocate memory for map storage");
+		// finalize?
 	}
 	copy_map_data(data, instructions, map_start_index, data->map.map_height);
 	free_instructions(instructions, total_lines);
@@ -114,8 +117,10 @@ void	parse_instructions(t_mlx *data, char *file)
 		free_assets(data);
 		if (elements_found != 6)
 			exit_error("Error: Missing or duplicate map elements");
+		// finalize?
 		else
 			exit_error("Error: Map grid definition not found after elements");
+		// finalize?
 	}
 	if (setup_map_data_and_free_instructions(data, instructions, total_lines,
 			map_start_index) == -1)

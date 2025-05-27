@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 17:13:46 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/25 17:58:24 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:23:11 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inner.h"
+
+// probably ft_free can be reused instead of some custom functions
 
 void	free_passed_array(int **passed, int height)
 {
@@ -64,20 +66,4 @@ void	free_assets(t_mlx *data)
 	free(data->assets.wall_south.img);
 	free(data->assets.wall_west.img);
 	free(data->assets.wall_east.img);
-}
-
-void	free_texture_parts(char **parts)
-{
-	int	k;
-
-	k = 0;
-	if (parts)
-	{
-		while (parts[k])
-		{
-			free(parts[k]);
-			k++;
-		}
-		free(parts);
-	}
 }

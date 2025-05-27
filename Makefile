@@ -18,8 +18,8 @@ MLX_L_FLAGS			=	-L$(MLX_F) -lmlx -lXext -lX11 -L/usr/lib -lXext -lX11 -lz
 MLX_M_FLAGS			=	-L$(MLX_F) -lmlx -framework OpenGL -framework AppKit
 
 ifeq ($(UNAME), Linux)
-	MLX_SOURCE_ADDRESS 		= 	https://cdn.intra.42.fr/document/document/31891/minilibx-linux.tgz
-	MLX_F 					=	minilibx-linux
+	MLX_SOURCE_ADDRESS 		= 	https://github.com/42paris/minilibx-linux/archive/refs/heads/master.zip
+	MLX_F 					=	minilibx-linux-master
 	MLX_COMPILE_FLAGS		=	$(MLX_LINUX_COMPILE_FLAGS)
 	MLX_LINK_FLAGS			=	$(MLX_L_FLAGS)
 else
@@ -127,7 +127,8 @@ $(OBJ_DIRS):
 
 pre:
 	$(PREFIX)cd libft && make all
-	$(PREFIX)curl $(MLX_SOURCE_ADDRESS) -o $(MLX_ARCHIVE) && tar -xf $(MLX_ARCHIVE)
+	#$(PREFIX)curl $(MLX_SOURCE_ADDRESS) -o $(MLX_ARCHIVE)
+	#$(PREFIX)tar -xf $(MLX_ARCHIVE)
 	$(PREFIX)cd $(MLX_F) && make -s
 	$(PREFIX)rm -f $(MLX_ARCHIVE)
 
