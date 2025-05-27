@@ -1,7 +1,7 @@
 CC = cc
 NAME = cube3D
-COMPILE_FLAGS = -Wall -Wextra -Werror -g -c -O0 -fno-builtin-printf
-LINK_FLAGS = -lft -Llibft -lreadline -lm #-fsanitize=address #not compatible with valgrind from fulltest
+COMPILE_FLAGS = -Wall -Wextra -Werror -g -c -fno-builtin-printf #-fsanitize=address
+LINK_FLAGS = -lft -Llibft -lreadline -lm #-fsanitize=address not compatible with valgrind from fulltest
 MLX_F =
 INCLUDES = -I . -I libft -I $(MLX_F)
 MLX_COMPILE_FLAGS =

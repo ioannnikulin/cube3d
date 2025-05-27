@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_image.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:14:29 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/08 13:12:47 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/27 19:50:14 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	make_image(t_mlx *mlx)
 {
-	printf("make_image colors: %d,%d,%d\n", mlx->map.floor.color.r, mlx->map.floor.color.g, mlx->map.floor.color.b);
 	if (*next_img(mlx))
 		mlx_destroy_image(mlx->mlx, *next_img(mlx));
 	*next_img(mlx) = mlx_new_image(mlx->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);

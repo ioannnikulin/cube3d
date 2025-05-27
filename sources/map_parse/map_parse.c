@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 22:25:54 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/25 18:10:48 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/27 20:35:28 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ int	validate_map(t_mlx *data, char *map_file)
 {
 	if (!check_extension(map_file))
 		finalize(data, ERR_MAP_EXT, 1);
+	printf("2 %p\n", data->assets.wall_north.img);
 	parse_instructions(data, map_file);
+	printf("3 %p\n", data->assets.wall_north.img);
 	printf("\nMap '%s' is valid and loaded.\n", map_file);
 	return (1);
 }

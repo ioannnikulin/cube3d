@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 17:13:46 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/27 17:23:11 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/27 20:03:45 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,23 @@ void	free_passed_array(int **passed, int height)
 		free(passed[i]);
 	free(passed);
 }
+
+void	free_texture_parts(char **parts)
+{
+	int	k;
+
+	k = 0;
+	if (parts)
+	{
+		while (parts[k])
+		{
+			free(parts[k]);
+			k++;
+		}
+		free(parts);
+	}
+}
+
 
 void	free_color_parts(char **parts)
 {
@@ -62,8 +79,8 @@ void	free_instructions(char **instructions, int count)
 
 void	free_assets(t_mlx *data)
 {
-	free(data->assets.wall_north.img);
-	free(data->assets.wall_south.img);
-	free(data->assets.wall_west.img);
-	free(data->assets.wall_east.img);
+	free_img(data, &data->assets.wall_north);
+	free_img(data, &data->assets.wall_south);
+	free_img(data, &data->assets.wall_east);
+	free_img(data, &data->assets.wall_west);
 }

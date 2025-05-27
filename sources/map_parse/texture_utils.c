@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 17:22:37 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/27 17:43:16 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/27 20:57:54 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	set_texture_target(t_mlx *data, char *id, \
 void	handle_configure_error(char **parts, char *trimmed_line, \
 									const char *error_message)
 {
-	ft_free_ss_uptonull((void **)parts);
+	free_texture_parts(parts);
 	free(trimmed_line);
 	if (error_message)
 		exit_error((char *)error_message);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instructions_parse.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 17:56:14 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/27 17:24:39 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/27 20:47:09 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

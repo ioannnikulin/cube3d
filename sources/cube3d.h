@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:06:42 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/25 16:43:43 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/27 20:02:54 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 # define WINDOW_WIDTH 1000
 # define WINDOW_HEIGHT 1000
-# define FRAMES_BUFFER 5 // advance buffering not implemented yet, 
+# define FRAMES_BUFFER 5 // advance buffering not implemented yet,
 // just looping through frames on demand for now
 # define STEP_LENGTH 5
 # define ROT_ANGLE_PI_DIVISOR 36
@@ -142,4 +142,5 @@ char	**next_img_data(t_mlx *mlx);
 int		world_create(t_mlx *mlx);
 int		make_image(t_mlx *mlx);
 int		pre(t_mlx *mlx);
+void	free_img(t_mlx *mlx, t_img *img);
 #endif

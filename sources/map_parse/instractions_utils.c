@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instractions_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:46:37 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/25 18:19:47 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/27 20:47:17 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,23 @@ void	find_elements_and_map_start(t_mlx *data, char **instructions,
 	*map_start_idx_out = -1;
 	while (instructions[i] != NULL && *map_start_idx_out == -1)
 	{
+		printf("2.%i %p\n", i, data->assets.wall_north.img);
 		trimmed = ft_strtrim(instructions[i], " \t\n\v\f\r");
 		if (trimmed && trimmed[0] != '\0')
 		{
-			if (parse_texture_line(data, trimmed))
+			if (parse_texture_line(data, trimmed) == 1)
 				(*elements_found_out)++;
-			else if (parse_color_line(data, trimmed))
+			else if (parse_color_line(data, trimmed) == 1)
 				(*elements_found_out)++;
-			else if (is_map_line(trimmed))
+			else if (is_map_line(trimmed) == 1)
 				*map_start_idx_out = i;
+			if (data->errno)
+			{
+				free(trimmed); // TODO:
+				free_instructions(instructions, i + 1);
+				free_assets(data);
+				exit_error("Error: Failed to parse instructions");
+			}
 		}
 		free(trimmed);
 		i++;
