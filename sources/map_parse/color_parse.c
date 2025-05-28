@@ -6,13 +6,13 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 17:14:38 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/25 17:57:58 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/28 20:50:03 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inner.h"
 
-static char	*trim_and_get_identifier(char *line, char *out_id)
+static char	*trim_and_get_identifier(t_mlx *data, char *line, char *out_id)
 {
 	char	*trimmed;
 
@@ -27,7 +27,7 @@ static char	*trim_and_get_identifier(char *line, char *out_id)
 	if (trimmed[2] == '\0')
 	{
 		free(trimmed);
-		exit_error("Error: Missing RGB values");
+		finalize(data, "Error: Missing RGB values", 1);
 	}
 	return (trimmed);
 }
@@ -47,7 +47,8 @@ static char	**split_rgb_values(const char *rgb_data_str)
 	return (rgb_parts);
 }
 
-static void	parse_individual_rgb_components(char **rgb_parts, int *rgb_values)
+static void	parse_individual_rgb_components(t_mlx *data, \
+		char **rgb_parts, int *rgb_values)
 {
 	int	ok_r;
 	int	ok_g;
@@ -61,10 +62,10 @@ static void	parse_individual_rgb_components(char **rgb_parts, int *rgb_values)
 	rgb_values[2] = ft_atoi(rgb_parts[2], &ok_b);
 	if (ok_r == 1 || !is_number(rgb_parts[0]) || ok_g == 1 || \
 		!is_number(rgb_parts[1]) || ok_b == 1 || !is_number(rgb_parts[2]))
-		exit_error("Error: RGB component is not a valid integer.");
+		finalize(data, "Error: Invalid RGB color format (must be R,G,B)1", 1);
 	if (rgb_values[0] < 0 || rgb_values[0] > 255 || rgb_values[1] < 0
 		|| rgb_values[1] > 255 || rgb_values[2] < 0 || rgb_values[2] > 255)
-		exit_error("Error: RGB component value out of range (0-255).");
+		finalize(data, "Error: RGB component value out of range (0-255).", 1);
 }
 
 static void	set_color_in_data(t_mlx *data, char id, int *rgb)
@@ -87,16 +88,16 @@ int	parse_color_line(t_mlx *data, char *line)
 	char	**rgb_parts;
 	int		rgb[3];
 
-	trimmed_line = trim_and_get_identifier(line, &id);
+	trimmed_line = trim_and_get_identifier(data, line, &id);
 	if (!trimmed_line)
 		return (0);
 	rgb_parts = split_rgb_values(trimmed_line + 2);
 	if (!rgb_parts)
 	{
 		free(trimmed_line);
-		exit_error("Error: Invalid RGB color format (must be R,G,B)");
+		finalize(data, "Error: Invalid RGB color format (must be R,G,B)", 1);
 	}
-	parse_individual_rgb_components(rgb_parts, rgb);
+	parse_individual_rgb_components(data, rgb_parts, rgb);
 	set_color_in_data(data, id, rgb);
 	free_color_parts(rgb_parts);
 	free(trimmed_line);

@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 17:13:46 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/27 20:03:45 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/28 20:49:36 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	free_texture_parts(char **parts)
 		free(parts);
 	}
 }
-
 
 void	free_color_parts(char **parts)
 {
@@ -75,6 +74,7 @@ void	free_instructions(char **instructions, int count)
 		i++;
 	}
 	free(instructions);
+	instructions = NULL;
 }
 
 void	free_assets(t_mlx *data)

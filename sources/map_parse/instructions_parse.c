@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 17:56:14 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/27 20:47:09 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/28 20:47:24 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	read_lines_into_array(int fd, \
 	return (lines_read);
 }
 
-static char	**read_instructions_and_count_lines(char *file, \
+static char	**read_instructions_and_count_lines(t_mlx *data, char *file, \
 		int *total_lines_out)
 {
 	int		fd;
@@ -44,8 +44,7 @@ static char	**read_instructions_and_count_lines(char *file, \
 	if (lines_read != loc_total_lines)
 	{
 		free_instructions(instructions_arr, lines_read);
-		exit_error("Error: Mismatch between counted lines and lines read");
-		// finalize?
+		finalize(data, "Error: Mismatch between counted lines and lines read", 1);
 	}
 	*total_lines_out = loc_total_lines;
 	return (instructions_arr);
@@ -62,8 +61,7 @@ static int	setup_map_data_and_free_instructions(t_mlx *data, \
 	{
 		free_instructions(instructions, total_lines);
 		free_assets(data);
-		exit_error("Error: No map data found after configuration elements");
-		// finalize?
+		finalize(data, "Error: No map data found after configuration elements", 0);
 	}
 	data->map.map_height = map_height;
 	data->map.map = ft_calloc_if(sizeof(char *) \
@@ -72,8 +70,7 @@ static int	setup_map_data_and_free_instructions(t_mlx *data, \
 	{
 		free_instructions(instructions, total_lines);
 		free_assets(data);
-		exit_error("Error: Cannot allocate memory for map storage");
-		// finalize?
+		finalize(data, "Error: Cannot allocate memory for map storage", 0);
 	}
 	copy_map_data(data, instructions, map_start_index, data->map.map_height);
 	free_instructions(instructions, total_lines);
@@ -108,19 +105,19 @@ void	parse_instructions(t_mlx *data, char *file)
 	total_lines = 0;
 	elements_found = 0;
 	map_start_index = -1;
-	instructions = read_instructions_and_count_lines(file, &total_lines);
+	instructions = read_instructions_and_count_lines(data, file, &total_lines);
 	find_elements_and_map_start(data, instructions, &elements_found, \
 			&map_start_index);
 	if (elements_found != 6 || map_start_index == -1)
 	{
-		free_instructions(instructions, total_lines);
 		free_assets(data);
 		if (elements_found != 6)
-			exit_error("Error: Missing or duplicate map elements");
-		// finalize?
+		{
+			free_instructions(instructions, total_lines);
+			finalize(data, "Error: Missing or duplicate map elements", 1);
+		}
 		else
-			exit_error("Error: Map grid definition not found after elements");
-		// finalize?
+			finalize(data, "Error: Map grid definition not found after elements", 1);
 	}
 	if (setup_map_data_and_free_instructions(data, instructions, total_lines,
 			map_start_index) == -1)

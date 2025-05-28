@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 17:22:37 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/27 20:57:54 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/28 20:58:35 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ int	set_texture_target(t_mlx *data, char *id, \
 	return (0);
 }
 
-void	handle_configure_error(char **parts, char *trimmed_line, \
-									const char *error_message)
+void	handle_configure_error(t_mlx *data, char **parts, char *trimmed_line, \
+									char *error_message)
 {
 	free_texture_parts(parts);
 	free(trimmed_line);
 	if (error_message)
-		exit_error((char *)error_message);
-		// finalize?
+		finalize(data, error_message, 1);
+	finalize(data, "", 1);
 }
 
 void	initialize_texture_asset(t_img *asset, char *path_str, \
@@ -71,7 +71,6 @@ void	initialize_texture_asset(t_img *asset, char *path_str, \
 	asset->path = ft_strdup(path_str);
 	if (!asset->path)
 		exit_error("Error: Memory allocation failed for texture path");
-		// finalize?
-	asset->width = MAP_TEXTURE_WIDTH; // not necessarily, it can be defined on per texture basis
+	asset->width = MAP_TEXTURE_WIDTH;
 	asset->height = MAP_TEXTURE_HEIGHT;
 }

@@ -6,43 +6,11 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:31:12 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/27 20:20:17 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/28 19:03:23 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
-
-// static int	map_stub(t_mlx *mlx)
-// {
-// 	int	i;
-
-// 	// printf("map_stub\n");
-// 	// printf("map.height: %d\n", mlx->map.map_height);
-// 	// printf("map.width: %d\n", mlx->map.map_width);
-// 	// print_map(mlx->map.map);
-// 	i = -1;
-// 	// ft_assign_i(&mlx->map.map_height, 8, ft_assign_i(&mlx->map.map_width, 8,
-// 	// 		ft_assign_i(&i, -1, 0)));
-// 	mlx->map.map = ft_calloc_if(sizeof(char *) * mlx->map.map_height, 1);
-// 	if (!mlx->map.map)
-// 		return (finalize(mlx, ERR_MALLOC, 1));
-// 	while (++i < mlx->map.map_height)
-// 	{
-// 		mlx->map.map[i] = ft_calloc_if(sizeof(char) * mlx->map.map_width, 1);
-// 		if (!mlx->map.map[i])
-// 			return (finalize(mlx, ERR_MALLOC, 2));
-// 		ft_memset(mlx->map.map[i], '0', mlx->map.map_width);
-// 		mlx->map.map[i][0] = '1';
-// 		mlx->map.map[i][mlx->map.map_width - 1] = '1';
-// 		if (i == 0 || i == mlx->map.map_height - 1)
-// 			ft_memset(mlx->map.map[i] + 1, '1', mlx->map.map_width - 2);
-// 	}
-// 	mlx->map.map[1][2] = '1';
-// 	mlx->map.map[2][2] = '1';
-// 	mlx->map.map[3][2] = '1';
-// 	mlx->map.map[5][5] = '1';
-// 	return (0);
-// }
 
 static int	draw_block(t_mlx *mlx, int x, int y, t_color *clr)
 {
@@ -85,25 +53,15 @@ int	draw_minimap(t_mlx *mlx)
 
 static void	textures_stub(t_mlx *mlx)
 {
-	// mlx->assets.wall_north.width = 300;
-	// mlx->assets.wall_north.height = 300;
-	printf("%p\n", mlx->assets.wall_north.img);
 	mlx->assets.wall_north.img = mlx_xpm_file_to_image(mlx->mlx,
 			mlx->assets.wall_north.path, &mlx->assets.wall_north.width,
 			&mlx->assets.wall_north.height);
-	printf("%p\n", mlx->assets.wall_north.img);
-	// mlx->assets.wall_south.width = 300;
-	// mlx->assets.wall_south.height = 300;
 	mlx->assets.wall_south.img = mlx_xpm_file_to_image(mlx->mlx,
 			mlx->assets.wall_south.path, &mlx->assets.wall_south.width,
 			&mlx->assets.wall_south.height);
-	// mlx->assets.wall_west.width = 300;
-	// mlx->assets.wall_west.height = 300;
 	mlx->assets.wall_west.img = mlx_xpm_file_to_image(mlx->mlx,
 			mlx->assets.wall_west.path, &mlx->assets.wall_west.width,
 			&mlx->assets.wall_west.height);
-	// mlx->assets.wall_east.width = 300;
-	// mlx->assets.wall_east.height = 300;
 	mlx->assets.wall_east.img = mlx_xpm_file_to_image(mlx->mlx,
 			mlx->assets.wall_east.path, &mlx->assets.wall_east.width,
 			&mlx->assets.wall_east.height);

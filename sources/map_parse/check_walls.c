@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:36:45 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/25 17:55:05 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/28 20:53:07 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,24 +54,25 @@ static void	find_player_pos(t_mlx *game, int i, int *col, int *row)
 //floodfill algorithm to check if the map is enclosed by walls
 static void	floodfill(t_mlx *game, int row, int col, int **passed)
 {
-	if (row < 0 || col < 0 || row >= game->map.map_height
-		|| col >= game->map.map_width)
+	if (row < 0 || col < 0 || row >= game->map.map_height)
+		return ;
+	if (!game->map.map[row] || col >= (int)ft_strlen(game->map.map[row]))
 		return ;
 	if (game->map.map[row][col] == '1' || game->map.map[row][col] == '2'
 		|| passed[row][col])
 		return ;
-	if (game->map.map[row][col] == ' ')
+	if (game->map.map[row][col] == ' ' || game->map.map[row][col] == '\0')
 	{
 		game->map.is_enclosed = 0;
 		return ;
 	}
-	if (col == 0 || col == game->map.map_width - 1 || row == 0
-		|| row == game->map.map_height - 1 || game->map.map[row][col] == '\0')
+	if (col == 0 || row == 0 || row == game->map.map_height - 1
+		|| col >= (int)ft_strlen(game->map.map[row]) - 1)
 	{
 		game->map.is_enclosed = 0;
 		return ;
 	}
-	passed[row][col] = 2;
+	passed[row][col] = 1;
 	floodfill(game, row + 1, col, passed);
 	floodfill(game, row - 1, col, passed);
 	floodfill(game, row, col + 1, passed);

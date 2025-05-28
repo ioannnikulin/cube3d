@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:38:28 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/27 20:15:08 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/28 20:49:23 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,57 +14,67 @@
 
 void	free_img(t_mlx *mlx, t_img *img)
 {
-	if (img)
+	if (!img || !mlx || !mlx->mlx)
+		return ;
+	if (img->img && img->img != (void *) - 1)
 	{
-		if (img->path)
-			free(img->path);
-		if (img->img)
-			mlx_destroy_image(mlx->mlx, img->img);
-		img->img = 0;
-		img->path = 0;
+		mlx_destroy_image(mlx->mlx, img->img);
+		img->img = NULL;
+	}
+	if (img->path)
+	{
+		free(img->path);
+		img->path = NULL;
 	}
 }
 
 int	finalize(t_mlx *mlx, char *msg, int ret)
 {
-	if (mlx)
-	{
+	int	i;
+
+	i = -1;
+	if (mlx->mlx && mlx->win)
 		mlx_clear_window(mlx->mlx, mlx->win);
-		if (mlx->map.map)
-			free_map(mlx->map.map);
-		free_img(mlx->mlx, &mlx->assets.wall_east);
-		free_img(mlx->mlx, &mlx->assets.wall_west);
-		free_img(mlx->mlx, &mlx->assets.wall_north);
-		free_img(mlx->mlx, &mlx->assets.wall_south);
+	if (mlx->map.map)
+	{
+		free_map(mlx->map.map);
+		mlx->map.map = NULL;
+	}
+	if (mlx->mlx)
+	{
+		free_img(mlx, &mlx->assets.wall_east);
+		free_img(mlx, &mlx->assets.wall_west);
+		free_img(mlx, &mlx->assets.wall_north);
+		free_img(mlx, &mlx->assets.wall_south);
 		if (mlx->frame.imgs)
 		{
-			int	i;
-
-			i = -1;
 			while (++i < FRAMES_BUFFER)
 			{
 				if (mlx->frame.imgs[i])
-					free(mlx->frame.imgs[i]);
+				{
+					mlx_destroy_image(mlx->mlx, mlx->frame.imgs[i]);
+					mlx->frame.imgs[i] = NULL;
+				}
 			}
 			free(mlx->frame.imgs);
-			i = -1;
-			while (++i < FRAMES_BUFFER)
-			{
-				if (mlx->frame.imgs_data[i])
-					free(mlx->frame.imgs_data[i]);
-			}
-			free(mlx->frame.imgs_data);
-
+			mlx->frame.imgs = NULL;
 		}
-		if (mlx->mlx && mlx->win)
+		if (mlx->frame.imgs_data)
+		{
+			free(mlx->frame.imgs_data);
+			mlx->frame.imgs_data = NULL;
+		}
+		if (mlx->win)
+		{
 			mlx_destroy_window(mlx->mlx, mlx->win);
-		if (mlx->mlx)
-			mlx_destroy_display(mlx->mlx);
+			mlx->win = NULL;
+		}
+		mlx_destroy_display(mlx->mlx);
 		free(mlx->mlx);
-		mlx->mlx = 0;
-		mlx->map.map = 0;
+		mlx->mlx = NULL;
 	}
-	printf("%s", msg);
+	if (msg)
+		printf("%s", msg);
 	exit(ret);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:46:37 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/27 20:47:17 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/28 20:54:39 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	find_elements_and_map_start(t_mlx *data, char **instructions,
 	*map_start_idx_out = -1;
 	while (instructions[i] != NULL && *map_start_idx_out == -1)
 	{
-		printf("2.%i %p\n", i, data->assets.wall_north.img);
 		trimmed = ft_strtrim(instructions[i], " \t\n\v\f\r");
 		if (trimmed && trimmed[0] != '\0')
 		{
@@ -77,7 +76,7 @@ void	find_elements_and_map_start(t_mlx *data, char **instructions,
 				free(trimmed); // TODO:
 				free_instructions(instructions, i + 1);
 				free_assets(data);
-				exit_error("Error: Failed to parse instructions");
+				finalize(data, "Error: Failed to parse instructions", 0);
 			}
 		}
 		free(trimmed);

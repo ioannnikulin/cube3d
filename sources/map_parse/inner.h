@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 18:19:21 by iverniho          #+#    #+#             */
-/*   Updated: 2025/05/25 18:24:35 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/28 20:58:44 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	set_direction(t_mlx *game, int to_x, int to_y);
 int		is_number(char *str);
 int		set_texture_target(t_mlx *data, char *id, \
 		void ***target_path_ptr, char *path);
-void	handle_configure_error(char **parts, char *trimmed_line, \
-									const char *error_message);
+void	handle_configure_error(t_mlx *data, char **parts, char *trimmed_line, \
+									char *error_message);
 void	initialize_texture_asset(t_img *asset, char *path_str, \
 									void ***img_ptr_target);
 int		validate_map_input(t_mlx *mlx, char **map);
