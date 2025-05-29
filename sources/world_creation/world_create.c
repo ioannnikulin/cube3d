@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:31:12 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/28 19:03:23 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 16:25:38 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	draw_minimap(t_mlx *mlx)
 	return (0);
 }
 
-static void	textures_stub(t_mlx *mlx)
+static void	fill_textures(t_mlx *mlx)
 {
 	mlx->assets.wall_north.img = mlx_xpm_file_to_image(mlx->mlx,
 			mlx->assets.wall_north.path, &mlx->assets.wall_north.width,
@@ -69,7 +69,7 @@ static void	textures_stub(t_mlx *mlx)
 
 int	world_create(t_mlx *mlx)
 {
-	textures_stub(mlx);
+	fill_textures(mlx);
 	mlx->player.coords.from = ft_point_make(1.5 * MINIMAP_BLOCK_SIZE,
 			3 * MINIMAP_BLOCK_SIZE);
 	mlx->player.coords.to = ft_point_make(1.5 * MINIMAP_BLOCK_SIZE,

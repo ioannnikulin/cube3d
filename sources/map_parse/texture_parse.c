@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_parse.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 16:03:11 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 15:47:07 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/29 16:22:05 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,13 @@ static char	*trim_and_valid_line(t_mlx *data, char *line, int *errno,
 		free(line);
 		free_2d_array(instructions);
 		finalize(data, ERR_MALLOC_INSTRUCTIONS, 1);
-		return (NULL);
 	}
 	if (trimmed_line[0] == '\0')
 	{
 		free(line);
 		free_2d_array(instructions);
 		free(trimmed_line);
-		return (NULL);
+		finalize(data, ERR_INVALID_TEXTURE, 1);
 	}
 	*errno = 0;
 	return (trimmed_line);
@@ -68,10 +67,10 @@ static void	**configure_texture_asset(t_mlx *data, char **parts,
 		return (handle_configure_error(data, parts, trimmed_line, NULL), NULL);
 	if (*img_field_ptr != NULL)
 		return (handle_configure_error(data, parts, trimmed_line,
-				"Error: Duplicate texture definition"), NULL);
+				ERR_DUPLICATE_TEXTURE), NULL);
 	if (parts[1][0] == '\0')
 		return (handle_configure_error(data, parts, trimmed_line,
-				"Error: Empty texture path provided"), NULL);
+				ERR_EMPTY_TEXTURE), NULL);
 	data->errno = 0;
 	return (img_field_ptr);
 }

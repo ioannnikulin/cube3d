@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instructions_parse.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 17:56:14 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 15:46:45 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/29 16:23:28 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ static void	perform_final_map_validation(t_mlx *data)
 		finalize(data, EER_MAP_INVALID, 0);
 	if (map_surrounded_ok == 0)
 		finalize(data, ERR_MAP_ENCLOSED, 0);
-	printf("Instructions parsed successfully.\n");
 }
 
 void	parse_instructions(t_mlx *data, char *file)
