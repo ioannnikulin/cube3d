@@ -6,11 +6,11 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:44:18 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 14:06:09 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 18:03:57 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cube3d.h"
+#include "inner.h"
 
 int	is_map_valid(int map_width, int valid_elements)
 {

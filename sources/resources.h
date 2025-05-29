@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 16:27:25 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/29 16:21:57 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 17:08:47 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ memory\n"
 # define EER_MAP_INVALID "Error\nMap is invalid\n"
 # define ERR_EMPTY_TEXTURE "Error\nEmpty texture path provided\n"
 # define ERR_DUPLICATE_TEXTURE "Error\nDuplicate texture definition\n"
+# define ERR_OPEN_TEXTURE "Error\nFailed to open texture file\n"
 # define WINDOW_TITLE "Cube3D"
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inner.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 18:19:21 by iverniho          #+#    #+#             */
-/*   Updated: 2025/05/29 15:43:37 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/29 18:00:27 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int		check_elements(t_mlx *mlx, char **map);
 int		open_map_file_and_get_fd(t_mlx *data, char *file, int *total_lines_out);
 char	**allocate_instructions_array(t_mlx *data, int total_lines);
 void	convert_texture_to_image(t_mlx *mlx);
+int		is_number(char *str);
 
 // free functions
 void	free_passed_array(int **passed, int height);
