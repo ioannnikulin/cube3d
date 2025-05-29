@@ -6,11 +6,27 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:38:28 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/28 20:49:23 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:37:40 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
+
+void	free_2d_array(char **array)
+{
+	int	i;
+
+	if (!array)
+		return ;
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+	array = NULL;
+}
 
 void	free_img(t_mlx *mlx, t_img *img)
 {

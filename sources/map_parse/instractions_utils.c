@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:46:37 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/28 20:54:39 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 13:12:49 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,16 @@ void	find_elements_and_map_start(t_mlx *data, char **instructions,
 		trimmed = ft_strtrim(instructions[i], " \t\n\v\f\r");
 		if (trimmed && trimmed[0] != '\0')
 		{
-			if (parse_texture_line(data, trimmed) == 1)
+			if (parse_texture_line(data, trimmed, instructions) == 1)
 				(*elements_found_out)++;
-			else if (parse_color_line(data, trimmed) == 1)
+			else if (parse_color_line(data, trimmed, instructions) == 1)
 				(*elements_found_out)++;
 			else if (is_map_line(trimmed) == 1)
 				*map_start_idx_out = i;
 			if (data->errno)
 			{
 				free(trimmed); // TODO:
-				free_instructions(instructions, i + 1);
+				free_2d_array(instructions);
 				free_assets(data);
 				finalize(data, "Error: Failed to parse instructions", 0);
 			}

@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 15:24:56 by iverniho          #+#    #+#             */
-/*   Updated: 2025/05/25 18:09:15 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:30:39 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ void	free_map_exit(t_mlx **data, char *msg)
 	exit_error(msg);
 }
 
-char	**allocate_instructions_array(int total_lines)
+char	**allocate_instructions_array(t_mlx *data, int total_lines)
 {
 	char	**instructions_arr;
 
 	instructions_arr = ft_calloc_if(sizeof(char *) \
 		* (size_t)(total_lines + 1), 1);
 	if (!instructions_arr)
-		exit_error("Error: Cannot allocate memory for instructions buffer");
+		finalize(data, "Error: Cannot allocate memory for instructions buffer", 1);
 	return (instructions_arr);
 }

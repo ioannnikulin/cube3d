@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 18:19:21 by iverniho          #+#    #+#             */
-/*   Updated: 2025/05/28 20:58:44 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 13:13:14 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int		is_valid_char(t_mlx *data, char c, int *player_already_parsed);
 int		is_surrounded_by_walls(t_mlx *data);
 int		set_texture_target(t_mlx *data, char *id, \
 		void ***target_path_ptr, char *path);
-int		parse_color_line(t_mlx *data, char *line);
-int		parse_texture_line(t_mlx *data, char *line);
+int		parse_color_line(t_mlx *data, char *line, char **instructions);
+int		parse_texture_line(t_mlx *data, char *line, char **instructions);
 void	parse_instructions(t_mlx *data, char *file);
 void	init_parse_data(t_mlx *data);
 int		is_map_line(char *line);
@@ -40,7 +40,7 @@ int		validate_map_input(t_mlx *mlx, char **map);
 int		validate_row_properties(t_mlx *mlx, char *row);
 int		check_elements(t_mlx *mlx, char **map);
 int		open_map_file_and_get_fd(char *file, int *total_lines_out);
-char	**allocate_instructions_array(int total_lines);
+char	**allocate_instructions_array(t_mlx *data, int total_lines);
 void	convert_texture_to_image(t_mlx *mlx);
 
 // free functions
@@ -54,5 +54,7 @@ void	find_elements_and_map_start(t_mlx *data, char **instructions, \
 		int *elements_found_out, int *map_start_idx_out);
 void	copy_map_data(t_mlx *data, char **instructions, int map_start_index, \
 			int map_height);
+void	free_2d_array(char **array);
+
 
 #endif

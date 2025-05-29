@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 17:56:14 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/28 20:47:24 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 13:25:11 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ static char	**read_instructions_and_count_lines(t_mlx *data, char *file, \
 	int		loc_total_lines;
 
 	fd = open_map_file_and_get_fd(file, &loc_total_lines);
-	instructions_arr = allocate_instructions_array(loc_total_lines);
+	instructions_arr = allocate_instructions_array(data, loc_total_lines);
 	lines_read = read_lines_into_array(fd, instructions_arr, loc_total_lines);
 	if (lines_read != loc_total_lines)
 	{
-		free_instructions(instructions_arr, lines_read);
+		free_2d_array(instructions_arr);
 		finalize(data, "Error: Mismatch between counted lines and lines read", 1);
 	}
 	*total_lines_out = loc_total_lines;
@@ -73,7 +73,7 @@ static int	setup_map_data_and_free_instructions(t_mlx *data, \
 		finalize(data, "Error: Cannot allocate memory for map storage", 0);
 	}
 	copy_map_data(data, instructions, map_start_index, data->map.map_height);
-	free_instructions(instructions, total_lines);
+	free_2d_array(instructions);
 	data->map.map_width = longest_line(data->map.map);
 	if (data->map.map_width <= 0)
 		finalize(data, "Error: Map has no width or is invalid after copy", 0);

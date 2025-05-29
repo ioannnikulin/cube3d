@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 17:14:38 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/28 20:50:03 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 13:24:35 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ static char	**split_rgb_values(const char *rgb_data_str)
 	return (rgb_parts);
 }
 
-static void	parse_individual_rgb_components(t_mlx *data, \
-		char **rgb_parts, int *rgb_values)
+static int	parse_individual_rgb_components(char **rgb_parts, int *rgb_values)
 {
 	int	ok_r;
 	int	ok_g;
@@ -62,10 +61,11 @@ static void	parse_individual_rgb_components(t_mlx *data, \
 	rgb_values[2] = ft_atoi(rgb_parts[2], &ok_b);
 	if (ok_r == 1 || !is_number(rgb_parts[0]) || ok_g == 1 || \
 		!is_number(rgb_parts[1]) || ok_b == 1 || !is_number(rgb_parts[2]))
-		finalize(data, "Error: Invalid RGB color format (must be R,G,B)1", 1);
+		return (0);
 	if (rgb_values[0] < 0 || rgb_values[0] > 255 || rgb_values[1] < 0
 		|| rgb_values[1] > 255 || rgb_values[2] < 0 || rgb_values[2] > 255)
-		finalize(data, "Error: RGB component value out of range (0-255).", 1);
+		return (0);
+	return (1);
 }
 
 static void	set_color_in_data(t_mlx *data, char id, int *rgb)
@@ -81,7 +81,7 @@ static void	set_color_in_data(t_mlx *data, char id, int *rgb)
 	target_color->b = (unsigned char)rgb[2];
 }
 
-int	parse_color_line(t_mlx *data, char *line)
+int	parse_color_line(t_mlx *data, char *line, char **instructions)
 {
 	char	id;
 	char	*trimmed_line;
@@ -95,9 +95,19 @@ int	parse_color_line(t_mlx *data, char *line)
 	if (!rgb_parts)
 	{
 		free(trimmed_line);
+		free_color_parts(rgb_parts);
+		free_2d_array(instructions);
+		free(line);
 		finalize(data, "Error: Invalid RGB color format (must be R,G,B)", 1);
 	}
-	parse_individual_rgb_components(data, rgb_parts, rgb);
+	if (!parse_individual_rgb_components(rgb_parts, rgb))
+	{
+		free(trimmed_line);
+		free_color_parts(rgb_parts);
+		free_2d_array(instructions);
+		free(line);
+		finalize(data, "Error: Invalid RGB color format (must be R,G,B)1", 1);
+	}
 	set_color_in_data(data, id, rgb);
 	free_color_parts(rgb_parts);
 	free(trimmed_line);

@@ -6,22 +6,30 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 16:03:11 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/28 20:58:09 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 13:25:34 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inner.h"
 
-static char	*trim_and_validate_raw_line(t_mlx *data, char *line, int *errno)
+static char	*trim_and_validate_raw_line(t_mlx *data, char *line, int *errno, \
+										char **instructions)
 {
 	char	*trimmed_line;
 
 	*errno = 1;
 	trimmed_line = ft_strtrim(line, " \t\n\v\f\r");
 	if (!trimmed_line)
-		finalize(data, "Error: Memory allocation failed for trimmed_line", 1);
+	{
+		free(line);
+		free_2d_array(instructions);
+		finalize(data, "Error: Memory allocation failed for trimmed line", 1);
+		return (NULL);
+	}
 	if (trimmed_line[0] == '\0')
 	{
+		free(line);
+		free_2d_array(instructions);
 		free(trimmed_line);
 		return (NULL);
 	}
@@ -68,28 +76,25 @@ static void	**configure_texture_asset(t_mlx *data, char **parts, \
 	return (img_field_ptr);
 }
 
-static void	verify_texture_file_accessibility(t_mlx *data, \
-		char **parts, char *trimmed_line)
+static void	verify_texture_file_accessibility(t_mlx *data, char **parts)
 {
 	int	fd_texture;
 
 	fd_texture = open(parts[1], O_RDONLY);
 	if (fd_texture == -1)
 	{
-		free_texture_parts(parts);
-		free(trimmed_line);
-		close(fd_texture);
-		finalize(data, "Invalid texture file path or permissions.", 1);
+		data->errno = 1;
+		return ;
 	}
 	close(fd_texture);
 }
 
-int	parse_texture_line(t_mlx *data, char *line)
+int	parse_texture_line(t_mlx *data, char *line, char **instructions)
 {
 	char	*trimmed_line;
 	char	**parts;
 
-	trimmed_line = trim_and_validate_raw_line(data, line, &data->errno);
+	trimmed_line = trim_and_validate_raw_line(data, line, &data->errno, instructions);
 	if (data->errno)
 		return (free(trimmed_line), 0);
 	parts = split_trimmed_line(data, trimmed_line, &data->errno);
@@ -108,7 +113,7 @@ int	parse_texture_line(t_mlx *data, char *line)
 	configure_texture_asset(data, parts, trimmed_line);
 	if (data->errno)
 		return (free(trimmed_line), 0);
-	verify_texture_file_accessibility(data, parts, trimmed_line);
+	verify_texture_file_accessibility(data, parts);
 	free_texture_parts(parts);
 	return (free(trimmed_line), 1);
 }
