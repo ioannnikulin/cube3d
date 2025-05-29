@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   instractions_utils.c                               :+:      :+:    :+:   */
+/*   instructions_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:46:37 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 14:55:14 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 15:47:19 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	is_map_line(t_mlx *data, char *line)
 	return (1);
 }
 
-static void	free_instructions_and_finalize(t_mlx *data, \
+static void	free_instructions_and_finalize(t_mlx *data,
 		char **instructions, char *trimmed, char *error_msg)
 {
 	free(trimmed);

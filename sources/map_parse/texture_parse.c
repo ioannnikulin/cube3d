@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   texture_parse.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 16:03:11 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 15:00:47 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 15:47:07 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inner.h"
 
-static char	*trim_and_valid_line(t_mlx *data, char *line, int *errno, \
+static char	*trim_and_valid_line(t_mlx *data, char *line, int *errno,
 										char **instructions)
 {
 	char	*trimmed_line;
@@ -58,7 +58,7 @@ static char	**split_trimmed_line(t_mlx *data, char *trimmed_line, int *errno)
 	return (parts);
 }
 
-static void	**configure_texture_asset(t_mlx *data, char **parts, \
+static void	**configure_texture_asset(t_mlx *data, char **parts,
 									char *trimmed_line)
 {
 	void	**img_field_ptr;
@@ -67,11 +67,11 @@ static void	**configure_texture_asset(t_mlx *data, char **parts, \
 	if (set_texture_target(data, parts[0], &img_field_ptr, parts[1]) == -1)
 		return (handle_configure_error(data, parts, trimmed_line, NULL), NULL);
 	if (*img_field_ptr != NULL)
-		return (handle_configure_error(data, parts, trimmed_line, \
-		"Error: Duplicate texture definition"), NULL);
+		return (handle_configure_error(data, parts, trimmed_line,
+				"Error: Duplicate texture definition"), NULL);
 	if (parts[1][0] == '\0')
-		return (handle_configure_error(data, parts, trimmed_line, \
-		"Error: Empty texture path provided"), NULL);
+		return (handle_configure_error(data, parts, trimmed_line,
+				"Error: Empty texture path provided"), NULL);
 	data->errno = 0;
 	return (img_field_ptr);
 }
@@ -100,10 +100,10 @@ int	parse_texture_line(t_mlx *data, char *line, char **instructions)
 	parts = split_trimmed_line(data, trimmed_line, &data->errno);
 	if (data->errno)
 		return (free(trimmed_line), 0);
-	if (!parts || (ft_strcmp(parts[0], "NO") != 0 && \
-		ft_strcmp(parts[0], "SO") != 0 && \
-		ft_strcmp(parts[0], "WE") != 0 && \
-		ft_strcmp(parts[0], "EA") != 0))
+	if (!parts || (ft_strcmp(parts[0], "NO") != 0
+			&& ft_strcmp(parts[0], "SO") != 0
+			&& ft_strcmp(parts[0], "WE") != 0
+			&& ft_strcmp(parts[0], "EA") != 0))
 	{
 		if (parts && parts[0])
 			if (ft_strcmp(parts[0], "C") != 0 || ft_strcmp(parts[0], "F") != 0)

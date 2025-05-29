@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instructions_utils2.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 17:33:17 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 14:59:48 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 15:44:21 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	check_elements(t_mlx *mlx, char **map)
 	{
 		if (!validate_row_properties(mlx, map[i]))
 			return (0);
-		if (!iterate_and_validate_row_chars(mlx, map[i], \
+		if (!iterate_and_validate_row_chars(mlx, map[i],
 				&player_already_parsed))
 			return (0);
 	}

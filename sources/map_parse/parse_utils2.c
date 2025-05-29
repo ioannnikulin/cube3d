@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 15:24:56 by iverniho          #+#    #+#             */
-/*   Updated: 2025/05/29 15:01:21 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 15:40:52 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ char	**allocate_instructions_array(t_mlx *data, int total_lines)
 {
 	char	**instructions_arr;
 
-	instructions_arr = ft_calloc_if(sizeof(char *) \
-		* (size_t)(total_lines + 1), 1);
+	instructions_arr = ft_calloc_if(sizeof(char *)
+			* (size_t)(total_lines + 1), 1);
 	if (!instructions_arr)
 		finalize(data, ERR_MALLOC_INSTRUCTIONS, 1);
 	return (instructions_arr);

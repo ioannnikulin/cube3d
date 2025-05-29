@@ -3,33 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:36:45 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 14:53:08 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 15:41:23 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inner.h"
 
-static void	calculate_player_coords(t_mlx *game, \
+static void	calculate_player_coords(t_mlx *game,
 		int col, int row, char direction)
 {
-	game->player.coords.from.x = col * \
-		MINIMAP_BLOCK_SIZE + MINIMAP_BLOCK_SIZE / 2;
-	game->player.coords.from.y = row * \
-		MINIMAP_BLOCK_SIZE + MINIMAP_BLOCK_SIZE / 2;
+	game->player.coords.from.x = col
+		* MINIMAP_BLOCK_SIZE + MINIMAP_BLOCK_SIZE / 2;
+	game->player.coords.from.y = row
+		* MINIMAP_BLOCK_SIZE + MINIMAP_BLOCK_SIZE / 2;
 	if (direction == 'S')
-		set_direction(game, game->player.coords.from.x, \
+		set_direction(game, game->player.coords.from.x,
 			game->player.coords.from.y + MINIMAP_BLOCK_SIZE);
 	else if (direction == 'N')
-		set_direction(game, game->player.coords.from.x, \
+		set_direction(game, game->player.coords.from.x,
 			game->player.coords.from.y - MINIMAP_BLOCK_SIZE);
 	else if (direction == 'E')
-		set_direction(game, game->player.coords.from.x + MINIMAP_BLOCK_SIZE, \
+		set_direction(game, game->player.coords.from.x + MINIMAP_BLOCK_SIZE,
 			game->player.coords.from.y);
 	else if (direction == 'W')
-		set_direction(game, game->player.coords.from.x - MINIMAP_BLOCK_SIZE, \
+		set_direction(game, game->player.coords.from.x - MINIMAP_BLOCK_SIZE,
 			game->player.coords.from.y);
 }
 

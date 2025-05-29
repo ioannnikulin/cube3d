@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 17:22:37 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 15:01:09 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 15:46:33 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,27 @@ int	is_number(char *str)
 	return (1);
 }
 
-int	set_texture_target(t_mlx *data, char *id, \
+int	set_texture_target(t_mlx *data, char *id,
 		void ***target_path_ptr, char *path)
 {
 	if (ft_strcmp(id, "NO") == 0)
-		initialize_texture_asset(data, &data->assets.wall_north, \
-				path, target_path_ptr);
+		initialize_texture_asset(data, &data->assets.wall_north,
+			path, target_path_ptr);
 	else if (ft_strcmp(id, "SO") == 0)
-		initialize_texture_asset(data, &data->assets.wall_south, \
-				path, target_path_ptr);
+		initialize_texture_asset(data, &data->assets.wall_south,
+			path, target_path_ptr);
 	else if (ft_strcmp(id, "WE") == 0)
-		initialize_texture_asset(data, &data->assets.wall_west, \
-				path, target_path_ptr);
+		initialize_texture_asset(data, &data->assets.wall_west,
+			path, target_path_ptr);
 	else if (ft_strcmp(id, "EA") == 0)
-		initialize_texture_asset(data, &data->assets.wall_east, \
+		initialize_texture_asset(data, &data->assets.wall_east,
 			path, target_path_ptr);
 	else
 		return (-1);
 	return (0);
 }
 
-void	handle_configure_error(t_mlx *data, char **parts, char *trimmed_line, \
+void	handle_configure_error(t_mlx *data, char **parts, char *trimmed_line,
 									char *error_message)
 {
 	free_2d_array(parts);
@@ -64,7 +64,7 @@ void	handle_configure_error(t_mlx *data, char **parts, char *trimmed_line, \
 	finalize(data, "", 1);
 }
 
-void	initialize_texture_asset(t_mlx *data, t_img *asset, char *path_str, \
+void	initialize_texture_asset(t_mlx *data, t_img *asset, char *path_str,
 									void ***img_ptr_target)
 {
 	*img_ptr_target = &asset->img;

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   instructions_parse.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 17:56:14 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 14:58:34 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 15:46:45 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inner.h"
 
-static int	read_lines_into_array(int fd, \
+static int	read_lines_into_array(int fd,
 		char **instructions_arr, int total_lines)
 {
 	int		lines_read;
@@ -30,7 +30,7 @@ static int	read_lines_into_array(int fd, \
 	return (lines_read);
 }
 
-static char	**read_instructions_and_count_lines(t_mlx *data, char *file, \
+static char	**read_instructions_and_count_lines(t_mlx *data, char *file,
 		int *total_lines_out)
 {
 	int		fd;
@@ -50,7 +50,7 @@ static char	**read_instructions_and_count_lines(t_mlx *data, char *file, \
 	return (instructions_arr);
 }
 
-static int	setup_map_data_and_free_instructions(t_mlx *data, \
+static int	setup_map_data_and_free_instructions(t_mlx *data,
 		char **instructions,
 		int total_lines, int map_start_index)
 {
@@ -64,8 +64,8 @@ static int	setup_map_data_and_free_instructions(t_mlx *data, \
 		finalize(data, ERR_ABSENT_MAP, 0);
 	}
 	data->map.map_height = map_height;
-	data->map.map = ft_calloc_if(sizeof(char *) \
-		* (data->map.map_height + 1), 1);
+	data->map.map = ft_calloc_if(sizeof(char *)
+			* (data->map.map_height + 1), 1);
 	if (!data->map.map)
 	{
 		free_2d_array(instructions);
@@ -106,8 +106,8 @@ void	parse_instructions(t_mlx *data, char *file)
 	elements_found = 0;
 	map_start_index = -1;
 	instructions = read_instructions_and_count_lines(data, file, &total_lines);
-	find_elements_and_map_start(data, instructions, &elements_found, \
-			&map_start_index);
+	find_elements_and_map_start(data, instructions, &elements_found,
+		&map_start_index);
 	if (elements_found != 6 || map_start_index == -1)
 	{
 		free_assets(data);
