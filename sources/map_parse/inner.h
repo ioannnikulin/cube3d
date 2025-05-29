@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 18:19:21 by iverniho          #+#    #+#             */
-/*   Updated: 2025/05/29 14:08:11 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 14:24:16 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		parse_color_line(t_mlx *data, char *line, char **instructions);
 int		parse_texture_line(t_mlx *data, char *line, char **instructions);
 void	parse_instructions(t_mlx *data, char *file);
 void	init_parse_data(t_mlx *data);
-int		is_map_line(char *line);
+int		is_map_line(t_mlx *data, char *line);
 void	set_direction(t_mlx *game, int to_x, int to_y);
 int		is_number(char *str);
 int		set_texture_target(t_mlx *data, char *id, \
