@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 17:56:14 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 13:25:11 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 14:03:38 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char	**read_instructions_and_count_lines(t_mlx *data, char *file, \
 	char	**instructions_arr;
 	int		loc_total_lines;
 
-	fd = open_map_file_and_get_fd(file, &loc_total_lines);
+	fd = open_map_file_and_get_fd(data, file, &loc_total_lines);
 	instructions_arr = allocate_instructions_array(data, loc_total_lines);
 	lines_read = read_lines_into_array(fd, instructions_arr, loc_total_lines);
 	if (lines_read != loc_total_lines)
@@ -59,7 +59,7 @@ static int	setup_map_data_and_free_instructions(t_mlx *data, \
 	map_height = total_lines - map_start_index;
 	if (map_height <= 0)
 	{
-		free_instructions(instructions, total_lines);
+		free_2d_array(instructions);
 		free_assets(data);
 		finalize(data, "Error: No map data found after configuration elements", 0);
 	}
@@ -68,7 +68,7 @@ static int	setup_map_data_and_free_instructions(t_mlx *data, \
 		* (data->map.map_height + 1), 1);
 	if (!data->map.map)
 	{
-		free_instructions(instructions, total_lines);
+		free_2d_array(instructions);
 		free_assets(data);
 		finalize(data, "Error: Cannot allocate memory for map storage", 0);
 	}
@@ -76,7 +76,7 @@ static int	setup_map_data_and_free_instructions(t_mlx *data, \
 	free_2d_array(instructions);
 	data->map.map_width = longest_line(data->map.map);
 	if (data->map.map_width <= 0)
-		finalize(data, "Error: Map has no width or is invalid after copy", 0);
+		finalize(data, "", 0);
 	return (0);
 }
 
@@ -111,13 +111,8 @@ void	parse_instructions(t_mlx *data, char *file)
 	if (elements_found != 6 || map_start_index == -1)
 	{
 		free_assets(data);
-		if (elements_found != 6)
-		{
-			free_instructions(instructions, total_lines);
-			finalize(data, "Error: Missing or duplicate map elements", 1);
-		}
-		else
-			finalize(data, "Error: Map grid definition not found after elements", 1);
+		free_2d_array(instructions);
+		finalize(data, "Error: Missing or duplicate map elements", 1);
 	}
 	if (setup_map_data_and_free_instructions(data, instructions, total_lines,
 			map_start_index) == -1)

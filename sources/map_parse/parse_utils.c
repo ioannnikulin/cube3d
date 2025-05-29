@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:44:18 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/25 17:09:18 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/29 14:06:09 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,6 @@ int	is_map_valid(int map_width, int valid_elements)
 	if (map_width == 0 || valid_elements == 0)
 		return (0);
 	return (1);
-}
-
-void	exit_error(char *message)
-{
-	printf("Error: %s\n", message);
-	exit(EXIT_FAILURE);
-}
-
-void	print_map(char **map)
-{
-	int	i;
-
-	i = -1;
-	while (map[++i])
-		printf("%s", map[i]);
 }
 
 int	count_map_lines(char *map)
@@ -51,6 +36,8 @@ int	count_map_lines(char *map)
 		free(temp);
 		temp = get_next_line(file);
 	}
+	if (temp)
+		free(temp);
 	close(file);
 	return (lines);
 }

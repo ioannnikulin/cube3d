@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 17:13:46 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/28 20:49:36 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 14:12:14 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,59 +22,6 @@ void	free_passed_array(int **passed, int height)
 	while (++i < height)
 		free(passed[i]);
 	free(passed);
-}
-
-void	free_texture_parts(char **parts)
-{
-	int	k;
-
-	k = 0;
-	if (parts)
-	{
-		while (parts[k])
-		{
-			free(parts[k]);
-			k++;
-		}
-		free(parts);
-	}
-}
-
-void	free_color_parts(char **parts)
-{
-	int	k;
-
-	k = 0;
-	if (parts)
-	{
-		while (parts[k])
-		{
-			free(parts[k]);
-			k++;
-		}
-		free(parts);
-	}
-}
-
-void	free_instructions(char **instructions, int count)
-{
-	int	i;
-
-	i = 0;
-	if (!instructions)
-		return ;
-	while (i < count && instructions[i] != NULL)
-	{
-		free(instructions[i]);
-		i++;
-	}
-	while (instructions[i] != NULL)
-	{
-		free(instructions[i]);
-		i++;
-	}
-	free(instructions);
-	instructions = NULL;
 }
 
 void	free_assets(t_mlx *data)

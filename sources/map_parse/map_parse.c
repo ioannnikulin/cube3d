@@ -6,25 +6,11 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 22:25:54 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/28 19:02:15 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 14:04:47 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inner.h"
-
-void	print_all_elements(t_mlx *data)
-{
-	printf("\n\n\n//////////////////////////////\n");
-	printf("Texture North: %s\n", data->assets.wall_north.path);
-	printf("Texture South: %s\n", data->assets.wall_south.path);
-	printf("Texture East: %s\n", data->assets.wall_east.path);
-	printf("Texture West: %s\n", data->assets.wall_west.path);
-	printf("F: %d,%d,%d\n", data->map.floor.color.r,
-		data->map.floor.color.g, data->map.floor.color.b);
-	printf("C: %d,%d,%d\n", data->map.ceiling.color.r,
-		data->map.ceiling.color.g, data->map.ceiling.color.b);
-	print_map(data->map.map);
-}
 
 static int	check_extension(char *map)
 {

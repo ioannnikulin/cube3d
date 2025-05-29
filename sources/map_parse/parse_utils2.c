@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 15:24:56 by iverniho          #+#    #+#             */
-/*   Updated: 2025/05/29 12:30:39 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 14:07:58 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,6 @@ int	longest_line(char **map)
 	return (max);
 }
 
-void	free_map_exit(t_mlx **data, char *msg)
-{
-	free_map((*data)->map.map);
-	exit_error(msg);
-}
 
 char	**allocate_instructions_array(t_mlx *data, int total_lines)
 {

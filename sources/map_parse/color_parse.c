@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 17:14:38 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 13:24:35 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 13:43:05 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static char	**split_rgb_values(const char *rgb_data_str)
 		|| rgb_parts[3])
 	{
 		if (rgb_parts)
-			free_color_parts(rgb_parts);
+			free_2d_array(rgb_parts);
 		return (NULL);
 	}
 	return (rgb_parts);
@@ -92,24 +92,16 @@ int	parse_color_line(t_mlx *data, char *line, char **instructions)
 	if (!trimmed_line)
 		return (0);
 	rgb_parts = split_rgb_values(trimmed_line + 2);
-	if (!rgb_parts)
+	if (!rgb_parts || !parse_individual_rgb_components(rgb_parts, rgb))
 	{
 		free(trimmed_line);
-		free_color_parts(rgb_parts);
+		free_2d_array(rgb_parts);
 		free_2d_array(instructions);
 		free(line);
 		finalize(data, "Error: Invalid RGB color format (must be R,G,B)", 1);
 	}
-	if (!parse_individual_rgb_components(rgb_parts, rgb))
-	{
-		free(trimmed_line);
-		free_color_parts(rgb_parts);
-		free_2d_array(instructions);
-		free(line);
-		finalize(data, "Error: Invalid RGB color format (must be R,G,B)1", 1);
-	}
 	set_color_in_data(data, id, rgb);
-	free_color_parts(rgb_parts);
+	free_2d_array(rgb_parts);
 	free(trimmed_line);
 	return (1);
 }

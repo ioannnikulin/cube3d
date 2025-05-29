@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:46:37 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 13:12:49 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 14:19:41 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	find_elements_and_map_start(t_mlx *data, char **instructions,
 				*map_start_idx_out = i;
 			if (data->errno)
 			{
-				free(trimmed); // TODO:
+				free(trimmed);
 				free_2d_array(instructions);
 				free_assets(data);
 				finalize(data, "Error: Failed to parse instructions", 0);
@@ -97,11 +97,11 @@ void	copy_map_data(t_mlx *data, char **instructions, int map_start_index,
 		if (!data->map.map[j])
 		{
 			data->map.map_height = j;
-			free_map(data->map.map);
+			free_2d_array(data->map.map);
 			data->map.map = NULL;
-			free_instructions(instructions, map_height);
+			free_2d_array(instructions);
 			free_assets(data);
-			exit_error("Error: Failed to duplicate map line during copy");
+			finalize(data, "Error: Memory allocation failed for map line", 1);
 		}
 		nl = ft_strrchr(data->map.map[j], '\n');
 		if (nl)

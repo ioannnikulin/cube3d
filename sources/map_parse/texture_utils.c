@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 17:22:37 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/28 20:58:35 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 14:10:26 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,16 @@ int	set_texture_target(t_mlx *data, char *id, \
 		void ***target_path_ptr, char *path)
 {
 	if (ft_strcmp(id, "NO") == 0)
-		initialize_texture_asset(&data->assets.wall_north, \
+		initialize_texture_asset(data, &data->assets.wall_north, \
 				path, target_path_ptr);
 	else if (ft_strcmp(id, "SO") == 0)
-		initialize_texture_asset(&data->assets.wall_south, \
+		initialize_texture_asset(data, &data->assets.wall_south, \
 				path, target_path_ptr);
 	else if (ft_strcmp(id, "WE") == 0)
-		initialize_texture_asset(&data->assets.wall_west, \
+		initialize_texture_asset(data, &data->assets.wall_west, \
 				path, target_path_ptr);
 	else if (ft_strcmp(id, "EA") == 0)
-		initialize_texture_asset(&data->assets.wall_east, \
+		initialize_texture_asset(data, &data->assets.wall_east, \
 			path, target_path_ptr);
 	else
 		return (-1);
@@ -57,20 +57,20 @@ int	set_texture_target(t_mlx *data, char *id, \
 void	handle_configure_error(t_mlx *data, char **parts, char *trimmed_line, \
 									char *error_message)
 {
-	free_texture_parts(parts);
+	free_2d_array(parts);
 	free(trimmed_line);
 	if (error_message)
 		finalize(data, error_message, 1);
 	finalize(data, "", 1);
 }
 
-void	initialize_texture_asset(t_img *asset, char *path_str, \
+void	initialize_texture_asset(t_mlx *data, t_img *asset, char *path_str, \
 									void ***img_ptr_target)
 {
 	*img_ptr_target = &asset->img;
 	asset->path = ft_strdup(path_str);
 	if (!asset->path)
-		exit_error("Error: Memory allocation failed for texture path");
+		finalize(data, "Error: Memory allocation failed for texture path", 1);
 	asset->width = MAP_TEXTURE_WIDTH;
 	asset->height = MAP_TEXTURE_HEIGHT;
 }

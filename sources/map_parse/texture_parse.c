@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 16:03:11 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 13:25:34 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 14:10:16 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static char	**split_trimmed_line(t_mlx *data, char *trimmed_line, int *errno)
 	*errno = 0;
 	if (!parts[0] || !parts[1] || parts[2] != NULL)
 	{
-		free_texture_parts(parts);
+		free_2d_array(parts);
 		free(trimmed_line);
 		return (NULL);
 	}
@@ -108,12 +108,12 @@ int	parse_texture_line(t_mlx *data, char *line, char **instructions)
 		if (parts && parts[0])
 			if (ft_strcmp(parts[0], "C") != 0 || ft_strcmp(parts[0], "F") != 0)
 				free(trimmed_line);
-		return (free_texture_parts(parts), -1);
+		return (free_2d_array(parts), -1);
 	}
 	configure_texture_asset(data, parts, trimmed_line);
 	if (data->errno)
 		return (free(trimmed_line), 0);
 	verify_texture_file_accessibility(data, parts);
-	free_texture_parts(parts);
+	free_2d_array(parts);
 	return (free(trimmed_line), 1);
 }
