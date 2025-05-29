@@ -9,7 +9,7 @@ MLX_LINK_FLAGS =
 
 MLX_SOURCE_ADDRESS =
 MLX_ARCHIVE = minilibx.tgz
-PREFIX = @
+PREFIX = 
 PREPROC_DEFINES =
 
 UNAME := $(shell uname)
@@ -211,16 +211,14 @@ fulltest_common:
 		exit 1; \
 	fi
 
-fulltest: fulltest_common
-	$(PREFIX)make external_calls
-	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DFT_CALLOC_IF_TRAPPED" test memcheck
+fulltest: fulltest_campus external_calls
 
 fulltest_github: fulltest_common # add traps number manually
 	$(PREFIX)make external_calls
 	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DGITHUB -DTRAP_COUNT=100" test memcheck
 
 fulltest_campus: fulltest_common
-	$(PREFIX)make test memcheck
+	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DFT_CALLOC_IF_TRAPPED" all test memcheck
 
 PHONY: all pre clean fclean re test fulltest testclean testfclean retest memcheck memcheck_interactive fulltest_common fulltest_vania tania vania minivania all_trapped all_fancy all_printf bonus prere pretestfclean prefclean test_trapped run debug mem
 ########################################

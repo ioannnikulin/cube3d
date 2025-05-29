@@ -6,13 +6,14 @@
 /*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:01:39 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/29 16:58:03 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/29 19:01:32 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
 #ifdef FT_CALLOC_IF_TRAPPED
+# include "libft/tests/tests.h"
 /*
 * fail mallocs one by one
 * to check that the program exits correctly without leaks every time
@@ -32,7 +33,7 @@ void	pretrap(void)
 	line = get_next_line(fd);
 	if (!line)
 		finalize(NULL, ERR_TRAP_MALLOC, 1);
-	ft_calloc_if_trap_setup(ft_atoi(line));
+	ft_calloc_if_trap_setup(ft_atoi(line, 0));
 	free(line);
 	close(fd);
 }

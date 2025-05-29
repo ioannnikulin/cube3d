@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   finalize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:38:28 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/29 15:42:13 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 18:43:57 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,10 @@ int	finalize(t_mlx *mlx, char *msg, int ret)
 	}
 	if (msg)
 		printf("%s", msg);
-	exit(ret);
+	if ((mlx->dbg & DBG_NOEXIT) == 0)
+		exit(ret);
+	mlx->errno = ret;
+	return (ret);
 }
 
 int	close_it(void *param)

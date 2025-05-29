@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instructions_utils2.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 17:33:17 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 15:44:21 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/29 18:48:25 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	validate_row_properties(t_mlx *mlx, char *row)
 	if (row[0] == '\n')
 		finalize(mlx, ERR_MAP_EMPTY_ROW, 0);
 	if (mlx->map.map_width <= 0)
-		return (finalize(mlx, EER_MAP_INVALID, 0));
+		return (finalize(mlx, ERR_MAP_INVALID, 0));
 	return (1);
 }
 
@@ -75,7 +75,7 @@ int	open_map_file_and_get_fd(t_mlx *data, char *file, int *total_lines_out)
 
 	loc_total_lines = count_map_lines(file);
 	if (loc_total_lines <= 6)
-		finalize(data, EER_MAP_INVALID, 0);
+		finalize(data, ERR_MAP_INVALID, 0);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		finalize(data, ERR_MAP_OPEN, 0);

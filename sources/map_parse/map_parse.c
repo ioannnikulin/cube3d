@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 22:25:54 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 14:04:47 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 19:10:22 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int	validate_map(t_mlx *data, char *map_file)
 {
 	if (!check_extension(map_file))
 		finalize(data, ERR_MAP_EXT, 1);
-	parse_instructions(data, map_file);
+	if (parse_instructions(data, map_file))
+		return (0);
 	printf("\nMap '%s' is valid and loaded.\n", map_file);
 	return (1);
 }

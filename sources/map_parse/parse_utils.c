@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:44:18 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 14:06:09 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 18:41:35 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,5 @@ int	is_valid_char(t_mlx *data, char c, int *player_already_parsed)
 		}
 		return (1);
 	}
-	finalize(data, ERR_INVALID_CHAR, 0);
-	return (0);
+	return (finalize(data, ERR_INVALID_CHAR, 0));
 }

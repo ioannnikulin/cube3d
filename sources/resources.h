@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   resources.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 16:27:25 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/29 15:47:46 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/29 20:15:00 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,11 @@ memory\n"
 # define ERR_PLAYERS_NUMBER "Error\nInvalid number of players\n"
 # define ERR_INVALID_CHAR "Error\nInvalid character in map\n"
 # define ERR_INVALID_RGB "Error\nInvalid RGB values\n"
-# define ERR_PARSE_INSTRACTIONS "Error\nFailed to parse instructions\n"
+# define ERR_PARSE_INSTRUCTIONS "Error\nFailed to parse instructions\n"
 # define ERR_PARSE_MAP "Error\nFailed to parse map\n"
 # define ERR_ABSENT_MAP "Error\nMap not found in the file\n"
-# define EER_MAP_INVALID "Error\nMap is invalid\n"
+# define ERR_MAP_INVALID "Error\nMap is invalid\n"
+# define ERR_TRAP_MALLOC "Error\nFailed to allocate memory in trap mode\n"
 # define WINDOW_TITLE "Cube3D"
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instructions_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:46:37 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 15:48:29 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/29 19:14:56 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,16 @@ int	is_map_line(t_mlx *data, char *line)
 	return (1);
 }
 
-static void	free_instructions_and_finalize(t_mlx *data,
+static int	free_instructions_and_finalize(t_mlx *data,
 		char **instructions, char *trimmed, char *error_msg)
 {
 	free(trimmed);
 	free_2d_array(instructions);
 	free_assets(data);
-	finalize(data, error_msg, 0);
+	return (finalize(data, error_msg, 1));
 }
 
-void	find_elements_and_map_start(t_mlx *data, char **instructions,
+int	find_elements_and_map_start(t_mlx *data, char **instructions,
 		int *elements_found_out, int *map_start_idx_out)
 {
 	int		i;
@@ -84,11 +84,12 @@ void	find_elements_and_map_start(t_mlx *data, char **instructions,
 			else if (is_map_line(data, trimmed) == 1)
 				*map_start_idx_out = i;
 			if (data->errno)
-				free_instructions_and_finalize(data, instructions,
-					trimmed, ERR_PARSE_INSTRACTIONS);
+				return (free_instructions_and_finalize(data, instructions,
+						trimmed, ERR_PARSE_INSTRACTIONS));
 		}
 		free(trimmed);
 	}
+	return (0);
 }
 
 void	copy_map_data(t_mlx *data, char **instructions, int map_start_index,

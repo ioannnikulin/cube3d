@@ -1,11 +1,11 @@
 
 
-F 200,100,0
+F 200,100, 0
 NO sources/assets/_nwall.xpm
 
 WE sources/assets/_wwall.xpm
 EA sources/assets/_ewall.xpm
-C 225,30,0
+C 225, 30,0
 SO sources/assets/_swall.xpm
 
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 17:22:37 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 15:46:33 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/29 20:14:15 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void	initialize_texture_asset(t_mlx *data, t_img *asset, char *path_str,
 									void ***img_ptr_target)
 {
 	*img_ptr_target = &asset->img;
+	if (data->dbg & DBG_TEXTURE_PATH)
+		printf("Texture %p path: %s\n", asset->path, path_str);
 	asset->path = ft_strdup(path_str);
 	if (!asset->path)
 		finalize(data, ERR_MALLOC_TEXTURE, 1);

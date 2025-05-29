@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inner.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 18:19:21 by iverniho          #+#    #+#             */
-/*   Updated: 2025/05/29 15:43:37 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/29 19:15:56 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		set_texture_target(t_mlx *data, char *id,
 			void	***target_path_ptr, char *path);
 int		parse_color_line(t_mlx *data, char *line, char **instructions);
 int		parse_texture_line(t_mlx *data, char *line, char **instructions);
-void	parse_instructions(t_mlx *data, char *file);
+int		parse_instructions(t_mlx *data, char *file);
 void	init_parse_data(t_mlx *data);
 int		is_map_line(t_mlx *data, char *line);
 void	set_direction(t_mlx *game, int to_x, int to_y);
@@ -41,12 +41,11 @@ int		validate_row_properties(t_mlx *mlx, char *row);
 int		check_elements(t_mlx *mlx, char **map);
 int		open_map_file_and_get_fd(t_mlx *data, char *file, int *total_lines_out);
 char	**allocate_instructions_array(t_mlx *data, int total_lines);
-void	convert_texture_to_image(t_mlx *mlx);
 
 // free functions
 void	free_passed_array(int **passed, int height);
 void	free_assets(t_mlx *data);
-void	find_elements_and_map_start(t_mlx *data, char **instructions,
+int		find_elements_and_map_start(t_mlx *data, char **instructions,
 			int *elements_found_out, int *map_start_idx_out);
 void	copy_map_data(t_mlx *data, char **instructions, int map_start_index,
 			int map_height);

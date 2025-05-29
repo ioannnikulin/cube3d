@@ -1,6 +1,7 @@
 #include "tests_internal.h"
 #include "libft.h"
 #include <unistd.h>
+#include <string.h>
 
 #ifndef TRAP_COUNT
 #define TRAP_COUNT 1000
@@ -19,16 +20,20 @@ static void	iterate_traps(void)
 	FILE *file = fopen("cube.log", "r");
 	assert(file);
 	char *line = NULL;
+	size_t len = 0;
 	ssize_t read;
 	int total = 0;
-	while ((read = getline(&line, &read, file)) != -1) {
+	while ((read = getline(&line, &len, file)) != -1) {
 		if (strstr(line, "Total ft_calloc_if calls: ")) {
 			total = ft_atoi((line + 27), 0);
 		}
 	}
+	assert(total > 0);
 	fclose(file);
 #endif
 	for (int i = 0; i < total; i ++) {
+		printf("===== Testing trap %d/%d =====\n", i + 1, total);
+		FILE *file;
 		system("rm -f trap.tgt cube.log cube.err");
 		file = fopen("trap.tgt", "w");
 		assert(file);
@@ -38,7 +43,7 @@ static void	iterate_traps(void)
 		file = fopen("cube.err", "r");
 		assert(file);
 		bool ok = false;
-		while ((read = getline(&line, &read, file)) != -1) {
+		while ((read = getline(&line, &len, file)) != -1) {
 			if (strstr(line, "All heap blocks were freed -- no leaks are possible")) {
 				ok = true;
 				break ;
@@ -54,7 +59,7 @@ static void	iterate_traps(void)
 
 int e2e(void)
 {
-	#ifndef FT_CALLOC_IF_TRAPPED
+	#ifdef FT_CALLOC_IF_TRAPPED
 	iterate_traps();
 	#endif
 	printf("e2e tests passed successfully\n");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instructions_parse.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 17:56:14 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 15:46:45 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/29 20:15:20 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static char	**read_instructions_and_count_lines(t_mlx *data, char *file,
 	if (lines_read != loc_total_lines)
 	{
 		free_2d_array(instructions_arr);
-		finalize(data, ERR_PARSE_INSTRACTIONS, 1);
+		finalize(data, ERR_PARSE_INSTRUCTIONS, 1);
 	}
 	*total_lines_out = loc_total_lines;
 	return (instructions_arr);
@@ -80,21 +80,26 @@ static int	setup_map_data_and_free_instructions(t_mlx *data,
 	return (0);
 }
 
-static void	perform_final_map_validation(t_mlx *data)
+static int	perform_final_map_validation(t_mlx *data)
 {
 	int	map_elements_ok;
 	int	map_surrounded_ok;
 
 	map_elements_ok = check_elements(data, data->map.map);
+	if (!map_elements_ok)
+		return (1);
 	map_surrounded_ok = is_surrounded_by_walls(data);
+	if (data->errno)
+		return (2);
 	if (!is_map_valid(data->map.map_width, map_elements_ok))
-		finalize(data, EER_MAP_INVALID, 0);
+		return (finalize(data, ERR_MAP_INVALID, 3));
 	if (map_surrounded_ok == 0)
-		finalize(data, ERR_MAP_ENCLOSED, 0);
+		return (finalize(data, ERR_MAP_ENCLOSED, 4));
 	printf("Instructions parsed successfully.\n");
+	return (0);
 }
 
-void	parse_instructions(t_mlx *data, char *file)
+int	parse_instructions(t_mlx *data, char *file)
 {
 	char	**instructions;
 	int		total_lines;
@@ -106,16 +111,17 @@ void	parse_instructions(t_mlx *data, char *file)
 	elements_found = 0;
 	map_start_index = -1;
 	instructions = read_instructions_and_count_lines(data, file, &total_lines);
-	find_elements_and_map_start(data, instructions, &elements_found,
-		&map_start_index);
+	if (find_elements_and_map_start(data, instructions, &elements_found,
+			&map_start_index))
+		return (1);
 	if (elements_found != 6 || map_start_index == -1)
 	{
 		free_assets(data);
 		free_2d_array(instructions);
-		finalize(data, EER_MAP_INVALID, 1);
+		finalize(data, ERR_MAP_INVALID, 1);
 	}
 	if (setup_map_data_and_free_instructions(data, instructions, total_lines,
 			map_start_index) == -1)
 		finalize(data, ERR_PARSE_MAP, 0);
-	perform_final_map_validation(data);
+	return (perform_final_map_validation(data));
 }
