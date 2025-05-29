@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 17:33:17 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 14:19:48 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 14:59:48 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	validate_row_properties(t_mlx *mlx, char *row)
 	if (row[0] == '\n')
 		finalize(mlx, ERR_MAP_EMPTY_ROW, 0);
 	if (mlx->map.map_width <= 0)
-		return (finalize(mlx, "Error: Invalid map width", 0));
+		return (finalize(mlx, EER_MAP_INVALID, 0));
 	return (1);
 }
 
@@ -64,7 +64,7 @@ int	check_elements(t_mlx *mlx, char **map)
 			return (0);
 	}
 	if (player_already_parsed == 0)
-		return (finalize(mlx, "Error: No player found", 0));
+		return (finalize(mlx, ERR_NO_PLAYER, 0));
 	return (1);
 }
 
@@ -75,10 +75,10 @@ int	open_map_file_and_get_fd(t_mlx *data, char *file, int *total_lines_out)
 
 	loc_total_lines = count_map_lines(file);
 	if (loc_total_lines <= 6)
-		finalize(data, "Error: Map file too short or missing elements/map", 0);
+		finalize(data, EER_MAP_INVALID, 0);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		finalize(data, "Error: Cannot open map file", 0);
+		finalize(data, ERR_MAP_OPEN, 0);
 	*total_lines_out = loc_total_lines;
 	return (fd);
 }

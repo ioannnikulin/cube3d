@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 15:24:56 by iverniho          #+#    #+#             */
-/*   Updated: 2025/05/29 14:07:58 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 15:01:21 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int	longest_line(char **map)
 	return (max);
 }
 
-
 char	**allocate_instructions_array(t_mlx *data, int total_lines)
 {
 	char	**instructions_arr;
@@ -61,6 +60,6 @@ char	**allocate_instructions_array(t_mlx *data, int total_lines)
 	instructions_arr = ft_calloc_if(sizeof(char *) \
 		* (size_t)(total_lines + 1), 1);
 	if (!instructions_arr)
-		finalize(data, "Error: Cannot allocate memory for instructions buffer", 1);
+		finalize(data, ERR_MALLOC_INSTRUCTIONS, 1);
 	return (instructions_arr);
 }

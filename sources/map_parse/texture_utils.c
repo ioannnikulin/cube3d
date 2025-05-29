@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 17:22:37 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 14:10:26 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 15:01:09 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	initialize_texture_asset(t_mlx *data, t_img *asset, char *path_str, \
 	*img_ptr_target = &asset->img;
 	asset->path = ft_strdup(path_str);
 	if (!asset->path)
-		finalize(data, "Error: Memory allocation failed for texture path", 1);
+		finalize(data, ERR_MALLOC_TEXTURE, 1);
 	asset->width = MAP_TEXTURE_WIDTH;
 	asset->height = MAP_TEXTURE_HEIGHT;
 }

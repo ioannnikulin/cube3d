@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 18:19:21 by iverniho          #+#    #+#             */
-/*   Updated: 2025/05/29 14:24:16 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 14:34:04 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,5 @@ void	find_elements_and_map_start(t_mlx *data, char **instructions, \
 void	copy_map_data(t_mlx *data, char **instructions, int map_start_index, \
 			int map_height);
 void	free_2d_array(char **array);
-
 
 #endif

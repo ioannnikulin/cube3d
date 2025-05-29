@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 17:14:38 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 13:43:05 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 14:53:51 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char	*trim_and_get_identifier(t_mlx *data, char *line, char *out_id)
 	if (trimmed[2] == '\0')
 	{
 		free(trimmed);
-		finalize(data, "Error: Missing RGB values", 1);
+		finalize(data, ERR_INVALID_RGB, 1);
 	}
 	return (trimmed);
 }
@@ -98,7 +98,7 @@ int	parse_color_line(t_mlx *data, char *line, char **instructions)
 		free_2d_array(rgb_parts);
 		free_2d_array(instructions);
 		free(line);
-		finalize(data, "Error: Invalid RGB color format (must be R,G,B)", 1);
+		finalize(data, ERR_INVALID_RGB, 1);
 	}
 	set_color_in_data(data, id, rgb);
 	free_2d_array(rgb_parts);

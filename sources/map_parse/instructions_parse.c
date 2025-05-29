@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 17:56:14 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 14:03:38 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 14:58:34 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static char	**read_instructions_and_count_lines(t_mlx *data, char *file, \
 	if (lines_read != loc_total_lines)
 	{
 		free_2d_array(instructions_arr);
-		finalize(data, "Error: Mismatch between counted lines and lines read", 1);
+		finalize(data, ERR_PARSE_INSTRACTIONS, 1);
 	}
 	*total_lines_out = loc_total_lines;
 	return (instructions_arr);
@@ -61,7 +61,7 @@ static int	setup_map_data_and_free_instructions(t_mlx *data, \
 	{
 		free_2d_array(instructions);
 		free_assets(data);
-		finalize(data, "Error: No map data found after configuration elements", 0);
+		finalize(data, ERR_ABSENT_MAP, 0);
 	}
 	data->map.map_height = map_height;
 	data->map.map = ft_calloc_if(sizeof(char *) \
@@ -70,7 +70,7 @@ static int	setup_map_data_and_free_instructions(t_mlx *data, \
 	{
 		free_2d_array(instructions);
 		free_assets(data);
-		finalize(data, "Error: Cannot allocate memory for map storage", 0);
+		finalize(data, ERR_MALLOC_MAP, 0);
 	}
 	copy_map_data(data, instructions, map_start_index, data->map.map_height);
 	free_2d_array(instructions);
@@ -88,9 +88,9 @@ static void	perform_final_map_validation(t_mlx *data)
 	map_elements_ok = check_elements(data, data->map.map);
 	map_surrounded_ok = is_surrounded_by_walls(data);
 	if (!is_map_valid(data->map.map_width, map_elements_ok))
-		finalize(data, "Error: Map is invalid", 0);
+		finalize(data, EER_MAP_INVALID, 0);
 	if (map_surrounded_ok == 0)
-		finalize(data, "Error: Map is not enclosed by walls", 0);
+		finalize(data, ERR_MAP_ENCLOSED, 0);
 	printf("Instructions parsed successfully.\n");
 }
 
@@ -112,10 +112,10 @@ void	parse_instructions(t_mlx *data, char *file)
 	{
 		free_assets(data);
 		free_2d_array(instructions);
-		finalize(data, "Error: Missing or duplicate map elements", 1);
+		finalize(data, EER_MAP_INVALID, 1);
 	}
 	if (setup_map_data_and_free_instructions(data, instructions, total_lines,
 			map_start_index) == -1)
-		finalize(data, "Error: Failed to set up map data", 0);
+		finalize(data, ERR_PARSE_MAP, 0);
 	perform_final_map_validation(data);
 }

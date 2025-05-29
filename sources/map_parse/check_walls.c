@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:36:45 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 14:11:29 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 14:53:08 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static void	process_not_enclosed(t_mlx *data, int **passed, int height)
 {
 	free_passed_array(passed, height);
 	printf(ERR_MAP_ENCLOSED);
-	finalize(data, "Error: Map is not enclosed by walls", 0);
+	finalize(data, ERR_MAP_ENCLOSED, 0);
 }
 
 int	is_surrounded_by_walls(t_mlx *data)

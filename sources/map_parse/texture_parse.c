@@ -6,13 +6,13 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 16:03:11 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 14:10:16 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 15:00:47 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inner.h"
 
-static char	*trim_and_validate_raw_line(t_mlx *data, char *line, int *errno, \
+static char	*trim_and_valid_line(t_mlx *data, char *line, int *errno, \
 										char **instructions)
 {
 	char	*trimmed_line;
@@ -23,7 +23,7 @@ static char	*trim_and_validate_raw_line(t_mlx *data, char *line, int *errno, \
 	{
 		free(line);
 		free_2d_array(instructions);
-		finalize(data, "Error: Memory allocation failed for trimmed line", 1);
+		finalize(data, ERR_MALLOC_INSTRUCTIONS, 1);
 		return (NULL);
 	}
 	if (trimmed_line[0] == '\0')
@@ -46,7 +46,7 @@ static char	**split_trimmed_line(t_mlx *data, char *trimmed_line, int *errno)
 	if (!parts)
 	{
 		free(trimmed_line);
-		finalize(data, "Error: Memory allocation failed for parts", 1);
+		finalize(data, ERR_MALLOC_INSTRUCTIONS, 1);
 	}
 	*errno = 0;
 	if (!parts[0] || !parts[1] || parts[2] != NULL)
@@ -94,7 +94,7 @@ int	parse_texture_line(t_mlx *data, char *line, char **instructions)
 	char	*trimmed_line;
 	char	**parts;
 
-	trimmed_line = trim_and_validate_raw_line(data, line, &data->errno, instructions);
+	trimmed_line = trim_and_valid_line(data, line, &data->errno, instructions);
 	if (data->errno)
 		return (free(trimmed_line), 0);
 	parts = split_trimmed_line(data, trimmed_line, &data->errno);

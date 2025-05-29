@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:46:37 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 14:25:51 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 14:55:14 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,15 @@ int	is_map_line(t_mlx *data, char *line)
 	return (1);
 }
 
+static void	free_instructions_and_finalize(t_mlx *data, \
+		char **instructions, char *trimmed, char *error_msg)
+{
+	free(trimmed);
+	free_2d_array(instructions);
+	free_assets(data);
+	finalize(data, error_msg, 0);
+}
+
 void	find_elements_and_map_start(t_mlx *data, char **instructions,
 		int *elements_found_out, int *map_start_idx_out)
 {
@@ -63,7 +72,7 @@ void	find_elements_and_map_start(t_mlx *data, char **instructions,
 	i = 0;
 	*elements_found_out = 0;
 	*map_start_idx_out = -1;
-	while (instructions[i] != NULL && *map_start_idx_out == -1)
+	while (instructions[i++] != NULL && *map_start_idx_out == -1)
 	{
 		trimmed = ft_strtrim(instructions[i], " \t\n\v\f\r");
 		if (trimmed && trimmed[0] != '\0')
@@ -75,15 +84,10 @@ void	find_elements_and_map_start(t_mlx *data, char **instructions,
 			else if (is_map_line(data, trimmed) == 1)
 				*map_start_idx_out = i;
 			if (data->errno)
-			{
-				free(trimmed);
-				free_2d_array(instructions);
-				free_assets(data);
-				finalize(data, "Error: Failed to parse instructions", 0);
-			}
+				free_instructions_and_finalize(data, instructions,
+					trimmed, ERR_PARSE_INSTRACTIONS);
 		}
 		free(trimmed);
-		i++;
 	}
 }
 
@@ -104,7 +108,7 @@ void	copy_map_data(t_mlx *data, char **instructions, int map_start_index,
 			data->map.map = NULL;
 			free_2d_array(instructions);
 			free_assets(data);
-			finalize(data, "Error: Memory allocation failed for map line", 1);
+			finalize(data, ERR_MALLOC_MAP, 1);
 		}
 		nl = ft_strrchr(data->map.map[j], '\n');
 		if (nl)
