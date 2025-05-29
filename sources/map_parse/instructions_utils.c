@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:46:37 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 15:47:19 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/29 15:48:29 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ void	find_elements_and_map_start(t_mlx *data, char **instructions,
 	int		i;
 	char	*trimmed;
 
-	i = 0;
+	i = -1;
 	*elements_found_out = 0;
 	*map_start_idx_out = -1;
-	while (instructions[i++] != NULL && *map_start_idx_out == -1)
+	while (instructions[++i] != NULL && *map_start_idx_out == -1)
 	{
 		trimmed = ft_strtrim(instructions[i], " \t\n\v\f\r");
 		if (trimmed && trimmed[0] != '\0')

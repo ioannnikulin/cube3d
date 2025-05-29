@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:38:28 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/29 12:37:40 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 15:42:13 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,11 @@ void	free_img(t_mlx *mlx, t_img *img)
 	}
 }
 
-int	finalize(t_mlx *mlx, char *msg, int ret)
+void	free_mlx_assets(t_mlx *mlx)
 {
 	int	i;
 
 	i = -1;
-	if (mlx->mlx && mlx->win)
-		mlx_clear_window(mlx->mlx, mlx->win);
-	if (mlx->map.map)
-	{
-		free_map(mlx->map.map);
-		mlx->map.map = NULL;
-	}
 	if (mlx->mlx)
 	{
 		free_img(mlx, &mlx->assets.wall_east);
@@ -75,16 +68,25 @@ int	finalize(t_mlx *mlx, char *msg, int ret)
 			free(mlx->frame.imgs);
 			mlx->frame.imgs = NULL;
 		}
+	}
+}
+
+int	finalize(t_mlx *mlx, char *msg, int ret)
+{
+	if (mlx->mlx && mlx->win)
+		mlx_clear_window(mlx->mlx, mlx->win);
+	if (mlx->map.map)
+	{
+		free_map(mlx->map.map);
+		mlx->map.map = NULL;
+	}
+	if (mlx->mlx)
+	{
+		free_mlx_assets(mlx);
 		if (mlx->frame.imgs_data)
-		{
 			free(mlx->frame.imgs_data);
-			mlx->frame.imgs_data = NULL;
-		}
 		if (mlx->win)
-		{
 			mlx_destroy_window(mlx->mlx, mlx->win);
-			mlx->win = NULL;
-		}
 		mlx_destroy_display(mlx->mlx);
 		free(mlx->mlx);
 		mlx->mlx = NULL;
@@ -92,23 +94,9 @@ int	finalize(t_mlx *mlx, char *msg, int ret)
 	if (msg)
 		printf("%s", msg);
 	exit(ret);
-	return (ret);
 }
 
 int	close_it(void *param)
 {
 	return (finalize((t_mlx *)param, MSG_EXIT, 0));
-}
-
-void	free_map(char **map)
-{
-	int	i;
-
-	if (map)
-	{
-		i = -1;
-		while (map[++i])
-			free(map[i]);
-		free(map);
-	}
 }
