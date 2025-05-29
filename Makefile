@@ -8,7 +8,7 @@ MLX_COMPILE_FLAGS =
 MLX_LINK_FLAGS =
 
 MLX_SOURCE_ADDRESS =
-MLX_ARCHIVE = minilibx.tgz
+MLX_ARCHIVE = minilibx-linux-master.zip
 PREFIX = @
 PREPROC_DEFINES =
 
@@ -127,8 +127,8 @@ $(OBJ_DIRS):
 
 pre:
 	$(PREFIX)cd libft && make all
-	#$(PREFIX)curl $(MLX_SOURCE_ADDRESS) -o $(MLX_ARCHIVE)
-	#$(PREFIX)tar -xf $(MLX_ARCHIVE)
+	$(PREFIX)curl -L $(MLX_SOURCE_ADDRESS) -o $(MLX_ARCHIVE)
+	$(PREFIX)unzip -q $(MLX_ARCHIVE)
 	$(PREFIX)cd $(MLX_F) && make -s
 	$(PREFIX)rm -f $(MLX_ARCHIVE)
 
@@ -164,7 +164,7 @@ pretestfclean:
 prere:
 	$(PREFIX)cd libft && make re
 
-clean: testclean #before submission: add preclean
+clean: testclean preclean
 	$(PREFIX)rm -f $(OBJS) $(ENDPOINT_OBJ)
 	$(PREFIX)@if [ -d $(OBJ_F) ]; then rm -rf $(OBJ_F); fi
 	$(PREFIX)rm -f all_calls.txt forbidden_calls.txt functions.txt
