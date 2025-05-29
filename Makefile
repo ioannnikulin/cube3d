@@ -203,7 +203,7 @@ external_calls:
 	$(PREFIX)rm -f functions.txt all_calls.txt forbidden_calls.txt
 
 fulltest_common:
-	$(PREFIX)cd libft && make fulltest
+	$(PREFIX)cd libft && make fulltest_trapped
 	$(PREFIX)make fclean testfclean
 	$(PREFIX)cd sources && norminette | tee norminette_log.txt && grep -q "^Error:" norminette_log.txt || true
 	$(PREFIX)if grep -q "^Error:" sources/norminette_log.txt; then \

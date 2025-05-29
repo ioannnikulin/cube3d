@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:01:39 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/29 16:07:09 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/29 16:58:03 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 * to check that the program exits correctly without leaks every time
 */
 
-void	trap(void)
+void	pretrap(void)
 {
 	int		fd;
 	char	*line;
@@ -44,7 +44,7 @@ void	untrap(void)
 
 #else
 
-void	trap(void)
+void	pretrap(void)
 {
 }
 
@@ -58,7 +58,7 @@ int	main(int argc, char **argv)
 {
 	t_mlx	mlx;
 
-	trap();
+	pretrap();
 	if (argc != 2)
 		return (finalize(NULL, USAGE, 1));
 	if (pre(&mlx))

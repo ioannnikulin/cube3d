@@ -3,7 +3,7 @@
 #include <unistd.h>
 
 #ifndef GITHUB
-static void	trapped(void)
+static void	iterate_traps(void)
 {
 	system("rm -f trap.tgt cube.log");
 	printf("User input emulation unavailable. Switching to manual testing.\n");
@@ -47,7 +47,7 @@ static void	trapped(void)
 int e2e(void)
 {
 	#ifndef GITHUB
-	trapped();
+	iterate_traps();
 	#endif
 	printf("e2e tests passed successfully\n");
 	return (0);

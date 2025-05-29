@@ -16,3 +16,5 @@ Dockerfile
 libft/tests/test
 libft/norminette_log.txt
 sources/norminette_log.txt
+*.txt
+*.zip
