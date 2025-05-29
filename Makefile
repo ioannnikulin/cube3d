@@ -203,17 +203,17 @@ external_calls:
 	$(PREFIX)rm -f functions.txt all_calls.txt forbidden_calls.txt
 
 fulltest_common:
-	$(PREFIX)cd libft && make fulltest_trapped
+	$(PREFIX)cd libft && make fulltest
 	$(PREFIX)make fclean testfclean
 	$(PREFIX)cd sources && norminette | tee norminette_log.txt && grep -q "^Error:" norminette_log.txt || true
 	$(PREFIX)if grep -q "^Error:" sources/norminette_log.txt; then \
 		echo "Norminette errors found. Please fix them before running the tests."; \
 		exit 1; \
 	fi
-	$(PREFIX)make external_calls test_trapped memcheck
+	$(PREFIX)make external_calls
 
-fulltest_vania: fulltest_common
-	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DVANIA" test_trapped memcheck
+fulltest_github: fulltest_common
+	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DGITHUB" test memcheck
 
 fulltest: fulltest_common
 	#$(PREFIX)make test_trapped memcheck
@@ -222,7 +222,7 @@ PHONY: all pre clean fclean re test fulltest testclean testfclean retest memchec
 ########################################
 
 all_trapped:
-	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DFT_CALLOC_IF_TRAPPED -DFANCY_IFACE" all
+	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DFT_CALLOC_IF_TRAPPED" all
 
 vania:
 	$(PREFIX)cd libft && make fulltest_trapped_nonorm
