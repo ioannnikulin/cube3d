@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:06:42 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/19 06:16:38 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/28 20:52:45 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 # define WINDOW_WIDTH 1000
 # define WINDOW_HEIGHT 1000
-# define FRAMES_BUFFER 5 // advance buffering not implemented yet, 
+# define FRAMES_BUFFER 5 // advance buffering not implemented yet,
 // just looping through frames on demand for now
 # define STEP_LENGTH 5
 # define ROT_ANGLE_PI_DIVISOR 36
@@ -37,6 +37,8 @@
 # define MIN_DISTANCE_TO_WALL 5
 # define MAX_WALL_HEIGHT 500
 # define BIGMAP_COL_WIDTH 8
+# define MAP_TEXTURE_HEIGHT 300
+# define MAP_TEXTURE_WIDTH 300
 
 typedef struct s_color
 {
@@ -64,6 +66,7 @@ typedef struct s_img
 	void			*img;
 	int				height;
 	int				width;
+	char			*path;
 }					t_img;
 
 typedef struct s_assets
@@ -139,4 +142,5 @@ char	**next_img_data(t_mlx *mlx);
 int		world_create(t_mlx *mlx);
 int		make_image(t_mlx *mlx);
 int		pre(t_mlx *mlx);
+void	free_img(t_mlx *mlx, t_img *img);
 #endif

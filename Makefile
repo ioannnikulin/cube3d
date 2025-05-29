@@ -1,7 +1,7 @@
 CC = cc
 NAME = cube3D
-COMPILE_FLAGS = -Wall -Wextra -Werror -g -c -O0 -fno-builtin-printf
-LINK_FLAGS = -lft -Llibft -lreadline -lm #-fsanitize=address #not compatible with valgrind from fulltest
+COMPILE_FLAGS = -Wall -Wextra -Werror -g -c -fno-builtin-printf #-fsanitize=address
+LINK_FLAGS = -lft -Llibft -lreadline -lm #-fsanitize=address not compatible with valgrind from fulltest
 MLX_F =
 INCLUDES = -I . -I libft -I $(MLX_F)
 MLX_COMPILE_FLAGS =
@@ -18,8 +18,8 @@ MLX_L_FLAGS			=	-L$(MLX_F) -lmlx -lXext -lX11 -L/usr/lib -lXext -lX11 -lz
 MLX_M_FLAGS			=	-L$(MLX_F) -lmlx -framework OpenGL -framework AppKit
 
 ifeq ($(UNAME), Linux)
-	MLX_SOURCE_ADDRESS 		= 	https://cdn.intra.42.fr/document/document/31891/minilibx-linux.tgz
-	MLX_F 					=	minilibx-linux
+	MLX_SOURCE_ADDRESS 		= 	https://github.com/42paris/minilibx-linux/archive/refs/heads/master.zip
+	MLX_F 					=	minilibx-linux-master
 	MLX_COMPILE_FLAGS		=	$(MLX_LINUX_COMPILE_FLAGS)
 	MLX_LINK_FLAGS			=	$(MLX_L_FLAGS)
 else
@@ -32,7 +32,9 @@ endif
 SOURCE_F = sources
 TEST_F = tests
 
-MAP_PARSING_NAMES = map_parse.c check_walls.c parse_utils.c parse_utils2.c
+MAP_PARSING_NAMES = map_parse.c check_walls.c parse_utils.c parse_utils2.c \
+	texture_parse.c color_parse.c instructions_parse.c instructions_utils.c \
+	free_utils.c texture_utils.c instructions_utils2.c
 MAP_PARSING_F = map_parse
 MAP_PARSING_SRCS = $(addprefix $(MAP_PARSING_F)/,$(MAP_PARSING_NAMES))
 
@@ -125,7 +127,8 @@ $(OBJ_DIRS):
 
 pre:
 	$(PREFIX)cd libft && make all
-	$(PREFIX)curl $(MLX_SOURCE_ADDRESS) -o $(MLX_ARCHIVE) && tar -xf $(MLX_ARCHIVE)
+	#$(PREFIX)curl $(MLX_SOURCE_ADDRESS) -o $(MLX_ARCHIVE)
+	#$(PREFIX)tar -xf $(MLX_ARCHIVE)
 	$(PREFIX)cd $(MLX_F) && make -s
 	$(PREFIX)rm -f $(MLX_ARCHIVE)
 
@@ -200,17 +203,17 @@ external_calls:
 	$(PREFIX)rm -f functions.txt all_calls.txt forbidden_calls.txt
 
 fulltest_common:
-	$(PREFIX)cd libft && make fulltest_trapped
+	$(PREFIX)cd libft && make fulltest
 	$(PREFIX)make fclean testfclean
 	$(PREFIX)cd sources && norminette | tee norminette_log.txt && grep -q "^Error:" norminette_log.txt || true
 	$(PREFIX)if grep -q "^Error:" sources/norminette_log.txt; then \
 		echo "Norminette errors found. Please fix them before running the tests."; \
 		exit 1; \
 	fi
-	$(PREFIX)make external_calls test_trapped memcheck
+	$(PREFIX)make external_calls
 
-fulltest_vania: fulltest_common
-	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DVANIA" test_trapped memcheck
+fulltest_github: fulltest_common
+	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DGITHUB" test memcheck
 
 fulltest: fulltest_common
 	#$(PREFIX)make test_trapped memcheck
@@ -219,7 +222,7 @@ PHONY: all pre clean fclean re test fulltest testclean testfclean retest memchec
 ########################################
 
 all_trapped:
-	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DFT_CALLOC_IF_TRAPPED -DFANCY_IFACE" all
+	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DFT_CALLOC_IF_TRAPPED" all
 
 vania:
 	$(PREFIX)cd libft && make fulltest_trapped_nonorm

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   resources.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 16:27:25 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/08 16:45:50 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/29 15:47:46 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ depicting player's spawn position and face direction]\n"
 # define ERR_MLX_WIN "Error\nFailed to create window\n"
 # define ERR_MLX_GETADDR "Error\nFailed to allocate frame memory\n"
 # define ERR_MALLOC_MAP "Error\nFailed to allocate map memory\n"
+# define ERR_MALLOC_INSTRUCTIONS "Error\nFailed to allocate instructions \
+memory\n"
+# define ERR_MALLOC_TEXTURE "Error\nFailed to allocate texture memory\n"
 # define MSG_EXIT "Exiting normally\n"
 # define ERR_MAP_EXT "Error\nInvalid map extension\n"
 # define ERR_MAP_OPEN "Error\nFailed to open map file\n"
@@ -39,7 +42,12 @@ depicting player's spawn position and face direction]\n"
 # define ERR_MAP_ENCLOSED "Error\nMap is not enclosed by walls\n"
 # define ERR_MAP_EMPTY_ROW "Error\nEmpty row in a map\n"
 # define ERR_PLAYERS_NUMBER "Error\nInvalid number of players\n"
-# define ERR_INVALID_CHAR "Error\nInvalid character:"
+# define ERR_INVALID_CHAR "Error\nInvalid character in map\n"
+# define ERR_INVALID_RGB "Error\nInvalid RGB values\n"
+# define ERR_PARSE_INSTRACTIONS "Error\nFailed to parse instructions\n"
+# define ERR_PARSE_MAP "Error\nFailed to parse map\n"
+# define ERR_ABSENT_MAP "Error\nMap not found in the file\n"
+# define EER_MAP_INVALID "Error\nMap is invalid\n"
 # define WINDOW_TITLE "Cube3D"
 
 #endif
