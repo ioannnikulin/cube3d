@@ -190,7 +190,7 @@ ALLOWED_EXTERNAL_FUNCTIONS = mlx_ free printf __stack_chk_fail exit _GLOBAL_OFFS
 
 ALLOW_EXTERNAL_GREP = $(foreach pattern,$(ALLOWED_EXTERNAL_FUNCTIONS),| grep -v "$(pattern)")
 
-external_calls:
+external_calls: # unavailable in campus, cannot install universal ctags
 	$(PREFIX)ctags -R --c-kinds=f --fields=+n --output-format=xref --languages=c ./sources ./libft/sources | grep -v " static " | awk '{print $$1}' > functions.txt
 	$(PREFIX)make
 	$(PREFIX)find build -name "*.o" -exec nm -u {} \; | awk '{print $2}' | sort -u > all_calls.txt
@@ -210,13 +210,17 @@ fulltest_common:
 		echo "Norminette errors found. Please fix them before running the tests."; \
 		exit 1; \
 	fi
-	$(PREFIX)make external_calls
-
-fulltest_github: fulltest_common
-	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DGITHUB" test memcheck
 
 fulltest: fulltest_common
-	#$(PREFIX)make test_trapped memcheck
+	$(PREFIX)make external_calls
+	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DFT_CALLOC_IF_TRAPPED" test memcheck
+
+fulltest_github: fulltest_common # add traps number manually
+	$(PREFIX)make external_calls
+	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DGITHUB -DTRAP_COUNT=100" test memcheck
+
+fulltest_campus: fulltest_common
+	$(PREFIX)make test memcheck
 
 PHONY: all pre clean fclean re test fulltest testclean testfclean retest memcheck memcheck_interactive fulltest_common fulltest_vania tania vania minivania all_trapped all_fancy all_printf bonus prere pretestfclean prefclean test_trapped run debug mem
 ########################################

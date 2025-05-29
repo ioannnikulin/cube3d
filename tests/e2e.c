@@ -2,10 +2,17 @@
 #include "libft.h"
 #include <unistd.h>
 
-#ifndef GITHUB
+#ifndef TRAP_COUNT
+#define TRAP_COUNT 1000
+#endif
+
+#ifdef FT_CALLOC_IF_TRAPPED
 static void	iterate_traps(void)
 {
 	system("rm -f trap.tgt cube.log");
+#ifdef GITHUB
+	int total = TRAP_COUNT;
+#else // not GITHUB
 	printf("User input emulation unavailable. Switching to manual testing.\n");
 	printf("Now Cube3D will start. Please press a couple buttons (a couple, really) and exit normally (Esc)\n");
 	system("bash -c \"./cube3D map.cub\" 1>cube.log");
@@ -20,6 +27,7 @@ static void	iterate_traps(void)
 		}
 	}
 	fclose(file);
+#endif
 	for (int i = 0; i < total; i ++) {
 		system("rm -f trap.tgt cube.log cube.err");
 		file = fopen("trap.tgt", "w");
@@ -46,7 +54,7 @@ static void	iterate_traps(void)
 
 int e2e(void)
 {
-	#ifndef GITHUB
+	#ifndef FT_CALLOC_IF_TRAPPED
 	iterate_traps();
 	#endif
 	printf("e2e tests passed successfully\n");
