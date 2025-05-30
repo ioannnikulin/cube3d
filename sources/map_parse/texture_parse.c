@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 16:03:11 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 16:22:05 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/30 15:38:34 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,17 +75,14 @@ static void	**configure_texture_asset(t_mlx *data, char **parts,
 	return (img_field_ptr);
 }
 
-static void	verify_texture_file_accessibility(t_mlx *data, char **parts)
+static int	check_texture_side(char *part)
 {
-	int	fd_texture;
-
-	fd_texture = open(parts[1], O_RDONLY);
-	if (fd_texture == -1)
-	{
-		data->errno = 1;
-		return ;
-	}
-	close(fd_texture);
+	if ((ft_strcmp(part, "NO") != 0
+			&& ft_strcmp(part, "SO") != 0
+			&& ft_strcmp(part, "WE") != 0
+			&& ft_strcmp(part, "EA") != 0))
+		return (0);
+	return (1);
 }
 
 int	parse_texture_line(t_mlx *data, char *line, char **instructions)
@@ -99,20 +96,20 @@ int	parse_texture_line(t_mlx *data, char *line, char **instructions)
 	parts = split_trimmed_line(data, trimmed_line, &data->errno);
 	if (data->errno)
 		return (free(trimmed_line), 0);
-	if (!parts || (ft_strcmp(parts[0], "NO") != 0
-			&& ft_strcmp(parts[0], "SO") != 0
-			&& ft_strcmp(parts[0], "WE") != 0
-			&& ft_strcmp(parts[0], "EA") != 0))
+	if (!parts || !check_texture_side(parts[0]))
 	{
 		if (parts && parts[0])
 			if (ft_strcmp(parts[0], "C") != 0 || ft_strcmp(parts[0], "F") != 0)
 				free(trimmed_line);
 		return (free_2d_array(parts), -1);
 	}
-	configure_texture_asset(data, parts, trimmed_line);
-	if (data->errno)
-		return (free(trimmed_line), 0);
 	verify_texture_file_accessibility(data, parts);
+	if (data->errno)
+	{
+		free_2d_array(parts);
+		return (free(trimmed_line), 0);
+	}
+	configure_texture_asset(data, parts, trimmed_line);
 	free_2d_array(parts);
 	return (free(trimmed_line), 1);
 }

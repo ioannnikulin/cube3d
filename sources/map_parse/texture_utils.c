@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 17:22:37 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 18:03:41 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/30 15:34:49 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ void	set_xpm_size(t_mlx *data, t_img *asset,
 		free(trimmed_line);
 		finalize(data, ERR_MALLOC_TEXTURE, 1);
 	}
+	free(trimmed_line);
 	asset->width = ft_atoi(splitted_line[0], &is_all_numbers);
 	asset->height = ft_atoi(splitted_line[1], &is_all_numbers);
-	free(trimmed_line);
 	free_2d_array(splitted_line);
 }
 

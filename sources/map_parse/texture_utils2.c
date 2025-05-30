@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 17:58:29 by iverniho          #+#    #+#             */
-/*   Updated: 2025/05/29 18:01:12 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/30 15:38:38 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,17 @@ int	is_number(char *str)
 		i++;
 	}
 	return (1);
+}
+
+void	verify_texture_file_accessibility(t_mlx *data, char **parts)
+{
+	int	fd_texture;
+
+	fd_texture = open(parts[1], O_RDONLY);
+	if (fd_texture == -1)
+	{
+		data->errno = 1;
+		return ;
+	}
+	close(fd_texture);
 }

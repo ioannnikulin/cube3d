@@ -1,8 +1,8 @@
 NO sources/assets/_nwall.xpm
 SO sources/assets/_swall.xpm
 WE sources/assets/_wwall.xpm
-EA sources/assets/_ewall.xpm
 WR ../textures/ea.xpm
+EA sources/assets/_ewall.xpm
 F 200,100,0
 C 225,30,0
 111111
