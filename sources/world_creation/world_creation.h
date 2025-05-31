@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.c                                           :+:      :+:    :+:   */
+/*   world_creation.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/24 19:28:51 by inikulin          #+#    #+#             */
-/*   Updated: 2025/03/24 19:41:52 by inikulin         ###   ########.fr       */
+/*   Created: 2025/04/11 19:33:16 by inikulin          #+#    #+#             */
+/*   Updated: 2025/05/19 06:12:11 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef WORLD_CREATION_H
+# define WORLD_CREATION_H
+# include "../cube3d.h"
 
-t_vector	vector_add(t_vector *a, t_vector *b)
-{
-	t_vector	res;
+typedef struct s_mlx	t_mlx;
 
-	res.from.x = a->from.x;
-	res.from.y = a->from.y;
-	res.to.x = a->to.x + b->to.x - b->from.x;
-	res.to.y = a->to.y + b->to.y - b->from.y;
-	return (res);
-}
+int						world_create(t_mlx *mlx);
+int						draw_minimap(t_mlx *mlx);
+#endif

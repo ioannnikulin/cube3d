@@ -1,12 +1,12 @@
 
 
 F 200,100,0
-NO ../textures/no.xpm
-WE ../textures/we.xpm
+NO sources/assets/_nwall.xpm
 
-EA ../textures/ea.xpm
+WE sources/assets/_wwall.xpm
+EA sources/assets/_ewall.xpm
 C 225,30,0
-SO ../textures/so.xpm
+SO sources/assets/_swall.xpm
 
 
 111111

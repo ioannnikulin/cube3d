@@ -1,78 +1,160 @@
 CC = cc
 NAME = cube3D
-COMPILE_FLAGS = -Wall -Wextra -Werror -g -c
-LINK_FLAGS = -lft -Llibft -lreadline -lm
-INCLUDES = -I . -I libft -I minilibx_linux
-MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
-MLX_SOURCE_ADDRESS = https://cdn.intra.42.fr/document/document/31891/minilibx-linux.tgz
-MLX_ARCHIVE = minilibx.tgz
-MLX_F = minilibx-linux
-PREFIX = 
+COMPILE_FLAGS = -Wall -Wextra -Werror -g -c -O0 -fno-builtin-printf #-fsanitize=address
+LINK_FLAGS = -lft -Llibft -lreadline -lm #-fsanitize=address not compatible with valgrind from fulltest
+MLX_F =
+INCLUDES = -I . -I libft -I $(MLX_F)
+MLX_COMPILE_FLAGS =
+MLX_LINK_FLAGS =
+
+MLX_SOURCE_ADDRESS =
+MLX_ARCHIVE = minilibx-linux-master.zip
+PREFIX =
 PREPROC_DEFINES =
+
+UNAME := $(shell uname)
+
+MLX_L_FLAGS			=	-L$(MLX_F) -lmlx -lXext -lX11 -L/usr/lib -lXext -lX11 -lz
+MLX_M_FLAGS			=	-L$(MLX_F) -lmlx -framework OpenGL -framework AppKit
+
+ifeq ($(UNAME), Linux)
+	MLX_SOURCE_ADDRESS 		= 	https://github.com/42paris/minilibx-linux/archive/refs/heads/master.zip
+	MLX_F 					=	minilibx-linux-master
+	MLX_COMPILE_FLAGS		=	$(MLX_LINUX_COMPILE_FLAGS)
+	MLX_LINK_FLAGS			=	$(MLX_L_FLAGS)
+else
+	MLX_SOURCE_ADDRESS 		= 	https://cdn.intra.42.fr/document/document/31892/minilibx_opengl.tgz
+	MLX_F 					=	minilibx_opengl_20191021
+	MLX_COMPILE_FLAGS		=	$(MLX_MACOS_COMPILE_FLAGS)
+	MLX_LINK_FLAGS			=	$(MLX_M_FLAGS)
+endif
 
 SOURCE_F = sources
 TEST_F = tests
 
-MAP_PARSING_NAMES = map_parse.c
+MAP_PARSING_NAMES = map_parse.c check_walls.c parse_utils.c parse_utils2.c \
+	texture_parse.c color_parse.c instructions_parse.c instructions_utils.c \
+	free_utils.c texture_utils.c texture_utils2.c instructions_utils2.c
 MAP_PARSING_F = map_parse
 MAP_PARSING_SRCS = $(addprefix $(MAP_PARSING_F)/,$(MAP_PARSING_NAMES))
 
-SRC_NAMES = 
+DRAWING_NAMES = \
+	player.c \
+	render_frame.c
+DRAWING_F = drawing
+DRAWING_SRCS = $(addprefix $(DRAWING_F)/,$(DRAWING_NAMES))
+
+PRIMITIVES_NAMES = \
+	line.c \
+	line_endpoint.c \
+	line_math.c \
+	pixel.c \
+	circle.c \
+	ray.c \
+	quadrangle.c \
+	triangle.c \
+	triangle_factories.c \
+	get_color.c
+PRIMITIVES_F = ${DRAWING_F}/primitives
+PRIMITIVES_SRCS = $(addprefix $(PRIMITIVES_F)/,$(PRIMITIVES_NAMES))
+
+RAYCAST_NAMES = \
+	rays.c \
+	hor_isect.c \
+	ver_isect.c \
+	draw_ver_stripe.c
+RAYCAST_F = ${DRAWING_F}/rays
+RAYCAST_SRCS = $(addprefix $(RAYCAST_F)/,$(RAYCAST_NAMES))
+
+PLAYER_CONTROLS_NAMES = \
+	keyboard.c \
+	utils.c \
+	steps.c
+PLAYER_CONTROLS_F = player_controls
+PLAYER_CONTROLS_SRCS = $(addprefix $(PLAYER_CONTROLS_F)/,$(PLAYER_CONTROLS_NAMES))
+
+WORLD_CREATION_NAMES = \
+	world_create.c
+WORLD_CREATION_F = world_creation
+WORLD_CREATION_SRCS = $(addprefix $(WORLD_CREATION_F)/,$(WORLD_CREATION_NAMES))
+
+SRC_NAMES = finalize.c core_utils.c pre.c make_image.c
 ENDPOINT_NAME = main.c
 
 SRC_SRCS = $(addprefix $(SOURCE_F)/, $(SRC_NAMES))
 ENDPOINT_SRC = $(addprefix $(SOURCE_F)/, $(ENDPOINT_NAME))
 ENDPOINT_OBJ = $(OBJ_F)$(ENDPOINT_NAME:.c=.o)
 
-TEST_NAMES = units.c e2e.c
+TEST_NAMES = units.c e2e.c map_parsing_test.c
 TEST_ENDPOINT_NAME = main_test.c
 TEST_SRCS = $(addprefix $(TEST_F)/, $(TEST_NAMES))
 TEST_ENDPOINT_SRC = $(addprefix $(TEST_F)/, $(TEST_ENDPOINT_NAME))
 TEST_FNAME = $(TEST_F)/test
 
 OBJ_F = build/
+
+OBJS = \
+	$(addprefix $(OBJ_F), $(SRC_SRCS:.c=.o)) \
+	$(addprefix $(OBJ_F), $(MAP_PARSING_SRCS:.c=.o)) \
+	$(addprefix $(OBJ_F), $(PRIMITIVES_SRCS:.c=.o)) \
+	$(addprefix $(OBJ_F), $(DRAWING_SRCS:.c=.o)) \
+	$(addprefix $(OBJ_F), $(RAYCAST_SRCS:.c=.o)) \
+	$(addprefix $(OBJ_F), $(PLAYER_CONTROLS_SRCS:.c=.o)) \
+	$(addprefix $(OBJ_F), $(WORLD_CREATION_SRCS:.c=.o))
+
+TEST_OBJS = $(addprefix $(OBJ_F), $(TEST_SRCS:.c=.o))
+TEST_ENDPOINT_OBJ = $(OBJ_F)$(TEST_ENDPOINT_SRC:.c=.o)
 TEST_OBJ_F = $(OBJ_F)tests/
 
-OBJS = $(addprefix $(OBJ_F), $(SRC_NAMES:.c=.o))
-TEST_OBJS = $(addprefix $(TEST_OBJ_F), $(TEST_NAMES:.c=.o))
-TEST_ENDPOINT_OBJ = $(OBJ_F)$(TEST_ENDPOINT_NAME:.c=.o)
-
-DIRS = $(MAP_PARSING_F)
+DIRS = \
+	$(SOURCE_F) \
+	$(MAP_PARSING_F) \
+	$(DRAWING_F) \
+	$(PRIMITIVES_F) \
+	$(RAYCAST_F) \
+	$(PLAYER_CONTROLS_F) \
+	$(WORLD_CREATION_F)
 
 OBJ_DIRS = $(addprefix $(OBJ_F), $(DIRS))
 
-vpath %.c $(SOURCE_F) $(TEST_F)
+vpath %.c $(DIRS) $(TEST_F)
 
-all: pre $(NAME)
+all: $(MLX_F)/libmlx.a $(NAME)
+
+$(MLX_F)/libmlx.a:
+	$(PREFIX)cd libft && make all
+	$(PREFIX)if [ ! -d "$(MLX_F)" ]; then \
+		curl -L $(MLX_SOURCE_ADDRESS) -o $(MLX_ARCHIVE); \
+		unzip -q $(MLX_ARCHIVE); \
+		rm -f $(MLX_ARCHIVE); \
+	fi
+	$(PREFIX)cd $(MLX_F) && make -s
+
+pre: $(MLX_F)/libmlx.a
 
 bonus: all
 
 $(OBJ_DIRS):
-	$(PREFIX)mkdir -p $(OBJ_DIRS)
+	$(PREFIX)mkdir -p $@
+	$(PREFIX)touch $@
 
-pre:
-	$(PREFIX)cd libft && make all
-	$(PREFIX)curl $(MLX_SOURCE_ADDRESS) -o $(MLX_ARCHIVE) && tar -xf $(MLX_ARCHIVE)
-	$(PREFIX)cd $(MLX_F) && make -s
-	$(PREFIX)rm -f $(MLX_ARCHIVE)
+$(NAME): $(OBJS) $(ENDPOINT_OBJ)
+	$(PREFIX)$(CC) $(OBJS) $(ENDPOINT_OBJ) -o $@ $(LINK_FLAGS) $(MLX_LINK_FLAGS)
 
-$(NAME): $(OBJS) $(ENDPOINT_OBJ) $(OBJ_DIRS)
-	$(PREFIX)$(CC) $(OBJS) $(ENDPOINT_OBJ) -o $@ $(LINK_FLAGS)
-
-$(OBJ_F)%.o: %.c $(OBJ_DIRS)
-	$(PREFIX)$(CC) $(COMPILE_FLAGS) $< -o $@ $(INCLUDES) $(PREPROC_DEFINES)
+$(OBJ_F)%.o: %.c | $(OBJ_DIRS)
+	$(PREFIX)$(CC) $(COMPILE_FLAGS) $(MLX_COMPILE_FLAGS) $< -o $@ $(INCLUDES) $(PREPROC_DEFINES)
 
 $(TEST_OBJ_F):
 	$(PREFIX)mkdir -p $(TEST_OBJ_F)
 
 $(TEST_OBJ_F)%.o: $(TEST_F)/%.c $(TEST_OBJ_F)
-	$(PREFIX)$(CC) $(COMPILE_FLAGS) $< -o $@ $(INCLUDES) $(PREPROC_DEFINES)
+	$(PREFIX)$(CC) $(COMPILE_FLAGS) $(MLX_COMPILE_FLAGS) $< -o $@ $(INCLUDES) $(PREPROC_DEFINES)
 
 test_trapped:
 	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DFT_CALLOC_IF_TRAPPED" test
 
-test: $(OBJ_DIRS) $(TEST_OBJ_F) $(OBJS) $(TEST_OBJS) $(TEST_ENDPOINT_OBJ) 
-	$(PREFIX)$(CC) $(OBJS) $(TEST_OBJS) $(TEST_ENDPOINT_OBJ) -o $(TEST_FNAME) $(LINK_FLAGS)
+test: $(OBJ_DIRS) $(TEST_OBJ_F) $(OBJS) $(TEST_OBJS) $(TEST_ENDPOINT_OBJ)
+	$(PREFIX)$(CC) $(OBJS) $(TEST_OBJS) $(TEST_ENDPOINT_OBJ) -o $(TEST_FNAME) $(LINK_FLAGS) $(MLX_LINK_FLAGS)
 
 preclean:
 	$(PREFIX)cd libft && make clean
@@ -88,9 +170,10 @@ pretestfclean:
 prere:
 	$(PREFIX)cd libft && make re
 
-clean: testclean #before submission: add preclean
+clean: testclean preclean
 	$(PREFIX)rm -f $(OBJS) $(ENDPOINT_OBJ)
 	$(PREFIX)@if [ -d $(OBJ_F) ]; then rm -rf $(OBJ_F); fi
+	$(PREFIX)rm -f all_calls.txt forbidden_calls.txt functions.txt
 
 fclean: clean testfclean #before submission: add prefclean
 	$(PREFIX)rm -f $(NAME)
@@ -109,23 +192,47 @@ retest: testfclean test
 memcheck:
 	$(PREFIX)valgrind --suppressions=tests/valgrind.supp --leak-check=full --show-leak-kinds=all $(TEST_FNAME)
 
-fulltest_common:
-	$(PREFIX)cd libft && make fulltest_trapped
-	$(PREFIX)make fclean testfclean
-	$(PREFIX)cd sources && norminette sources/*
-	$(PREFIX)make all_trapped
+ALLOWED_EXTERNAL_FUNCTIONS = mlx_ free printf __stack_chk_fail exit _GLOBAL_OFFSET_TABLE_ open close gettimeofday sqrt cos
 
-fulltest_vania: fulltest_common
-	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DVANIA" test_trapped memcheck
+ALLOW_EXTERNAL_GREP = $(foreach pattern,$(ALLOWED_EXTERNAL_FUNCTIONS),| grep -v "$(pattern)")
+
+external_calls:
+	$(PREFIX)ctags -R --c-kinds=f --fields=+n --output-format=xref --languages=c ./sources ./libft/sources | grep -v " static " | awk '{print $$1}' > functions.txt
+	$(PREFIX)make
+	$(PREFIX)find build -name "*.o" -exec nm -u {} \; | awk '{print $2}' | sort -u > all_calls.txt
+	$(PREFIX)grep -vFf functions.txt all_calls.txt $(ALLOW_EXTERNAL_GREP) > forbidden_calls.txt || true
+	@if [ -s forbidden_calls.txt ]; then \
+        echo "Error: Forbidden external calls detected:"; \
+        cat forbidden_calls.txt; \
+        exit 1; \
+    fi
+	$(PREFIX)rm -f functions.txt all_calls.txt forbidden_calls.txt
+
+fulltest_common:
+	$(PREFIX)cd libft && make fulltest
+	$(PREFIX)make fclean testfclean
+	$(PREFIX)cd sources && norminette | tee norminette_log.txt && grep -q "^Error:" norminette_log.txt || true
+	$(PREFIX)if grep -q "^Error:" sources/norminette_log.txt; then \
+		echo "Norminette errors found. Please fix them before running the tests."; \
+		exit 1; \
+	fi
+
+fulltest_github: fulltest_common
+	$(PREFIX)make external_calls
+	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DGITHUB" test #memcheck
 
 fulltest: fulltest_common
-	$(PREFIX)make test_trapped memcheck
+	$(PREFIX)make external_calls
+	#$(PREFIX)make test_trapped #memcheck
 
-PHONY: all pre clean fclean re test fulltest testclean testfclean retest memcheck memcheck_interactive fulltest_common fulltest_vania tania vania minivania all_trapped all_fancy all_printf bonus prere pretestfclean prefclean test_trapped run debug mem
+fulltest_campus: fulltest_common
+	$(PREFIX)make test #memcheck
+
+.PHONY: all bonus pre clean fclean re test fulltest testclean testfclean retest memcheck memcheck_interactive fulltest_common fulltest_vania tania vania minivania all_trapped all_fancy all_printf bonus prere pretestfclean prefclean test_trapped run debug mem
 ########################################
 
 all_trapped:
-	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DFT_CALLOC_IF_TRAPPED -DFANCY_IFACE" all
+	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DFT_CALLOC_IF_TRAPPED" all
 
 vania:
 	$(PREFIX)cd libft && make fulltest_trapped_nonorm
