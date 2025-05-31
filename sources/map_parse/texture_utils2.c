@@ -6,11 +6,21 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 17:58:29 by iverniho          #+#    #+#             */
-/*   Updated: 2025/05/31 13:41:12 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/31 17:10:55 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inner.h"
+
+int	dd_array_length(char **array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i])
+		i++;
+	return (i);
+}
 
 void	set_direction(t_mlx *game, int to_x, int to_y)
 {
