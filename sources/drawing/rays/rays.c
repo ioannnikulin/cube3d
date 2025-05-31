@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:55:59 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/15 11:28:24 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/31 15:08:45 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,23 @@ static int	calc_ray(t_ray_arg *arg)
 	return (0);
 }
 
+static void	look_around(t_mlx *mlx, t_ray_arg *arg)
+{
+	calc_ray(arg);
+	mlx->player.to_wall_ahead = ft_point_dist(&arg->ray.from, &arg->tgt_isect);
+	ft_vector_rot_z_here(&arg->ray, M_PI / 2);
+	calc_ray(arg);
+	mlx->player.to_wall_right = ft_point_dist(&arg->ray.from, &arg->tgt_isect);
+	ft_vector_rot_z_here(&arg->ray, M_PI / 2);
+	calc_ray(arg);
+	mlx->player.to_wall_behind = ft_point_dist(&arg->ray.from, &arg->tgt_isect);
+	ft_vector_rot_z_here(&arg->ray, M_PI / 2);
+	calc_ray(arg);
+	mlx->player.to_wall_left = ft_point_dist(&arg->ray.from, &arg->tgt_isect);
+	arg->angle_delta = ((double)VIEWFIELD) / RAYS_COUNT * DEGREE;
+	ft_vector_rot_z_here(&arg->ray, M_PI / 2 + arg->angle);
+}
+
 int	cast_rays(t_mlx *mlx)
 {
 	t_ray_arg	arg;
@@ -33,13 +50,7 @@ int	cast_rays(t_mlx *mlx)
 	i = -1;
 	arg = ray_arg(mlx);
 	arg.ray = mlx->player.coords;
-	calc_ray(&arg);
-	mlx->player.to_wall_ahead = ft_point_dist(&arg.ray.from, &arg.tgt_isect);
-	ft_vector_rot_z_here(&arg.ray, M_PI);
-	calc_ray(&arg);
-	mlx->player.to_wall_behind = ft_point_dist(&arg.ray.from, &arg.tgt_isect);
-	arg.angle_delta = ((double)VIEWFIELD) / RAYS_COUNT * DEGREE;
-	ft_vector_rot_z_here(&arg.ray, M_PI + arg.angle);
+	look_around(mlx, &arg);
 	while (++ i < RAYS_COUNT)
 	{
 		calc_ray(&arg);

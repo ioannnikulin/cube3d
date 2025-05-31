@@ -68,7 +68,8 @@ RAYCAST_SRCS = $(addprefix $(RAYCAST_F)/,$(RAYCAST_NAMES))
 
 PLAYER_CONTROLS_NAMES = \
 	keyboard.c \
-	utils.c
+	utils.c \
+	steps.c
 PLAYER_CONTROLS_F = player_controls
 PLAYER_CONTROLS_SRCS = $(addprefix $(PLAYER_CONTROLS_F)/,$(PLAYER_CONTROLS_NAMES))
 
@@ -203,26 +204,30 @@ external_calls:
 	$(PREFIX)rm -f functions.txt all_calls.txt forbidden_calls.txt
 
 fulltest_common:
-	$(PREFIX)cd libft && make fulltest_trapped
+	$(PREFIX)cd libft && make fulltest
 	$(PREFIX)make fclean testfclean
 	$(PREFIX)cd sources && norminette | tee norminette_log.txt && grep -q "^Error:" norminette_log.txt || true
 	$(PREFIX)if grep -q "^Error:" sources/norminette_log.txt; then \
 		echo "Norminette errors found. Please fix them before running the tests."; \
 		exit 1; \
 	fi
-	$(PREFIX)make external_calls test_trapped memcheck
 
-fulltest_vania: fulltest_common
-	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DVANIA" test_trapped memcheck
+fulltest_github: fulltest_common
+	$(PREFIX)make external_calls
+	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DGITHUB" test #memcheck
 
 fulltest: fulltest_common
-	#$(PREFIX)make test_trapped memcheck
+	$(PREFIX)make external_calls
+	#$(PREFIX)make test_trapped #memcheck
 
-PHONY: all pre clean fclean re test fulltest testclean testfclean retest memcheck memcheck_interactive fulltest_common fulltest_vania tania vania minivania all_trapped all_fancy all_printf bonus prere pretestfclean prefclean test_trapped run debug mem
+fulltest_campus: fulltest_common
+	$(PREFIX)make test #memcheck
+
+PHONY: all bonus pre clean fclean re test fulltest testclean testfclean retest memcheck memcheck_interactive fulltest_common fulltest_vania tania vania minivania all_trapped all_fancy all_printf bonus prere pretestfclean prefclean test_trapped run debug mem
 ########################################
 
 all_trapped:
-	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DFT_CALLOC_IF_TRAPPED -DFANCY_IFACE" all
+	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DFT_CALLOC_IF_TRAPPED" all
 
 vania:
 	$(PREFIX)cd libft && make fulltest_trapped_nonorm
