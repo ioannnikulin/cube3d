@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pre.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:13:28 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/19 06:23:28 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/31 15:49:32 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	palette_init(t_palette *palette)
 int	pre(t_mlx *mlx)
 {
 	ft_bzero((void *)mlx, sizeof(t_mlx));
-	mlx->dbg = 1;
+	mlx->dbg = 0;
 	mlx->mlx = mlx_init();
 	if (!mlx)
 		return (finalize(mlx, ERR_MLX_INIT, 2));

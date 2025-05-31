@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_controls.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:37:26 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/11 14:35:55 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/31 14:59:48 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ typedef struct s_gamepad
 {
 	int	fwd_pressed;
 	int	back_pressed;
+	int	step_left_pressed;
+	int	step_right_pressed;
 	int	turn_ccw_pressed;
 	int	turn_cw_pressed;
 }	t_gamepad;

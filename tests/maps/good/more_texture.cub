@@ -1,9 +1,10 @@
 NO sources/assets/_nwall.xpm
 SO sources/assets/_swall.xpm
 WE sources/assets/_wwall.xpm
+WR ../textures/ea.xpm
 EA sources/assets/_ewall.xpm
 F 200,100,0
-C 201,101,q
+C 225,30,0
 111111
 100101
 101001

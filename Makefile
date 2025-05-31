@@ -1,14 +1,14 @@
 CC = cc
 NAME = cube3D
-COMPILE_FLAGS = -Wall -Wextra -Werror -g -c -O0 -fno-builtin-printf
-LINK_FLAGS = -lft -Llibft -lreadline -lm #-fsanitize=address #not compatible with valgrind from fulltest
+COMPILE_FLAGS = -Wall -Wextra -Werror -g -c -O0 -fno-builtin-printf #-fsanitize=address
+LINK_FLAGS = -lft -Llibft -lreadline -lm #-fsanitize=address not compatible with valgrind from fulltest
 MLX_F =
 INCLUDES = -I . -I libft -I $(MLX_F)
 MLX_COMPILE_FLAGS =
 MLX_LINK_FLAGS =
 
 MLX_SOURCE_ADDRESS =
-MLX_ARCHIVE = minilibx.tgz
+MLX_ARCHIVE = minilibx-linux-master.zip
 PREFIX = @
 PREPROC_DEFINES =
 
@@ -18,8 +18,8 @@ MLX_L_FLAGS			=	-L$(MLX_F) -lmlx -lXext -lX11 -L/usr/lib -lXext -lX11 -lz
 MLX_M_FLAGS			=	-L$(MLX_F) -lmlx -framework OpenGL -framework AppKit
 
 ifeq ($(UNAME), Linux)
-	MLX_SOURCE_ADDRESS 		= 	https://cdn.intra.42.fr/document/document/31891/minilibx-linux.tgz
-	MLX_F 					=	minilibx-linux
+	MLX_SOURCE_ADDRESS 		= 	https://github.com/42paris/minilibx-linux/archive/refs/heads/master.zip
+	MLX_F 					=	minilibx-linux-master
 	MLX_COMPILE_FLAGS		=	$(MLX_LINUX_COMPILE_FLAGS)
 	MLX_LINK_FLAGS			=	$(MLX_L_FLAGS)
 else
@@ -32,7 +32,9 @@ endif
 SOURCE_F = sources
 TEST_F = tests
 
-MAP_PARSING_NAMES = map_parse.c check_walls.c parse_utils.c parse_utils2.c
+MAP_PARSING_NAMES = map_parse.c check_walls.c parse_utils.c parse_utils2.c \
+	texture_parse.c color_parse.c instructions_parse.c instructions_utils.c \
+	free_utils.c texture_utils.c texture_utils2.c instructions_utils2.c
 MAP_PARSING_F = map_parse
 MAP_PARSING_SRCS = $(addprefix $(MAP_PARSING_F)/,$(MAP_PARSING_NAMES))
 
@@ -66,7 +68,8 @@ RAYCAST_SRCS = $(addprefix $(RAYCAST_F)/,$(RAYCAST_NAMES))
 
 PLAYER_CONTROLS_NAMES = \
 	keyboard.c \
-	utils.c
+	utils.c \
+	steps.c
 PLAYER_CONTROLS_F = player_controls
 PLAYER_CONTROLS_SRCS = $(addprefix $(PLAYER_CONTROLS_F)/,$(PLAYER_CONTROLS_NAMES))
 
@@ -125,7 +128,8 @@ $(OBJ_DIRS):
 
 pre:
 	$(PREFIX)cd libft && make all
-	$(PREFIX)curl $(MLX_SOURCE_ADDRESS) -o $(MLX_ARCHIVE) && tar -xf $(MLX_ARCHIVE)
+	$(PREFIX)curl -L $(MLX_SOURCE_ADDRESS) -o $(MLX_ARCHIVE)
+	$(PREFIX)unzip -q $(MLX_ARCHIVE)
 	$(PREFIX)cd $(MLX_F) && make -s
 	$(PREFIX)rm -f $(MLX_ARCHIVE)
 
@@ -161,7 +165,7 @@ pretestfclean:
 prere:
 	$(PREFIX)cd libft && make re
 
-clean: testclean #before submission: add preclean
+clean: testclean preclean
 	$(PREFIX)rm -f $(OBJS) $(ENDPOINT_OBJ)
 	$(PREFIX)@if [ -d $(OBJ_F) ]; then rm -rf $(OBJ_F); fi
 	$(PREFIX)rm -f all_calls.txt forbidden_calls.txt functions.txt
@@ -200,26 +204,30 @@ external_calls:
 	$(PREFIX)rm -f functions.txt all_calls.txt forbidden_calls.txt
 
 fulltest_common:
-	$(PREFIX)cd libft && make fulltest_trapped
+	$(PREFIX)cd libft && make fulltest
 	$(PREFIX)make fclean testfclean
 	$(PREFIX)cd sources && norminette | tee norminette_log.txt && grep -q "^Error:" norminette_log.txt || true
 	$(PREFIX)if grep -q "^Error:" sources/norminette_log.txt; then \
 		echo "Norminette errors found. Please fix them before running the tests."; \
 		exit 1; \
 	fi
-	$(PREFIX)make external_calls test_trapped memcheck
 
-fulltest_vania: fulltest_common
-	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DVANIA" test_trapped memcheck
+fulltest_github: fulltest_common
+	$(PREFIX)make external_calls
+	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DGITHUB" test #memcheck
 
 fulltest: fulltest_common
-	#$(PREFIX)make test_trapped memcheck
+	$(PREFIX)make external_calls
+	#$(PREFIX)make test_trapped #memcheck
 
-PHONY: all pre clean fclean re test fulltest testclean testfclean retest memcheck memcheck_interactive fulltest_common fulltest_vania tania vania minivania all_trapped all_fancy all_printf bonus prere pretestfclean prefclean test_trapped run debug mem
+fulltest_campus: fulltest_common
+	$(PREFIX)make test #memcheck
+
+PHONY: all bonus pre clean fclean re test fulltest testclean testfclean retest memcheck memcheck_interactive fulltest_common fulltest_vania tania vania minivania all_trapped all_fancy all_printf bonus prere pretestfclean prefclean test_trapped run debug mem
 ########################################
 
 all_trapped:
-	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DFT_CALLOC_IF_TRAPPED -DFANCY_IFACE" all
+	$(PREFIX)make PREPROC_DEFINES="$(PREPROC_DEFINES) -DFT_CALLOC_IF_TRAPPED" all
 
 vania:
 	$(PREFIX)cd libft && make fulltest_trapped_nonorm

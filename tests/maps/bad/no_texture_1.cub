@@ -1,6 +1,6 @@
-NO ../textures/no.xpm
-SO ../textures/so.xpm
-WE ../textures/we.xpm
+NO sources/assets/_nwall.xpm
+SO sources/assets/_swall.xpm
+WE sources/assets/_wwall.xpm
 EA 
 F 200,100,0
 C 225,30,0

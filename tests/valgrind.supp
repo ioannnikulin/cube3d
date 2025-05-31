@@ -19,3 +19,33 @@
    fun:readline
    ...
 }
+{
+   <mlx init>
+   Memcheck:Leak
+   ...
+   fun:mlx_init
+   ...
+}
+{
+   <mlx keys>
+   Memcheck:Leak
+   ...
+   fun:mlx_int_param_KeyPress
+   ...
+}
+{
+   <mlx window cleared>
+   Memcheck:Leak
+   ...
+   fun:mlx_new_window
+   ...
+}
+{
+   <mlx frame flush>
+   Memcheck:Leak
+   ...
+   fun:XFlush
+   ...
+}
+
+
