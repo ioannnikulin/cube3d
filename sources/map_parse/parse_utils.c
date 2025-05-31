@@ -6,11 +6,11 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:44:18 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 14:06:09 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/30 15:40:08 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cube3d.h"
+#include "inner.h"
 
 int	is_map_valid(int map_width, int valid_elements)
 {
@@ -28,7 +28,7 @@ int	count_map_lines(char *map)
 	lines = 0;
 	file = open(map, O_RDONLY);
 	if (file == -1)
-		return (printf(ERR_MAP_OPEN), 0);
+		return (0);
 	temp = get_next_line(file);
 	while (temp)
 	{

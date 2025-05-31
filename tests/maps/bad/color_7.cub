@@ -1,8 +1,9 @@
 NO sources/assets/_nwall.xpm
 SO sources/assets/_swall.xpm
 WE sources/assets/_wwall.xpm
+EA sources/assets/_ewall.xpm
 F 200,100,0
-C 225,30,0
+C 201,101,11 1
 111111
 100101
 101001

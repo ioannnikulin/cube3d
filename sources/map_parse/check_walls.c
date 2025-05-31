@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:36:45 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 15:41:23 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/29 16:14:10 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ static void	floodfill(t_mlx *game, int row, int col, int **passed)
 static void	process_not_enclosed(t_mlx *data, int **passed, int height)
 {
 	free_passed_array(passed, height);
-	printf(ERR_MAP_ENCLOSED);
 	finalize(data, ERR_MAP_ENCLOSED, 0);
 }
 

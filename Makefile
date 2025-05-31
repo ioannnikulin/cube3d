@@ -1,6 +1,6 @@
 CC = cc
 NAME = cube3D
-COMPILE_FLAGS = -Wall -Wextra -Werror -g -c -fno-builtin-printf #-fsanitize=address
+COMPILE_FLAGS = -Wall -Wextra -Werror -g -c -O0 -fno-builtin-printf #-fsanitize=address
 LINK_FLAGS = -lft -Llibft -lreadline -lm #-fsanitize=address not compatible with valgrind from fulltest
 MLX_F =
 INCLUDES = -I . -I libft -I $(MLX_F)
@@ -8,7 +8,7 @@ MLX_COMPILE_FLAGS =
 MLX_LINK_FLAGS =
 
 MLX_SOURCE_ADDRESS =
-MLX_ARCHIVE = minilibx.tgz
+MLX_ARCHIVE = minilibx-linux-master.zip
 PREFIX = @
 PREPROC_DEFINES =
 
@@ -34,7 +34,7 @@ TEST_F = tests
 
 MAP_PARSING_NAMES = map_parse.c check_walls.c parse_utils.c parse_utils2.c \
 	texture_parse.c color_parse.c instructions_parse.c instructions_utils.c \
-	free_utils.c texture_utils.c instructions_utils2.c
+	free_utils.c texture_utils.c texture_utils2.c instructions_utils2.c
 MAP_PARSING_F = map_parse
 MAP_PARSING_SRCS = $(addprefix $(MAP_PARSING_F)/,$(MAP_PARSING_NAMES))
 
@@ -127,8 +127,8 @@ $(OBJ_DIRS):
 
 pre:
 	$(PREFIX)cd libft && make all
-	#$(PREFIX)curl $(MLX_SOURCE_ADDRESS) -o $(MLX_ARCHIVE)
-	#$(PREFIX)tar -xf $(MLX_ARCHIVE)
+	$(PREFIX)curl -L $(MLX_SOURCE_ADDRESS) -o $(MLX_ARCHIVE)
+	$(PREFIX)unzip -q $(MLX_ARCHIVE)
 	$(PREFIX)cd $(MLX_F) && make -s
 	$(PREFIX)rm -f $(MLX_ARCHIVE)
 
@@ -164,7 +164,7 @@ pretestfclean:
 prere:
 	$(PREFIX)cd libft && make re
 
-clean: testclean #before submission: add preclean
+clean: testclean preclean
 	$(PREFIX)rm -f $(OBJS) $(ENDPOINT_OBJ)
 	$(PREFIX)@if [ -d $(OBJ_F) ]; then rm -rf $(OBJ_F); fi
 	$(PREFIX)rm -f all_calls.txt forbidden_calls.txt functions.txt
