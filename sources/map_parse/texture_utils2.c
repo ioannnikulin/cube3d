@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 17:58:29 by iverniho          #+#    #+#             */
-/*   Updated: 2025/05/30 15:38:38 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/31 12:54:40 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,18 @@ int	is_number(char *str)
 
 void	verify_texture_file_accessibility(t_mlx *data, char **parts)
 {
-	int	fd_texture;
+	int		fd_texture;
+	char	*line;
 
 	fd_texture = open(parts[1], O_RDONLY);
+	line = get_next_line(fd_texture);
+	if (!line)
+	{
+		free(line);
+		data->errno = 1;
+		return ;
+	}
+	free(line);
 	if (fd_texture == -1)
 	{
 		data->errno = 1;
