@@ -6,7 +6,7 @@
 /*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:36:30 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/31 15:31:06 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/31 15:52:04 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,45 +31,6 @@ static t_action	parse_key(int keycode)
 	if (keycode == 109)
 		return (MINIMAP);
 	return (NO);
-}
-
-static void	side_step(t_mlx *mlx)
-{
-	t_point	dir;
-
-	dir = ft_point_sub(&mlx->player.coords.to, &mlx->player.coords.from);
-	dir = ft_point_norm(&dir);
-	if (mlx->player.gamepad.step_left_pressed
-		&& mlx->player.to_wall_left > MIN_DISTANCE_TO_WALL)
-	{
-		dir = ft_point_rot_z(&dir, -M_PI / 2);
-		dir = ft_point_scale(&dir, STEP_LENGTH);
-		ft_vector_translate_here(&mlx->player.coords, &dir);
-	}
-	else if (mlx->player.gamepad.step_right_pressed
-		&& mlx->player.to_wall_right > MIN_DISTANCE_TO_WALL)
-	{
-		dir = ft_point_rot_z(&dir, M_PI / 2);
-		dir = ft_point_scale(&dir, STEP_LENGTH);
-		ft_vector_translate_here(&mlx->player.coords, &dir);
-	}
-	else if (mlx->player.gamepad.step_right_pressed)
-	{
-		dir = ft_point_rot_z(&dir, -M_PI / 2);
-		dir = ft_point_scale(&dir, STEP_LENGTH);
-		ft_vector_translate_here(&mlx->player.coords, &dir);
-	}
-}
-
-static double	f_b_step(t_mlx *mlx, double suggest)
-{
-	if (suggest > 0 && mlx->player.to_wall_ahead - suggest
-		< MIN_DISTANCE_TO_WALL)
-		return (mlx->player.to_wall_ahead - MIN_DISTANCE_TO_WALL);
-	if (suggest < 0 && mlx->player.to_wall_behind + suggest
-		< MIN_DISTANCE_TO_WALL)
-		return (-mlx->player.to_wall_behind + MIN_DISTANCE_TO_WALL);
-	return (suggest);
 }
 
 static int	handle_keyboard_event(t_mlx *mlx)
@@ -144,7 +105,7 @@ int	key_released(int keycode, void *param)
 		mlx->player.gamepad.turn_cw_pressed = 0;
 	if (action == MINIMAP)
 	{
-		mlx->map.minimap_show = !mlx->map.minimap_show;
+		mlx->map.minimap_show = 1 - mlx->map.minimap_show;
 		render_frame(mlx);
 	}
 	return (0);
