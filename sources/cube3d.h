@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:06:42 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/31 14:58:40 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/31 19:48:18 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,21 @@
 # include "parsing.h"
 # include "debug.h"
 
-# define WINDOW_WIDTH 1000
+# define WINDOW_WIDTH 1900
 # define WINDOW_HEIGHT 1000
 # define FRAMES_BUFFER 5 // advance buffering not implemented yet,
 // just looping through frames on demand for now
 # define STEP_LENGTH 5
 # define ROT_ANGLE_PI_DIVISOR 36
-# define RAYS_COUNT 120
-# define MINIMAP_RAYS_COUNT 10
-# define MINIMAP_BLOCK_SIZE 64
-# define BIGMAP_BLOCK_SIZE 64
+# define RAYS_COUNT 240
+# define MINIMAP_RAYS_COUNT 20
+# define MINIMAP_BLOCK_SIZE 32
+# define BIGMAP_BLOCK_SIZE 32
 # define EPSILON 1e-6
 # define DEGREE 0.0174532925199432957692369076848861
 # define VIEWFIELD 60
 # define MIN_DISTANCE_TO_WALL 5
-# define MAX_WALL_HEIGHT 500
+# define MAX_WALL_HEIGHT 1000
 # define BIGMAP_COL_WIDTH 8
 
 typedef struct s_color
