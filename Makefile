@@ -9,7 +9,7 @@ MLX_LINK_FLAGS =
 
 MLX_SOURCE_ADDRESS =
 MLX_ARCHIVE = minilibx-linux-master.zip
-PREFIX = @
+PREFIX =
 PREPROC_DEFINES =
 
 UNAME := $(shell uname)
@@ -119,24 +119,29 @@ OBJ_DIRS = $(addprefix $(OBJ_F), $(DIRS))
 
 vpath %.c $(DIRS) $(TEST_F)
 
-all: pre $(NAME)
+all: $(MLX_F)/libmlx.a $(NAME)
+
+$(MLX_F)/libmlx.a:
+	$(PREFIX)cd libft && make all
+	$(PREFIX)if [ ! -d "$(MLX_F)" ]; then \
+		curl -L $(MLX_SOURCE_ADDRESS) -o $(MLX_ARCHIVE); \
+		unzip -q $(MLX_ARCHIVE); \
+		rm -f $(MLX_ARCHIVE); \
+	fi
+	$(PREFIX)cd $(MLX_F) && make -s
+
+pre: $(MLX_F)/libmlx.a
 
 bonus: all
 
 $(OBJ_DIRS):
-	$(PREFIX)mkdir -p $(OBJ_DIRS)
+	$(PREFIX)mkdir -p $@
+	$(PREFIX)touch $@
 
-pre:
-	$(PREFIX)cd libft && make all
-	$(PREFIX)curl -L $(MLX_SOURCE_ADDRESS) -o $(MLX_ARCHIVE)
-	$(PREFIX)unzip -q $(MLX_ARCHIVE)
-	$(PREFIX)cd $(MLX_F) && make -s
-	$(PREFIX)rm -f $(MLX_ARCHIVE)
-
-$(NAME): $(OBJS) $(ENDPOINT_OBJ) $(OBJ_DIRS)
+$(NAME): $(OBJS) $(ENDPOINT_OBJ)
 	$(PREFIX)$(CC) $(OBJS) $(ENDPOINT_OBJ) -o $@ $(LINK_FLAGS) $(MLX_LINK_FLAGS)
 
-$(OBJ_F)%.o: %.c $(OBJ_DIRS)
+$(OBJ_F)%.o: %.c | $(OBJ_DIRS)
 	$(PREFIX)$(CC) $(COMPILE_FLAGS) $(MLX_COMPILE_FLAGS) $< -o $@ $(INCLUDES) $(PREPROC_DEFINES)
 
 $(TEST_OBJ_F):
@@ -223,7 +228,7 @@ fulltest: fulltest_common
 fulltest_campus: fulltest_common
 	$(PREFIX)make test #memcheck
 
-PHONY: all bonus pre clean fclean re test fulltest testclean testfclean retest memcheck memcheck_interactive fulltest_common fulltest_vania tania vania minivania all_trapped all_fancy all_printf bonus prere pretestfclean prefclean test_trapped run debug mem
+.PHONY: all bonus pre clean fclean re test fulltest testclean testfclean retest memcheck memcheck_interactive fulltest_common fulltest_vania tania vania minivania all_trapped all_fancy all_printf bonus prere pretestfclean prefclean test_trapped run debug mem
 ########################################
 
 all_trapped:
