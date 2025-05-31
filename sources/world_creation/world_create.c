@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:31:12 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/29 16:25:38 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/31 19:36:30 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,5 @@ static void	fill_textures(t_mlx *mlx)
 int	world_create(t_mlx *mlx)
 {
 	fill_textures(mlx);
-	mlx->player.coords.from = ft_point_make(1.5 * MINIMAP_BLOCK_SIZE,
-			3 * MINIMAP_BLOCK_SIZE);
-	mlx->player.coords.to = ft_point_make(1.5 * MINIMAP_BLOCK_SIZE,
-			4 * MINIMAP_BLOCK_SIZE);
 	return (0);
 }
