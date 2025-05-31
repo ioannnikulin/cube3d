@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 17:14:38 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/31 13:40:42 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/31 14:20:49 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ static void	set_color_in_data(t_mlx *data, char id, int *rgb)
 	target_color->r = (unsigned char)rgb[0];
 	target_color->g = (unsigned char)rgb[1];
 	target_color->b = (unsigned char)rgb[2];
+	target_color->alpha = 1.0;
 }
 
 int	parse_color_line(t_mlx *data, char *line, char **instructions)
