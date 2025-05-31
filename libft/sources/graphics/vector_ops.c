@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   vector_ops.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 19:28:51 by inikulin          #+#    #+#             */
-/*   Updated: 2025/04/26 12:22:16 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/31 15:15:32 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+t_vector	ft_vector_translate(t_vector *a, t_point *b)
+{
+	t_vector	res;
+
+	res.from = ft_point_add(&a->from, b);
+	res.to = ft_point_add(&a->to, b);
+	return (res);
+}
 
 t_vector	ft_vector_move(t_vector *a, double b)
 {

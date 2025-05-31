@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:27:52 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/01 16:12:58 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/31 15:16:37 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,11 @@ t_vector	ft_vector_make(t_point from, t_point to);
 t_vector	ft_vector_sub(t_vector *a, t_vector *b);
 t_vector	ft_vector_mult(t_vector *a, t_vector *b);*/
 bool		ft_vector_eq(t_vector *a, t_vector *b, double epsilon);
+t_vector	ft_vector_translate(t_vector *a, t_point *b);
 t_vector	ft_vector_move(t_vector *a, double b);
 t_vector	ft_vector_rot(t_vector *a, double b);
 t_vector	ft_vector_rot_z(t_vector *a, double b);
+void		ft_vector_translate_here(t_vector *a, t_point *b);
 void		ft_vector_move_here(t_vector *a, double b);
 void		ft_vector_rot_here(t_vector *a, double b);
 void		ft_vector_rot_z_here(t_vector *a, double b);

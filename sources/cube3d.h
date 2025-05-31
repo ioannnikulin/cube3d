@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inikulin <inikulin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:06:42 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/28 20:52:45 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/31 14:58:40 by inikulin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@
 # define MIN_DISTANCE_TO_WALL 5
 # define MAX_WALL_HEIGHT 500
 # define BIGMAP_COL_WIDTH 8
-# define MAP_TEXTURE_HEIGHT 300
-# define MAP_TEXTURE_WIDTH 300
 
 typedef struct s_color
 {
@@ -103,6 +101,8 @@ typedef struct s_player
 	t_vector	coords;
 	double		to_wall_ahead;
 	double		to_wall_behind;
+	double		to_wall_left;
+	double		to_wall_right;
 	t_gamepad	gamepad;
 	t_vector	minimap_rays[MINIMAP_RAYS_COUNT];
 }	t_player;
