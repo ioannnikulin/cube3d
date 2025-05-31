@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:38:28 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/29 15:42:13 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/31 14:22:39 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,5 @@ int	finalize(t_mlx *mlx, char *msg, int ret)
 
 int	close_it(void *param)
 {
-	return (finalize((t_mlx *)param, MSG_EXIT, 0));
+	return (finalize((t_mlx *)param, "", 0));
 }

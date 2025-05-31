@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:36:30 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/11 15:53:06 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/31 14:23:09 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	key_released(int keycode, void *param)
 	mlx = param;
 	action = parse_key(keycode);
 	if (action == EXIT)
-		return (finalize(param, MSG_EXIT, 0));
+		return (finalize(param, "", 0));
 	if (action == FWD)
 		mlx->player.gamepad.fwd_pressed = 0;
 	if (action == BACK)
