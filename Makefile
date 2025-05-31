@@ -9,7 +9,7 @@ MLX_LINK_FLAGS =
 
 MLX_SOURCE_ADDRESS =
 MLX_ARCHIVE = minilibx-linux-master.zip
-PREFIX = @
+PREFIX =
 PREPROC_DEFINES =
 
 UNAME := $(shell uname)
@@ -119,7 +119,18 @@ OBJ_DIRS = $(addprefix $(OBJ_F), $(DIRS))
 
 vpath %.c $(DIRS) $(TEST_F)
 
-all: pre $(NAME)
+all: $(MLX_F)/libmlx.a $(NAME)
+
+$(MLX_F)/libmlx.a:
+	$(PREFIX)cd libft && make all
+	$(PREFIX)if [ ! -d "$(MLX_F)" ]; then \
+		curl -L $(MLX_SOURCE_ADDRESS) -o $(MLX_ARCHIVE); \
+		unzip -q $(MLX_ARCHIVE); \
+		rm -f $(MLX_ARCHIVE); \
+	fi
+	$(PREFIX)cd $(MLX_F) && make -s
+
+pre: $(MLX_F)/libmlx.a
 
 bonus: all
 
