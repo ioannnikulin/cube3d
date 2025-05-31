@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivanvernihora <ivanvernihora@student.42    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:01:39 by inikulin          #+#    #+#             */
-/*   Updated: 2025/05/24 16:19:27 by ivanverniho      ###   ########.fr       */
+/*   Updated: 2025/05/31 13:46:55 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int argc, char **argv)
 	t_mlx	mlx;
 
 	if (argc != 2)
-		return (finalize(NULL, USAGE, 1));
+		return (printf(USAGE), 1);
 	if (pre(&mlx))
 		return (2);
 	if (!validate_map(&mlx, argv[1]))
