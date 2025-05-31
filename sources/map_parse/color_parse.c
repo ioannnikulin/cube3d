@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_parse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inikulin <inikulin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 17:14:38 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/29 15:41:40 by inikulin         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:40:42 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ static int	parse_individual_rgb_components(char **rgb_parts, int *rgb_values)
 	rgb_values[0] = ft_atoi(rgb_parts[0], &ok_r);
 	rgb_values[1] = ft_atoi(rgb_parts[1], &ok_g);
 	rgb_values[2] = ft_atoi(rgb_parts[2], &ok_b);
-	if (ok_r == 1 || !is_number(rgb_parts[0]) || ok_g == 1
-		|| !is_number(rgb_parts[1]) || ok_b == 1 || !is_number(rgb_parts[2]))
-		return (0);
 	if (rgb_values[0] < 0 || rgb_values[0] > 255 || rgb_values[1] < 0
 		|| rgb_values[1] > 255 || rgb_values[2] < 0 || rgb_values[2] > 255)
+		return (0);
+	if (ok_r == 1 || !is_number(rgb_parts[0]) || ok_g == 1
+		|| !is_number(rgb_parts[1]) || ok_b == 1 || !is_number(rgb_parts[2]))
 		return (0);
 	return (1);
 }

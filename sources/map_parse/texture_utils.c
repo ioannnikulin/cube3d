@@ -6,7 +6,7 @@
 /*   By: iverniho <iverniho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 17:22:37 by ivanverniho       #+#    #+#             */
-/*   Updated: 2025/05/30 15:34:49 by iverniho         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:27:46 by iverniho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	parse_xpm_size(t_mlx *data, t_img *asset)
 	{
 		line = get_next_line(fd);
 		trimmed_line = ft_strtrim(line, "\" \t\n ,");
-		is_all_numbers = is_number(trimmed_line);
+		is_all_numbers = is_number_parse(trimmed_line);
 		if (is_all_numbers)
 		{
 			set_xpm_size(data, asset, trimmed_line, is_all_numbers);
